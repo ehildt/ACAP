@@ -1,11 +1,9 @@
-## 1.0.0-beta.1 (2023-12-25)
-
+## 1.0.0-beta.1 (2024-01-04)
 
 ### CI/CD
 
 * removed 'skip ci' in .releaserc ([97bd055](https://github.com/ehildt/acap/commit/97bd0552ab396216daa16f6ffdf8999036c26e0e))
 * updated the push CI for branches but main and dev ([0b614a5](https://github.com/ehildt/acap/commit/0b614a53441b0220fc63997a1efc5c8cba70c89d))
-
 
 ### Miscellaneous
 
@@ -26,7 +24,6 @@
 * simplified github workflows ([738fc7a](https://github.com/ehildt/acap/commit/738fc7acafaf21b289e91811f6388269f6ef9274))
 * updated the ci pipelines ([bc1b75b](https://github.com/ehildt/acap/commit/bc1b75b70dec59f420d7ac3c1973b45081520ff9))
 
-
 ### UI/UX
 
 * implemented FileImporter (wip) ([5b4b641](https://github.com/ehildt/acap/commit/5b4b6418a918b67c12b432711af91c68526a616d))
@@ -39,7 +36,6 @@
 * updated FileImporter ([73fbd91](https://github.com/ehildt/acap/commit/73fbd917920d1ef02299961b6903fed771bf0aca))
 * updated PageMenu.scss ([088937b](https://github.com/ehildt/acap/commit/088937b13b8cef1b0348c19eb1c9a1b9c2af1150))
 
-
 ### Dependency Updates
 
 * dependency updates ([4ebd1e7](https://github.com/ehildt/acap/commit/4ebd1e78143ed269eb303954e38d690e7c8c7f7c))
@@ -50,18 +46,15 @@
 * updated dependencies ([fcca722](https://github.com/ehildt/acap/commit/fcca722557019616ff3d1f17b470bd2c3f8fe3c7))
 * updated dependencies across the monorepo ([94ebdc5](https://github.com/ehildt/acap/commit/94ebdc5478786b1328ca4a458e7c9124d9e85369))
 
-
 ### Documentation
 
 * updated the README ([63c3ecd](https://github.com/ehildt/acap/commit/63c3ecdd616bed8bf70fc70117dc4226f2e261d8))
-
 
 ### Features
 
 * enhanced the crypto services encryption & decryption logic ([cdc03eb](https://github.com/ehildt/acap/commit/cdc03eb5a20506d87552b95821e03f5abb92e772))
 * simplified the crypro service configuration ([776b2f6](https://github.com/ehildt/acap/commit/776b2f67da7ae3d64e6a4c232799c0d867a1e696))
 * small viewer refactoring ([1a18851](https://github.com/ehildt/acap/commit/1a188519c63e92f275ee7ef2147dc4c4096a36c3))
-
 
 ### Bug Fixes
 
@@ -76,12 +69,10 @@
 
 ## 1.0.0-beta.1 (2023-12-25)
 
-
 ### CI/CD
 
 * removed 'skip ci' in .releaserc ([97bd055](https://github.com/ehildt/acap/commit/97bd0552ab396216daa16f6ffdf8999036c26e0e))
 * updated the push CI for branches but main and dev ([0b614a5](https://github.com/ehildt/acap/commit/0b614a53441b0220fc63997a1efc5c8cba70c89d))
-
 
 ### Miscellaneous
 
@@ -101,7 +92,6 @@
 * simplified github workflows ([738fc7a](https://github.com/ehildt/acap/commit/738fc7acafaf21b289e91811f6388269f6ef9274))
 * updated the ci pipelines ([bc1b75b](https://github.com/ehildt/acap/commit/bc1b75b70dec59f420d7ac3c1973b45081520ff9))
 
-
 ### UI/UX
 
 * implemented FileImporter (wip) ([5b4b641](https://github.com/ehildt/acap/commit/5b4b6418a918b67c12b432711af91c68526a616d))
@@ -114,7 +104,6 @@
 * updated FileImporter ([73fbd91](https://github.com/ehildt/acap/commit/73fbd917920d1ef02299961b6903fed771bf0aca))
 * updated PageMenu.scss ([088937b](https://github.com/ehildt/acap/commit/088937b13b8cef1b0348c19eb1c9a1b9c2af1150))
 
-
 ### Dependency Updates
 
 * dependency updates ([4ebd1e7](https://github.com/ehildt/acap/commit/4ebd1e78143ed269eb303954e38d690e7c8c7f7c))
@@ -125,18 +114,15 @@
 * updated dependencies ([fcca722](https://github.com/ehildt/acap/commit/fcca722557019616ff3d1f17b470bd2c3f8fe3c7))
 * updated dependencies across the monorepo ([94ebdc5](https://github.com/ehildt/acap/commit/94ebdc5478786b1328ca4a458e7c9124d9e85369))
 
-
 ### Documentation
 
 * updated the README ([63c3ecd](https://github.com/ehildt/acap/commit/63c3ecdd616bed8bf70fc70117dc4226f2e261d8))
-
 
 ### Features
 
 * enhanced the crypto services encryption & decryption logic ([cdc03eb](https://github.com/ehildt/acap/commit/cdc03eb5a20506d87552b95821e03f5abb92e772))
 * simplified the crypro service configuration ([776b2f6](https://github.com/ehildt/acap/commit/776b2f67da7ae3d64e6a4c232799c0d867a1e696))
 * small viewer refactoring ([1a18851](https://github.com/ehildt/acap/commit/1a188519c63e92f275ee7ef2147dc4c4096a36c3))
-
 
 ### Bug Fixes
 
@@ -151,12 +137,10 @@
 
 ## 1.0.0-beta.1 (2023-11-28)
 
-
 ### CI/CD
 
 * removed 'skip ci' in .releaserc ([97bd055](https://github.com/ehildt/acap/commit/97bd0552ab396216daa16f6ffdf8999036c26e0e))
 * updated the push CI for branches but main and dev ([0b614a5](https://github.com/ehildt/acap/commit/0b614a53441b0220fc63997a1efc5c8cba70c89d))
-
 
 ### Miscellaneous
 
@@ -174,7 +158,6 @@
 * simplified github workflows ([738fc7a](https://github.com/ehildt/acap/commit/738fc7acafaf21b289e91811f6388269f6ef9274))
 * updated the ci pipelines ([bc1b75b](https://github.com/ehildt/acap/commit/bc1b75b70dec59f420d7ac3c1973b45081520ff9))
 
-
 ### UI/UX
 
 * implemented FileImporter (wip) ([5b4b641](https://github.com/ehildt/acap/commit/5b4b6418a918b67c12b432711af91c68526a616d))
@@ -187,7 +170,6 @@
 * updated FileImporter ([73fbd91](https://github.com/ehildt/acap/commit/73fbd917920d1ef02299961b6903fed771bf0aca))
 * updated PageMenu.scss ([088937b](https://github.com/ehildt/acap/commit/088937b13b8cef1b0348c19eb1c9a1b9c2af1150))
 
-
 ### Dependency Updates
 
 * dependency updates ([4ebd1e7](https://github.com/ehildt/acap/commit/4ebd1e78143ed269eb303954e38d690e7c8c7f7c))
@@ -196,12 +178,10 @@
 * updated dependencies ([fcca722](https://github.com/ehildt/acap/commit/fcca722557019616ff3d1f17b470bd2c3f8fe3c7))
 * updated dependencies across the monorepo ([94ebdc5](https://github.com/ehildt/acap/commit/94ebdc5478786b1328ca4a458e7c9124d9e85369))
 
-
 ### Features
 
 * enhanced the crypto services encryption & decryption logic ([cdc03eb](https://github.com/ehildt/acap/commit/cdc03eb5a20506d87552b95821e03f5abb92e772))
 * simplified the crypro service configuration ([776b2f6](https://github.com/ehildt/acap/commit/776b2f67da7ae3d64e6a4c232799c0d867a1e696))
-
 
 ### Bug Fixes
 
@@ -215,11 +195,9 @@
 
 ## 1.0.0-beta.1 (2023-11-28)
 
-
 ### CI/CD
 
 * updated the push CI for branches but main and dev ([4408bcf](https://github.com/ehildt/acap/commit/4408bcfce8d8420ee36cabee4871d9c8a03dabea))
-
 
 ### Miscellaneous
 
@@ -236,7 +214,6 @@
 * simplified github workflows ([a6830ea](https://github.com/ehildt/acap/commit/a6830ea36c09b32dd48578d32064c3fe81361ecb))
 * updated the ci pipelines ([7fe9d6a](https://github.com/ehildt/acap/commit/7fe9d6ac2ea89d61cf4ce9da2320752ab79d4e09))
 
-
 ### UI/UX
 
 * implemented FileImporter (wip) ([b0ac20b](https://github.com/ehildt/acap/commit/b0ac20b0212c844f876ac3d89ee068e1aa8464c3))
@@ -249,7 +226,6 @@
 * updated FileImporter ([b01aa6c](https://github.com/ehildt/acap/commit/b01aa6c344b30d5c42fa7c45c237895f7ab287a7))
 * updated PageMenu.scss ([297e519](https://github.com/ehildt/acap/commit/297e519eee4c8f36916b5fab470c0f6ffffe87ad))
 
-
 ### Dependency Updates
 
 * dependency updates ([ddba372](https://github.com/ehildt/acap/commit/ddba372b7c594196bc3713be4b69e0808a90e272))
@@ -258,12 +234,10 @@
 * updated dependencies ([1d84a01](https://github.com/ehildt/acap/commit/1d84a0118679b26b2291ce5eb42e7d87347d9b9a))
 * updated dependencies across the monorepo ([27e1937](https://github.com/ehildt/acap/commit/27e1937f9a9b1a4d2821a107aa00baba69ea8882))
 
-
 ### Features
 
 * enhanced the crypto services encryption & decryption logic ([edba200](https://github.com/ehildt/acap/commit/edba200ef8597e7bd5fff21d01fecdf5a0694280))
 * simplified the crypro service configuration ([976b646](https://github.com/ehildt/acap/commit/976b64683e6d89e9001ea44cee8b6ec9aac913ff))
-
 
 ### Bug Fixes
 
