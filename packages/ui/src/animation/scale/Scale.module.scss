@@ -1,0 +1,15 @@
+.scale {
+    overflow: hidden;
+    overflow-wrap: break-word;
+    display: inline-flex;
+
+    &-content {
+        transition: all var(--animation-scale-speedMS, 250ms) ease-in-out;
+        transform: scale(var(--animation-scaleX, 1), var(--animation-scaleY, 1));
+    }
+
+    &:hover &-content {
+        transition: all var(--animation-scale-speedMS2, 250ms) ease-in-out;
+        transform: scale(var(--animation-scaleX2, 1), var(--animation-scaleY2, 1));
+    }
+}

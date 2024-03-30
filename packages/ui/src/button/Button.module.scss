@@ -6,8 +6,8 @@
     padding: 0.4rem;
     border-radius: 0.3rem;
     color: var(--clr-button, ghostwhite);
-    border: 0.15rem solid var(--clr-button-border, rgba(0, 0, 0, 0.4));
-    background-color: var(--clr-button-background, rgba(255, 255, 255, 0.2));
+    border: 0.15rem solid var(--clr-button-border, transparent);
+    background-color: var(--clr-button-background, transparent);
     user-select: none;
     transition: all 250ms;
     gap: 0.3rem;
@@ -18,7 +18,7 @@
 
     &:hover {
         color: var(--clr-button-hover, ghostwhite);
-        border: 0.15rem solid var(--clr-button-border-hover, rgba(0, 0, 0, 0.4));
-        background-color: var(--clr-button-background-hover, rgba(255, 255, 255, 0.2));
+        border: 0.15rem solid var(--clr-button-border-hover, transparent);
+        background-color: var(--clr-button-background-hover, transparent);
     }
 }
