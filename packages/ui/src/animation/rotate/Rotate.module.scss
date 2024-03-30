@@ -1,6 +1,7 @@
 .rotate {
     overflow: hidden;
     overflow-wrap: break-word;
+    display: inline-flex;
 
     &-content {
         transition: all var(--animation-rotate-speedMS, 250ms) ease-in-out;
