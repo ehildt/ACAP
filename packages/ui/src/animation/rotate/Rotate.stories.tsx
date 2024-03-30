@@ -7,7 +7,7 @@ import { Rotate } from './Rotate';
 export default {
   title: 'animation/rotate',
   component: Rotate,
-  decorators: (render) => <div style={{ width: '200px' }}>{render()}</div>,
+  decorators: (render) => <div style={{ width: '300px' }}>{render()}</div>,
 } satisfies Meta<typeof Rotate>;
 
 export const RotateSamples = {
@@ -22,7 +22,7 @@ export const RotateSamples = {
       <Rotate x="2turn" y="3.5deg" z="0">
         <Container>three</Container>
       </Rotate>
-      <Rotate x="0turn" y="-3.5deg" z="0">
+      <Rotate x="0turn" y="-3.5turn" z="5deg">
         <Container>four</Container>
       </Rotate>
     </>

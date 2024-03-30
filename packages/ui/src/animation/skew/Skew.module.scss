@@ -1,6 +1,7 @@
 .skew {
     overflow: hidden;
     overflow-wrap: break-word;
+    display: inline-flex;
 
     &-content {
         transition: all var(--animation-skew-speedMS, 250ms) ease-in-out;

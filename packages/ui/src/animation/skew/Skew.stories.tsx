@@ -7,7 +7,7 @@ import { Skew } from './Skew';
 export default {
   title: 'animation/skew',
   component: Skew,
-  decorators: (render) => <div style={{ width: '200px' }}>{render()}</div>,
+  decorators: (render) => <div style={{ width: '300px' }}>{render()}</div>,
 } satisfies Meta<typeof Skew>;
 
 export const SkewSamples = {
