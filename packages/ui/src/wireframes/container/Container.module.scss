@@ -1,0 +1,56 @@
+.container {
+    --clr-highlights-cyan-100: rgba(255, 255, 255, 0.05);
+    --clr-highlights-cyan-600: rgb(144, 37, 183);
+
+    width: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 0.3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    transition: all 250ms;
+    padding: 0.15rem;
+
+    &-highlight:hover {
+        cursor: pointer;
+        background: radial-gradient(
+            50dvw circle at var(--xPos) var(--yPos),
+            var(--clr-highlights-cyan-600),
+            transparent 15%
+        );
+
+        &::before {
+            opacity: 1;
+        }
+    }
+
+    &::before {
+        content: "";
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        transition: all 250ms ease-in-out;
+        border-radius: inherit;
+        background: radial-gradient(
+            50rem circle at var(--xPos) var(--yPos),
+            transparent,
+            var(--clr-highlights-cyan-100) 45%
+        );
+    }
+
+    &-content {
+        border-radius: 0.3rem;
+        display: inline-flex;
+        background-color: #13161c;
+        color: azure;
+        transition: all 250ms;
+        height: calc(100% - 0.15dvw);
+        width: calc(100% - 0.15dvw);
+        direction: ltr;
+        padding: 0.5rem;
+    }
+}
