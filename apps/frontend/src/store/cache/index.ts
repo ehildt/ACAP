@@ -1,14 +1,11 @@
-import { createStoreWithImmerPersist } from 'libs';
+import { createStoreWithImmer } from 'libs';
 
 import { State } from './model';
 
-export const useImmerPersistCacheStore = createStoreWithImmerPersist<State>(
-  (set) => ({
-    tab: 'metae',
-    setTab: (tab) =>
-      set((state) => {
-        state.tab = tab;
-      }),
-  }),
-  { name: 'cache' },
-);
+export const useCacheImmerStore = createStoreWithImmer<State>((set) => ({
+  tab: 'home',
+  setTab: (tab) =>
+    set((state) => {
+      state.tab = tab;
+    }),
+}));
