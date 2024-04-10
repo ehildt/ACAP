@@ -1,0 +1,35 @@
+.pulse {
+    &-default {
+        animation: reset-pulse var(--animation-pulse-speedMS, 250ms) ease-in-out alternate;
+    }
+
+    &-active {
+        animation: pulse var(--animation-pulse-speedMS, 250ms) ease-in-out var(--animation-pulse-delay, 0ms) infinite
+            alternate;
+    }
+
+    &-passive {
+        animation: pulse var(--animation-pulse-speedMS, 250ms) ease-in-out var(--animation-pulse-delay, 0ms) infinite
+            alternate;
+    }
+}
+
+@keyframes pulse {
+    from {
+        transform: scale(var(--animation-pulse-from, 1));
+    }
+
+    to {
+        transform: scale(var(--animation-pulse-to, 1));
+    }
+}
+
+@keyframes reset-pulse {
+    to {
+        transform: scale(var(--animation-pulse-from, 1));
+    }
+
+    from {
+        transform: scale(var(--animation-pulse-to, 1));
+    }
+}

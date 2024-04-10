@@ -5,6 +5,7 @@ const realm = ':realm';
 const realm_id = ':realm/collections/:id';
 
 export const GetMeta = () => Get(source);
+export const GetACAPMeta = () => Get('acap');
 export const PostOutbreak = () => Post('delegates');
 export const PostRealm = () => Post(realm);
 export const GetRealm = () => Get(realm);

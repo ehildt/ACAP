@@ -1,0 +1,21 @@
+.file-selector {
+    display: inline-flex;
+}
+
+.file-selector-button {
+    display: inline-flex;
+    cursor: pointer;
+    color: ghostwhite;
+    border-radius: 0.3rem;
+    align-items: center;
+}
+
+.file-selector-menu {
+    display: inline-flex;
+    padding: 0.5rem;
+    gap: 0.2rem;
+    background-color: #13161c;
+    color: ghostwhite;
+    border-radius: 0.3rem;
+    text-align: center;
+}
