@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { FaHeart, FaPlus, FaSmile } from 'react-icons/fa';
 
-import { Skew } from '@/animation/skew/Skew';
+import { Skew } from '@/effects/transform/skew/Skew';
 
 import { Button } from './Button';
 
 export default {
-  title: 'buttons/button',
+  title: 'atomics/button',
   component: Button,
 } satisfies Meta<typeof Button>;
 
