@@ -189,6 +189,16 @@ export function OpenApi_GetMeta() {
   );
 }
 
+// TODO: response type
+export function OpenApi_GetACAPMeta() {
+  return applyDecorators(
+    ApiOkResponse({ type: OpenApiMetaProperty }),
+    ApiOperation({
+      description: 'Returns the acap meta data',
+    })
+  );
+}
+
 export function OpenApi_DeleteRealm() {
   return applyDecorators(
     ApiOperation({

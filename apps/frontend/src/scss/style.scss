@@ -1,9 +1,7 @@
 @use "../node_modules/css-reset-and-normalize/scss/reset-and-normalize";
 @use "../node_modules/css-reset-and-normalize/scss/button-reset";
 @use "../node_modules/css-reset-and-normalize/scss/link-reset";
-@use "./layouts";
 @use "./partials";
-@use "./widgets";
 
 :root {
   @each $color, $shade in partials.$colors {
@@ -28,7 +26,7 @@
 body {
   background-color: rgba(20, 20, 20, 0.92);
   color: #eee;
-  font-size: 1.3rem;
+  font-size: 1rem;
 }
 
 // TODO Default Scrollbar

@@ -10,6 +10,7 @@ cacheable
 callsite
 codesnap
 conventionalcommits
+datetime
 dbaeumer
 dccs
 DCCS
@@ -54,5 +55,7 @@ upserts
 usernamehw
 vite
 vitest
+wireframe
+wireframes
 Xmark
 zustand

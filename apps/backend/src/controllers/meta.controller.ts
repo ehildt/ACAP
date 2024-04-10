@@ -1,7 +1,7 @@
 import { Controller } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 
-import { GetMeta } from '@/decorators/controller.method.decorators';
+import { GetACAPMeta, GetMeta } from '@/decorators/controller.method.decorators';
 import {
   ParamSource,
   QuerySearch,
@@ -9,7 +9,7 @@ import {
   QueryTake,
   QueryVerbose,
 } from '@/decorators/controller.parameter.decorators';
-import { OpenApi_GetMeta } from '@/decorators/open-api.controller.decorators';
+import { OpenApi_GetACAPMeta, OpenApi_GetMeta } from '@/decorators/open-api.controller.decorators';
 import { MetaService } from '@/services/meta.service';
 
 type META = 'realms' | 'schemas';
@@ -31,5 +31,11 @@ export class MetaController {
     const filter = { take, skip, verbose, search };
     if (metaSource === 'realms') return await this.metaService.getRealmMeta(filter);
     if (metaSource === 'schemas') return await this.metaService.getSchemaMeta(filter);
+  }
+
+  @GetACAPMeta()
+  @OpenApi_GetACAPMeta()
+  async getACAPMeta() {
+    return this.metaService.getACAPMeta();
   }
 }
