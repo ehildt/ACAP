@@ -4,6 +4,7 @@
     resize: inherit;
     display: flex;
     flex-direction: column;
+
     &::-webkit-scrollbar-thumb,
     &::-webkit-scrollbar-thumb,
     &::-webkit-scrollbar-thumb {
@@ -22,6 +23,8 @@
     }
 
     &--overflow {
+        overflow: auto;
+
         &-x {
             overflow-x: auto;
             overflow-y: hidden;
@@ -30,10 +33,6 @@
         &-y {
             overflow-y: auto;
             overflow-x: hidden;
-        }
-
-        &-auto {
-            overflow: auto;
         }
     }
 
