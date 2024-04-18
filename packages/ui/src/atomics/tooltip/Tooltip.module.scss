@@ -1,0 +1,32 @@
+.tooltip {
+    position: relative;
+    width: fit-content;
+    margin: auto;
+
+    &-element {
+        opacity: 0;
+        bottom: 25px;
+        padding-bottom: 5px;
+        position: absolute;
+        pointer-events: none;
+        transition: all 500ms ease-in-out;
+    }
+
+    &-content-wrapper:hover + &-element {
+        opacity: 1;
+    }
+
+    &-content-wrapper,
+    &-element {
+        border-left: 3px solid transparent;
+        transition: all 250ms ease-in-out;
+    }
+
+    &:hover > &-content-wrapper,
+    &:hover > &-element {
+        box-shadow:
+            -3px 0 0 0 crimson,
+            0 0 0 0 transparent,
+            0 0 0 0 transparent;
+    }
+}
