@@ -8,8 +8,8 @@ export type CSSCustomVariables = {
 
 export type PopupProps = {
   onClick?: () => void;
-  onClose?: () => void;
-  onCloseIcon?: ReactElement;
+  onCancel?: () => void;
+  infoBar?: ReactElement;
   isOpen: boolean;
   ms?: number;
   title?: string;

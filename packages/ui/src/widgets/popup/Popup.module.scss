@@ -21,10 +21,12 @@
 }
 
 .modal {
+    border-radius: 0.3rem;
+    border: 2px solid black;
     display: grid;
-    grid-template-rows: 25px 1fr 25px;
-    min-width: var(--size-popup--width, 30dvw);
-    min-height: var(--size-popup--height, 30dvh);
+    grid-template-rows: 50px 1fr 50px;
+    min-width: var(--size-popup--width, 40dvw);
+    min-height: var(--size-popup--height, 40dvh);
     grid-template-areas:
         "header"
         "content"
@@ -47,33 +49,44 @@
 
 .modal-header {
     grid-area: header;
+    border-top: 3px solid transparent;
+    border-bottom: 3px solid crimson;
+    padding-bottom: 3px;
 
     &--title {
+        text-indent: 10px;
         padding: 0px;
-        margin-inline: 3px;
-        margin-block: 0px;
-        color: darkmagenta;
+        color: violet;
     }
 
     &--far-right {
         display: inline-flex;
-        margin-inline: 3px;
+        margin-right: 10px;
         margin-left: auto;
         align-items: baseline;
+
+        &-info-bar {
+            margin-inline: 7px;
+            display: inline-flex;
+            gap: 6px;
+        }
     }
 }
 
 .modal-footer {
     grid-area: footer;
+    border-bottom: 3px solid transparent;
+    border-top: 3px solid crimson;
+    padding-top: 3px;
+    padding: 0.3rem;
 }
 
 .modal-close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
     cursor: pointer;
 }
 
 .modal-content {
+    padding: 0.3rem;
     grid-area: content;
+    background-color: rgba(0, 0, 0, 0.9);
 }

@@ -13,7 +13,7 @@ ACAP is a cutting-edge system designed to revolutionize content distribution and
 <div align="center">
 <details>
 <summary>Expand to read where it delivers!</summary>
-</br>
+<br />
 
 ${\color{gold}Dynamic \space and \space Adaptable \space Content \space Distribution}$  
 ACAP ensures that other services receive the right content at the right time by dynamically adapting to their changing needs and preferences. This enhances content distribution for other services, providing them with a flexible and adaptable solution.
@@ -32,7 +32,7 @@ By delivering personalized and relevant content, ACAP helps other services impro
 
 </details>
 </div>
-</br>
+<br />
 <div align="center">
 
 ![Name](https://img.shields.io/badge/open_source-ACAP-gold)
@@ -70,7 +70,7 @@ powered by
 
   </div>
 </div>
-</br>
+<br />
 
 <div align="center">
 <h1>
@@ -78,23 +78,23 @@ Table of Contents
 </h1>
 
 [Getting Started](#Getting-Started)  
-[Example Use Cases](#Example-Use-Cases)  
-[Whats in the box?](#Whats-in-the-box)  
-[Content Validation](#Content-Validation)  
-[Content Encryption](#Content-Encryption)  
-[Redis](#Redis)  
-[Redis Publish Subscribe](#Redis-Publish-Subscribe)  
-[MQTT](#MQTT)  
-[BullMQ](#BullMQ)  
-[Outbreak API](#Outbreak-API)
+[Example Use Cases](#example-use-cases)  
+[Whats in the box?](#whats-in-the-box)  
+[Content Validation](#content-validation)  
+[Content Encryption](#content-encryption)  
+[Redis](#redis)  
+[Redis Publish Subscribe](#redis-publish-subscribe)  
+[MQTT](#mqtt)  
+[BullMQ](#bullmq)  
+[Outbreak API](#outbreak-api)
 
 </div>
-</br>
+<br />
 
 <h1 align="center">
 Getting Started
 </h1>
-</br>
+<br />
 
 Install Lerna & Nx by running the command `npm i -g lerna nx pnpm`. In the project root run `pnpm install`, then `docker compose up backend`. The frontend is still WIP. You can run it with `lerna run dev --scope frontend`. You can run Storybook with `lerna run storybook --scope ui`. In case you would like to take a look at some stable react components, we recommend the Scrollbar, Slider, PageMenu and the SelectBox components.
 
@@ -104,7 +104,7 @@ When utilizing ACAP in Docker or Kubernetes (K8S), configuring the service is ef
 
 <details align="center">
 <summary>Expand to see the sample config.yml file</summary>
-</br>
+<br />
 <div align="left">
 
 ```yml
@@ -176,7 +176,7 @@ mqttClientConfig:
 
 <details align="center">
 <summary>Expand to see the sample docker compose file</summary>
-</br>
+<br />
 <div align="left">
 
 ```yml
@@ -247,7 +247,7 @@ As mentioned earlier, you can still utilize system environment variables either 
 
 <details align="center">
 <summary>Expand to see the sample .env file</summary>
-</br>
+<br />
 <div align="left">
 
 ```sh
@@ -307,7 +307,7 @@ REDIS_DB_INDEX=0
 
 With this, you have everything you need to make the ACAP your own and harness its full potential to power your applications and drive business growth.
 
-</br>
+<br />
 
 ## Example Use Cases
 
@@ -319,13 +319,13 @@ There are instances where utilizing ACAP as a proxy can be advantageous. By crea
 
 In certain scenarios, there may be a need to describe and validate content. ACAP accomplishes this by utilizing JSON schema with the help of **avj**. In IDEs like **Visual Studio Code** and similar environments, you have the ability to link the **$schema** , which enables highlighting and validation. Alternatively, you can fetch the schema on the client side and perform data validation in real time during runtime.
 
-</br>
+<br />
 
 ## Whats in the box?
 
 Postman, Insomnia and Swagger OpenApi were yesterday! ACAP delivers a sleek, modern, and intuitive user interface, designed to effortlessly manage and organize your content (**WIP**). With crisp content management and immediate processing, your experience is seamless and efficient. ACAP simplifies the process for developers to enable or disable optional features like Redis Publish Subscribe, MQTT, and BullMQ as per their requirements.
 
-</br>
+<br />
 
 ### Content Validation
 
@@ -333,7 +333,7 @@ When creating and managing content, you can freely choose between a strict or le
 
 `This powerful feature provides industry-leading flexibility in managing content structure, empowering companies to customize and validate their content with ease and efficiency. Experience unparalleled control and adaptability in content management, unlocking new possibilities for your business's success.`
 
-</br>
+<br />
 
 ### Content Encryption
 
@@ -348,7 +348,7 @@ With ACAP, it's your data, your choice, fortified by our robust security options
 <div align="center">
 <details>
 <summary>Expand to get more insight into AES</summary>
-</br>
+<br />
 
 ${\color{pink}AES-256-CBC}$
 
@@ -364,7 +364,7 @@ Security: AES-128-CBC uses a 128-bit key, which is still considered secure but i
 
 </details>
 </div>
-</br>
+<br />
 
 ### Redis
 
@@ -372,13 +372,13 @@ Under the hood, ACAP utilizes [Redis](https://redis.io/docs/) for optimization. 
 
 `The Redis cache is a highly efficient in-memory key-value storage system. ACAP further enhances its capabilities by introducing a dynamic content management system, adding flexibility and versatility to its functionality.`
 
-</br>
+<br />
 
 ### Redis Publish Subscribe
 
 ACAP supports [Redis Publish Subscribe](https://redis.io/docs/interact/pubsub/). When this feature is enabled, ACAP automatically publishes content using the realm as the channel, which can be subscribed to by other clients and services. The **fire-and-forget** strategy for **Redis Publish Subscribe** ensures non-blocking transmission, allowing for a seamless content distribution without any interruptions.
 
-</br>
+<br />
 
 ### MQTT
 
@@ -390,7 +390,7 @@ ACAP supports [Redis Publish Subscribe](https://redis.io/docs/interact/pubsub/).
 - **Scalability:** MQTT's scalable nature allows ACAP to accommodate a growing number of devices within the IoT ecosystem. As your service expands, MQTT ensures seamless and efficient communication, enabling ACAP to handle a large volume of messages without sacrificing performance.
 - **Real-time Data Exchange:** MQTT's ability to handle unreliable networks makes it an ideal choice for ACAP. It ensures that real-time data exchange between devices occurs smoothly, even in challenging network conditions, enhancing the overall reliability and responsiveness of your service. By utilizing MQTT, ACAP leverages the power of this open-standard protocol to overcome communication hurdles, optimize resource usage, ensure reliable message delivery, and provide a scalable solution for real-time data exchange in IoT deployments.
 
-</br>
+<br />
 
 ### BullMQ
 

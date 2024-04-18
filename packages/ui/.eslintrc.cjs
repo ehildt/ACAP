@@ -1,4 +1,5 @@
 /* eslint-disable no-undef */
+// TODO FlatConfig
 /** @type {import('eslint').Linter.Config} */
 module.exports = {
   env: {
