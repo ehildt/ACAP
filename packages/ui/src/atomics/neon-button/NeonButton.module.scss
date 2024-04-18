@@ -1,0 +1,111 @@
+$neon-glow-color: crimson;
+
+.neon-button {
+    --clr-tooltip-neon-glow: #{$neon-glow-color};
+    --ms-tooltip-border-flicker: 5000ms;
+    --ms-tooltip-text-flicker: 3000ms;
+    --ms-tooltip-text-faulty-flicker: 4000ms;
+    position: relative;
+    color: var(--clr-tooltip-neon-glow);
+    cursor: pointer;
+    padding: 0.5rem;
+    border: 0.15rem solid var(--clr-tooltip-neon-glow);
+    border-radius: 0.45rem;
+    animation: border-flicker var(--ms-tooltip-border-flicker) linear infinite;
+    box-shadow:
+        inset 0 0 0.3rem 0 var(--clr-tooltip-neon-glow),
+        0 0 0.3rem 0 var(--clr-tooltip-neon-glow);
+
+    &-text {
+        display: block;
+        text-indent: 0.3rem;
+        letter-spacing: 0.3rem;
+        transition: all 250ms ease-in-out;
+        animation: text-flicker var(--ms-tooltip-text-flicker) linear infinite;
+        text-shadow:
+            0 0 0.125rem rgba(0, 0, 0, 0.8),
+            0 0 0.45rem var(--clr-tooltip-neon-glow);
+
+        &--faulty {
+            opacity: 0.5;
+            animation: faulty-flicker var(--ms-tooltip-text-faulty-flicker) linear infinite;
+        }
+    }
+
+    &:after {
+        content: "";
+        position: absolute;
+        background-color: var(--clr-tooltip-neon-glow);
+        box-shadow: 0 0 2rem 0.2rem var(--clr-tooltip-neon-glow);
+        transition: all 250ms ease-in-out;
+    }
+
+    &:hover {
+        animation: none;
+        box-shadow:
+            inset 0 0 0.5rem 0 var(--clr-tooltip-neon-glow),
+            0 0 0.5rem 0 var(--clr-tooltip-neon-glow);
+
+        .neon-button-text {
+            animation: none;
+            &--faulty {
+                animation: none;
+                opacity: 1;
+            }
+        }
+
+        &:after {
+            opacity: 0.1;
+        }
+    }
+}
+
+@keyframes faulty-flicker {
+    0%,
+    2%,
+    87% {
+        opacity: 0.1;
+    }
+    4%,
+    80% {
+        opacity: 0.5;
+    }
+    21% {
+        opacity: 1;
+    }
+    83% {
+        opacity: 0.4;
+    }
+}
+
+@keyframes text-flicker {
+    0%,
+    8%,
+    12%,
+    25%,
+    100% {
+        opacity: 0.1;
+    }
+    2%,
+    9%,
+    20%,
+    30%,
+    70%,
+    72%,
+    77% {
+        opacity: 1;
+    }
+}
+
+@keyframes border-flicker {
+    0%,
+    4%,
+    100% {
+        opacity: 0.1;
+    }
+    2%,
+    8%,
+    70% {
+        opacity: 1;
+    }
+}
