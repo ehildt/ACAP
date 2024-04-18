@@ -5,5 +5,4 @@ export type ContainerProps = {
   outerStyle?: CSSProperties;
   innerStyle?: CSSProperties;
   highlight?: boolean;
-  onClick?: (...args: any) => void;
 };

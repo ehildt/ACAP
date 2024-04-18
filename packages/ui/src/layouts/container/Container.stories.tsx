@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Container } from './Container';
 
 export default {
-  title: 'wireframes/container',
+  title: 'layouts/container',
   component: Container,
   decorators: [(story) => <div style={{ width: '20dvw' }}>{story()}</div>],
 } satisfies Meta<typeof Container>;
@@ -11,7 +11,7 @@ export default {
 export const DefaultContainer = {
   render: () => (
     <Container>
-      <span>some content</span>
+      <span onClick={() => confirm('clicked')}>some content</span>
     </Container>
   ),
 } satisfies StoryObj<typeof Container>;
