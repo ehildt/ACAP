@@ -9,10 +9,9 @@ export function useScrollbarCn(props: ScrollbarProps) {
     style.scrollbar,
     { [style.scrollbarLtr]: props.direction === 'ltr' },
     { [style.scrollbarRtl]: props.direction === 'rtl' },
-    { [style.scrollbarOverflow]: props.overflow },
+    { [style.scrollbarOverflow]: props.overflow === 'auto' },
     { [style.scrollbarOverflowY]: props.overflow === 'y' },
     { [style.scrollbarOverflowX]: props.overflow === 'x' },
-    { [style.scrollbarOverflowAuto]: props.overflow === 'auto' },
   ]);
 }
 
