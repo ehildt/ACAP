@@ -2,32 +2,36 @@
   "folders": [
     {
       "path": ".",
-      "name": "."
+      "name": ".",
     },
     {
       "path": "packages/ui",
-      "name": "ui"
+      "name": "ui",
     },
     {
       "path": "packages/libs",
-      "name": "libs"
+      "name": "libs",
     },
     {
       "path": "apps/backend",
-      "name": "backend"
+      "name": "backend",
     },
     {
       "path": "apps/frontend",
-      "name": "frontend"
-    }
+      "name": "frontend",
+    },
   ],
   "settings": {
     "files.exclude": {
       "**/node_modules": true,
       "**/dist": true,
       "**/.vscode": true,
-      ".nx": true
-    }
+      ".nx": true,
+    },
+    "markdownlint.config": {
+      "MD033": false,
+      "MD051": false,
+    },
   },
   "extensions": {
     "recommendations": [
@@ -42,7 +46,7 @@
       "streetsidesoftware.code-spell-checker-medical-terms",
       "streetsidesoftware.code-spell-checker-scientific-terms",
       "ms-azuretools.vscode-docker",
-      "usernamehw.errorlens"
-    ]
-  }
+      "usernamehw.errorlens",
+    ],
+  },
 }

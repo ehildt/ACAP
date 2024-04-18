@@ -2,9 +2,10 @@ import cn from 'classnames';
 import { useEffect, useState } from 'react';
 import { FaCircleXmark } from 'react-icons/fa6';
 
-import { Pulse } from '@/effects/animate/Pulse';
-
 import { Button } from '@/atomics/button/Button';
+import { NeonButton } from '@/atomics/neon-button/NeonButton';
+import { Pulse } from '@/effects/animate/pulse/Pulse';
+import { Line } from '@/layouts/line/Line';
 import { CSSCustomVariables, PopupProps } from './Popup.modal';
 import style from './Popup.module.scss';
 
@@ -29,20 +30,51 @@ export function Popup(props: PopupProps) {
           <div className={style.modalHeader}>
             <h1 className={style.modalHeaderTitle}>{props.title}</h1>
             <div className={style.modalHeaderFarRight}>
+              <div className={style.modalHeaderFarRightInfoBar}>{props.infoBar}</div>
               <Pulse to={1.2} ms={750} mode="passive">
                 <Button
                   style={{ padding: '0px' }}
-                  iconBefore={props.onCloseIcon ?? <FaCircleXmark color="darkviolet" />}
+                  iconBefore={<FaCircleXmark color="darkviolet" size={'1.4rem'} />}
                   onClick={() => {
                     setIsFaded(true);
-                    setTimeout(() => props.onClose?.(), props.ms ?? 350);
+                    setTimeout(() => props.onCancel?.(), props.ms ?? 350);
                   }}
                 />
               </Pulse>
             </div>
           </div>
           <div className={style.modalContent}>{props.children}</div>
-          <div className={style.modalFooter} />
+          <div className={style.modalFooter}>
+            <Line style={{ marginInline: 'auto', gap: '2rem' }}>
+              {props.onClick && (
+                <NeonButton
+                  neonColor="yellowgreen"
+                  text="save"
+                  faulty={[2]}
+                  onClick={() => {
+                    setIsFaded(true);
+                    setTimeout(() => {
+                      props.onClick?.();
+                      props.onCancel?.();
+                    }, props.ms ?? 350);
+                  }}
+                />
+              )}
+
+              {props.onCancel && (
+                <NeonButton
+                  text="cancel"
+                  faulty={[1, 5]}
+                  onClick={() => {
+                    setIsFaded(true);
+                    setTimeout(() => {
+                      props.onCancel?.();
+                    }, props.ms ?? 350);
+                  }}
+                />
+              )}
+            </Line>
+          </div>
         </div>
       </div>
     )
