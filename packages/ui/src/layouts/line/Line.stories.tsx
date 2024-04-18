@@ -4,7 +4,7 @@ import { Container } from '../container/Container';
 import { Line } from './Line';
 
 export default {
-  title: 'wireframes/line',
+  title: 'layouts/line',
   component: Line,
 } satisfies Meta<typeof Line>;
 
