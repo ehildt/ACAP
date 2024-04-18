@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { FaPencil, FaUpload } from 'react-icons/fa6';
+import { FaUpload } from 'react-icons/fa6';
 
+import { GiPencil } from 'react-icons/gi';
 import { InputButton } from './InputButton';
 
 export default {
@@ -8,15 +9,15 @@ export default {
   component: InputButton,
 } satisfies Meta<typeof InputButton>;
 
-export const TextInputButton = {
+export const TextInput = {
   render: () => (
     <InputButton type="text" onChange={({ target }) => console.log('InputButton clicked!', target.value)}>
-      <FaPencil size={'2rem'} color="skyblue" onClick={() => {}} />
+      <GiPencil size={'2rem'} color="skyblue" onClick={() => {}} />
     </InputButton>
   ),
 } satisfies StoryObj<typeof InputButton>;
 
-export const DefaultInputButton = {
+export const FileInput = {
   render: () => (
     <InputButton type="file" onChange={() => confirm('InputButton clicked!')}>
       <FaUpload size={'2rem'} color="skyblue" />

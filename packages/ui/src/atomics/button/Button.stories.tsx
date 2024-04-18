@@ -1,16 +1,45 @@
+import { Source, Story, Subheading, Subtitle, Title } from '@storybook/blocks';
 import type { Meta, StoryObj } from '@storybook/react';
-import { FaHeart, FaPlus, FaSmile } from 'react-icons/fa';
-
-import { Skew } from '@/effects/transform/skew/Skew';
 
 import { Button } from './Button';
 
-export default {
+const meta = {
+  includeStories: ['Primary'],
   title: 'atomics/button',
   component: Button,
+  tags: ['autodocs'],
+  parameters: {
+    docs: {
+      page: () => (
+        <>
+          <Title />
+          <Subtitle />
+          <Subheading />
+          <Story />
+          <Source />
+        </>
+      ),
+    },
+  },
 } satisfies Meta<typeof Button>;
 
-export const DefaultButton = {
+export default meta;
+
+type Story = StoryObj<typeof meta>;
+
+export const Primary: Story = {
+  args: {
+    color: 'plum',
+    hoverColor: 'black',
+    borderColor: 'white',
+    borderHoverColor: 'red',
+    backgroundColor: 'black',
+    backgroundHoverColor: 'gray',
+  },
+  render: (args) => <Button {...args}>colors</Button>,
+};
+
+/* export const DefaultButton = {
   render: () => <Button onClick={() => confirm('button clicked!')}>clickMe</Button>,
 } satisfies StoryObj<typeof Button>;
 
@@ -63,3 +92,4 @@ export const ButtonIcons = {
     </div>
   ),
 } satisfies StoryObj<typeof Button>;
+ */

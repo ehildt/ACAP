@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { Container } from '@/wireframes/container/Container';
 import { YmlViewer } from './YmlViewer';
 import { YmlViewerMenu } from './YmlViewerMenu';
 
@@ -12,7 +11,7 @@ export default {
 
 export const DefaultYmlViewer = {
   render: () => (
-    <Container>
+    <>
       <YmlViewerMenu />
       <hr />
       <YmlViewer
@@ -23,13 +22,13 @@ export const DefaultYmlViewer = {
           magic: { firebolt: 'lvl2', type: 'fire' },
         }}
       />
-    </Container>
+    </>
   ),
 } satisfies StoryObj<typeof YmlViewer>;
 
 export const YmlViewerHighlighted = {
   render: () => (
-    <Container>
+    <>
       <YmlViewerMenu />
       <hr />
       <YmlViewer
@@ -41,6 +40,6 @@ export const YmlViewerHighlighted = {
           magic: { firebolt: 'lvl2', type: 'fire' },
         }}
       />
-    </Container>
+    </>
   ),
 } satisfies StoryObj<typeof YmlViewer>;
