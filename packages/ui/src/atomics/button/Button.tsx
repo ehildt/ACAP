@@ -21,7 +21,6 @@ export function Button(props: ButtonProps) {
 
   return (
     <button
-      type="button"
       className={style.button}
       style={{ ...props.style, ...extendedStyle }}
       onClick={onClick}
@@ -33,5 +32,3 @@ export function Button(props: ButtonProps) {
     </button>
   );
 }
-
-Button.defaultProps = {} satisfies ButtonProps;

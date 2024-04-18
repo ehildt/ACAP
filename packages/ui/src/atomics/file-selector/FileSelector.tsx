@@ -24,13 +24,13 @@ export function FileSelector(props: FileSelectorProps) {
         {fileSlice.selectedFile?.extension === 'pdf' && <PdfViewerMenu formatter={(p, t) => `${p} / ${t}`} />}
         {fileSlice.selectedFile?.extension === 'json' && <JsonViewerMenu />}
         {fileSlice.selectedFile?.extension === 'yml' && <YmlViewerMenu />}
-        <FaSave size={'2rem'} color="orange" onClick={() => setIsModalOpen(true)} />
-        <FaEdit size={'2rem'} color="yellow" />
         <InputButton multiple onChange={props.onChange} accept={props.accept} type="file">
           <FaUpload size={'2rem'} color="skyblue" />
         </InputButton>
+        <FaSave size={'2rem'} color="orange" onClick={() => setIsModalOpen(true)} />
+        <FaEdit size={'2rem'} color="yellow" />
         <Popup isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-          <h1>{'jojoj'}</h1>
+          <h1>{fileSlice.selectedFile?.name}</h1>
         </Popup>
       </div>
     </div>

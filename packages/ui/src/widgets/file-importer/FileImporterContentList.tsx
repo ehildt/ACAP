@@ -4,7 +4,7 @@ import { parse } from 'yaml';
 import { TreeViewer } from '@/widgets/tree-viewer/TreeViewer';
 import { YmlViewer } from '@/widgets/yml-viewer/YmlViewer';
 
-import { Container } from '@/wireframes/container/Container';
+import { Container } from '@/layouts/container/Container';
 import { ImageViewer } from '../image-viewer/ImageViewer';
 import { JsonViewer } from '../json-viewer/JsonViewer';
 import { PdfViewer } from '../pdf-viewer/PdfViewer';
@@ -38,8 +38,8 @@ export function FileImporterContentList(props: PropsFileImporterContentList) {
 
   const items = props.files?.map((f, idx) => {
     return (
-      <Container key={idx} onClick={async () => await fileSlice.setSelectedFile(f)}>
-        <div className="file-card">
+      <Container key={idx} highlight>
+        <div className="file-card" onClick={async () => await fileSlice.setSelectedFile(f)}>
           <div data-icon>{mapFileExtensionToIcon(f.extension)}</div>
           <div data-content>
             <span data-name="filename">{f.name}</span>
@@ -55,7 +55,7 @@ export function FileImporterContentList(props: PropsFileImporterContentList) {
     <div className="file-importer-content">
       <div className="file-importer-content-list">
         <Scrollbar behavior="smooth" overflow="y" direction="rtl" style={{ height: '80dvh' }}>
-          <div>{items}</div>
+          <div style={{ display: 'flex', gap: '0.2rem', flexDirection: 'column' }}>{items}</div>
         </Scrollbar>
       </div>
       <div className="file-importer-content-preview">
