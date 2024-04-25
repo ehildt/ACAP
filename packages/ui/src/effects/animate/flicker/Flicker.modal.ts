@@ -1,5 +1,6 @@
 import { CSSProperties, ReactNode } from 'react';
 
+// TODO separate between components
 export type ExtendedCSSProperties = {
   '--clr-flicker-glow'?: string;
   '--ms-flicker-border'?: string;
@@ -9,6 +10,9 @@ export type ExtendedCSSProperties = {
   '--ms-flicker-text-faulty'?: string;
   '--font-flicker-letter-spacing'?: string;
   '--ms-flicker-text-faulty-delay'?: string;
+  '--mode-flicker-text-faulty'?: string;
+  '--mode-flicker-text'?: string;
+  '--mode-flicker-border'?: string;
 } & CSSProperties;
 
 export type FlickerTextProps = {
@@ -23,6 +27,8 @@ export type FlickerTextProps = {
   flickerTextDelayMS?: number;
   flickerTextFaultyMS?: number;
   flickerTextFaultyDelayMS?: number;
+  repeatFlickerTextFaulty?: string;
+  repeatFlickerText?: string;
 };
 
 export type FlickerContainerProps = {
@@ -30,5 +36,6 @@ export type FlickerContainerProps = {
   style?: CSSProperties;
   children?: ReactNode;
   flickerBorderMS?: number;
+  repeatFlickerBorder?: string;
   flickerBorderDelayMS?: number;
 };
