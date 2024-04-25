@@ -1,0 +1,61 @@
+$glow-color: crimson;
+
+.flicker-container {
+    --clr-flicker-glow: #{$glow-color};
+    --ms-flicker-border: 5000ms;
+    --ms-flicker-border-delay: 2000ms;
+    --mode-flicker-border: infinite;
+    width: fit-content;
+    height: fit-content;
+    color: var(--clr-flicker-glow);
+    border: 0.15rem solid var(--clr-flicker-glow);
+    border-radius: 0.3rem;
+    animation-fill-mode: forwards;
+    animation: border-flicker var(--ms-flicker-border) var(--ms-flicker-border-delay) linear var(--mode-flicker-border);
+    box-shadow:
+        inset 0 0 0.3rem 0 var(--clr-flicker-glow),
+        0 0 0.3rem 0 var(--clr-flicker-glow);
+
+    &:after {
+        content: "";
+        position: absolute;
+        background-color: var(--clr-flicker-glow);
+        box-shadow: 0 0 2rem 0.2rem var(--clr-flicker-glow);
+        transition: all 250ms ease-in-out;
+    }
+
+    &:hover {
+        animation: none;
+        box-shadow:
+            inset 0 0 0.5rem 0 var(--clr-flicker-glow),
+            0 0 0.5rem 0 var(--clr-flicker-glow);
+
+        &:after {
+            opacity: 0.1;
+        }
+
+        .flicker-text {
+            animation: none;
+            text-shadow:
+                0 0 0.125rem rgba(0, 0, 0, 0.8),
+                0 0 0.175rem var(--clr-flicker-glow);
+            &-faulty {
+                animation: none;
+                opacity: 1;
+            }
+        }
+    }
+}
+
+@keyframes border-flicker {
+    0%,
+    4%,
+    100% {
+        opacity: 0.1;
+    }
+    2%,
+    8%,
+    70% {
+        opacity: 1;
+    }
+}

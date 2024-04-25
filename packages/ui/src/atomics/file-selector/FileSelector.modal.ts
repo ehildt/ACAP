@@ -11,4 +11,5 @@ export type FileSelectorProps = {
   accept?: string;
   children?: ReactNode;
   onChange?: ProxyOnChange;
+  files: Array<any>;
 };

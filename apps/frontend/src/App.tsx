@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { DesktopLayout, DesktopLayoutFooter, DesktopLayoutHeader, DesktopLayoutMain } from 'ui';
+import { DesktopLayout, DesktopLayoutHeader, DesktopLayoutMain } from 'ui';
 
 import { useCacheImmerStore } from './store/cache';
 
@@ -13,8 +13,7 @@ export function App() {
     // switch default layout if needed
     <DesktopLayout>
       <DesktopLayoutHeader></DesktopLayoutHeader>
-      <DesktopLayoutMain tab={tab}></DesktopLayoutMain>
-      <DesktopLayoutFooter></DesktopLayoutFooter>
+      <DesktopLayoutMain></DesktopLayoutMain>
     </DesktopLayout>
   );
 }
