@@ -31,8 +31,8 @@ export const H1Tooltip: Story = {
     tooltip: 'some tooltip that describes some content',
   },
   render: (args) => (
-    <Tooltip {...args} style={{ width: '100px' }}>
-      <h1>some content</h1>
+    <Tooltip {...args} tooltip={'i like candy'}>
+      <h1>do you like candy?</h1>
     </Tooltip>
   ),
 };

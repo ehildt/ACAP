@@ -5,10 +5,10 @@
 
     &-element {
         opacity: 0;
-        bottom: 25px;
-        padding-bottom: 5px;
+        padding-bottom: calc(5px + var(--percent-toolbar-offset, 0px));
         position: absolute;
         pointer-events: none;
+        bottom: 100%;
         transition: all 500ms ease-in-out;
     }
 
