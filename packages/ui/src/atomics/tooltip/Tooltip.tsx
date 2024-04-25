@@ -1,24 +1,27 @@
 import cn from 'classnames';
-import { useDimensionsWithStyle } from 'libs';
 import { CSSProperties, ReactNode, useRef } from 'react';
 import style from './Tooltip.module.scss';
 
 type TooltipProps = {
   children?: ReactNode;
   tooltip: ReactNode;
-  style?: CSSProperties;
+  offset?: number;
 };
 
 export function Tooltip(props: TooltipProps) {
   const refTooltip = useRef(null);
-  const { width, height } = useDimensionsWithStyle(props, refTooltip);
+  const extendedStyle = {
+    '--percent-toolbar-offset': `${props.offset ?? 0}px`,
+  } as CSSProperties;
 
   return (
     <div className={cn(style.tooltip)}>
       <div ref={refTooltip} className={cn(style.tooltipContentWrapper)}>
         {props.children}
       </div>
-      <div className={cn(style.tooltipElement)}>{props.tooltip}</div>
+      <div className={cn(style.tooltipElement)} style={extendedStyle}>
+        {props.tooltip}
+      </div>
     </div>
   );
 }
