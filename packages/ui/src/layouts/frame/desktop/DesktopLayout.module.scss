@@ -1,9 +1,9 @@
 .desktop-layout {
     display: grid;
-    grid-template-columns: 6dvw auto 6dvw;
-    grid-template-rows: 6dvh 88dvh 6dvh;
+    grid-template-columns: 7dvw auto 5dvw;
+    grid-template-rows: 10dvh auto 10dvh;
     grid-template-areas:
-        "header header header"
+        ". header ."
         ". main ."
-        "footer footer footer";
+        ". footer .";
 }

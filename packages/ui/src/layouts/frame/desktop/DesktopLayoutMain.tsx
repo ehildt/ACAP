@@ -1,19 +1,14 @@
 import { AcapConfigViewer } from '@/widgets/acap-config-viewer/AcapConfig';
 import { FileImporter } from '@/widgets/file-importer/FileImporter';
+import { useTabMenuImmerStore } from './DesktopLayoutHeaderMenu.store';
 import style from './DesktopLayoutMain.module.scss';
 
-type DesktopLayoutMainTabs = 'home' | 'file-importer' | 'editor';
-
-type DesktopLayoutMainProps = {
-  tab?: DesktopLayoutMainTabs;
-};
-
-export function DesktopLayoutMain({ tab }: DesktopLayoutMainProps) {
+export function DesktopLayoutMain() {
+  const { tab } = useTabMenuImmerStore();
   return (
     <main className={style.desktopLayoutMain}>
       {tab === 'home' && <AcapConfigViewer />}
-      {tab === 'editor' && <div />}
-      {tab === 'file-importer' && <FileImporter />}
+      {tab === 'importer' && <FileImporter />}
     </main>
   );
 }

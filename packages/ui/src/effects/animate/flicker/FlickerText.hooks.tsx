@@ -1,5 +1,5 @@
 import { ExtendedCSSProperties, FlickerTextProps } from './Flicker.modal';
-import style from './Flicker.module.scss';
+import style from './FlickerText.module.scss';
 
 function createFaultySet(props: FlickerTextProps) {
   if (props.faulty?.length) return new Set(props.faulty);
@@ -28,6 +28,7 @@ export function useAnimatedText(props: FlickerTextProps) {
           {
             '--ms-flicker-text-faulty': `${flickerTextFaultyMS}ms`,
             '--ms-flicker-text-faulty-delay': `${flickerTextFaultyDelayMS}ms`,
+            '--mode-flicker-text-faulty': props.repeatFlickerTextFaulty ?? 'infinite',
           } as ExtendedCSSProperties
         }
       >

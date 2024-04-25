@@ -67,12 +67,12 @@
     "eslint-plugin-unused-imports": "^3.1.0",
     "jsdom": "latest",
     "lint-staged": "^15.2.2",
-    "npm-check-updates": "^16.14.18",
+    "npm-check-updates": "^16.14.20",
     "postcss": "^8.4.38",
     "prettier": "^3.2.5",
     "prop-types": "^15.8.1",
     "react-d3-tree": "^3.6.2",
-    "react-refresh": "^0.14.0",
+    "react-refresh": "^0.14.2",
     "sass": "^1.75.0",
     "storybook": "^8.0.9",
     "ts-unused-exports": "^10.0.1",
@@ -93,6 +93,6 @@
     "react-icons": "^5.1.0",
     "react-pdf": "^7.7.1",
     "swr": "^2.2.5",
-    "yaml": "^2.4.1"
+    "yaml": "^2.4.2"
   }
 }
