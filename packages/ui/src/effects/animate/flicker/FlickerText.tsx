@@ -1,6 +1,6 @@
 import { ExtendedCSSProperties, FlickerTextProps } from './Flicker.modal';
-import style from './Flicker.module.scss';
 import { useAnimatedText } from './FlickerText.hooks';
+import style from './FlickerText.module.scss';
 
 export function FlickerText(props: FlickerTextProps) {
   const flickerTextMS = props.flickerTextMS ?? Math.floor(Math.random() * 1000) + 2000;
@@ -10,12 +10,15 @@ export function FlickerText(props: FlickerTextProps) {
   const animatedText = useAnimatedText(props);
   const extendedStyle: ExtendedCSSProperties = {
     // TODO separate text-shadow and color
+    // TODO set default otherwise they will be overwritten with undefined
     '--clr-flicker-glow': props.color,
     '--ms-flicker-text': `${flickerTextMS}ms`,
     '--ms-flicker-text-delay': `${flickerTextDelayMS}ms`,
     '--ms-flicker-text-faulty': `${flickerTextFaultyMS}ms`,
     '--ms-flicker-text-faulty-delay': `${flickerTextFaultyDelayMS}ms`,
-    '--font-flicker-letter-spacing': props.letterSpacing,
+    '--font-flicker-letter-spacing': props.letterSpacing ?? '0.3rem',
+    '--mode-flicker-text-faulty': props.repeatFlickerTextFaulty ?? 'infinite',
+    '--mode-flicker-text': props.repeatFlickerText ?? 'infinite',
   };
   return (
     <label className={style.flickerText} style={{ ...props.style, ...extendedStyle }}>
