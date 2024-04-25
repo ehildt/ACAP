@@ -38,7 +38,7 @@ export function FileImporterContentList(props: PropsFileImporterContentList) {
 
   const items = props.files?.map((f, idx) => {
     return (
-      <Container key={idx} highlight>
+      <Container key={idx}>
         <div className="file-card" onClick={async () => await fileSlice.setSelectedFile(f)}>
           <div data-icon>{mapFileExtensionToIcon(f.extension)}</div>
           <div data-content>
@@ -61,23 +61,23 @@ export function FileImporterContentList(props: PropsFileImporterContentList) {
       <div className="file-importer-content-preview">
         <Scrollbar>
           {fileSlice.selectedFile?.extension === 'json' && fileSlice.toggleTreeView && (
-            <Container>
+            <Container outerStyle={{ height: '100%' }}>
               <TreeViewer data={JSON.parse(fileSlice.selectedFile.buffer.toString())} />
             </Container>
           )}
           {fileSlice.selectedFile?.extension === 'yml' && fileSlice.toggleTreeView && (
-            <Container>
+            <Container outerStyle={{ height: '100%' }}>
               <TreeViewer data={parse(fileSlice.selectedFile.buffer.toString())} />
             </Container>
           )}
           {fileSlice.selectedFile?.extension === 'json' && !fileSlice.toggleTreeView && (
             <Container>
-              <JsonViewer json={fileSlice.selectedFile.buffer.toString()} />
+              <JsonViewer json={fileSlice.selectedFile.buffer.toString()} style={{ width: '100%' }} />
             </Container>
           )}
           {fileSlice.selectedFile?.extension === 'yml' && !fileSlice.toggleTreeView && (
             <Container>
-              <YmlViewer data={parse(fileSlice.selectedFile.buffer.toString())} />
+              <YmlViewer data={parse(fileSlice.selectedFile.buffer.toString())} style={{ width: '100%' }} highlight />
             </Container>
           )}
           {fileSlice.selectedFile?.extension === 'pdf' && (
@@ -86,6 +86,14 @@ export function FileImporterContentList(props: PropsFileImporterContentList) {
             </Container>
           )}
           {fileSlice.selectedFile?.extension === 'jpg' && (
+            <Container>
+              <ImageViewer
+                base64={fileSlice.selectedFile.buffer.toString('base64')}
+                mimeType={fileSlice.selectedFile.mimeType}
+              />
+            </Container>
+          )}
+          {fileSlice.selectedFile?.extension === 'png' && (
             <Container>
               <ImageViewer
                 base64={fileSlice.selectedFile.buffer.toString('base64')}
