@@ -3,12 +3,10 @@ import { useState } from 'react';
 import { FaDragon, FaPoop, FaShield } from 'react-icons/fa6';
 
 import { Button } from '@/atomics/button/Button';
+import { TextInput } from '@/atomics/input/text-input/TextInput';
 import { Tooltip } from '@/atomics/tooltip/Tooltip';
 import { Pulse } from '@/effects/animate/pulse/Pulse';
-import { Container } from '@/layouts/container/Container';
 import { GiSwordSlice } from 'react-icons/gi';
-import { ImageViewer } from '../image-viewer/ImageViewer';
-import { base64, mimeType } from '../image-viewer/base64.jpg';
 import { Popup } from './Popup';
 
 export default {
@@ -25,10 +23,12 @@ export const Default = {
           popup
         </Button>
         <Popup
+          contentStyle={{ display: 'flex', alignItems: 'center', padding: '5rem' }}
           isOpen={isOpen}
-          onCancel={() => setIsOpen(false)}
-          onClick={() => confirm('saved')}
           title="Slay the dragon.."
+          onClose={() => setIsOpen(false)}
+          onCancel={() => confirm('canceled')}
+          onClick={() => confirm('submitted')}
           infoBar={
             <>
               <Tooltip tooltip={'the dragon slayer'}>
@@ -36,7 +36,7 @@ export const Default = {
                   <GiSwordSlice color="silver" size={'1.4rem'} />
                 </Pulse>
               </Tooltip>
-              <Tooltip tooltip={'resists dragon attacs'}>
+              <Tooltip tooltip={'resists dragon attacks'}>
                 <Pulse to={1.2} ms={750} mode="passive">
                   <FaShield color="bronze" size={'1.4rem'} />
                 </Pulse>
@@ -49,9 +49,7 @@ export const Default = {
             </>
           }
         >
-          <Container outerStyle={{ width: '25dvw', margin: 'auto' }} highlight>
-            <ImageViewer base64={base64} mimeType={mimeType} />
-          </Container>
+          <TextInput label="Please enter a configuration name" style={{ width: '100%' }} />
         </Popup>
       </>
     );
@@ -66,7 +64,15 @@ export const WithMS = {
         <Button onClick={() => setIsOpen(true)} iconBefore={<FaPoop />}>
           popup
         </Button>
-        <Popup title="I love cookies!" ms={1000} isOpen={isOpen} onCancel={() => setIsOpen(false)}>
+        <Popup
+          title="I love cookies!"
+          ms={1000}
+          isOpen={isOpen}
+          onClose={() => setIsOpen(false)}
+          onCancel={() => confirm('canceled')}
+          onClick={() => confirm('submitted')}
+          hideXButton
+        >
           clickMe
         </Popup>
       </>
@@ -88,7 +94,9 @@ export const WithWidthHeight = {
           width="200px"
           height="150px"
           isOpen={isOpen}
-          onCancel={() => setIsOpen(false)}
+          onClose={() => setIsOpen(false)}
+          onCancel={() => confirm('canceled')}
+          onClick={() => confirm('submitted')}
         >
           clickMe
         </Popup>
