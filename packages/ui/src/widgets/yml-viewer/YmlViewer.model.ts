@@ -1,3 +1,5 @@
+import { CSSProperties } from 'react';
+
 export type RowProps = {
   className?: string;
   kvPair: { key?: string; value: any };
@@ -7,5 +9,6 @@ export type RowProps = {
 
 export type YmlViewerProps = {
   data: any;
+  style?: CSSProperties;
   highlight?: boolean;
 };

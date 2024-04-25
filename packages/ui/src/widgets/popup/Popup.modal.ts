@@ -9,6 +9,8 @@ export type CSSCustomVariables = {
 export type PopupProps = {
   onClick?: () => void;
   onCancel?: () => void;
+  onClose: () => void;
+  hideXButton?: boolean;
   infoBar?: ReactElement;
   isOpen: boolean;
   ms?: number;
@@ -16,4 +18,7 @@ export type PopupProps = {
   width?: string;
   height?: string;
   children: ReactNode;
+  closeGlyphColer?: string;
+  closeGlyphSize?: string;
+  contentStyle?: CSSProperties;
 };

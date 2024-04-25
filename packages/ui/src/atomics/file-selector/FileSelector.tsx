@@ -4,13 +4,11 @@ import { useState } from 'react';
 import { FaEdit, FaSave } from 'react-icons/fa';
 import { FaUpload } from 'react-icons/fa6';
 
-import { InputButton } from '@/atomics/input-button/InputButton';
-
 import { JsonViewerMenu } from '@/widgets/json-viewer/JsonViewerMenu';
 import { YmlViewerMenu } from '@/widgets/yml-viewer/YmlViewerMenu';
 
 import { PdfViewerMenu } from '@/widgets/pdf-viewer/PdfViewerMenu';
-import { Popup, useFileImporterImmerStore } from '../..';
+import { FileInput, Popup, useFileImporterImmerStore } from '../..';
 import { FileSelectorProps } from './FileSelector.modal';
 
 export function FileSelector(props: FileSelectorProps) {
@@ -24,14 +22,18 @@ export function FileSelector(props: FileSelectorProps) {
         {fileSlice.selectedFile?.extension === 'pdf' && <PdfViewerMenu formatter={(p, t) => `${p} / ${t}`} />}
         {fileSlice.selectedFile?.extension === 'json' && <JsonViewerMenu />}
         {fileSlice.selectedFile?.extension === 'yml' && <YmlViewerMenu />}
-        <InputButton multiple onChange={props.onChange} accept={props.accept} type="file">
+        <FileInput multiple onChange={props.onChange} accept={props.accept} type="file">
           <FaUpload size={'2rem'} color="skyblue" />
-        </InputButton>
+        </FileInput>
         <FaSave size={'2rem'} color="orange" onClick={() => setIsModalOpen(true)} />
         <FaEdit size={'2rem'} color="yellow" />
-        <Popup isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-          <h1>{fileSlice.selectedFile?.name}</h1>
-        </Popup>
+        <Popup
+          isOpen={isModalOpen}
+          title={fileSlice.selectedFile?.name}
+          onCancel={() => setIsModalOpen(false)}
+          onClick={() => setIsModalOpen(false)}
+          onClose={() => setIsModalOpen(false)}
+        ></Popup>
       </div>
     </div>
   );

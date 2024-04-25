@@ -1,8 +1,14 @@
 import { CSSProperties, ReactNode } from 'react';
 
+export type CSSCustomVariables = {
+  '--clr-container-highlight-accent'?: string;
+  '--clr-container-highlight'?: string;
+} & CSSProperties;
+
 export type ContainerProps = {
   children: ReactNode;
   outerStyle?: CSSProperties;
   innerStyle?: CSSProperties;
-  highlight?: boolean;
+  highlightColor?: string;
+  highlightAccentColor?: string;
 };

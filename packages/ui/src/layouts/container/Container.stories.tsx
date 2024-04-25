@@ -5,7 +5,11 @@ import { Container } from './Container';
 export default {
   title: 'layouts/container',
   component: Container,
-  decorators: [(story) => <div style={{ width: '20dvw' }}>{story()}</div>],
+  decorators: [
+    (story) => (
+      <div style={{ display: 'inline-flex', flexDirection: 'column', gap: '0.5rem', width: '25dvw' }}>{story()}</div>
+    ),
+  ],
 } satisfies Meta<typeof Container>;
 
 export const DefaultContainer = {
@@ -18,49 +22,45 @@ export const DefaultContainer = {
 
 export const ContainersWithStyle = {
   render: () => (
-    <div style={{ textAlign: 'center' }}>
-      <Container innerStyle={{ backgroundColor: 'grey', color: 'black' }} outerStyle={{ margin: '0.5rem' }}>
+    <>
+      <Container innerStyle={{ backgroundColor: 'grey', color: 'black' }}>
         <span>some content</span>
       </Container>
-      <Container innerStyle={{ backgroundColor: 'lime', color: 'black' }} outerStyle={{ margin: '0.5rem' }}>
+      <Container innerStyle={{ backgroundColor: 'lime', color: 'black' }}>
         <span>some content</span>
       </Container>
-      <Container innerStyle={{ backgroundColor: 'skyblue', color: 'black' }} outerStyle={{ margin: '0.5rem' }}>
+      <Container innerStyle={{ backgroundColor: 'skyblue', color: 'black' }}>
         <span>some content</span>
       </Container>
-      <Container outerStyle={{ backgroundColor: 'grey', margin: '0.5rem' }}>
+      <Container outerStyle={{ backgroundColor: 'grey' }}>
         <span>some content</span>
       </Container>
-      <Container outerStyle={{ backgroundColor: 'limegreen', margin: '0.5rem' }}>
+      <Container outerStyle={{ backgroundColor: 'limegreen' }}>
         <span>some content</span>
       </Container>
-      <Container outerStyle={{ backgroundColor: 'pink', margin: '0.5rem' }}>
+      <Container outerStyle={{ backgroundColor: 'pink' }}>
         <span>some content</span>
       </Container>
-    </div>
+    </>
   ),
 } satisfies StoryObj<typeof Container>;
 
 export const ContainersWithHighlight = {
   render: () => (
-    <div style={{ textAlign: 'center' }}>
-      <Container
-        innerStyle={{ backgroundColor: 'skyblue', color: 'black' }}
-        outerStyle={{ margin: '0.5rem' }}
-        highlight
-      >
+    <>
+      <Container innerStyle={{ backgroundColor: 'skyblue', color: 'black' }} highlightColor="skyblue">
         <span>some content</span>
       </Container>
       <Container
         innerStyle={{ backgroundColor: 'coal', color: 'ghostwhite' }}
-        outerStyle={{ margin: '0.5rem', backgroundColor: 'yellowgreen' }}
-        highlight
+        outerStyle={{ backgroundColor: 'yellowgreen' }}
+        highlightAccentColor="gold"
       >
         <span>some content</span>
       </Container>
-      <Container outerStyle={{ backgroundColor: 'plum', margin: '0.5rem' }} highlight>
+      <Container outerStyle={{ backgroundColor: 'plum' }} highlightAccentColor="gold" highlightColor="orange">
         <span>some content</span>
       </Container>
-    </div>
+    </>
   ),
 } satisfies StoryObj<typeof Container>;
