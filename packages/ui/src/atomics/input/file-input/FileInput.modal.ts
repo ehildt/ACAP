@@ -1,4 +1,4 @@
-import { ChangeEvent, ReactNode } from 'react';
+import { CSSProperties, ChangeEvent, ReactNode } from 'react';
 
 export type onChangeProxy = (props: {
   files: FileList | null;
@@ -30,10 +30,11 @@ type InputType =
   | 'url'
   | 'week';
 
-export type InputButtonProps = {
+export type FileInputProps = {
   type?: InputType;
   accept?: string;
   children?: ReactNode;
   multiple?: boolean;
   onChange?: onChangeProxy;
+  style?: CSSProperties;
 };
