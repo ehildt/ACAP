@@ -1,0 +1,29 @@
+.card {
+    transition: opacity 0.5s ease-in-out;
+    display: grid;
+    grid-template-areas: "icon content";
+    grid-template-columns: 0.2fr 0.8fr;
+    padding: 0.5rem;
+    gap: 0.5rem;
+    cursor: pointer;
+
+    div[data-icon] {
+        grid-area: icon;
+    }
+
+    div[data-content] {
+        grid-area: content;
+
+        span {
+            margin-inline: 0.3rem;
+        }
+
+        span[data-name="filename"] {
+            display: block;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            width: 38ch;
+        }
+    }
+}

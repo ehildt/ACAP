@@ -1,5 +1,7 @@
 FROM node:20 AS local
 WORKDIR /app
+ENV PORT 80
+EXPOSE ${PORT}
 ENTRYPOINT ["npm", "run", "dev"]
 
 FROM node:20-slim AS bundle

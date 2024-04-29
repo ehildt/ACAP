@@ -1,0 +1,24 @@
+import { ChangeEvent, ReactNode } from 'react';
+
+export type FileMetadata = {
+  uploadedOn: Date;
+  extension?: string;
+  name: string;
+  mimeType: string;
+  lastModified: number;
+  buffer: Buffer;
+  size: string;
+};
+
+type ProxyOnChange = (props: {
+  files: FileList | null;
+  target: HTMLInputElement;
+  element: ChangeEvent<HTMLInputElement>;
+}) => Promise<void>;
+
+export type FileImporterMenuProps = {
+  label: string;
+  accept?: string;
+  children?: ReactNode;
+  onChange?: ProxyOnChange;
+};

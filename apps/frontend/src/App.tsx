@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { DesktopLayout, DesktopLayoutHeader, DesktopLayoutMain } from 'ui';
 
+import { DesktopLayout, DesktopLayoutFooter, DesktopLayoutHeader, DesktopLayoutMain } from './layouts';
 import { useCacheImmerStore } from './store/cache';
 
 export function App() {
@@ -14,6 +14,7 @@ export function App() {
     <DesktopLayout>
       <DesktopLayoutHeader></DesktopLayoutHeader>
       <DesktopLayoutMain></DesktopLayoutMain>
+      <DesktopLayoutFooter></DesktopLayoutFooter>
     </DesktopLayout>
   );
 }
