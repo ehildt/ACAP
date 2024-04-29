@@ -8,7 +8,6 @@
     "pnpm": ">=8"
   },
   "scripts": {
-    "test": "exit 0",
     "prepare": "husky install",
     "semantic-release": "npx semantic-release",
     "ncu:update": "npx npm-check-updates --doctor -u"
@@ -20,12 +19,9 @@
     "@semantic-release/github": "^10.0.3",
     "@semantic-release/npm": "^12.0.0",
     "@semantic-release/release-notes-generator": "^13.0.0",
-    "conventional-changelog-conventionalcommits": "^7.0.2",
+    "conventional-changelog-conventionalcommits": "^8.0.0",
     "husky": "^9.0.11",
-    "npm-check-updates": "^16.14.18",
+    "npm-check-updates": "^16.14.20",
     "semantic-release": "^23.0.8"
-  },
-  "dependencies": {
-    "nx": "^18.3.2"
   }
 }

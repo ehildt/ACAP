@@ -1,0 +1,50 @@
+.file-importer {
+    position: relative;
+    gap: 1rem;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-template-areas: "preview menu";
+
+    &-menu {
+        grid-area: menu;
+
+        &-icons {
+            float: right;
+            gap: 0.2rem;
+            display: inline-flex;
+            align-items: center;
+            position: sticky;
+            top: 130px;
+            margin-top: 25px;
+        }
+
+        &-list {
+            margin-top: 1rem;
+            padding: 5px;
+            display: inline-flex;
+            align-items: center;
+            position: sticky;
+            top: 185px;
+            border: 0.2rem solid gray;
+            border-image: linear-gradient(
+                    to left bottom,
+                    gray,
+                    transparent,
+                    transparent,
+                    transparent,
+                    transparent,
+                    gray
+                )
+                1;
+        }
+    }
+
+    &-preview {
+        top: 0px;
+        padding: 5px;
+        grid-area: preview;
+        border-radius: 0.3rem;
+        border: 0.2rem solid gray;
+        border-image: linear-gradient(gray, transparent, transparent, transparent) 1;
+    }
+}
