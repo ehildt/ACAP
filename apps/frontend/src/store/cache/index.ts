@@ -1,5 +1,4 @@
-import { createStoreWithImmer } from 'libs';
-
+import { createStoreWithImmer } from '../create-with-immer.store';
 import { State } from './model';
 
 export const useCacheImmerStore = createStoreWithImmer<State>((set) => ({
