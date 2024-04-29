@@ -1,0 +1,12 @@
+.acap-config {
+    width: fit-content;
+    margin: auto;
+    display: flex;
+    gap: 0.3rem;
+    position: relative;
+    top: 10dvh;
+    border-radius: 0.3rem;
+    border: 0.2rem solid gray;
+    padding: 10vh;
+    border-image: linear-gradient(to left top, gray, transparent, transparent, transparent, gray) 1;
+}

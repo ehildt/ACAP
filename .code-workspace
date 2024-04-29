@@ -5,14 +5,6 @@
       "name": ".",
     },
     {
-      "path": "packages/ui",
-      "name": "ui",
-    },
-    {
-      "path": "packages/libs",
-      "name": "libs",
-    },
-    {
       "path": "apps/backend",
       "name": "backend",
     },

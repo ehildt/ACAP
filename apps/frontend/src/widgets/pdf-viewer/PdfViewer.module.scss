@@ -1,0 +1,15 @@
+.pdf-viewer {
+    position: relative;
+    border-radius: 0.3rem;
+    width: 100%;
+
+    p {
+        background-color: unset;
+    }
+
+    &-container {
+        & > * {
+            border-radius: 0.3rem;
+        }
+    }
+}
