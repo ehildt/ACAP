@@ -7,7 +7,7 @@ import { FileImporterPreview } from './FileImporterPreview';
 
 export function FileImporter() {
   const fileSlice = useFileImporterImmerStore();
-  const isFileSizeExceeded = useIsFileSizeExceeded(50_000_000, fileSlice.files);
+  const isFileSizeExceeded = useIsFileSizeExceeded(import.meta.env.VITE_MAX_FILE_SIZE, fileSlice.files);
 
   return (
     <div className="file-importer">

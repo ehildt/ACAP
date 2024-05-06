@@ -1,6 +1,6 @@
 {
-    "app": {
-        "message": "Hallo World",
-        "welcome": "welcome"
-    }
+  "app": {
+    "message": "Hallo World",
+    "welcome": "welcome"
+  }
 }
