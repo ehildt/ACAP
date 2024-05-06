@@ -1,24 +1,24 @@
 .button {
-    height: fit-content;
-    width: fit-content;
-    display: inline-flex;
-    align-items: center;
-    padding: 0.4rem;
-    border-radius: 0.3rem;
-    color: var(--clr-button, ghostwhite);
-    border: 0.15rem solid var(--clr-button-border, transparent);
-    background-color: var(--clr-button-background, transparent);
-    user-select: none;
-    transition: all 250ms;
-    gap: 0.3rem;
+  height: fit-content;
+  width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.4rem;
+  border-radius: 0.3rem;
+  color: var(--clr-button, ghostwhite);
+  border: 0.15rem solid var(--clr-button-border, transparent);
+  background-color: var(--clr-button-background, transparent);
+  user-select: none;
+  transition: all 250ms;
+  gap: 0.3rem;
 
-    &:disabled {
-        opacity: 0.4;
-    }
+  &:disabled {
+    opacity: 0.4;
+  }
 
-    &:hover {
-        color: var(--clr-button-hover, ghostwhite);
-        border: 0.15rem solid var(--clr-button-border-hover, transparent);
-        background-color: var(--clr-button-background-hover, transparent);
-    }
+  &:hover {
+    color: var(--clr-button-hover, ghostwhite);
+    border: 0.15rem solid var(--clr-button-border-hover, transparent);
+    background-color: var(--clr-button-background-hover, transparent);
+  }
 }

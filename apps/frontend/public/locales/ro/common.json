@@ -1,10 +1,10 @@
 {
-    "button": {
-        "add": "adăuga",
-        "cancel": "anula",
-        "ok": "ok",
-        "reset": "reseta",
-        "save": "salva",
-        "submit": "ceda"
-    }
+  "button": {
+    "add": "adăuga",
+    "cancel": "anula",
+    "ok": "ok",
+    "reset": "reseta",
+    "save": "salva",
+    "submit": "ceda"
+  }
 }

@@ -1,58 +1,58 @@
 .container {
-    --clr-container-highlight-accent: rgba(255, 255, 255, 0.05);
-    --clr-container-highlight: rgb(144, 37, 183);
-    width: 100%;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 0.3rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    padding: 0.3rem;
-    opacity: 0;
-    transition: opacity 500ms ease-in-out;
+  --clr-container-highlight-accent: rgba(255, 255, 255, 0.05);
+  --clr-container-highlight: rgb(144, 37, 183);
+  width: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 0.3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 0.3rem;
+  opacity: 0;
+  transition: opacity 500ms ease-in-out;
 
-    &-visible {
-        opacity: 1;
-    }
+  &-visible {
+    opacity: 1;
+  }
 
-    &-highlight:hover {
-        cursor: pointer;
-        background: radial-gradient(
-            50dvw circle at var(--xPos) var(--yPos),
-            var(--clr-container-highlight),
-            transparent 15%
-        );
-
-        &::before {
-            opacity: 1;
-        }
-    }
-
-    &-highlight-radial-gradient::before {
-        background: radial-gradient(
-            80rem circle at var(--xPos) var(--yPos),
-            transparent,
-            var(--clr-container-highlight-accent) 95%
-        );
-    }
+  &-highlight:hover {
+    cursor: pointer;
+    background: radial-gradient(
+      50dvw circle at var(--xPos) var(--yPos),
+      var(--clr-container-highlight),
+      transparent 15%
+    );
 
     &::before {
-        content: "";
-        width: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        opacity: 1;
-        transition: all 250ms ease-in-out;
-        border-radius: inherit;
+      opacity: 1;
     }
+  }
 
-    &-content {
-        z-index: 1;
-        border-radius: 0.3rem;
-        display: inline-flex;
-        transition: all 250ms;
-        width: 100%;
-    }
+  &-highlight-radial-gradient::before {
+    background: radial-gradient(
+      80rem circle at var(--xPos) var(--yPos),
+      transparent,
+      var(--clr-container-highlight-accent) 95%
+    );
+  }
+
+  &::before {
+    content: '';
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 1;
+    transition: all 250ms ease-in-out;
+    border-radius: inherit;
+  }
+
+  &-content {
+    z-index: 1;
+    border-radius: 0.3rem;
+    display: inline-flex;
+    transition: all 250ms;
+    width: 100%;
+  }
 }

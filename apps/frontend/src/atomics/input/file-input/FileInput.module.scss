@@ -1,9 +1,9 @@
 .file-input {
-    display: inline-flex;
-    gap: 0.3rem;
-    cursor: pointer;
+  display: inline-flex;
+  gap: 0.3rem;
+  cursor: pointer;
 
-    & > input {
-        display: none;
-    }
+  & > input {
+    display: none;
+  }
 }

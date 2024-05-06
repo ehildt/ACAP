@@ -1,6 +1,5 @@
+import { PageSwitcher, SelectBox } from '@/atomics';
 import './MetaeMenu.scss';
-
-import { PageSwitcher, SelectBox } from 'ui';
 
 type MetaeMenuProps = {
   source: string;

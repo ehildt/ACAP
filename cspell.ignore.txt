@@ -16,6 +16,7 @@ dccs
 DCCS
 depcruiser
 depcruiserrc
+dotfiles
 dtos
 errorlens
 fastify

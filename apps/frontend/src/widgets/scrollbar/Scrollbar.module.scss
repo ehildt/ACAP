@@ -1,53 +1,53 @@
 .scrollbar {
-    --box-shadow: inset 0 0 0.15rem rgba(230, 230, 230, 0.9);
-    overflow: hidden;
-    resize: inherit;
-    display: flex;
-    flex-direction: column;
+  --box-shadow: inset 0 0 0.15rem rgba(230, 230, 230, 0.9);
+  overflow: hidden;
+  resize: inherit;
+  display: flex;
+  flex-direction: column;
 
-    &::-webkit-scrollbar-thumb,
-    &::-webkit-scrollbar-thumb,
-    &::-webkit-scrollbar-thumb {
-        background-color: var(--clr-scrollbar-background, silver);
-        outline: var(--clr-scrollbar-outline, 0.1px solid black);
-        box-shadow: var(--box-shadow);
-        border-radius: 0.3rem;
+  &::-webkit-scrollbar-thumb,
+  &::-webkit-scrollbar-thumb,
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--clr-scrollbar-background, silver);
+    outline: var(--clr-scrollbar-outline, 0.1px solid black);
+    box-shadow: var(--box-shadow);
+    border-radius: 0.3rem;
+  }
+
+  &--ltr {
+    direction: ltr;
+  }
+
+  &--rtl {
+    direction: rtl;
+  }
+
+  &--overflow {
+    overflow: auto;
+
+    &-x {
+      overflow-x: auto;
+      overflow-y: hidden;
     }
 
-    &--ltr {
-        direction: ltr;
+    &-y {
+      overflow-y: auto;
+      overflow-x: hidden;
     }
+  }
 
-    &--rtl {
-        direction: rtl;
-    }
+  &::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.5rem;
+  }
 
-    &--overflow {
-        overflow: auto;
+  &::-webkit-scrollbar-track {
+    box-shadow: var(--box-shadow);
+    border-radius: 0.3rem;
+  }
 
-        &-x {
-            overflow-x: auto;
-            overflow-y: hidden;
-        }
-
-        &-y {
-            overflow-y: auto;
-            overflow-x: hidden;
-        }
-    }
-
-    &::-webkit-scrollbar {
-        width: 0.5rem;
-        height: 0.5rem;
-    }
-
-    &::-webkit-scrollbar-track {
-        box-shadow: var(--box-shadow);
-        border-radius: 0.3rem;
-    }
-
-    &::-webkit-scrollbar-button,
-    &::-webkit-scrollbar-corner {
-        display: none;
-    }
+  &::-webkit-scrollbar-button,
+  &::-webkit-scrollbar-corner {
+    display: none;
+  }
 }

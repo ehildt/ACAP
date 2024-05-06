@@ -1,33 +1,33 @@
 .tooltip {
-    position: relative;
-    width: fit-content;
-    margin: auto;
+  position: relative;
+  width: fit-content;
+  margin: auto;
 
-    &-element {
-        opacity: 0;
-        padding-bottom: calc(5px + var(--percent-toolbar-offset, 0px));
-        position: absolute;
-        pointer-events: none;
-        bottom: 100%;
-        transition: all 500ms ease-in-out;
-    }
+  &-element {
+    opacity: 0;
+    padding-bottom: calc(5px + var(--percent-toolbar-offset, 0px));
+    position: absolute;
+    pointer-events: none;
+    bottom: 100%;
+    transition: all 500ms ease-in-out;
+  }
 
-    &-content-wrapper:hover + &-element {
-        opacity: 1;
-    }
+  &-content-wrapper:hover + &-element {
+    opacity: 1;
+  }
 
-    &-content-wrapper,
-    &-element {
-        color: ghostwhite;
-        border: 3px solid transparent;
-        transition: all 250ms ease-in-out;
-    }
+  &-content-wrapper,
+  &-element {
+    color: ghostwhite;
+    border: 3px solid transparent;
+    transition: all 250ms ease-in-out;
+  }
 
-    &:hover > &-content-wrapper,
-    &:hover > &-element {
-        box-shadow:
-            -3px 0 0 0 crimson,
-            0 0 0 0 transparent,
-            0 0 0 0 transparent;
-    }
+  &:hover > &-content-wrapper,
+  &:hover > &-element {
+    box-shadow:
+      -3px 0 0 0 crimson,
+      0 0 0 0 transparent,
+      0 0 0 0 transparent;
+  }
 }

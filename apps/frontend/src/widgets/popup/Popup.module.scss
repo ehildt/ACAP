@@ -1,92 +1,92 @@
 .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100dvw;
-    height: 100dvh;
-    background-color: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(3px);
-    z-index: 1000;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    pointer-events: visible;
-    opacity: 1;
-    transition: opacity var(--time-popup--fadeOut, 350ms) ease;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100dvw;
+  height: 100dvh;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(3px);
+  z-index: 1000;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: visible;
+  opacity: 1;
+  transition: opacity var(--time-popup--fadeOut, 350ms) ease;
 
-    &--fade-out {
-        pointer-events: none;
-        opacity: 0;
-    }
+  &--fade-out {
+    pointer-events: none;
+    opacity: 0;
+  }
 }
 
 .modal {
-    border-radius: 0.3rem;
-    border: 2px solid black;
-    display: grid;
-    grid-template-rows: 50px 1fr 80px;
-    min-width: var(--size-popup--width, 40dvw);
-    min-height: var(--size-popup--height, 40dvh);
-    grid-template-areas:
-        "header"
-        "content"
-        "footer";
-    position: relative;
-    background-color: white;
-    z-index: 1001;
-    pointer-events: auto;
+  border-radius: 0.3rem;
+  border: 2px solid black;
+  display: grid;
+  grid-template-rows: 50px 1fr 80px;
+  min-width: var(--size-popup--width, 40dvw);
+  min-height: var(--size-popup--height, 40dvh);
+  grid-template-areas:
+    'header'
+    'content'
+    'footer';
+  position: relative;
+  background-color: white;
+  z-index: 1001;
+  pointer-events: auto;
 }
 
 .modal-header,
 .modal-footer {
-    display: inline-flex;
-    width: 100%;
-    align-items: center;
-    user-select: none;
-    background-color: black;
-    vertical-align: middle;
+  display: inline-flex;
+  width: 100%;
+  align-items: center;
+  user-select: none;
+  background-color: black;
+  vertical-align: middle;
 }
 
 .modal-header {
-    grid-area: header;
-    border-top: 3px solid transparent;
-    border-bottom: 3px solid crimson;
-    padding-bottom: 3px;
+  grid-area: header;
+  border-top: 3px solid transparent;
+  border-bottom: 3px solid crimson;
+  padding-bottom: 3px;
 
-    &--title {
-        text-indent: 10px;
-        padding: 0px;
-        color: violet;
+  &--title {
+    text-indent: 10px;
+    padding: 0px;
+    color: violet;
+  }
+
+  &--far-right {
+    display: inline-flex;
+    margin-right: 10px;
+    margin-left: auto;
+    align-items: baseline;
+
+    &-info-bar {
+      margin-inline: 7px;
+      display: inline-flex;
+      gap: 6px;
     }
-
-    &--far-right {
-        display: inline-flex;
-        margin-right: 10px;
-        margin-left: auto;
-        align-items: baseline;
-
-        &-info-bar {
-            margin-inline: 7px;
-            display: inline-flex;
-            gap: 6px;
-        }
-    }
+  }
 }
 
 .modal-footer {
-    grid-area: footer;
-    border-bottom: 3px solid transparent;
-    border-top: 3px solid crimson;
-    padding-top: 3px;
-    padding: 0.3rem;
+  grid-area: footer;
+  border-bottom: 3px solid transparent;
+  border-top: 3px solid crimson;
+  padding-top: 3px;
+  padding: 0.3rem;
 }
 
 .modal-close {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .modal-content {
-    padding: 0.3rem;
-    grid-area: content;
-    background-color: rgba(0, 0, 0, 0.9);
+  padding: 0.3rem;
+  grid-area: content;
+  background-color: rgba(0, 0, 0, 0.9);
 }

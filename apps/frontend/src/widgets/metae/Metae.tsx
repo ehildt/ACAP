@@ -1,11 +1,11 @@
 import './Metae.scss';
 
 import { ReactNode, useEffect, useState } from 'react';
-import { Scrollbar } from 'ui';
 
 import { useACAPApi } from '@/api/acap/acap-api.hook';
 import { METAE_SOURCE } from '@/api/acap/acap-api.model';
 
+import { Scrollbar } from '@/widgets';
 import { MetaeItem } from './MetaeItem';
 import { MetaeMenu } from './MetaeMenu';
 
