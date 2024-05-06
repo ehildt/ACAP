@@ -77,7 +77,8 @@ powered by
 Table of Contents
 </h1>
 
-[Getting Started](#Getting-Started)  
+[Getting Started](#getting-started)  
+[Serialization and Persistence](#serialization-and-persistance)  
 [Example Use Cases](#example-use-cases)  
 [Whats in the box?](#whats-in-the-box)  
 [Content Validation](#content-validation)  
@@ -91,16 +92,44 @@ Table of Contents
 </div>
 <br />
 
-<h1 align="center">
-Getting Started
-</h1>
+## Getting Started
+
 <br />
 
-Install Lerna & Nx by running the command `npm i -g lerna nx pnpm`. In the project root run `pnpm install`, then `docker compose up backend`. The frontend is still WIP. You can run it with `lerna run dev --scope frontend`. You can run Storybook with `lerna run storybook --scope ui`. In case you would like to take a look at some stable react components, we recommend the Scrollbar, Slider, PageMenu and the SelectBox components.
+> VSCODE: Before we start, please do yourself a favor and open the **.code-workspace** file in the project root with vscode.
+Trust me, it will make your life much simpler. Now back to topic.
+
+Getting ACAP up and running is pretty straight forward.
+
+<h2>Docker</h2>
+
+1. Install pnpm `npm i -g pnpm`.
+2. Run Docker `docker compose up`.
+
+<h2>CLI</h2>
+
+We recommend utilizing [lerna](https://lerna.js.org/), as it streamlines the execution of tests, linting processes, and script initialization, resulting in improved efficiency and ease of use.
+
+- Install lerna `npm i -g lerna`.
+- Run commands from the project root:
+  - Install pnpm `npm i -g pnpm`.
+  - Install the dependencies from the root directory `pnpm install`.
+  - Run `lerna run start:dev` (make sure all the required services are up).
+
+> If you ran docker previously, then you most likely will get an error compiling the dist folders. To remedy this error simply remove those folders in every workspace.
+
+You can run storybook explicitly or execute tests in parallel:
+
+- Storybook `lerna run storybook --scope frontend`
+- Run tests parallel in all workspaces `lerna run test`.
+
+<h2>Config</h2>
 
 **ACAP** simplifies the initialization process by providing a convenient ready-to-use setup. It leverages a `config.yml` file, reducing dependence on system environment variables, while still allowing flexibility to set them when required.
 
 When utilizing ACAP in Docker or Kubernetes (K8S), configuring the service is effortless. By binding the `/app/config.yml` to a volume, you can easily adjust the service settings. The `config.yml` file contains default presets, which, when combined with Docker Compose, enable a speedy setup for local development. This approach facilitates a seamless spin-up process for your projects.
+
+<br />
 
 <details align="center">
 <summary>Expand to see the sample config.yml file</summary>
@@ -174,6 +203,8 @@ mqttClientConfig:
 </div>
 </details>
 
+<br />
+
 <details align="center">
 <summary>Expand to see the sample docker compose file</summary>
 <br />
@@ -243,6 +274,8 @@ networks:
 </div>
 </details>
 
+<br />
+
 As mentioned earlier, you can still utilize system environment variables either in conjunction with the config.yml file. System environment variables, if set, take precedence over the values specified in the config.yml file. Here are the system environment variables that are available for utilization.
 
 <details align="center">
@@ -305,7 +338,19 @@ REDIS_DB_INDEX=0
 </div>
 </details>
 
+<br />
+
 With this, you have everything you need to make the ACAP your own and harness its full potential to power your applications and drive business growth.
+
+<br />
+
+## Serialization and Persistance
+
+**NOT YET IMPLEMENTED**.
+
+Structured data, like JSON and YAML, is housed in mongoDB for persistence. Meanwhile, unstructured data such as images and files is stored in minio, with their metadata structured and stored in mongoDB for efficient retrieval. Structured is cached by redis, while unstructured is cached and managed by minio.
+
+to be continued..
 
 <br />
 
@@ -319,21 +364,15 @@ There are instances where utilizing ACAP as a proxy can be advantageous. By crea
 
 In certain scenarios, there may be a need to describe and validate content. ACAP accomplishes this by utilizing JSON schema with the help of **avj**. In IDEs like **Visual Studio Code** and similar environments, you have the ability to link the **$schema** , which enables highlighting and validation. Alternatively, you can fetch the schema on the client side and perform data validation in real time during runtime.
 
-<br />
-
 ## Whats in the box?
 
 Postman, Insomnia and Swagger OpenApi were yesterday! ACAP delivers a sleek, modern, and intuitive user interface, designed to effortlessly manage and organize your content (**WIP**). With crisp content management and immediate processing, your experience is seamless and efficient. ACAP simplifies the process for developers to enable or disable optional features like Redis Publish Subscribe, MQTT, and BullMQ as per their requirements.
-
-<br />
 
 ### Content Validation
 
 When creating and managing content, you can freely choose between a strict or lenient approach to describe its structure. Validation of your content involves checking if a JSON schema matches the content. ACAP knows which content belongs to which schema by simply referencing the realm identifier. In simpler terms, if you create content with a realm value of **MY_REALM** and a schema that also has a realm value of **MY_REALM**, your content will be validated against that schema. The content itself is not bound to any particular structure or value. It even has the capability to fetch system variables when enabled, as long as the content identifier matches the specified system variable key. By default, this feature is disabled to ensure security. For a more comprehensive understanding of content and schema declarations, please refer to the [Wiki](https://github.com/ehildt/ACAP/wiki/ACAP).
 
 `This powerful feature provides industry-leading flexibility in managing content structure, empowering companies to customize and validate their content with ease and efficiency. Experience unparalleled control and adaptability in content management, unlocking new possibilities for your business's success.`
-
-<br />
 
 ### Content Encryption
 
@@ -344,6 +383,8 @@ Within ACAP, we leverage the globally recognized Advanced Encryption Standard (A
 In essence, these AES-CBC modes form a robust security foundation. Your choice depends on specific security and performance needs. Opt for AES-256-CBC for peak security, accepting a slight performance trade-off. Or choose AES-128-CBC, delivering strong security without performance compromise. For a balanced blend, consider AES-192-CBC.
 
 With ACAP, it's your data, your choice, fortified by our robust security options. Elevate your data protection standards while retaining the flexibility to apply encryption as you see fit. Your security, your way, with ACAP's formidable security toolkit.
+
+<br />
 
 <div align="center">
 <details>
@@ -372,13 +413,9 @@ Under the hood, ACAP utilizes [Redis](https://redis.io/docs/) for optimization. 
 
 `The Redis cache is a highly efficient in-memory key-value storage system. ACAP further enhances its capabilities by introducing a dynamic content management system, adding flexibility and versatility to its functionality.`
 
-<br />
-
 ### Redis Publish Subscribe
 
 ACAP supports [Redis Publish Subscribe](https://redis.io/docs/interact/pubsub/). When this feature is enabled, ACAP automatically publishes content using the realm as the channel, which can be subscribed to by other clients and services. The **fire-and-forget** strategy for **Redis Publish Subscribe** ensures non-blocking transmission, allowing for a seamless content distribution without any interruptions.
-
-<br />
 
 ### MQTT
 
@@ -389,8 +426,6 @@ ACAP supports [Redis Publish Subscribe](https://redis.io/docs/interact/pubsub/).
 - **Reliable Message Delivery:** ACAP leverages MQTT's message queuing capabilities, enabling devices to reliably publish messages to specific topics. This ensures that important data is delivered without loss or duplication, guaranteeing the integrity of the information exchanged.
 - **Scalability:** MQTT's scalable nature allows ACAP to accommodate a growing number of devices within the IoT ecosystem. As your service expands, MQTT ensures seamless and efficient communication, enabling ACAP to handle a large volume of messages without sacrificing performance.
 - **Real-time Data Exchange:** MQTT's ability to handle unreliable networks makes it an ideal choice for ACAP. It ensures that real-time data exchange between devices occurs smoothly, even in challenging network conditions, enhancing the overall reliability and responsiveness of your service. By utilizing MQTT, ACAP leverages the power of this open-standard protocol to overcome communication hurdles, optimize resource usage, ensure reliable message delivery, and provide a scalable solution for real-time data exchange in IoT deployments.
-
-<br />
 
 ### BullMQ
 

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 
 import { Container } from '@/layouts/container/Container';
+
 import style from './ImageViewer.module.scss';
 
 type ImageViewerProps = {

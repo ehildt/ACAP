@@ -8,7 +8,7 @@ import { SelectBoxInput } from './SelectBoxInput';
 const CUSTOM_INPUT_SYMBOLS = '🍀ヅ💕';
 
 export function SelectBox(props: SelectedBoxProps) {
-  const defaultItem = props.items.at(props.defaultIndex);
+  const defaultItem = props.items.at(props.defaultIndex ?? 0);
   const [name, setName] = useState<string>(defaultItem!.name);
   const [value, setValue] = useState<string | number>(defaultItem!.value);
   const [selectable, setSelectable] = useState<boolean>(false);
@@ -83,8 +83,3 @@ export function SelectBox(props: SelectedBoxProps) {
     </div>
   );
 }
-
-SelectBox.defaultProps = {
-  defaultIndex: 0,
-  customInput: false,
-} as SelectedBoxProps;

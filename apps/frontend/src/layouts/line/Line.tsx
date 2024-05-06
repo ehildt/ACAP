@@ -1,5 +1,6 @@
 import cn from 'classnames';
 import { CSSProperties, ReactNode } from 'react';
+
 import style from './Line.module.scss';
 
 type LineProps = {

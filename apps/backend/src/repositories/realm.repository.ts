@@ -27,11 +27,11 @@ export class RealmRepository {
   }
 
   async countContents() {
-    return await this.contentModel.estimatedDocumentCount();
+    return await this.contentModel.estimatedDocumentCount({ lean: true });
   }
 
   async countRealms() {
-    return await this.realmModel.estimatedDocumentCount();
+    return await this.realmModel.estimatedDocumentCount({ lean: true });
   }
 
   async getMetaRealmsBySchemas(realms: Array<string>, propertiesToSelect: Array<string>) {
@@ -39,7 +39,7 @@ export class RealmRepository {
       .find()
       .where({ realm: { $in: realms } })
       .select(propertiesToSelect)
-      .sort({ realm: 'descending', updatedAt: 'descending' })
+      .sort({ updatedAt: 'descending' })
       .lean();
   }
 
@@ -58,21 +58,18 @@ export class RealmRepository {
           ],
         })
         .select(selectProperties)
-        .sort({ realm: 'descending', updatedAt: 'descending' })
+        .sort({ updatedAt: 'descending' })
         .lean();
     }
 
     const realms = (
-      await this.realmModel
-        .find(null, null, { limit: take, skip })
-        .sort({ realm: 'descending', updatedAt: 'descending' })
-        .lean()
+      await this.realmModel.find(null, null, { limit: take, skip }).sort({ updatedAt: 'descending' }).lean()
     ).map(({ realm }) => realm);
 
     return await this.contentModel
       .where({ realm: { $in: realms } })
       .select(selectProperties)
-      .sort({ realm: 'descending', updatedAt: 'descending' })
+      .sort({ updatedAt: 'descending' })
       .lean();
   }
 

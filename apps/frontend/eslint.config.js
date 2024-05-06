@@ -1,16 +1,12 @@
 import pluginJs from '@eslint/js';
 import eslintConfigPrettier from 'eslint-config-prettier';
 import react from 'eslint-plugin-react';
+import simpleImportSort from 'eslint-plugin-simple-import-sort';
+import sonarjs from 'eslint-plugin-sonarjs';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
 /* 
-'eslint:recommended',
-'plugin:react/recommended',
-'plugin:react/jsx-runtime',
-'plugin:@typescript-eslint/eslint-recommended',
-'plugin:@typescript-eslint/recommended',
-'plugin:sonarjs/recommended',
 'plugin:prettier/recommended',
 'plugin:storybook/recommended', 
 */
@@ -25,25 +21,32 @@ export default [
         version: 'detect',
       },
     },
-    files: ['**/*.{js,jsx,mjs,cjs,ts,tsx}'],
     plugins: {
       react,
+      sonarjs,
+      'simple-import-sort': simpleImportSort,
     },
     languageOptions: {
       globals: globals.browser,
       parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module',
         parser: '@typescript-eslint/parser',
         ecmaFeatures: {
           jsx: true,
         },
-        ecmaVersion: 'latest',
-        sourceType: 'module',
       },
     },
     ignores: ['dist', '.husky', '.gitlab', '.vscode', 'node_modules', '.json'],
     rules: {
+      'sort-imports': 'off',
+      'import/order': 'off',
       '@typescript-eslint/no-explicit-any': 'off',
       '@typescript-eslint/no-unused-vars': 'warn',
+      'simple-import-sort/imports': 'error',
+      'simple-import-sort/exports': 'error',
+      'sonarjs/cognitive-complexity': 'error',
+      'sonarjs/no-identical-expressions': 'error',
     },
   },
 ];
