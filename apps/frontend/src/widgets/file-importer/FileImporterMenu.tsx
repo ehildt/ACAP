@@ -1,17 +1,18 @@
+import { Base64 } from 'js-base64';
 import { useState } from 'react';
 import { FaSave } from 'react-icons/fa';
-
-import { JsonViewerMenu } from '@/widgets/json-viewer/JsonViewerMenu';
-import { YmlViewerMenu } from '@/widgets/yml-viewer/YmlViewerMenu';
-
 import { FaFileCirclePlus } from 'react-icons/fa6';
+import { RiShieldFlashFill } from 'react-icons/ri';
 
-import { PdfViewerMenu } from '@/widgets/pdf-viewer/PdfViewerMenu';
-
+import { post } from '@/api/fetcher.api';
 import { FileInput, Tooltip } from '@/atomics';
 import { TextInput } from '@/atomics/input/text-input/TextInput';
 import { FlickerContainer, Pulse } from '@/effects';
-import { RiShieldFlashFill } from 'react-icons/ri';
+import { Line } from '@/layouts';
+import { JsonViewerMenu } from '@/widgets/json-viewer/JsonViewerMenu';
+import { PdfViewerMenu } from '@/widgets/pdf-viewer/PdfViewerMenu';
+import { YmlViewerMenu } from '@/widgets/yml-viewer/YmlViewerMenu';
+
 import { Popup } from '../popup/Popup';
 import { Scrollbar } from '../scrollbar/Scrollbar';
 import { FileImporterMenuProps } from './FileImporter.modal';
@@ -19,7 +20,8 @@ import { useFileImporterImmerStore } from './FileImporter.store';
 import { FileImporterMenuCard } from './FileImporterMenuCard';
 
 export function FileImporterMenu(props: FileImporterMenuProps) {
-  const [configName, setConfigName] = useState<string>();
+  const [realm, setRealm] = useState<string>();
+  const [configId, setConfigId] = useState<string>();
   const fileSlice = useFileImporterImmerStore();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const selectedFileExtension = fileSlice.selectedFile?.extension;
@@ -73,7 +75,39 @@ export function FileImporterMenu(props: FileImporterMenuProps) {
           isOpen={isModalOpen}
           title={fileSlice.selectedFile?.name && `${fileSlice.selectedFile?.name}.${fileSlice.selectedFile?.extension}`}
           onCancel={() => setIsModalOpen(false)}
-          onClick={() => setIsModalOpen(false)}
+          onClick={() => {
+            if (!(realm && configId)) return;
+
+            const body = JSON.stringify([
+              {
+                id: configId,
+                value: {
+                  data: fileSlice.selectedFile?.buffer && Base64.fromUint8Array(fileSlice.selectedFile?.buffer, true),
+                  name: fileSlice.selectedFile?.name,
+                  extension: fileSlice.selectedFile?.extension,
+                  mimeType: fileSlice.selectedFile?.mimeType,
+                  size: fileSlice.selectedFile?.size,
+                },
+              },
+            ]);
+
+            post([`http://localhost:3001/api/v1/contents/${realm}`, { body }])
+              .catch(console.error)
+              .then(() => setIsModalOpen(false));
+            /* const { isLoading, data, error } = useSWR(
+              [
+                `http://localhost:3001/api/v1/contents/${realm}`,
+                {
+                  method: 'post',
+                  body: JSON.stringify({
+                    id: fileSlice.selectedFile?.name,
+                    value: fileSlice.selectedFile,
+                  }),
+                } as RequestInit,
+              ],
+              ([url, init]) => fetcher([url, init]),
+            ); */
+          }}
           onClose={() => setIsModalOpen(false)}
           contentStyle={{ display: 'flex', alignItems: 'center', padding: '5rem' }}
           infoBar={
@@ -84,7 +118,10 @@ export function FileImporterMenu(props: FileImporterMenuProps) {
             </Tooltip>
           }
         >
-          <TextInput label="Please enter a configuration name" style={{ width: '100%' }} onChange={setConfigName} />
+          <Line vertical style={{ width: '100%', gap: '30px' }}>
+            <TextInput label="realm" style={{ width: '100%' }} onChange={setRealm} />
+            <TextInput label="config-id" style={{ width: '100%' }} onChange={setConfigId} />
+          </Line>
         </Popup>
       )}
     </div>

@@ -1,7 +1,8 @@
 import classNames from 'classnames';
 import { useEffect, useRef, useState } from 'react';
+
 import { useMouseMove } from './Container.hooks';
-import { CSSCustomVariables, ContainerProps } from './Container.modal';
+import { ContainerProps,CSSCustomVariables } from './Container.modal';
 import style from './Container.module.scss';
 
 export function Container(props: ContainerProps) {

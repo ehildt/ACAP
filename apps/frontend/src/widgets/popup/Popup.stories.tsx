@@ -1,12 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import { FaDragon, FaPoop, FaShield } from 'react-icons/fa6';
+import { GiSwordSlice } from 'react-icons/gi';
 
 import { Button } from '@/atomics/button/Button';
 import { TextInput } from '@/atomics/input/text-input/TextInput';
 import { Tooltip } from '@/atomics/tooltip/Tooltip';
 import { Pulse } from '@/effects/animate/pulse/Pulse';
-import { GiSwordSlice } from 'react-icons/gi';
+
 import { Popup } from './Popup';
 
 export default {

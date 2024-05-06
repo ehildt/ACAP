@@ -1,5 +1,7 @@
-import { Tooltip } from '@/atomics/tooltip/Tooltip';
 import type { Meta, StoryObj } from '@storybook/react';
+
+import { Tooltip } from '@/atomics/tooltip/Tooltip';
+
 import { TextInput } from './TextInput';
 
 export default {

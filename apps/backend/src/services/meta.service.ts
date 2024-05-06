@@ -22,12 +22,17 @@ export class MetaService {
 
   async getACAPMeta() {
     return {
-      app: this.configFactory.app,
-      databases: { redis: this.configFactory.redis, mongo: this.configFactory.mongo },
+      databases: { redis: 'redis', mongo: 'mongoDB' },
+      brokers: {
+        mqtt: this.configFactory.app.brokers.useMQTT && 'mqtt',
+        bullMQ: this.configFactory.app.brokers.useBullMQ && 'bullMQ',
+        redisPubSub: this.configFactory.app.brokers.useRedisPubSub && 'RedisPubSub',
+      },
       services: {
-        mqtt: this.configFactory.mqtt,
-        bullMQ: this.configFactory.bullMQ,
-        PubSub: this.configFactory.redisPubSub,
+        resolveEnv: this.configFactory.app.realm.resolveEnv && 'resolveEnv',
+        swagger: this.configFactory.app.startSwagger && 'swagger',
+        crypto: this.configFactory.app.crypto.secret && 'crypto',
+        gzip: this.configFactory.app.realm.gzipThreshold && 'gzip',
       },
     };
   }

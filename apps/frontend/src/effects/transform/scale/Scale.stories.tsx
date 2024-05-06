@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { Container } from '@/layouts/container/Container';
+
 import { Scale } from './Scale';
 
 export default {

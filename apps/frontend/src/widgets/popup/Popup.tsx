@@ -7,6 +7,7 @@ import { FlickerContainer } from '@/effects/animate/flicker/FlickerContainer';
 import { FlickerText } from '@/effects/animate/flicker/FlickerText';
 import { Pulse } from '@/effects/animate/pulse/Pulse';
 import { Line } from '@/layouts/line/Line';
+
 import { CSSCustomVariables, PopupProps } from './Popup.modal';
 import style from './Popup.module.scss';
 
