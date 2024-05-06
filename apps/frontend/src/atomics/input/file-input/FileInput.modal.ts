@@ -1,4 +1,4 @@
-import { CSSProperties, ChangeEvent, ReactNode } from 'react';
+import { ChangeEvent, CSSProperties, ReactNode } from 'react';
 
 export type onChangeProxy = (props: {
   files: FileList | null;

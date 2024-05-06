@@ -1,17 +1,18 @@
 import { FaCompress, FaDatabase, FaResolving, FaServicestack } from 'react-icons/fa6';
 import { SiIobroker, SiMongodb, SiMqtt, SiRedis, SiSecurityscorecard, SiSwagger } from 'react-icons/si';
 import useSWR from 'swr';
-import style from './AcapConfig.module.scss';
-import { AcapConfigContainer, ServiceItem } from './AcapConfigContainer';
 
-const fetcher = async (url: string) => (await fetch(url)).json();
+import { get } from '@/api/fetcher.api';
+import style from './AcapConfig.module.scss';
+import { AcapConfigContainer } from './AcapConfigContainer';
+import { AcapConfigItem } from './AcapConfigItem';
 
 function getColor(condition: boolean, enabled: string, disabled: string) {
   return condition ? enabled : disabled;
 }
 
 export function AcapConfigViewer() {
-  const { isLoading, data, error } = useSWR('http://localhost:3001/api/v1/metae/acap', fetcher);
+  const { isLoading, data, error } = useSWR(['http://localhost:3001/api/v1/metae/acap'], get);
 
   return (
     data && (
@@ -23,12 +24,12 @@ export function AcapConfigViewer() {
           size="1.2rem"
           icon={<FaDatabase size={'1.5rem'} color="orchid" />}
         >
-          <ServiceItem label="Redis">
+          <AcapConfigItem label="Redis">
             <SiRedis size={'1.2rem'} color={getColor(data?.databases.redis, 'gold', 'crimson')} />
-          </ServiceItem>
-          <ServiceItem label="MongoDB">
-            <SiMongodb size={'1.2rem'} color={getColor(data?.databases.mongo, 'yellowgreen', 'crimson')} />
-          </ServiceItem>
+          </AcapConfigItem>
+          <AcapConfigItem label="MongoDB">
+            <SiMongodb size={'1.2rem'} color={getColor(data?.databases.mongoDB, 'yellowgreen', 'crimson')} />
+          </AcapConfigItem>
         </AcapConfigContainer>
 
         <AcapConfigContainer
@@ -38,18 +39,15 @@ export function AcapConfigViewer() {
           size="1.2rem"
           icon={<SiIobroker size={'1.5rem'} color="orange" />}
         >
-          <ServiceItem label="MQTT">
-            <SiMqtt size={'1.2rem'} color={getColor(data.app.brokers.useMQTT, 'yellowgreen', 'crimson')} />
-          </ServiceItem>
-          <ServiceItem label="bullMQ">
-            <SiSecurityscorecard
-              size={'1.2rem'}
-              color={getColor(data.app.brokers.useBullMQ, 'yellowgreen', 'crimson')}
-            />
-          </ServiceItem>
-          <ServiceItem label="Redis PubSub">
-            <FaCompress size={'1.2rem'} color={getColor(data.app.brokers.useRedisPubSub, 'yellowgreen', 'crimson')} />
-          </ServiceItem>
+          <AcapConfigItem label="MQTT">
+            <SiMqtt size={'1.2rem'} color={getColor(data.brokers.mqtt, 'yellowgreen', 'crimson')} />
+          </AcapConfigItem>
+          <AcapConfigItem label="bullMQ">
+            <SiSecurityscorecard size={'1.2rem'} color={getColor(data.brokers.bullMQ, 'yellowgreen', 'crimson')} />
+          </AcapConfigItem>
+          <AcapConfigItem label="Redis PubSub">
+            <FaCompress size={'1.2rem'} color={getColor(data.brokers.redisPubSub, 'yellowgreen', 'crimson')} />
+          </AcapConfigItem>
         </AcapConfigContainer>
 
         <AcapConfigContainer
@@ -59,18 +57,18 @@ export function AcapConfigViewer() {
           size="1.2rem"
           icon={<FaServicestack size={'1.5rem'} color="skyblue" />}
         >
-          <ServiceItem label="Swagger">
-            <SiSwagger size={'1.2rem'} color={getColor(data.app.startSwagger, 'yellowgreen', 'crimson')} />
-          </ServiceItem>
-          <ServiceItem label="Crypto">
-            <SiSecurityscorecard size={'1.2rem'} color={getColor(data.app.crypto.secret, 'yellowgreen', 'crimson')} />
-          </ServiceItem>
-          <ServiceItem label="GZIP">
-            <FaCompress size={'1.2rem'} color={getColor(data.app.realm.gzipThreshold, 'yellowgreen', 'crimson')} />
-          </ServiceItem>
-          <ServiceItem label="EnvVars">
-            <FaResolving size={'1.2rem'} color={getColor(data.app.realm.resolveEnv, 'yellowgreen', 'crimson')} />
-          </ServiceItem>
+          <AcapConfigItem label="Swagger">
+            <SiSwagger size={'1.2rem'} color={getColor(data.services.swagger, 'yellowgreen', 'crimson')} />
+          </AcapConfigItem>
+          <AcapConfigItem label="Crypto">
+            <SiSecurityscorecard size={'1.2rem'} color={getColor(data.services.crypto, 'yellowgreen', 'crimson')} />
+          </AcapConfigItem>
+          <AcapConfigItem label="GZIP">
+            <FaCompress size={'1.2rem'} color={getColor(data.services.gzip, 'yellowgreen', 'crimson')} />
+          </AcapConfigItem>
+          <AcapConfigItem label="EnvVars">
+            <FaResolving size={'1.2rem'} color={getColor(data.services.resolveEnv, 'yellowgreen', 'crimson')} />
+          </AcapConfigItem>
         </AcapConfigContainer>
       </div>
     )

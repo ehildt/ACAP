@@ -1,5 +1,6 @@
 import cn from 'classnames';
 import { CSSProperties, ReactNode, useRef } from 'react';
+
 import style from './Tooltip.module.scss';
 
 type TooltipProps = {

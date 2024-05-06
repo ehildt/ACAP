@@ -1,11 +1,13 @@
+import { FaHome } from 'react-icons/fa';
+import { FaUpload } from 'react-icons/fa6';
+import { RiListSettingsLine } from 'react-icons/ri';
+
 import { Button } from '@/atomics';
 import { Line } from '@/layouts/line/Line';
 import { AcapConfigViewer } from '@/widgets/acap-config-viewer/AcapConfig';
 import { FileImporter } from '@/widgets/file-importer/FileImporter';
 import { Metae } from '@/widgets/metae/Metae';
-import { FaHome } from 'react-icons/fa';
-import { FaUpload } from 'react-icons/fa6';
-import { RiListSettingsLine } from 'react-icons/ri';
+
 import { FlickerContainer, FlickerText } from '../../../effects';
 import { useTabMenuImmerStore } from './DesktopLayoutHeaderMenu.store';
 import style from './DesktopLayoutMain.module.scss';

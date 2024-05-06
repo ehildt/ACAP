@@ -26,11 +26,11 @@ export class SchemaRepository {
   ) {}
 
   async countContents() {
-    return await this.contentsModel.estimatedDocumentCount();
+    return await this.contentsModel.estimatedDocumentCount({ lean: true });
   }
 
   async countSchemas() {
-    return await this.schemaModel.estimatedDocumentCount();
+    return await this.schemaModel.estimatedDocumentCount({ lean: true });
   }
 
   async find(filter: FILTER, propertiesToSelect?: Array<string>) {

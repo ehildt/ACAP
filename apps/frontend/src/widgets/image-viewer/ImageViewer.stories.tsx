@@ -1,8 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { Container } from '@/layouts/container/Container';
-import { ImageViewer } from './ImageViewer';
+
 import { base64, mimeType } from './base64.jpg';
+import { ImageViewer } from './ImageViewer';
 
 export default {
   title: 'widgets/image-viewer',

@@ -49,6 +49,7 @@ pkief
 postcss
 redhat
 redis
+reqs
 sonarjs
 spdx
 treeshake
