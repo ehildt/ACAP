@@ -4,19 +4,19 @@ import { FileMetadata } from './FileImporter.modal';
 type Data = {
   selectedFile?: FileMetadata;
   files: Array<File>;
-  toggleTreeView: boolean;
+  showTreeView: boolean;
 };
 
 type Mutations = {
   setSelectedFile: (file: FileMetadata) => void;
   selectFiles: (files: Array<File>) => void;
-  showTreeViewer: (status: boolean) => void;
+  setShowTreeView: (status: boolean) => void;
 };
 
 export const useFileImporterImmerStore = createStoreWithImmer<Data & Mutations>((immer) => ({
   selectedFile: undefined,
   files: [],
-  toggleTreeView: false,
+  showTreeView: false,
   setSelectedFile: (file) => {
     immer((store) => {
       if (!store.selectedFile) {
@@ -28,9 +28,9 @@ export const useFileImporterImmerStore = createStoreWithImmer<Data & Mutations>(
       if (file.name !== `${name}.${extension}`) store.selectedFile = file;
     });
   },
-  showTreeViewer: (status) => {
+  setShowTreeView: (showTreeView) => {
     immer((store) => {
-      store.toggleTreeView = status;
+      store.showTreeView = showTreeView;
     });
   },
   selectFiles(files) {

@@ -9,9 +9,9 @@ export function YmlViewerMenu() {
     <FlickerContainer color="transparent" repeatFlickerBorder="1">
       <GiPlantRoots
         size={'2rem'}
-        onClick={() => (fileSlice.toggleTreeView ? fileSlice.showTreeViewer(false) : fileSlice.showTreeViewer(true))}
+        onClick={() => (fileSlice.showTreeView ? fileSlice.setShowTreeView(false) : fileSlice.setShowTreeView(true))}
         cursor={'pointer'}
-        color={fileSlice.toggleTreeView ? 'lime' : 'grey'}
+        color={fileSlice.showTreeView ? 'lime' : 'grey'}
       />
     </FlickerContainer>
   );

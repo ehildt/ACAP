@@ -2,13 +2,16 @@ import { Button } from '@/atomics';
 import { Line } from '@/layouts/line/Line';
 import { AcapConfigViewer } from '@/widgets/acap-config-viewer/AcapConfig';
 import { FileImporter } from '@/widgets/file-importer/FileImporter';
+import { Metae } from '@/widgets/metae/Metae';
 import { FaHome } from 'react-icons/fa';
 import { FaUpload } from 'react-icons/fa6';
+import { RiListSettingsLine } from 'react-icons/ri';
 import { FlickerContainer, FlickerText } from '../../../effects';
 import { useTabMenuImmerStore } from './DesktopLayoutHeaderMenu.store';
 import style from './DesktopLayoutMain.module.scss';
 
 export function DesktopLayoutMain() {
+  // TODO: replace for a router
   const { tab, setTab } = useTabMenuImmerStore();
 
   return (
@@ -27,6 +30,11 @@ export function DesktopLayoutMain() {
             top: '50px',
           }}
         >
+          <FlickerContainer color="transparent" repeatFlickerBorder="1">
+            <Button onClick={() => setTab('metae')} style={{ padding: '0px' }}>
+              <RiListSettingsLine size={'2rem'} color="orange" />
+            </Button>
+          </FlickerContainer>
           <FlickerContainer color="transparent" repeatFlickerBorder="1">
             <Button onClick={() => setTab('importer')} style={{ padding: '0px' }}>
               <FaUpload size={'2rem'} color="yellowgreen" />
@@ -48,6 +56,7 @@ export function DesktopLayoutMain() {
             />
           </FlickerContainer>
         </Line>
+        {tab === 'metae' && <Metae />}
         {tab === 'home' && <AcapConfigViewer />}
         {tab === 'importer' && <FileImporter />}
       </div>

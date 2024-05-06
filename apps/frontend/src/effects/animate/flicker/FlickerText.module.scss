@@ -1,83 +1,83 @@
 $glow-color: crimson;
 
 .flicker-text {
-    cursor: inherit;
-    width: fit-content;
-    height: fit-content;
-    user-select: none;
-    --ms-flicker-text: 3000ms;
-    --ms-flicker-text-delay: 1000ms;
-    --font-flicker-letter-spacing: 0.3rem;
-    --mode-flicker-text: infinite;
-    --clr-flicker-glow: #{$glow-color};
-    color: var(--clr-flicker-glow);
-    display: block;
-    text-indent: 0.3rem;
-    letter-spacing: var(--font-flicker-letter-spacing);
-    transition: all 250ms ease-in-out;
+  cursor: inherit;
+  width: fit-content;
+  height: fit-content;
+  user-select: none;
+  --ms-flicker-text: 3000ms;
+  --ms-flicker-text-delay: 1000ms;
+  --font-flicker-letter-spacing: 0.3rem;
+  --mode-flicker-text: infinite;
+  --clr-flicker-glow: #{$glow-color};
+  color: var(--clr-flicker-glow);
+  display: block;
+  text-indent: 0.3rem;
+  letter-spacing: var(--font-flicker-letter-spacing);
+  transition: all 250ms ease-in-out;
+  animation-fill-mode: forwards;
+  animation: text-flicker var(--ms-flicker-text) var(--ms-flicker-text-delay) linear var(--mode-flicker-text);
+  text-shadow:
+    0 0 0.125rem rgba(0, 0, 0, 0.8),
+    0 0 0.15rem var(--clr-flicker-glow);
+
+  &-faulty {
+    --ms-flicker-text-faulty: 4000ms;
+    --ms-flicker-text-faulty-delay: 1000ms;
+    --mode-flicker-text-faulty: infinite;
+    opacity: 0.5;
     animation-fill-mode: forwards;
-    animation: text-flicker var(--ms-flicker-text) var(--ms-flicker-text-delay) linear var(--mode-flicker-text);
+    animation: faulty-flicker var(--ms-flicker-text-faulty) var(--ms-flicker-text-faulty-delay) linear
+      var(--mode-flicker-text-faulty);
+    transition: all 150ms linear;
+  }
+
+  &:hover {
+    animation-play-state: paused;
     text-shadow:
-        0 0 0.125rem rgba(0, 0, 0, 0.8),
-        0 0 0.15rem var(--clr-flicker-glow);
+      0 0 0.125rem rgba(0, 0, 0, 0.8),
+      0 0 0.175rem var(--clr-flicker-glow);
 
-    &-faulty {
-        --ms-flicker-text-faulty: 4000ms;
-        --ms-flicker-text-faulty-delay: 1000ms;
-        --mode-flicker-text-faulty: infinite;
-        opacity: 0.5;
-        animation-fill-mode: forwards;
-        animation: faulty-flicker var(--ms-flicker-text-faulty) var(--ms-flicker-text-faulty-delay) linear
-            var(--mode-flicker-text-faulty);
-        transition: all 150ms linear;
+    .flicker-text-faulty {
+      animation-play-state: paused;
+      opacity: 1;
     }
-
-    &:hover {
-        animation-play-state: paused;
-        text-shadow:
-            0 0 0.125rem rgba(0, 0, 0, 0.8),
-            0 0 0.175rem var(--clr-flicker-glow);
-
-        .flicker-text-faulty {
-            animation-play-state: paused;
-            opacity: 1;
-        }
-    }
+  }
 }
 
 @keyframes faulty-flicker {
-    0%,
-    2%,
-    87% {
-        opacity: 0.1;
-    }
-    4%,
-    80% {
-        opacity: 0.5;
-    }
-    21% {
-        opacity: 1;
-    }
-    83% {
-        opacity: 0.4;
-    }
+  0%,
+  2%,
+  87% {
+    opacity: 0.1;
+  }
+  4%,
+  80% {
+    opacity: 0.5;
+  }
+  21% {
+    opacity: 1;
+  }
+  83% {
+    opacity: 0.4;
+  }
 }
 
 @keyframes text-flicker {
-    0%,
-    8%,
-    12%,
-    25%,
-    100% {
-        opacity: 0.1;
-    }
-    2%,
-    9%,
-    20%,
-    30%,
-    70%,
-    72%,
-    77% {
-        opacity: 1;
-    }
+  0%,
+  8%,
+  12%,
+  25%,
+  100% {
+    opacity: 0.1;
+  }
+  2%,
+  9%,
+  20%,
+  30%,
+  70%,
+  72%,
+  77% {
+    opacity: 1;
+  }
 }

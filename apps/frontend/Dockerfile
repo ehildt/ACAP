@@ -1,6 +1,6 @@
 FROM node:20 AS local
 WORKDIR /app
-ENV PORT 80
+ENV PORT 5173
 EXPOSE ${PORT}
 ENTRYPOINT ["npm", "run", "dev"]
 
