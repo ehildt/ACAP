@@ -1,33 +1,36 @@
-import { formatDistanceToNow } from 'date-fns';
-import { FaClock, FaClockRotateLeft, FaListUl } from 'react-icons/fa6';
+import { FileCard } from '@/atomics/file-card/FileCard';
+import { Container } from '@/layouts/container/Container';
 
-export type MetaeItemProps = {
-  metae: Record<string, any>;
-};
+import { sizeof } from './Metae.hooks';
+import { MetaeItemProps } from './Metae.modal';
+import style from './Metae.module.scss';
 
 export function MetaeItem(props: MetaeItemProps) {
   const keys = Object.keys(props.metae);
 
   return keys.map((key, index) => (
-    <div
-      key={`${key}_${index}`}
-      className="metae"
-      // TODO: fix marginRight: items > 8 ? '0.3rem' : undefined
-      style={{ animationDelay: `${(100 * index).toString()}ms` }}
+    <Container
+      fadeInOutMS={250 + 100 * index}
+      innerStyle={{ display: 'flex', flexDirection: 'column', gap: '0.3rem' }}
+      outerStyle={{ padding: '0.5rem' }}
     >
-      <h2 className="metae-title">
-        {key} ({props.metae?.[key].length})
+      <h2 className={style.metaeItemTitle}>
+        {key} ({props.metae?.[key].length}) {sizeof(props.metae?.[key])}
       </h2>
-      <ul>
-        {props.metae?.[key].map(({ id, hasSchema, hasRealm, createdAt, updatedAt }: any, idx: any) => (
-          <li key={`${key}_${index}_${idx}`} style={{ animationDelay: `${(100 * idx).toString()}ms` }}>
-            <h1>
-              {id} <FaClock /> {formatDistanceToNow(new Date(createdAt), { addSuffix: true })} <FaClockRotateLeft />{' '}
-              {formatDistanceToNow(new Date(updatedAt), { addSuffix: true })} {hasSchema && <FaListUl />}
-            </h1>
-          </li>
-        ))}
-      </ul>
-    </div>
+
+      {props.metae?.[key]?.map((item: any, idx: any) => {
+        const { id, hasSchema, hasRealm, createdAt, updatedAt, value } = item;
+        return (
+          <Container fadeInOutMS={250 + 100 * idx}>
+            <FileCard
+              filename={`${id} ${value.name}`}
+              lastModified={updatedAt}
+              size={value.size}
+              extension={value.extension}
+            />
+          </Container>
+        );
+      })}
+    </Container>
   ));
 }

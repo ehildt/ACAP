@@ -1,6 +1,7 @@
 import { Buffer } from 'buffer';
 import bytes from 'bytes';
 import { useEffect, useState } from 'react';
+
 import { SUPPORTED_ICONS } from './FileImporter.constants';
 import { FileMetadata } from './FileImporter.modal';
 import { useFileImporterImmerStore } from './FileImporter.store';

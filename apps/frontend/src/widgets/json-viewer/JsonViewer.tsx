@@ -1,5 +1,7 @@
-import { Container } from '@/layouts/container/Container';
 import { useEffect, useState } from 'react';
+
+import { Container } from '@/layouts/container/Container';
+
 import { JsonViewerProps } from './JsonViewer.model';
 import { JsonViewerRow } from './JsonViewerRow';
 

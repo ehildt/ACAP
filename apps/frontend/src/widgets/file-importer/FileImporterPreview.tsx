@@ -1,6 +1,8 @@
+import { parse } from 'yaml';
+
 import { TreeViewer } from '@/widgets/tree-viewer/TreeViewer';
 import { YmlViewer } from '@/widgets/yml-viewer/YmlViewer';
-import { parse } from 'yaml';
+
 import { ImageViewer } from '../image-viewer/ImageViewer';
 import { JsonViewer } from '../json-viewer/JsonViewer';
 import { PdfViewer } from '../pdf-viewer/PdfViewer';

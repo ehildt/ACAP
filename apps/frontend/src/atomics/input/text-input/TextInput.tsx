@@ -1,7 +1,8 @@
-import { useDimensionsWithStyle } from '@/hooks/use-dimensions-with-style';
 import { CSSProperties, useRef } from 'react';
 
 import { FlickerText } from '@/effects';
+import { useDimensionsWithStyle } from '@/hooks/use-dimensions-with-style';
+
 import style from './TextInput.module.scss';
 
 type TextInputProps = {

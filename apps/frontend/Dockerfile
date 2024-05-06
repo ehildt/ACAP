@@ -2,7 +2,8 @@ FROM node:20 AS local
 WORKDIR /app
 ENV PORT 5173
 EXPOSE ${PORT}
-ENTRYPOINT ["npm", "run", "dev"]
+RUN npm i -g pnpm
+ENTRYPOINT ["pnpm", "run", "start:dev"]
 
 FROM node:20-slim AS bundle
 WORKDIR /app

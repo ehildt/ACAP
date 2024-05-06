@@ -1,0 +1,43 @@
+.metae {
+    position: relative;
+    gap: 1rem;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-template-areas: "preview menu";
+
+    &-menu {
+        grid-area: menu;
+
+        &-icons {
+            z-index: 1;
+            float: right;
+            gap: 0.2rem;
+            display: inline-flex;
+            align-items: center;
+            position: sticky;
+            top: 130px;
+            margin-top: 25px;
+        }
+
+        &-list {
+            width: 100%;
+            margin-top: 1rem;
+            padding: 5px;
+            display: inline-flex;
+            align-items: center;
+            position: sticky;
+            top: 185px;
+            border: 0.2rem solid gray;
+            border-image: linear-gradient(to right, transparent, gray, gray, transparent) 1;
+        }
+    }
+
+    &-preview {
+        top: 0px;
+        padding: 5px;
+        grid-area: preview;
+        border-radius: 0.3rem;
+        border: 0.2rem solid gray;
+        border-image: linear-gradient(to bottom, transparent, gray, transparent) 1;
+    }
+}

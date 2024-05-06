@@ -1,24 +1,33 @@
 import { PageSwitcher, SelectBox } from '@/atomics';
-import './MetaeMenu.scss';
 
-type MetaeMenuProps = {
-  source: string;
-  skip: number;
-  take: number;
-  count: number;
-  onSourceChange: (value: string) => void;
-  onTakeChange: (value: string) => void;
-  onLeftIconClick: () => void;
-  onRightIconClick: () => void;
-};
+import { useACAPApi } from '@/api/acap/acap-api.hook';
+import { useEffect, useState } from 'react';
+import { Scrollbar } from '../scrollbar/Scrollbar';
+import { MetaeMenuProps } from './Metae.modal';
+import style from './Metae.module.scss';
+import { MetaeItem } from './MetaeItem';
 
 export function MetaeMenu(props: MetaeMenuProps) {
-  const { skip, take, source, count } = props;
+  const { skip, take, source } = props;
+  const [count, setCount] = useState<number>(0);
+  const [metae, setMetae] = useState<Record<string, any>>();
+  const acapAPI = useACAPApi({ baseUrl: 'http://localhost:3001' });
+
+  useEffect(() => {
+    // TODO: fetch-retention
+    acapAPI
+      .getMeta('realms', take, skip)
+      .then((data) => data?.json())
+      .then(({ data, count }) => {
+        setMetae(data);
+        setCount(count);
+      });
+  }, [take, skip, source]);
+
   return (
-    <nav className="metae-menu">
-      <h1>Metae</h1>
-      <ul className="metae-menu-items">
-        <li id="metae-source">
+    <nav className={style.metaeMenu}>
+      <ul className={style.metaeMenuIcons}>
+        <li>
           <SelectBox
             defaultIndex={0}
             onClick={props.onSourceChange}
@@ -50,6 +59,17 @@ export function MetaeMenu(props: MetaeMenuProps) {
           />
         </li>
       </ul>
+      <div className={style.metaeMenuList}>
+        {count && metae ? (
+          <Scrollbar overflow="y" behavior="smooth" style={{ height: '60vh', width: '100%', gap: '0.3rem' }}>
+            <MetaeItem metae={metae} />
+          </Scrollbar>
+        ) : (
+          <div style={{ margin: 'auto', userSelect: 'none', height: '60vh', display: 'flex', alignItems: 'center' }}>
+            No Metae Available.
+          </div>
+        )}
+      </div>
     </nav>
   );
 }

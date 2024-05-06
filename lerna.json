@@ -2,7 +2,7 @@
   "version": "independent",
   "npmClient": "pnpm",
   "verbose": true,
-  "useNx": true,
+  "useNx": false,
   "command": {
     "version": {
       "conventionalCommits": false,

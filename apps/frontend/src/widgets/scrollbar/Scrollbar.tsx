@@ -1,6 +1,7 @@
 import { forwardRef, useRef } from 'react';
 
 import { useDimensionsWithStyle } from '@/hooks/use-dimensions-with-style';
+
 import { useMouseEventProxy, useScrollbarCn, useScrollDirectionLtr, useScrollDirectionRtl } from './Scrollbar.hooks';
 import { ScrollbarProps } from './Scrollbar.modal';
 
