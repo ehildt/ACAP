@@ -1,10 +1,10 @@
 .line {
-    gap: 0.3rem;
-    display: inline-flex;
-    align-items: center;
-    vertical-align: middle;
+  gap: 0.3rem;
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
 
-    &-orientation--vertical {
-        flex-direction: column;
-    }
+  &-orientation--vertical {
+    flex-direction: column;
+  }
 }

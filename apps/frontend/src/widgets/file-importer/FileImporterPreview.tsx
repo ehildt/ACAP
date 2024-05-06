@@ -8,7 +8,7 @@ import { FileMetadata } from './FileImporter.modal';
 import { useFileImporterImmerStore } from './FileImporter.store';
 
 export function FileImporterPreview() {
-  const { selectedFile, toggleTreeView } = useFileImporterImmerStore();
+  const { selectedFile, showTreeView } = useFileImporterImmerStore();
 
   const renderers: { [key: string]: (buffer: Buffer, mimeType?: string) => JSX.Element } = {
     pdf: (buffer) => <PdfViewer base64={buffer.toString('base64')} />,
@@ -16,11 +16,11 @@ export function FileImporterPreview() {
     png: (buffer, mimeType) => <ImageViewer base64={buffer.toString('base64')} mimeType={mimeType} />,
     json: (buffer) => {
       const data = JSON.parse(buffer.toString());
-      return toggleTreeView ? <TreeViewer data={data} /> : <JsonViewer data={data} style={{ width: '100%' }} />;
+      return showTreeView ? <TreeViewer data={data} /> : <JsonViewer data={data} style={{ width: '100%' }} />;
     },
     yml: (buffer) => {
       const data = parse(buffer.toString());
-      return toggleTreeView ? <TreeViewer data={data} /> : <YmlViewer data={data} style={{ width: '100%' }} />;
+      return showTreeView ? <TreeViewer data={data} /> : <YmlViewer data={data} style={{ width: '100%' }} />;
     },
   };
 

@@ -113,7 +113,7 @@ module.exports = {
         'maintenance problems later on.',
       severity: 'warn',
       from: {
-        pathNot: WHITELIST.noDuplicateDepTypes
+        pathNot: WHITELIST.noDuplicateDepTypes,
       },
       to: {
         moreThanOneDependencyType: true,

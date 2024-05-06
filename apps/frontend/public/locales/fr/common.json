@@ -1,10 +1,10 @@
 {
-    "button": {
-        "add": "ajouter",
-        "cancel": "annuler",
-        "ok": "ok",
-        "reset": "réinitialiser",
-        "save": "enregistrer",
-        "submit": "envoyer"
-    }
+  "button": {
+    "add": "ajouter",
+    "cancel": "annuler",
+    "ok": "ok",
+    "reset": "réinitialiser",
+    "save": "enregistrer",
+    "submit": "envoyer"
+  }
 }

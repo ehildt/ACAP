@@ -1,7 +1,7 @@
-@use "../node_modules/css-reset-and-normalize/scss/reset-and-normalize";
-@use "../node_modules/css-reset-and-normalize/scss/button-reset";
-@use "../node_modules/css-reset-and-normalize/scss/link-reset";
-@use "./partials";
+@use '../node_modules/css-reset-and-normalize/scss/reset-and-normalize';
+@use '../node_modules/css-reset-and-normalize/scss/button-reset';
+@use '../node_modules/css-reset-and-normalize/scss/link-reset';
+@use './partials';
 
 :root {
   @each $color, $shade in partials.$colors {

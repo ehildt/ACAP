@@ -33,12 +33,11 @@ export function FileImporterMenu(props: FileImporterMenuProps) {
         <FlickerContainer color="transparent" repeatFlickerBorder="1">
           <FileInput
             multiple
-            onChange={({ files, element }) => {
-              files && fileSlice.selectFiles(Array.from(files));
-              element.target.files = null;
-            }}
-            accept={props.accept}
             type="file"
+            accept={props.accept}
+            onChange={({ files }) => {
+              if (files) fileSlice.selectFiles(Array.from(files));
+            }}
           >
             <FaFileCirclePlus size={'2rem'} color="skyblue" />
           </FileInput>

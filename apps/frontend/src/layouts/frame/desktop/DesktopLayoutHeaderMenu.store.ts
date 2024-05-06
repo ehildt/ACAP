@@ -1,6 +1,6 @@
 import { createStoreWithImmer } from '@/store/create-with-immer.store';
 
-type TAB = 'home' | 'importer';
+type TAB = 'home' | 'importer' | 'metae';
 
 type Data = {
   tab?: TAB;

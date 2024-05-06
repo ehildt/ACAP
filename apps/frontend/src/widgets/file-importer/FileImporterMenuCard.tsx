@@ -11,7 +11,7 @@ export function FileImporterMenuCard() {
         <div
           className={style.card}
           onClick={() => {
-            fileSlice.showTreeViewer(false);
+            fileSlice.setShowTreeView(false);
             fileSlice.setSelectedFile(f);
           }}
         >
