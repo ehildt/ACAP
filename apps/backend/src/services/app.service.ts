@@ -4,7 +4,6 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { readFileSync } from 'fs';
 import { join } from 'path';
 
-
 import { ACAP_BULLMQ_REALM_QUEUE, API_DOCS, API_DOCS_JSON } from '../constants/app.constants';
 import { ConfigFactoryService } from './config-factory.service';
 

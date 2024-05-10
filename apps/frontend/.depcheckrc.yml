@@ -7,6 +7,9 @@ ignores:
   - '@storybook/builder-vite'
   - '@storybook/preset-create-react-app'
   - '@storybook/testing-library'
+  - '@chromatic-com/storybook'
+  - '@storybook/addon-onboarding'
+  - '@storybook/test'
   - '@testing-library/react'
   - '@testing-library/user-event'
   - '@types/react'
@@ -20,3 +23,8 @@ ignores:
   - react-refresh
   - url
   - buffer
+  - dotenv
+  - eslint-plugin-prettier
+  - eslint-plugin-storybook
+  - eslint-plugin-unused-imports
+  - husky

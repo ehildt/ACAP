@@ -24,6 +24,7 @@ services:
       - ./node_modules:/node_modules
     depends_on:
       - mongo
+      - minio
       - redis
       - mosquitto
     env_file:
@@ -43,6 +44,20 @@ services:
       - mongo_acap_data:/data/db
     ports:
       - 27017:27017
+
+  minio:
+    image: "bitnami/minio:latest"
+    container_name: minio
+    ports:
+      - "9000:9000"
+      - "9002:9001"
+    environment:
+      - MINIO_ROOT_USER=minio
+      - MINIO_ROOT_PASSWORD=minio
+      - MINIO_SKIP_CLIENT=yes
+      - MINIO_DEFAULT_BUCKETS=ACAP
+    volumes:
+      - minio_acap_data:/bitnami/minio/data
 
   redis:
     image: redis
@@ -64,6 +79,7 @@ services:
 
 volumes:
   mongo_acap_data:
+  minio_acap_data:
   mosquitto_data:
   mosquitto_config:
   mosquitto_log:

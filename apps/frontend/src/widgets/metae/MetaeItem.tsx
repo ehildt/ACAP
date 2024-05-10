@@ -12,7 +12,7 @@ export function MetaeItem(props: MetaeItemProps) {
     <Container
       fadeInOutMS={250 + 100 * index}
       innerStyle={{ display: 'flex', flexDirection: 'column', gap: '0.3rem' }}
-      outerStyle={{ padding: '0.5rem' }}
+      outerStyle={{ padding: '0.3rem' }}
     >
       <h2 className={style.metaeItemTitle}>
         {key} ({props.metae?.[key].length}) {sizeof(props.metae?.[key])}

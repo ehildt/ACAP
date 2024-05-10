@@ -2,29 +2,18 @@
   "compilerOptions": {
     "baseUrl": "./",
     "outDir": "./dist",
-    "target": "ES2022",
-    "module": "CommonJS",
-    "moduleResolution": "Node",
+    "target": "ESNext",
+    "module": "commonjs",
+    "moduleResolution": "node",
     "skipLibCheck": true,
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "allowSyntheticDefaultImports": true,
     "paths": {
-      "@/*": [
-        "src/*"
-      ]
-    },
+      "@/*": ["src/*"]
+    }
   },
-  "files": [
-    "shims.d.ts"
-  ],
-  "include": [
-    ".eslintrc.cjs",
-    ".prettierrc.cjs",
-    ".releaserc.js",
-    "jest.config.ts",
-    "src/**/*",
-    "test/**/*",
-  ],
+  "files": ["shims.d.ts"],
+  "include": ["eslint.config.mjs", ".prettierrc.mjs", ".releaserc.js", "jest.config.ts", "src/**/*", "test/**/*"]
 }

@@ -1,7 +1,13 @@
-const WHITELIST = require('./.depcruiserrc.json');
+const WHITELIST = {
+  noCircular: [],
+  noDuplicateDepTypes: ['\\.stories\\.tsx$'],
+  noOrphans: ['src/api/dccs.api.ts'],
+  notToDevDep: ['src/types.d.ts'],
+  notToUnresolvable: ['src/types.d.ts'],
+};
 
 /** @type {import('dependency-cruiser').IConfiguration} */
-module.exports = {
+export default {
   forbidden: [
     /* rules from the 'recommended' preset: */
     {

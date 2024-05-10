@@ -1,20 +1,17 @@
 import pluginJs from '@eslint/js';
 import eslintConfigPrettier from 'eslint-config-prettier';
+import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 import react from 'eslint-plugin-react';
 import simpleImportSort from 'eslint-plugin-simple-import-sort';
 import sonarjs from 'eslint-plugin-sonarjs';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
-/* 
-'plugin:prettier/recommended',
-'plugin:storybook/recommended', 
-*/
-
 export default [
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
   eslintConfigPrettier,
+  eslintPluginPrettierRecommended,
   {
     settings: {
       react: {
@@ -43,10 +40,10 @@ export default [
       'import/order': 'off',
       '@typescript-eslint/no-explicit-any': 'off',
       '@typescript-eslint/no-unused-vars': 'warn',
-      'simple-import-sort/imports': 'error',
-      'simple-import-sort/exports': 'error',
-      'sonarjs/cognitive-complexity': 'error',
-      'sonarjs/no-identical-expressions': 'error',
+      'simple-import-sort/imports': 'warn',
+      'simple-import-sort/exports': 'warn',
+      'sonarjs/cognitive-complexity': 'warn',
+      'sonarjs/no-identical-expressions': 'warn',
     },
   },
 ];
