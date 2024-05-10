@@ -1,7 +1,0 @@
-{
-  "noOrphans": [],
-  "notToDevDep": [
-    "src/config.yml.loader.ts"
-  ],
-  "notToUnresolvable": []
-}

@@ -147,18 +147,12 @@ importers:
       '@types/supertest':
         specifier: ^6.0.2
         version: 6.0.2
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^7.8.0
-        version: 7.8.0(@typescript-eslint/parser@7.8.0(eslint@9.2.0)(typescript@5.4.5))(eslint@9.2.0)(typescript@5.4.5)
-      '@typescript-eslint/parser':
-        specifier: ^7.8.0
-        version: 7.8.0(eslint@9.2.0)(typescript@5.4.5)
       depcheck:
         specifier: ^1.4.7
         version: 1.4.7
       dependency-cruiser:
-        specifier: ^16.3.1
-        version: 16.3.1
+        specifier: ^16.3.2
+        version: 16.3.2
       dotenv-cli:
         specifier: ^7.4.2
         version: 7.4.2
@@ -168,9 +162,6 @@ importers:
       eslint-config-prettier:
         specifier: ^9.1.0
         version: 9.1.0(eslint@9.2.0)
-      eslint-plugin-no-loops:
-        specifier: ^0.3.0
-        version: 0.3.0(eslint@9.2.0)
       eslint-plugin-prettier:
         specifier: ^5.1.3
         version: 5.1.3(@types/eslint@8.56.10)(eslint-config-prettier@9.1.0(eslint@9.2.0))(eslint@9.2.0)(prettier@3.2.5)
@@ -180,6 +171,9 @@ importers:
       eslint-plugin-sonarjs:
         specifier: ^1.0.3
         version: 1.0.3(eslint@9.2.0)
+      globals:
+        specifier: ^15.2.0
+        version: 15.2.0
       jest:
         specifier: ^29.7.0
         version: 29.7.0(@types/node@20.12.11)(babel-plugin-macros@2.8.0)(ts-node@10.9.2(@types/node@20.12.11)(typescript@5.4.5))
@@ -238,8 +232,8 @@ importers:
         specifier: ^3.6.0
         version: 3.6.0
       i18next:
-        specifier: ^23.11.3
-        version: 23.11.3
+        specifier: ^23.11.4
+        version: 23.11.4
       i18next-browser-languagedetector:
         specifier: ^7.2.1
         version: 7.2.1
@@ -500,7 +494,7 @@ importers:
         version: 8.0.9(@types/react@18.2.79)(react-dom@18.2.0)(react@18.2.0)
       '@storybook/addon-interactions':
         specifier: ^8.0.10
-        version: 8.0.10(@jest/globals@29.7.0)(@types/jest@29.5.12)(jest@29.7.0(@types/node@20.12.11)(babel-plugin-macros@2.8.0))(vitest@1.6.0(@types/node@20.12.11)(@vitest/ui@1.5.3)(jsdom@24.0.0(canvas@2.11.2(encoding@0.1.13)))(sass@1.77.0)(terser@5.31.0))
+        version: 8.0.10(@jest/globals@29.7.0)(@types/jest@29.5.12)(jest@29.7.0(@types/node@20.12.11)(babel-plugin-macros@2.8.0)(ts-node@10.9.2(@types/node@20.12.11)(typescript@5.4.5)))(vitest@1.6.0(@types/node@20.12.11)(@vitest/ui@1.5.3)(jsdom@24.0.0(canvas@2.11.2(encoding@0.1.13)))(sass@1.77.0)(terser@5.31.0))
       '@storybook/addon-links':
         specifier: ^8.0.10
         version: 8.0.10(react@18.3.1)
@@ -521,13 +515,13 @@ importers:
         version: 8.0.10(encoding@0.1.13)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(rollup@4.17.2)(typescript@5.4.5)(vite@5.2.11(@types/node@20.12.11)(sass@1.77.0)(terser@5.31.0))
       '@storybook/test':
         specifier: ^8.0.10
-        version: 8.0.10(@jest/globals@29.7.0)(@types/jest@29.5.12)(jest@29.7.0(@types/node@20.12.11)(babel-plugin-macros@2.8.0))(vitest@1.6.0(@types/node@20.12.11)(@vitest/ui@1.5.3)(jsdom@24.0.0(canvas@2.11.2(encoding@0.1.13)))(sass@1.77.0)(terser@5.31.0))
+        version: 8.0.10(@jest/globals@29.7.0)(@types/jest@29.5.12)(jest@29.7.0(@types/node@20.12.11)(babel-plugin-macros@2.8.0)(ts-node@10.9.2(@types/node@20.12.11)(typescript@5.4.5)))(vitest@1.6.0(@types/node@20.12.11)(@vitest/ui@1.5.3)(jsdom@24.0.0(canvas@2.11.2(encoding@0.1.13)))(sass@1.77.0)(terser@5.31.0))
       '@storybook/theming':
         specifier: ^8.0.10
         version: 8.0.10(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@testing-library/jest-dom':
         specifier: ^6.4.5
-        version: 6.4.5(@jest/globals@29.7.0)(@types/jest@29.5.12)(jest@29.7.0(@types/node@20.12.11)(babel-plugin-macros@2.8.0))(vitest@1.6.0(@types/node@20.12.11)(@vitest/ui@1.5.3)(jsdom@24.0.0(canvas@2.11.2(encoding@0.1.13)))(sass@1.77.0)(terser@5.31.0))
+        version: 6.4.5(@jest/globals@29.7.0)(@types/jest@29.5.12)(jest@29.7.0(@types/node@20.12.11)(babel-plugin-macros@2.8.0)(ts-node@10.9.2(@types/node@20.12.11)(typescript@5.4.5)))(vitest@1.6.0(@types/node@20.12.11)(@vitest/ui@1.5.3)(jsdom@24.0.0(canvas@2.11.2(encoding@0.1.13)))(sass@1.77.0)(terser@5.31.0))
       '@testing-library/react':
         specifier: ^15.0.4
         version: 15.0.4(react-dom@18.2.0)(react@18.2.0)
@@ -543,12 +537,6 @@ importers:
       '@types/react-dom':
         specifier: ^18.3.0
         version: 18.3.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^7.8.0
-        version: 7.8.0(@typescript-eslint/parser@7.8.0(eslint@9.2.0)(typescript@5.4.5))(eslint@9.2.0)(typescript@5.4.5)
-      '@typescript-eslint/parser':
-        specifier: ^7.8.0
-        version: 7.8.0(eslint@9.2.0)(typescript@5.4.5)
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.2.11(@types/node@20.12.11)(sass@1.77.0)(terser@5.31.0))
@@ -568,8 +556,8 @@ importers:
         specifier: ^1.4.7
         version: 1.4.7
       dependency-cruiser:
-        specifier: ^16.3.1
-        version: 16.3.1
+        specifier: ^16.3.2
+        version: 16.3.2
       dotenv:
         specifier: ^16.4.5
         version: 16.4.5
@@ -598,8 +586,8 @@ importers:
         specifier: ^3.2.0
         version: 3.2.0(@typescript-eslint/eslint-plugin@7.8.0(@typescript-eslint/parser@7.8.0(eslint@9.2.0)(typescript@5.4.5))(eslint@9.2.0)(typescript@5.4.5))(eslint@9.2.0)
       globals:
-        specifier: ^15.1.0
-        version: 15.1.0
+        specifier: ^15.2.0
+        version: 15.2.0
       husky:
         specifier: ^9.0.11
         version: 9.0.11
@@ -1333,8 +1321,8 @@ packages:
       react: ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
       react-dom: ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
 
-  '@chromatic-com/storybook@1.3.4':
-    resolution: {integrity: sha512-ZfQDc5Zg5YSC9cWdBc9QpMF0vgvknwKTB9xBE0NhCJWjGxG9mz9yLzQTzzliYulPtWgcQ+8cE+apDljYK+fWdQ==}
+  '@chromatic-com/storybook@1.3.5':
+    resolution: {integrity: sha512-Eunwu6qCvEHSOCaI0SHsAHJKhHOho+/yHguES34Afi8WZAOq2bw50U8GTQMSft76My87QFlPkCt/Qak4H3MAZw==}
     engines: {node: '>=16.0.0', yarn: '>=1.22.18'}
 
   '@colors/colors@1.5.0':
@@ -3722,8 +3710,8 @@ packages:
     resolution: {integrity: sha512-bIomtDF5KGpdogkLd9VspvFzk9KfpyyGlS8YFVZl7TGPBHL5snIOnxeshwVgPteQ9b4Eydl+pVbIyE1DcvCWgQ==}
     engines: {node: '>=10'}
 
-  chromatic@11.3.1:
-    resolution: {integrity: sha512-ATAfVEn84NARTIxdiGQ8QywWg3BPM/+6stVD1stSKCO7lQLEKFyGcI+PhBBDt+ZgNcgsEsg5fo3E2dQNt01W6g==}
+  chromatic@11.3.2:
+    resolution: {integrity: sha512-0PuHl49VvBMoDHEfmNjC/bim9YYNhWF3axTZlFuatC0avwr2Xw4GDqJDG9fArEWN8oM8VtYHkE9D7qc87dmz2w==}
     hasBin: true
     peerDependencies:
       '@chromatic-com/cypress': ^0.*.* || ^1.0.0
@@ -4235,8 +4223,8 @@ packages:
     resolution: {integrity: sha512-g7nH6P6dyDioJogAAGprGpCtVImJhpPk/roCzdb3fIh61/s/nPsfR6onyMwkCAR/OlC3yBC0lESvUoQEAssIrw==}
     engines: {node: '>= 0.8'}
 
-  dependency-cruiser@16.3.1:
-    resolution: {integrity: sha512-ZwhVjKrCr3Fk7Vb5FfDvkcAcqxttmbb26C9fjuJJVhqDGdgtJQnQ1k1sRY9UbgIBDmMlBTn8/Ccs2b/+TlqOSQ==}
+  dependency-cruiser@16.3.2:
+    resolution: {integrity: sha512-nNaa2wpViBMqWXNqwqR2YMWLXXpr3CGtaNk53yOPWFWe4qR3A242YyHnK+h6v4IeY1oxM+APXg4af5U7iovyjQ==}
     engines: {node: ^18.17||>=20}
     hasBin: true
 
@@ -4377,6 +4365,10 @@ packages:
     resolution: {integrity: sha512-O+QWCviPNSSLAD9Ucn8Awv+poAkqn3T1XY5/N7kR7rQO9yfSGWkYZDwpJ+iKF7B8rxaQKWngSqACpgzeapSyoA==}
     engines: {node: '>=10.13.0'}
 
+  enhanced-resolve@5.16.1:
+    resolution: {integrity: sha512-4U5pNsuDl0EhuZpq46M5xPslstkviJuhrdobaRDBk2Jy2KO37FDAJl4lb2KlNabxT0m4MTK2UHNrsAcphE8nyw==}
+    engines: {node: '>=10.13.0'}
+
   entities@4.5.0:
     resolution: {integrity: sha512-V0hjH4dGPh9Ao5p0MoRY6BVqtwCjhz6vI5LT8AJ55H+4g9/4vbHx1I54fS0XuclLhDHArPQCiMjDxjaL8fPxhw==}
     engines: {node: '>=0.12'}
@@ -4490,11 +4482,6 @@ packages:
     hasBin: true
     peerDependencies:
       eslint: '>=7.0.0'
-
-  eslint-plugin-no-loops@0.3.0:
-    resolution: {integrity: sha512-qI0oMgD0mA2Kpad2P/WncEqeVzvJKpHs/6+PA1SW4E6gXSXRmeV2cPv6+fnEgFwC7i+QtFRay2jUQ8DCH02nZg==}
-    peerDependencies:
-      eslint: '>=2.0.0'
 
   eslint-plugin-prettier@5.1.3:
     resolution: {integrity: sha512-C9GCVAs4Eq7ZC/XFQHITLiHJxQngdtraXaM+LoUFoFp/lHNl2Zn8f3WQbe9HvTBBQ9YnKFB0/2Ajdqwo5D1EAw==}
@@ -5019,8 +5006,8 @@ packages:
     resolution: {integrity: sha512-oahGvuMGQlPw/ivIYBjVSrWAfWLBeku5tpPE2fOPLi+WHffIWbuh2tCjhyQhTBPMf5E9jDEH4FOmTYgYwbKwtQ==}
     engines: {node: '>=18'}
 
-  globals@15.1.0:
-    resolution: {integrity: sha512-926gJqg+4mkxwYKiFvoomM4J0kWESfk3qfTvRL2/oc/tK/eTDBbrfcKnSa2KtfdxB5onoL7D3A3qIHQFpd4+UA==}
+  globals@15.2.0:
+    resolution: {integrity: sha512-FQ5YwCHZM3nCmtb5FzEWwdUc9K5d3V/w9mzcz8iGD1gC/aOTHc6PouYu0kkKipNJqHAT7m51sqzQjEjIP+cK0A==}
     engines: {node: '>=18'}
 
   globalthis@1.0.4:
@@ -5215,8 +5202,8 @@ packages:
   i18next-localstorage-backend@4.2.0:
     resolution: {integrity: sha512-vglEQF0AnLriX7dLA2drHnqAYzHxnLwWQzBDw8YxcIDjOvYZz5rvpal59Dq4In+IHNmGNM32YgF0TDjBT0fHmA==}
 
-  i18next@23.11.3:
-    resolution: {integrity: sha512-Pq/aSKowir7JM0rj+Wa23Kb6KKDUGno/HjG+wRQu0PxoTbpQ4N89MAT0rFGvXmLkRLNMb1BbBOKGozl01dabzg==}
+  i18next@23.11.4:
+    resolution: {integrity: sha512-CCUjtd5TfaCl+mLUzAA0uPSN+AVn4fP/kWCYt/hocPUwusTpMVczdrRyOBUwk6N05iH40qiKx6q1DoNJtBIwdg==}
 
   iconv-lite@0.4.24:
     resolution: {integrity: sha512-v3MXnZAcvnywkTUEZomIActle7RXXeedOR31wwl7VlyoXO4Qi9arvSenNQWne1TcRwhCL1HwLI21bEqdpj8/rA==}
@@ -7545,9 +7532,9 @@ packages:
     resolution: {integrity: sha512-hunMQrEy1T6Jr2uEVjrAIqjwWcQTgOAcIM52C8MY1EZSD3DDNft04XzvYKPqjED65bNVVko0YI38nYeEHCX3yw==}
     engines: {node: '>=12'}
 
-  semver-try-require@6.2.3:
-    resolution: {integrity: sha512-6q1N/Vr/4/G0EcQ1k4svN5kwfh3MJs4Gfl+zBAVcKn+AeIjKLwTXQ143Y6YHu6xEeN5gSCbCD1/5+NwCipLY5A==}
-    engines: {node: ^14||^16||>=18}
+  semver-try-require@7.0.0:
+    resolution: {integrity: sha512-LI7GzDuAZmNKOY0/LY4nB3ifh6kYMvBimFTHVpA6wNEl3gw59QrLbTAnJb7vQzPd1qXPz+BtKJZaYORXWMerrA==}
+    engines: {node: ^18.17||>=20}
 
   semver-utils@1.1.4:
     resolution: {integrity: sha512-EjnoLE5OGmDAVV/8YDoN5KiajNadjzIp9BAHOhYeQHt7j0UWxjmgsx4YD48wp4Ue1Qogq38F1GNUJNqF1kKKxA==}
@@ -7562,6 +7549,11 @@ packages:
 
   semver@7.6.0:
     resolution: {integrity: sha512-EnwXhrlwXMk9gKu5/flx5sv/an57AkRplG3hTK68W7FRDN+k+OWBj65M7719OkA82XLBxrcX0KSHj+X5COhOVg==}
+    engines: {node: '>=10'}
+    hasBin: true
+
+  semver@7.6.2:
+    resolution: {integrity: sha512-FNAIBWCx9qcRhoHcgcJ0gvU7SN1lYU2ZXuSfl04bSC5OpvDHFyJCjdNHomPXxjQlCBU67YW64PzY7/VIEH7F2w==}
     engines: {node: '>=10'}
     hasBin: true
 
@@ -9602,9 +9594,9 @@ snapshots:
       react-lifecycles-compat: 3.0.4
       warning: 3.0.0
 
-  '@chromatic-com/storybook@1.3.4(react@18.3.1)':
+  '@chromatic-com/storybook@1.3.5(react@18.3.1)':
     dependencies:
-      chromatic: 11.3.1
+      chromatic: 11.3.2
       filesize: 10.1.1
       jsonfile: 6.1.0
       react-confetti: 6.1.0(react@18.3.1)
@@ -10032,7 +10024,7 @@ snapshots:
       nopt: 5.0.0
       npmlog: 5.0.1
       rimraf: 3.0.2
-      semver: 7.6.0
+      semver: 7.6.2
       tar: 6.2.1
     transitivePeerDependencies:
       - encoding
@@ -10266,11 +10258,11 @@ snapshots:
   '@npmcli/fs@2.1.2':
     dependencies:
       '@gar/promisify': 1.1.3
-      semver: 7.6.0
+      semver: 7.6.2
 
   '@npmcli/fs@3.1.0':
     dependencies:
-      semver: 7.6.0
+      semver: 7.6.2
 
   '@npmcli/git@4.1.0':
     dependencies:
@@ -10280,7 +10272,7 @@ snapshots:
       proc-log: 3.0.0
       promise-inflight: 1.0.1
       promise-retry: 2.0.1
-      semver: 7.6.0
+      semver: 7.6.2
       which: 3.0.1
     transitivePeerDependencies:
       - bluebird
@@ -10687,11 +10679,11 @@ snapshots:
     dependencies:
       '@storybook/global': 5.0.0
 
-  '@storybook/addon-interactions@8.0.10(@jest/globals@29.7.0)(@types/jest@29.5.12)(jest@29.7.0(@types/node@20.12.11)(babel-plugin-macros@2.8.0))(vitest@1.6.0(@types/node@20.12.11)(@vitest/ui@1.5.3)(jsdom@24.0.0(canvas@2.11.2(encoding@0.1.13)))(sass@1.77.0)(terser@5.31.0))':
+  '@storybook/addon-interactions@8.0.10(@jest/globals@29.7.0)(@types/jest@29.5.12)(jest@29.7.0(@types/node@20.12.11)(babel-plugin-macros@2.8.0)(ts-node@10.9.2(@types/node@20.12.11)(typescript@5.4.5)))(vitest@1.6.0(@types/node@20.12.11)(@vitest/ui@1.5.3)(jsdom@24.0.0(canvas@2.11.2(encoding@0.1.13)))(sass@1.77.0)(terser@5.31.0))':
     dependencies:
       '@storybook/global': 5.0.0
       '@storybook/instrumenter': 8.0.10
-      '@storybook/test': 8.0.10(@jest/globals@29.7.0)(@types/jest@29.5.12)(jest@29.7.0(@types/node@20.12.11)(babel-plugin-macros@2.8.0))(vitest@1.6.0(@types/node@20.12.11)(@vitest/ui@1.5.3)(jsdom@24.0.0(canvas@2.11.2(encoding@0.1.13)))(sass@1.77.0)(terser@5.31.0))
+      '@storybook/test': 8.0.10(@jest/globals@29.7.0)(@types/jest@29.5.12)(jest@29.7.0(@types/node@20.12.11)(babel-plugin-macros@2.8.0)(ts-node@10.9.2(@types/node@20.12.11)(typescript@5.4.5)))(vitest@1.6.0(@types/node@20.12.11)(@vitest/ui@1.5.3)(jsdom@24.0.0(canvas@2.11.2(encoding@0.1.13)))(sass@1.77.0)(terser@5.31.0))
       '@storybook/types': 8.0.10
       polished: 4.3.1
       ts-dedent: 2.2.0
@@ -10849,7 +10841,7 @@ snapshots:
       prettier: 3.2.5
       prompts: 2.4.2
       read-pkg-up: 7.0.1
-      semver: 7.6.0
+      semver: 7.6.2
       strip-json-comments: 3.1.1
       tempy: 1.0.1
       tiny-invariant: 1.3.3
@@ -10928,7 +10920,7 @@ snapshots:
       pkg-dir: 5.0.0
       pretty-hrtime: 1.0.3
       resolve-from: 5.0.0
-      semver: 7.6.0
+      semver: 7.6.2
       tempy: 1.0.1
       tiny-invariant: 1.3.3
       ts-dedent: 2.2.0
@@ -10978,7 +10970,7 @@ snapshots:
       pretty-hrtime: 1.0.3
       prompts: 2.4.2
       read-pkg-up: 7.0.1
-      semver: 7.6.0
+      semver: 7.6.2
       telejson: 7.2.0
       tiny-invariant: 1.3.3
       ts-dedent: 2.2.0
@@ -11179,14 +11171,14 @@ snapshots:
       - encoding
       - supports-color
 
-  '@storybook/test@8.0.10(@jest/globals@29.7.0)(@types/jest@29.5.12)(jest@29.7.0(@types/node@20.12.11)(babel-plugin-macros@2.8.0))(vitest@1.6.0(@types/node@20.12.11)(@vitest/ui@1.5.3)(jsdom@24.0.0(canvas@2.11.2(encoding@0.1.13)))(sass@1.77.0)(terser@5.31.0))':
+  '@storybook/test@8.0.10(@jest/globals@29.7.0)(@types/jest@29.5.12)(jest@29.7.0(@types/node@20.12.11)(babel-plugin-macros@2.8.0)(ts-node@10.9.2(@types/node@20.12.11)(typescript@5.4.5)))(vitest@1.6.0(@types/node@20.12.11)(@vitest/ui@1.5.3)(jsdom@24.0.0(canvas@2.11.2(encoding@0.1.13)))(sass@1.77.0)(terser@5.31.0))':
     dependencies:
       '@storybook/client-logger': 8.0.10
       '@storybook/core-events': 8.0.10
       '@storybook/instrumenter': 8.0.10
       '@storybook/preview-api': 8.0.10
       '@testing-library/dom': 9.3.4
-      '@testing-library/jest-dom': 6.4.5(@jest/globals@29.7.0)(@types/jest@29.5.12)(jest@29.7.0(@types/node@20.12.11)(babel-plugin-macros@2.8.0))(vitest@1.6.0(@types/node@20.12.11)(@vitest/ui@1.5.3)(jsdom@24.0.0(canvas@2.11.2(encoding@0.1.13)))(sass@1.77.0)(terser@5.31.0))
+      '@testing-library/jest-dom': 6.4.5(@jest/globals@29.7.0)(@types/jest@29.5.12)(jest@29.7.0(@types/node@20.12.11)(babel-plugin-macros@2.8.0)(ts-node@10.9.2(@types/node@20.12.11)(typescript@5.4.5)))(vitest@1.6.0(@types/node@20.12.11)(@vitest/ui@1.5.3)(jsdom@24.0.0(canvas@2.11.2(encoding@0.1.13)))(sass@1.77.0)(terser@5.31.0))
       '@testing-library/user-event': 14.5.2(@testing-library/dom@9.3.4)
       '@vitest/expect': 1.3.1
       '@vitest/spy': 1.5.3
@@ -11240,7 +11232,7 @@ snapshots:
       lz-string: 1.5.0
       pretty-format: 27.5.1
 
-  '@testing-library/jest-dom@6.4.5(@jest/globals@29.7.0)(@types/jest@29.5.12)(jest@29.7.0(@types/node@20.12.11)(babel-plugin-macros@2.8.0))(vitest@1.6.0(@types/node@20.12.11)(@vitest/ui@1.5.3)(jsdom@24.0.0(canvas@2.11.2(encoding@0.1.13)))(sass@1.77.0)(terser@5.31.0))':
+  '@testing-library/jest-dom@6.4.5(@jest/globals@29.7.0)(@types/jest@29.5.12)(jest@29.7.0(@types/node@20.12.11)(babel-plugin-macros@2.8.0)(ts-node@10.9.2(@types/node@20.12.11)(typescript@5.4.5)))(vitest@1.6.0(@types/node@20.12.11)(@vitest/ui@1.5.3)(jsdom@24.0.0(canvas@2.11.2(encoding@0.1.13)))(sass@1.77.0)(terser@5.31.0))':
     dependencies:
       '@adobe/css-tools': 4.3.3
       '@babel/runtime': 7.24.5
@@ -11584,7 +11576,7 @@ snapshots:
       debug: 4.3.4
       globby: 11.1.0
       is-glob: 4.0.3
-      semver: 7.6.0
+      semver: 7.6.2
       tsutils: 3.21.0(typescript@5.4.5)
     optionalDependencies:
       typescript: 5.4.5
@@ -11616,7 +11608,7 @@ snapshots:
       '@typescript-eslint/typescript-estree': 5.62.0(typescript@5.4.5)
       eslint: 9.2.0
       eslint-scope: 5.1.1
-      semver: 7.6.0
+      semver: 7.6.2
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -12369,7 +12361,7 @@ snapshots:
 
   builtins@5.1.0:
     dependencies:
-      semver: 7.6.0
+      semver: 7.6.2
 
   bullmq@5.7.8:
     dependencies:
@@ -12536,7 +12528,7 @@ snapshots:
 
   chownr@2.0.0: {}
 
-  chromatic@11.3.1: {}
+  chromatic@11.3.2: {}
 
   chrome-trace-event@1.0.3: {}
 
@@ -13066,17 +13058,17 @@ snapshots:
 
   depd@2.0.0: {}
 
-  dependency-cruiser@16.3.1:
+  dependency-cruiser@16.3.2:
     dependencies:
       acorn: 8.11.3
       acorn-jsx: 5.3.2(acorn@8.11.3)
       acorn-jsx-walk: 2.0.0
       acorn-loose: 8.4.0
       acorn-walk: 8.3.2
-      ajv: 8.12.0
+      ajv: 8.13.0
       chalk: 5.3.0
       commander: 12.0.0
-      enhanced-resolve: 5.16.0
+      enhanced-resolve: 5.16.1
       figures: 6.1.0
       ignore: 5.3.1
       indent-string: 5.0.0
@@ -13089,8 +13081,8 @@ snapshots:
       prompts: 2.4.2
       rechoir: 0.8.0
       safe-regex: 2.1.1
-      semver: 7.6.0
-      semver-try-require: 6.2.3
+      semver: 7.6.2
+      semver-try-require: 7.0.0
       teamcity-service-messages: 0.1.14
       tsconfig-paths-webpack-plugin: 4.1.0
       watskeburt: 4.0.2
@@ -13213,6 +13205,11 @@ snapshots:
       once: 1.4.0
 
   enhanced-resolve@5.16.0:
+    dependencies:
+      graceful-fs: 4.2.11
+      tapable: 2.2.1
+
+  enhanced-resolve@5.16.1:
     dependencies:
       graceful-fs: 4.2.11
       tapable: 2.2.1
@@ -13400,10 +13397,6 @@ snapshots:
       source-map: 0.6.1
 
   eslint-config-prettier@9.1.0(eslint@9.2.0):
-    dependencies:
-      eslint: 9.2.0
-
-  eslint-plugin-no-loops@0.3.0(eslint@9.2.0):
     dependencies:
       eslint: 9.2.0
 
@@ -13703,7 +13696,7 @@ snapshots:
       proxy-addr: 2.0.7
       rfdc: 1.3.1
       secure-json-parse: 2.7.0
-      semver: 7.6.0
+      semver: 7.6.2
       toad-cache: 3.7.0
     transitivePeerDependencies:
       - supports-color
@@ -14089,7 +14082,7 @@ snapshots:
 
   globals@14.0.0: {}
 
-  globals@15.1.0: {}
+  globals@15.2.0: {}
 
   globalthis@1.0.4:
     dependencies:
@@ -14308,7 +14301,7 @@ snapshots:
     dependencies:
       '@babel/runtime': 7.24.5
 
-  i18next@23.11.3:
+  i18next@23.11.4:
     dependencies:
       '@babel/runtime': 7.24.5
 
@@ -14686,7 +14679,7 @@ snapshots:
       '@babel/parser': 7.24.5
       '@istanbuljs/schema': 0.1.3
       istanbul-lib-coverage: 3.2.2
-      semver: 7.6.0
+      semver: 7.6.2
     transitivePeerDependencies:
       - supports-color
 
@@ -15013,7 +15006,7 @@ snapshots:
       jest-util: 29.7.0
       natural-compare: 1.4.0
       pretty-format: 29.7.0
-      semver: 7.6.0
+      semver: 7.6.2
     transitivePeerDependencies:
       - supports-color
 
@@ -15407,7 +15400,7 @@ snapshots:
 
   make-dir@4.0.0:
     dependencies:
-      semver: 7.6.0
+      semver: 7.6.2
 
   make-error@1.3.6: {}
 
@@ -15796,7 +15789,7 @@ snapshots:
       nopt: 6.0.0
       npmlog: 6.0.2
       rimraf: 3.0.2
-      semver: 7.6.0
+      semver: 7.6.2
       tar: 6.2.1
       which: 2.0.2
     transitivePeerDependencies:
@@ -15827,14 +15820,14 @@ snapshots:
     dependencies:
       hosted-git-info: 6.1.1
       is-core-module: 2.13.1
-      semver: 7.6.0
+      semver: 7.6.2
       validate-npm-package-license: 3.0.4
 
   normalize-package-data@6.0.0:
     dependencies:
       hosted-git-info: 7.0.1
       is-core-module: 2.13.1
-      semver: 7.6.0
+      semver: 7.6.2
       validate-npm-package-license: 3.0.4
 
   normalize-path@3.0.0: {}
@@ -15888,7 +15881,7 @@ snapshots:
 
   npm-install-checks@6.3.0:
     dependencies:
-      semver: 7.6.0
+      semver: 7.6.2
 
   npm-normalize-package-bin@3.0.1: {}
 
@@ -15896,7 +15889,7 @@ snapshots:
     dependencies:
       hosted-git-info: 6.1.1
       proc-log: 3.0.0
-      semver: 7.6.0
+      semver: 7.6.2
       validate-npm-package-name: 5.0.0
 
   npm-packlist@7.0.4:
@@ -15908,7 +15901,7 @@ snapshots:
       npm-install-checks: 6.3.0
       npm-normalize-package-bin: 3.0.1
       npm-package-arg: 10.1.0
-      semver: 7.6.0
+      semver: 7.6.2
 
   npm-registry-fetch@14.0.5:
     dependencies:
@@ -16123,7 +16116,7 @@ snapshots:
       got: 12.6.1
       registry-auth-token: 5.0.2
       registry-url: 6.0.1
-      semver: 7.6.0
+      semver: 7.6.2
 
   pacote@15.2.0:
     dependencies:
@@ -16515,11 +16508,11 @@ snapshots:
       react-dom: 18.3.1(react@18.3.1)
       react-is: 18.1.0
 
-  react-i18next@14.1.1(i18next@23.11.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  react-i18next@14.1.1(i18next@23.11.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       '@babel/runtime': 7.24.5
       html-parse-stringify: 3.0.1
-      i18next: 23.11.3
+      i18next: 23.11.4
       react: 18.3.1
     optionalDependencies:
       react-dom: 18.3.1(react@18.3.1)
@@ -16950,9 +16943,9 @@ snapshots:
 
   semver-regex@4.0.5: {}
 
-  semver-try-require@6.2.3:
+  semver-try-require@7.0.0:
     dependencies:
-      semver: 7.6.0
+      semver: 7.6.2
 
   semver-utils@1.1.4: {}
 
@@ -16963,6 +16956,8 @@ snapshots:
   semver@7.6.0:
     dependencies:
       lru-cache: 6.0.0
+
+  semver@7.6.2: {}
 
   send@0.18.0:
     dependencies:
@@ -17602,7 +17597,7 @@ snapshots:
   tsconfig-paths-webpack-plugin@4.1.0:
     dependencies:
       chalk: 4.1.2
-      enhanced-resolve: 5.16.0
+      enhanced-resolve: 5.16.1
       tsconfig-paths: 4.2.0
 
   tsconfig-paths@3.15.0:

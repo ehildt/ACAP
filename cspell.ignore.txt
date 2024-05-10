@@ -16,12 +16,14 @@ dccs
 DCCS
 depcruiser
 depcruiserrc
+dotenv
 dotfiles
 dtos
 errorlens
 fastify
 gitconfiglocal
 github
+gitlab
 hangxingliu
 Hildt
 jackspeak
@@ -49,10 +51,12 @@ pkief
 postcss
 redhat
 redis
+releaserc
 reqs
 sonarjs
 spdx
 treeshake
+tseslint
 upserts
 usernamehw
 vite
