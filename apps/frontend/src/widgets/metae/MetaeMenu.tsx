@@ -1,7 +1,8 @@
-import { PageSwitcher, SelectBox } from '@/atomics';
+import { useEffect, useState } from 'react';
 
 import { useACAPApi } from '@/api/acap/acap-api.hook';
-import { useEffect, useState } from 'react';
+import { PageSwitcher, SelectBox } from '@/atomics';
+
 import { Scrollbar } from '../scrollbar/Scrollbar';
 import { MetaeMenuProps } from './Metae.modal';
 import style from './Metae.module.scss';

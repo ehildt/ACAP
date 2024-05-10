@@ -2,10 +2,10 @@ import { Injectable } from '@nestjs/common';
 
 import { challengeContentValue } from '@/helpers/challenge-content-source.helper';
 import { challengeParseContentValue } from '@/helpers/challenge-parse-content-value.helper';
+import { FILTER } from '@/models/filter.model';
 import { RealmRepository } from '@/repositories/realm.repository';
 import { SchemaRepository } from '@/repositories/schema.repository';
 
-import { FILTER } from '@/models/filter.model';
 import { ConfigFactoryService } from './config-factory.service';
 import { CryptoService } from './crypto.service';
 

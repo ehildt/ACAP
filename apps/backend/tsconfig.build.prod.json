@@ -4,13 +4,7 @@
     "declaration": false,
     "incremental": false,
     "sourceMap": false,
-    "removeComments": true,
+    "removeComments": true
   },
-  "exclude": [
-    "test/**/*",
-    "**/*.spec.ts",
-    ".eslintrc.cjs",
-    ".prettierrc.cjs",
-    "jest.config.ts",
-  ]
+  "exclude": ["test/**/*", "**/*.spec.ts", ".eslintrc.cjs", ".prettierrc.cjs", "jest.config.ts"]
 }
