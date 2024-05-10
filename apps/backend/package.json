@@ -16,7 +16,7 @@
     "depcheck": "npx depcheck .",
     "depcruiser": "npx depcruise -c .depcruiser.mjs --ts-config tsconfig.json src",
     "format": "prettier --write .",
-    "lint": "eslint .",
+    "lint": "eslint ./src",
     "lint-staged": "npx lint-staged --allow-empty",
     "ncu:update": "npx npm-check-updates --doctor -u",
     "ncu:validate": "npx npm-check-updates -e 2 --packageFile=./package.json",
@@ -31,7 +31,7 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "dotenv -e ./env/.env.e2e -- jest --detectOpenHandles --config ./test/jest-e2e.json",
     "test:watch": "jest --watch",
-    "ts-unused-exports": "npx ts-unused-exports ./tsconfig.build.json"
+    "ts-unused-exports": "npx ts-unused-exports ./tsconfig.exclude.json --maxIssues=20"
   },
   "dependencies": {
     "@fastify/static": "^7.0.4",

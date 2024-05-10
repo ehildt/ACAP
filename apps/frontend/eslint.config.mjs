@@ -36,6 +36,7 @@ export default [
     },
     ignores: ['dist', '.husky', '.gitlab', '.vscode', 'node_modules', '.json'],
     rules: {
+      'prettier/prettier': ['warn', { usePrettierrc: true }],
       'sort-imports': 'off',
       'import/order': 'off',
       '@typescript-eslint/no-explicit-any': 'off',
