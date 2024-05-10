@@ -32,7 +32,6 @@ export const YmlViewerHighlighted = {
       <YmlViewerMenu />
       <hr />
       <YmlViewer
-        highlight
         data={{
           name: 'eugen',
           isSexy: false,
