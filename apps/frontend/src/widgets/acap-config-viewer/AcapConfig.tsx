@@ -3,6 +3,7 @@ import { SiIobroker, SiMongodb, SiMqtt, SiRedis, SiSecurityscorecard, SiSwagger 
 import useSWR from 'swr';
 
 import { get } from '@/api/fetcher.api';
+
 import style from './AcapConfig.module.scss';
 import { AcapConfigContainer } from './AcapConfigContainer';
 import { AcapConfigItem } from './AcapConfigItem';

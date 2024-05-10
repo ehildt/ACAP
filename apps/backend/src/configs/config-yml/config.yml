@@ -4,14 +4,14 @@ appConfig:
   printEnv: true
   startSwagger: true
   nodeEnv: 'local'
-  crypto: 
+  crypto:
     secret: CryptoShield2024
-  realm: 
+  realm:
     ttl: 300
     resolveEnv: false
     namespacePostfix: ACAP
     gzipThreshold: 20
-  brokers: 
+  brokers:
     useRedisPubSub: false
     useBullMQ: false
     useMQTT: false
@@ -33,7 +33,7 @@ redisConfig:
   password: redis
   username: default
 
-redisPubSubConfig: 
+redisPubSubConfig:
   options:
     port: 6379
     host: redis

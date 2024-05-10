@@ -1,7 +1,11 @@
-const WHITELIST = require('./.depcruiserrc.json');
+const WHITELIST = {
+  noOrphans: [],
+  notToDevDep: ['src/config.yml.loader.ts'],
+  notToUnresolvable: [],
+};
 
 /** @type {import('dependency-cruiser').IConfiguration} */
-module.exports = {
+export default {
   forbidden: [
     /* rules from the 'recommended' preset: */
     {

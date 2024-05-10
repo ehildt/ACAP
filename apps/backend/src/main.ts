@@ -10,7 +10,7 @@ const LOG_LEVEL: Array<LogLevel> =
   process.env.NODE_ENV === 'production' ? ['warn', 'error'] : ['warn', 'error', 'debug', 'log', 'verbose'];
 
 void (async () => {
-  const adapter = new FastifyAdapter({ bodyLimit: 50 * 1024 ** 2 });
+  const adapter = new FastifyAdapter();
   adapter.enableCors({
     origin: '*',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',

@@ -195,7 +195,7 @@ export function OpenApi_GetACAPMeta() {
     ApiOkResponse({ type: OpenApiMetaProperty }),
     ApiOperation({
       description: 'Returns the acap meta data',
-    })
+    }),
   );
 }
 
