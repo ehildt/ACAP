@@ -25,7 +25,7 @@ export default [
         parser: '@typescript-eslint/parser',
       },
     },
-    ignores: ['dist', '.husky', '.gitlab', '.vscode', 'node_modules', '.json', '.depcruiser.mjs'],
+    ignores: ['.husky', '.gitlab', '.vscode', '.json', '.depcruiser.mjs'],
     rules: {
       'no-console': 'warn',
       'prettier/prettier': ['warn', { usePrettierrc: true }],

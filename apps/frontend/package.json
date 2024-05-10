@@ -26,7 +26,7 @@
     "coverage": "vitest run --coverage",
     "depcheck": "npx depcheck .",
     "format": "prettier --write ./src",
-    "lint": "eslint .",
+    "lint": "eslint ./src",
     "lint-staged": "npx lint-staged --allow-empty",
     "ts-unused-exports": "npx ts-unused-exports ./tsconfig.exclude.json --maxIssues=20",
     "depcruiser": "npx depcruise -c .depcruiser.mjs --ts-config tsconfig.json src"

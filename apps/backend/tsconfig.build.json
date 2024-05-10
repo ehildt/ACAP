@@ -6,5 +6,5 @@
     "sourceMap": true,
     "removeComments": false
   },
-  "exclude": ["test/**/*", "**/*.spec.ts", ".eslintrc.cjs", ".prettierrc.cjs", "jest.config.ts"]
+  "exclude": ["test", "dist", "**/*.spec.ts", ".prettierrc.mjs", "jest.config.ts"]
 }
