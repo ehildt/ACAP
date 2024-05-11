@@ -56,13 +56,13 @@ jobs:
       - name: Check Unused Exports
         run: pnpm run -r ts-unused-exports
 
+      - name: Build Check
+        run: pnpm run -r build
+
       - name: Unit & Coverage Tests
         run: |
           pnpm run -r test
           pnpm run -r test:cov
-
-      - name: Build Check
-        run: pnpm run -r build
 
       - name: Upload Coverage Reports To Codecov
         uses: codecov/codecov-action@v4
