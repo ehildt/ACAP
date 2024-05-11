@@ -1,3 +1,4 @@
+import multipart from '@fastify/multipart';
 import { LogLevel } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { FastifyAdapter, NestFastifyApplication } from '@nestjs/platform-fastify';
@@ -9,8 +10,12 @@ import { ConfigFactoryService } from './services/config-factory.service';
 const LOG_LEVEL: Array<LogLevel> =
   process.env.NODE_ENV === 'production' ? ['warn', 'error'] : ['warn', 'error', 'debug', 'log', 'verbose'];
 
+const MB16 = '16777216';
+const BODY_LIMIT = parseInt(process.env.BODY_LIMIT ?? MB16, 10);
+
 void (async () => {
-  const adapter = new FastifyAdapter();
+  // TODO: put bodyLimit in config
+  const adapter = new FastifyAdapter({ bodyLimit: BODY_LIMIT });
   adapter.enableCors({
     origin: '*',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
@@ -22,6 +27,7 @@ void (async () => {
   const appService = app.get(AppService);
   const factory = app.get(ConfigFactoryService);
 
+  await app.register(multipart as any);
   appService.useGlobalPipes(app);
   appService.enableVersioning(app);
   appService.enableOpenApi(app);

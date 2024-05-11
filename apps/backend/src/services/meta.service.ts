@@ -22,7 +22,7 @@ export class MetaService {
 
   async getACAPMeta() {
     return {
-      databases: { redis: 'redis', mongo: 'mongoDB' },
+      databases: { redis: 'redis', mongo: 'mongoDB', minio: 'minio' },
       brokers: {
         mqtt: this.configFactory.app.brokers.useMQTT && 'mqtt',
         bullMQ: this.configFactory.app.brokers.useBullMQ && 'bullMQ',
