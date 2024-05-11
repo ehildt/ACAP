@@ -3,4 +3,11 @@
 "@acap/backend": major
 ---
 
-init changeset
+# Init Changeset
+
+This commit initiates changeset semver and includes the following repositories:
+
+- frontend@v1.0.0
+- backend@v1.0.0
+
+The git tree remains untouched.
