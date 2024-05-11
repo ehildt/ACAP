@@ -7,6 +7,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import RedisStore from 'cache-manager-ioredis';
 
 import { ACAP_BULLMQ_REALM_QUEUE, REDIS_PUBSUB } from '@/constants/app.constants';
+import { ObjectController } from '@/controllers/blob.controller';
 import { JsonSchemaController } from '@/controllers/json-schema.controller';
 import { MetaController } from '@/controllers/meta.controller';
 import { OutbreakController } from '@/controllers/outbreak.controller';
@@ -18,6 +19,7 @@ import { JsonSchema, JsonSchemaDefinition } from '@/schemas/json-schema-definiti
 import { RealmContentsSchema, RealmContentsSchemaDefinition } from '@/schemas/realm-content-definition.schema';
 import { RealmsSchema, RealmsSchemaDefinition } from '@/schemas/realms-schema-definition.schema';
 import { AppService } from '@/services/app.service';
+import { BlobService } from '@/services/blob.service';
 import { ConfigFactoryService } from '@/services/config-factory.service';
 import { CryptoService } from '@/services/crypto.service';
 import { MetaService } from '@/services/meta.service';
@@ -27,6 +29,7 @@ import { SchemaService } from '@/services/schema.service';
 
 import { GlobalAvJModule } from './global-ajv.module';
 import { GlobalConfigFactoryModule } from './global-config-factory.module';
+import { MinioClientModule } from './minio-client.module';
 import { MqttClientModule } from './mqtt-client.module';
 
 const useRedisPubSub = process.env.USE_REDIS_PUBSUB === 'true';
@@ -84,7 +87,7 @@ const useMQTTClient = process.env.USE_MQTT === 'true';
         imports: [ConfigModule],
         inject: [ConfigFactoryService],
         isGlobal: true,
-        useFactory: ({ mqtt }: ConfigFactoryService) => ({ ...mqtt }),
+        useFactory: ({ mqtt }: ConfigFactoryService) => mqtt,
       }),
     CacheModule.registerAsync({
       isGlobal: true,
@@ -92,6 +95,12 @@ const useMQTTClient = process.env.USE_MQTT === 'true';
       inject: [ConfigFactoryService],
       extraProviders: [ConfigFactoryService],
       useFactory: ({ redis }: ConfigFactoryService) => ({ ...redis, store: RedisStore }),
+    }),
+    MinioClientModule.registerAsync({
+      imports: [ConfigModule],
+      inject: [ConfigFactoryService],
+      isGlobal: true,
+      useFactory: ({ minio }: ConfigFactoryService) => minio,
     }),
   ].filter((exists) => exists),
   providers: [
@@ -103,8 +112,9 @@ const useMQTTClient = process.env.USE_MQTT === 'true';
     SchemaRepository,
     MetaService,
     OutbreakService,
+    BlobService,
     CryptoService,
   ],
-  controllers: [RealmController, JsonSchemaController, MetaController, OutbreakController],
+  controllers: [RealmController, JsonSchemaController, MetaController, OutbreakController, ObjectController],
 })
 export class AppModule {}

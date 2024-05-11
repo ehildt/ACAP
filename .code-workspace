@@ -14,11 +14,11 @@
     },
   ],
   "settings": {
+    "eslint.format.enable": true,
     "files.exclude": {
       "**/node_modules": true,
       "**/dist": true,
       "**/.vscode": true,
-      ".nx": true,
     },
     "markdownlint.config": {
       "MD033": false,

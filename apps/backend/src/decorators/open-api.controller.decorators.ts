@@ -1,10 +1,13 @@
 import { applyDecorators } from '@nestjs/common';
 import {
+  ApiBody,
+  ApiConsumes,
   ApiCreatedResponse,
   ApiInternalServerErrorResponse,
   ApiNotFoundResponse,
   ApiOkResponse,
   ApiOperation,
+  ApiResponse,
   ApiUnprocessableEntityResponse,
 } from '@nestjs/swagger';
 
@@ -214,5 +217,42 @@ export function OpenApi_DeleteRealm() {
     ApiQueryConfigIds(),
     ApiParamRealm(),
     ApiOkResponse({ description: REQUEST_SUCCESSFUL }),
+  );
+}
+
+export function OpenApi_PutObjects() {
+  return applyDecorators(
+    ApiCreatedResponse({ description: 'Request successful' }),
+    ApiConsumes('multipart/form-data'),
+    ApiBody({
+      schema: {
+        type: 'object',
+        properties: {
+          files: {
+            type: 'array',
+            items: {
+              type: 'string',
+              format: 'binary',
+            },
+          },
+        },
+      },
+    }),
+  );
+}
+
+export function OpenApi_GetObject() {
+  return applyDecorators(
+    ApiResponse({
+      status: 200,
+      content: {
+        'application/octet-stream': {
+          schema: {
+            type: 'string',
+            format: 'binary',
+          },
+        },
+      },
+    }),
   );
 }

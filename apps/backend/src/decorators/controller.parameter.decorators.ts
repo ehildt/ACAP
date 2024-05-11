@@ -17,6 +17,7 @@ export const QueryTake = () => Query('take', ParseIntPipe);
 export const QuerySkip = () => Query('skip', ParseIntPipe);
 export const QuerySearch = () => Query('search');
 export const QueryIds = () => Query('ids', ParseQueryStrings);
+export const ParamUUID = () => Param('uuid');
 export const ParamId = () => Param('id');
 export const RealmUpsertBody = () => Body(ParseRealmPipe);
 export const RealmUpsertRealmBody = () => Body(ParseRealmUpsertByRealmPipe);
