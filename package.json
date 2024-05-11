@@ -5,23 +5,15 @@
   "private": true,
   "engines": {
     "node": ">=20",
-    "pnpm": ">=8"
+    "pnpm": ">=9"
   },
   "scripts": {
     "prepare": "husky install",
-    "semantic-release": "npx semantic-release",
     "ncu:update": "npx npm-check-updates --doctor -u"
   },
   "devDependencies": {
-    "@semantic-release/changelog": "^6.0.3",
-    "@semantic-release/commit-analyzer": "^12.0.0",
-    "@semantic-release/git": "^10.0.1",
-    "@semantic-release/github": "^10.0.3",
-    "@semantic-release/npm": "^12.0.0",
-    "@semantic-release/release-notes-generator": "^13.0.0",
-    "conventional-changelog-conventionalcommits": "^8.0.0",
+    "@changesets/cli": "^2.27.1",
     "husky": "^9.0.11",
-    "npm-check-updates": "^16.14.20",
-    "semantic-release": "^23.0.8"
+    "npm-check-updates": "^16.14.20"
   }
 }
