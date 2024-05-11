@@ -47,11 +47,6 @@ jobs:
       - name: Install Dependencies
         run: pnpm install --ignore-scripts
 
-      - name: Unit & Coverage Tests
-        run: |
-          prpm run -r test
-          prpm run -r test:cov
-
       - name: Lint Code
         run: prpm run -r lint
 
@@ -63,6 +58,11 @@ jobs:
 
       - name: Build Check
         run: prpm run -r build:prod
+
+      - name: Unit & Coverage Tests
+        run: |
+          prpm run -r test
+          prpm run -r test:cov
 
       - name: Upload Coverage Reports To Codecov
         uses: codecov/codecov-action@v4
