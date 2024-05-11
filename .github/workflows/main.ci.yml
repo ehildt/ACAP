@@ -64,6 +64,11 @@ jobs:
           pnpm run -r test
           pnpm run -r test:cov
 
+      - name: Unit & Coverage Tests
+        run: |
+          prpm run -r test
+          prpm run -r test:cov
+
       - name: Upload Coverage Reports To Codecov
         uses: codecov/codecov-action@v4
         env:
