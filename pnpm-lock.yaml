@@ -328,6 +328,9 @@ importers:
       '@testing-library/user-event':
         specifier: ^14.5.2
         version: 14.5.2(@testing-library/dom@9.3.4)
+      '@types/bytes':
+        specifier: ^3.1.4
+        version: 3.1.4
       '@types/react':
         specifier: ^18.3.2
         version: 18.3.2
@@ -2321,6 +2324,9 @@ packages:
 
   '@types/body-parser@1.19.5':
     resolution: {integrity: sha512-fB3Zu92ucau0iQ0JMCFQE7b/dv8Ot07NI3KaZIkIUNXq82k4eBAqUaneXfleGY9JWskeS9y+u0nXMyspcuQrCg==}
+
+  '@types/bytes@3.1.4':
+    resolution: {integrity: sha512-A0uYgOj3zNc4hNjHc5lYUfJQ/HVyBXiUMKdXd7ysclaE6k9oJdavQzODHuwjpUu2/boCP8afjQYi8z/GtvNCWA==}
 
   '@types/cache-manager-ioredis@2.0.6':
     resolution: {integrity: sha512-MNJLj/I8hqXQEv+erzrJE2vnZIMbkgbZspaJDwWKk8b4smFkxSLnvienBrILxw7O/xZKtPcIW0Ml7RBXTseJGQ==}
@@ -10861,6 +10867,8 @@ snapshots:
     dependencies:
       '@types/connect': 3.4.38
       '@types/node': 20.12.11
+
+  '@types/bytes@3.1.4': {}
 
   '@types/cache-manager-ioredis@2.0.6':
     dependencies:
