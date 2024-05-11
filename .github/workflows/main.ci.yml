@@ -48,21 +48,21 @@ jobs:
         run: pnpm install --ignore-scripts
 
       - name: Lint Code
-        run: prpm run -r lint
+        run: pnpm run -r lint
 
       - name: Check Unused Dependencies
-        run: prpm run -r depcruiser
+        run: pnpm run -r depcruiser
 
       - name: Check Unused Exports
-        run: prpm run -r ts-unused-exports
+        run: pnpm run -r ts-unused-exports
 
       - name: Build Check
-        run: prpm run -r build:prod
+        run: pnpm run -r build:prod
 
       - name: Unit & Coverage Tests
         run: |
-          prpm run -r test
-          prpm run -r test:cov
+          pnpm run -r test
+          pnpm run -r test:cov
 
       - name: Upload Coverage Reports To Codecov
         uses: codecov/codecov-action@v4
