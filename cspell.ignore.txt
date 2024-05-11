@@ -8,6 +8,7 @@ bullmq
 BULLMQ
 cacheable
 callsite
+codecov
 codesnap
 conventionalcommits
 datetime

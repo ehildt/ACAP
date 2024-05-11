@@ -48,21 +48,21 @@ jobs:
         run: pnpm install --ignore-scripts
 
       - name: Lint Code
-        run: lerna run lint
+        run: pnpm run -r lint
 
       - name: Check Unused Dependencies
-        run: lerna run depcruiser
+        run: pnpm run -r depcruiser
 
       - name: Check Unused Exports
-        run: lerna run ts-unused-exports
+        run: pnpm run -r ts-unused-exports
 
       - name: Build Check
-        run: lerna run build
+        run: pnpm run -r build
 
       - name: Unit & Coverage Tests
         run: |
-          lerna run test
-          lerna run test:cov
+          pnpm run -r test
+          pnpm run -r test:cov
 
       - name: Upload Coverage Reports To Codecov
         uses: codecov/codecov-action@v3
