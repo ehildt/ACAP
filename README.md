@@ -65,8 +65,6 @@ powered by
 ![Prettier](https://img.shields.io/badge/Prettier-F7B93E?style=for-the-badge&logo=prettier&logoColor=white)
 ![Jest](https://img.shields.io/badge/Jest-C21325?style=for-the-badge&logo=jest&logoColor=white)
 ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
-![Lerna Version](https://img.shields.io/badge/Lerna-9333EA.svg?style=for-the-badge&logo=Lerna&logoColor=white)
-![Nx Version](https://img.shields.io/badge/Nx-143055.svg?style=for-the-badge&logo=Nx&logoColor=white)
 
   </div>
 </div>
@@ -104,24 +102,25 @@ Getting ACAP up and running is pretty straight forward.
 <h2>Docker</h2>
 
 1. Install pnpm `npm i -g pnpm`.
-2. Run Docker `docker compose up`.
+2. Install the dependencies `pnpm install`.
+3. Run Docker `docker compose up`.
 
 <h2>CLI</h2>
 
-We recommend utilizing [lerna](https://lerna.js.org/), as it streamlines the execution of tests, linting processes, and script initialization, resulting in improved efficiency and ease of use.
+We recommend utilizing [pnpm](https://pnpm.io/), as it streamlines the execution of tests, linting processes, and script initialization, resulting in improved efficiency and ease of use.
 
-- Install lerna `npm i -g lerna`.
-- Run commands from the project root:
-  - Install pnpm `npm i -g pnpm`.
-  - Install the dependencies from the root directory `pnpm install`.
-  - Run `lerna run start:dev` (make sure all the required services are up).
+- Install pnpm `npm i -g pnpm`.
+- Install the dependencies `pnpm install`.
+- Run `pnpm run -r start:dev`
 
-> If you ran docker previously, then you most likely will get an error compiling the dist folders. To remedy this error simply remove those folders in every workspace.
+> Make sure all the required services aka databases etc are up and running.  
+> If you ran docker previously, then you most likely will get an error compiling the dist folders.
+> Simply `sudo rm -rf` those folders in every workspace.
 
 You can run storybook explicitly or execute tests in parallel:
 
-- Storybook `lerna run storybook --scope frontend`
-- Run tests parallel in all workspaces `lerna run test`.
+- Storybook `pnpm run --filter frontend storybook`
+- Run tests parallel in all workspaces `pnpm run -r test`.
 
 <h2>Config</h2>
 
