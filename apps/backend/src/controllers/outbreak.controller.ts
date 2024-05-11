@@ -13,7 +13,7 @@ import { BreakoutUpsertReq } from '@/dtos/breakout-upsert.dto.req';
 import { OutbreakService } from '@/services/outbreak.service';
 
 @ApiTags('Outbreaks')
-@Controller('Outbreaks')
+@Controller('outbreaks')
 export class OutbreakController {
   constructor(private readonly outbreakService: OutbreakService) {}
 

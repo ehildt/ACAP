@@ -18,14 +18,16 @@ describe('ConfigFactoryService', () => {
   });
 
   describe('app', () => {
+    const SYMMETRIC_KEY = 'aaaaaaaaaaaabbbbbbbbbbbb';
     it('should return a valid AppConfig object', () => {
       jest.spyOn(configService, 'get').mockImplementation((key) => {
+        if (key === 'AppConfig.BODY_LIMIT') return 1000;
         if (key === 'AppConfig.PORT') return 3000;
         if (key === 'AppConfig.ADDRESS') return 'localhost';
         if (key === 'AppConfig.START_SWAGGER') return true;
         if (key === 'AppConfig.PRINT_ENV') return true;
         if (key === 'AppConfig.NODE_ENV') return 'production';
-        if (key === 'AppConfig.SYMMETRIC_KEY') return 'aaaaaaaaaaaabbbbbbbbbbbb';
+        if (key === 'AppConfig.SYMMETRIC_KEY') return SYMMETRIC_KEY;
         if (key === 'AppConfig.TTL') return 3600;
         if (key === 'AppConfig.NAMESPACE_POSTFIX') return 'prod';
         if (key === 'AppConfig.RESOLVE_ENV') return true;
@@ -38,12 +40,13 @@ describe('ConfigFactoryService', () => {
 
       expect(service.app).toEqual({
         port: 3000,
+        bodyLimit: 1000,
         address: 'localhost',
         startSwagger: true,
         printEnv: true,
         nodeEnv: 'production',
         crypto: {
-          secret: 'aaaaaaaaaaaabbbbbbbbbbbb',
+          secret: SYMMETRIC_KEY,
           algorithm: 'aes-192-cbc',
         },
         realm: {

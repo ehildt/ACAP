@@ -43,6 +43,10 @@ export class AppConfigAdapter {
     return parseInt(process.env.REALM_TTL ?? '360', 10);
   }
 
+  get BODY_LIMIT(): number {
+    return parseInt(process.env.BODY_LIMIT ?? '16777216', 10);
+  }
+
   get RESOLVE_ENV(): boolean {
     return process.env.REALM_RESOLVE_ENV === 'true';
   }

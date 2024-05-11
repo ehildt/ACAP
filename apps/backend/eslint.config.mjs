@@ -29,8 +29,10 @@ export default [
     rules: {
       'no-console': 'warn',
       'prettier/prettier': ['warn', { usePrettierrc: true }],
-      'simple-import-sort/imports': 'warn',
-      'simple-import-sort/exports': 'warn',
+      'sort-imports': 'off',
+      'import/order': 'off',
+      'simple-import-sort/imports': 'error',
+      'simple-import-sort/exports': 'error',
       '@typescript-eslint/no-floating-promises': 'warn',
       '@typescript-eslint/interface-name-prefix': 'off',
       '@typescript-eslint/explicit-function-return-type': 'off',

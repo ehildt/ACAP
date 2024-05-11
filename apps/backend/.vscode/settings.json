@@ -39,7 +39,7 @@
     "editor.defaultFormatter": "ms-azuretools.vscode-docker"
   },
   "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
   },
   "[ignore]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"

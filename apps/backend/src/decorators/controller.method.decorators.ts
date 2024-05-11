@@ -11,3 +11,4 @@ export const PostRealm = () => Post(realm);
 export const GetRealm = () => Get(realm);
 export const GetRealmContent = () => Get(realm_id);
 export const DeleteRealm = () => Delete(realm);
+export const GetObject = () => Get(':uuid');
