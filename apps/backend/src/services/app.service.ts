@@ -69,6 +69,7 @@ export class AppService {
           databases: {
             mongo: this.configFactory.mongo,
             redis: this.configFactory.redis,
+            minio: this.configFactory.minio,
           },
         },
         'ACAP_CONFIGURATION',

@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 
 import { AppConfigRegistry } from '@/configs/app/registry';
 import { BullMQRegistry } from '@/configs/bullmq/registry';
+import { MinioConfigRegistry } from '@/configs/minio/registry';
 import { MongoConfigRegistry } from '@/configs/mongo/registry';
 import { MQTTClientRegistry } from '@/configs/mqtt/registry';
 import { RedisConfigRegistry } from '@/configs/redis/registry';
@@ -21,6 +22,7 @@ import { validationSchema } from '@/validations/validation.schema';
       load: [
         AppConfigRegistry,
         MongoConfigRegistry,
+        MinioConfigRegistry,
         RedisConfigRegistry,
         RedisPubSubRegistry,
         BullMQRegistry,

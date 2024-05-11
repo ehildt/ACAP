@@ -51,6 +51,10 @@ export const APP_SCHEMA = {
     ? Joi.number().default(CONFIG_YML.appConfig.realm.gzipThreshold)
     : Joi.number().required(),
 
+  BODY_LIMIT: CONFIG_YML?.appConfig.bodyLimit
+    ? Joi.number().default(CONFIG_YML.appConfig.bodyLimit)
+    : Joi.number().required(),
+
   SYMMETRIC_KEY: CONFIG_YML?.appConfig.crypto?.secret
     ? Joi.string()
         .length(32)

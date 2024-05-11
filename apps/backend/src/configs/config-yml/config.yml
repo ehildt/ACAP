@@ -4,17 +4,18 @@ appConfig:
   printEnv: true
   startSwagger: true
   nodeEnv: 'local'
+  bodyLimit: '104857600'
   crypto:
     secret: CryptoShield2024
   realm:
     ttl: 300
-    resolveEnv: false
+    resolveEnv: true
     namespacePostfix: ACAP
     gzipThreshold: 20
   brokers:
-    useRedisPubSub: false
-    useBullMQ: false
-    useMQTT: false
+    useRedisPubSub: true
+    useBullMQ: true
+    useMQTT: true
 
 mongoConfig:
   uri: mongodb://mongo:27017
@@ -23,6 +24,14 @@ mongoConfig:
   dbName: ACAP
   user: mongo
   pass: mongo
+
+minioConfig:
+  endPoint: 'minio'
+  port: 9000
+  useSSL: false
+  accessKey: 'minio'
+  secretKey: 'minio2024'
+  bucket: 'acap'
 
 redisConfig:
   host: redis

@@ -1,6 +1,27 @@
 import { ConsoleLogger, DynamicModule, Inject, Injectable, Module } from '@nestjs/common';
 import mqtt, { connect, IClientSubscribeOptions } from 'mqtt';
 
+export const MQTT_CLIENT = 'MQTT_CLIENT';
+export type { MqttClient };
+
+const MQTT_CLIENT_OPTIONS = 'MQTT_CLIENT_OPTIONS';
+const ANONYMOUS_HANDLER = 'ANONYMOUS_HANDLER';
+
+type Handler = (payload: string, topic?: string) => void;
+
+type MqttClientModuleProps = {
+  imports?: Array<any>;
+  inject?: Array<any>;
+  providers?: Array<any>;
+  isGlobal?: boolean;
+  useFactory: (...deps: any) => MqttClientOptions;
+};
+
+export type MqttClientOptions = {
+  brokerUrl?: string;
+  options?: mqtt.IClientOptions;
+};
+
 @Module({})
 export class MqttClientModule {
   static registerAsync(options: MqttClientModuleProps): DynamicModule {
@@ -26,27 +47,6 @@ export class MqttClientModule {
     };
   }
 }
-
-export const MQTT_CLIENT = 'MQTT_CLIENT';
-export type { MqttClient };
-
-const MQTT_CLIENT_OPTIONS = 'MQTT_CLIENT_OPTIONS';
-const ANONYMOUS_HANDLER = 'ANONYMOUS_HANDLER';
-
-type Handler = (payload: string, topic?: string) => void;
-
-type MqttClientModuleProps = {
-  imports?: Array<any>;
-  inject?: Array<any>;
-  providers?: Array<any>;
-  isGlobal?: boolean;
-  useFactory: (...deps: any) => MqttClientOptions;
-};
-
-export type MqttClientOptions = {
-  brokerUrl?: string;
-  options?: mqtt.IClientOptions;
-};
 
 @Injectable()
 class MqttClient {

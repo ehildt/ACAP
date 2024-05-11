@@ -15,5 +15,9 @@
     }
   },
   "files": ["shims.d.ts"],
-  "include": ["src/"]
+  "include": [
+    "src/",
+    "eslint.config.mjs",
+    ".prettierrc.mjs"
+  ]
 }

@@ -5,6 +5,7 @@ import { Transport } from '@nestjs/microservices';
 import {
   AppConfig,
   BullMQConfig,
+  MinioConfig,
   MongoConfig,
   RedisConfig,
   RedisPubSubConfig,
@@ -25,6 +26,7 @@ export class ConfigFactoryService {
       startSwagger: this.configService.get<boolean>('AppConfig.START_SWAGGER'),
       printEnv: this.configService.get<boolean>('AppConfig.PRINT_ENV'),
       nodeEnv: this.configService.get<string>('AppConfig.NODE_ENV'),
+      bodyLimit: this.configService.get<number>('AppConfig.BODY_LIMIT'),
       crypto: {
         secret,
         algorithm,
@@ -51,6 +53,17 @@ export class ConfigFactoryService {
       dbName: this.configService.get<string>('MongoConfig.DB_NAME'),
       user: this.configService.get<string>('MongoConfig.USER'),
       pass: this.configService.get<string>('MongoConfig.PASS'),
+    });
+  }
+
+  get minio() {
+    return Object.freeze<MinioConfig>({
+      endPoint: this.configService.get<string>('MinioConfig.ENDPOINT'),
+      useSSL: this.configService.get<boolean>('MinioConfig.USE_SSL'),
+      port: this.configService.get<number>('MinioConfig.PORT'),
+      accessKey: this.configService.get<string>('MinioConfig.ACCESS_KEY'),
+      secretKey: this.configService.get<string>('MinioConfig.SECRET_KEY'),
+      bucket: this.configService.get<string>('MinioConfig.BUCKET'),
     });
   }
 

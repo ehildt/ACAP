@@ -13,6 +13,7 @@ export type AppConfig = {
   nodeEnv: string;
   address: string;
   printEnv: boolean;
+  bodyLimit: number;
   startSwagger: boolean;
   crypto: {
     secret: string;
@@ -65,9 +66,19 @@ export type RedisConfig = {
   max: number;
 };
 
+export type MinioConfig = {
+  endPoint: string;
+  port: number;
+  useSSL: boolean;
+  accessKey: string;
+  secretKey: string;
+  bucket: string;
+};
+
 export type Config = {
   appConfig: AppConfig;
   mongoConfig: MongoConfig;
+  minioConfig: MinioConfig;
   redisConfig: RedisConfig;
   redisPubSubConfig: RedisPubSubConfig;
   bullMQConfig: BullMQConfig;
