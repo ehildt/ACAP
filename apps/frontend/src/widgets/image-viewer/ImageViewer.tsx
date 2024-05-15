@@ -5,8 +5,8 @@ import { Container } from '@/layouts/container/Container';
 import style from './ImageViewer.module.scss';
 
 type ImageViewerProps = {
-  base64: string;
-  mimeType?: string;
+  buffer: Buffer;
+  mimetype?: string;
 };
 
 export function ImageViewer(props: ImageViewerProps) {
@@ -18,13 +18,13 @@ export function ImageViewer(props: ImageViewerProps) {
   // TODO also apply to all the viewers which use base64
   useEffect(() => {
     setKey((val) => val + 1);
-  }, [props.base64]);
+  }, [props.buffer]);
 
   useEffect(() => {
     if (ref.current) {
       const target = ref.current;
       const img = new Image();
-      img.src = `data:${props.mimeType};base64,${props.base64}`;
+      img.src = `data:${props.mimetype};base64,${props.buffer.toString('base64')}`;
       img.onload = () => {
         const ctx = target?.getContext('2d', { willReadFrequently: true });
         target.width = img.naturalWidth;

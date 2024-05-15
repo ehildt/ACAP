@@ -1,5 +1,5 @@
 import { FaCompress, FaDatabase, FaResolving, FaServicestack } from 'react-icons/fa6';
-import { SiIobroker, SiMongodb, SiMqtt, SiRedis, SiSecurityscorecard, SiSwagger } from 'react-icons/si';
+import { SiIobroker, SiMinio, SiMongodb, SiMqtt, SiRedis, SiSecurityscorecard, SiSwagger } from 'react-icons/si';
 import useSWR from 'swr';
 
 import { get } from '@/api/fetcher.api';
@@ -26,10 +26,13 @@ export function AcapConfigViewer() {
           icon={<FaDatabase size={'1.5rem'} color="orchid" />}
         >
           <AcapConfigItem label="Redis">
-            <SiRedis size={'1.2rem'} color={getColor(data?.databases.redis, 'gold', 'crimson')} />
+            <SiRedis size={'1.2rem'} color={getColor(data?.databases.redis, 'yellowgreen', 'crimson')} />
           </AcapConfigItem>
           <AcapConfigItem label="MongoDB">
-            <SiMongodb size={'1.2rem'} color={getColor(data?.databases.mongoDB, 'yellowgreen', 'crimson')} />
+            <SiMongodb size={'1.2rem'} color={getColor(data?.databases.mongo, 'yellowgreen', 'crimson')} />
+          </AcapConfigItem>
+          <AcapConfigItem label="Minio">
+            <SiMinio size={'1.2rem'} color={getColor(data?.databases.minio, 'yellowgreen', 'crimson')} />
           </AcapConfigItem>
         </AcapConfigContainer>
 
