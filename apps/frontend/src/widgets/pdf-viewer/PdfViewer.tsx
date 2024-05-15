@@ -10,7 +10,7 @@ import { usePdfViewImmerStore } from './PdfViewer.store';
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
 
 type PdfViewerProps = {
-  base64: string;
+  buffer: Buffer;
   scale?: number;
   formatter?: (currentPage: number, totalPages: number) => string;
 };
@@ -22,7 +22,7 @@ export function PdfViewer(props: PdfViewerProps) {
     <div className={style.pdfViewer}>
       <div className={style.pdfViewerContainer}>
         <Document
-          file={`data:application/pdf;base64,${props.base64}`}
+          file={`data:application/pdf;base64,${props.buffer.toString('base64')}`}
           onLoadSuccess={({ numPages }) => {
             setCurrentPage(1);
             setPages(numPages);

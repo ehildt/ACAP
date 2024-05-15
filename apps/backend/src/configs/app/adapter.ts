@@ -1,6 +1,4 @@
-import ShortUniqueId from 'short-unique-id';
-
-const uuid = new ShortUniqueId();
+import { createId } from '@paralleldrive/cuid2';
 
 export class AppConfigAdapter {
   get PORT(): number {
@@ -36,7 +34,7 @@ export class AppConfigAdapter {
   }
 
   get NAMESPACE_POSTFIX(): string {
-    return process.env.REALM_NAMESPACE_POSTFIX ?? uuid.randomUUID(32);
+    return process.env.REALM_NAMESPACE_POSTFIX ?? createId();
   }
 
   get TTL(): number {

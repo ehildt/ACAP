@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { Container } from '@/layouts/container/Container';
 
-import { base64, mimeType } from './base64.jpg';
+import { base64, mimetype } from './base64.jpg';
 import { ImageViewer } from './ImageViewer';
 
 export default {
@@ -13,7 +13,7 @@ export default {
 export const Default = {
   render: () => (
     <Container outerStyle={{ width: '40dvh' }}>
-      <ImageViewer mimeType={mimeType} base64={base64} />
+      <ImageViewer mimetype={mimetype} base64={base64} />
     </Container>
   ),
 } satisfies StoryObj<typeof ImageViewer>;

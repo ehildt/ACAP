@@ -21,3 +21,11 @@ export const post = async ([url, init]: FetchParams) =>
       ...init,
     })
   )?.json();
+
+export const uPost = async ([url, init]: FetchParams) =>
+  (
+    await fetch(url, {
+      method: 'POST',
+      ...init,
+    })
+  )?.json();

@@ -1,29 +1,20 @@
-import {
-  BsFile,
-  BsFiletypeCsv,
-  BsFiletypeDoc,
-  BsFiletypeDocx,
-  BsFiletypeJpg,
-  BsFiletypeJson,
-  BsFiletypePdf,
-  BsFiletypePng,
-  BsFiletypeXlsx,
-  BsFiletypeYml,
-} from 'react-icons/bs';
+import { ImageViewer } from '../image-viewer/ImageViewer';
+import { MediaPlayer } from '../media-player/MediaPlayer';
+import { PdfViewer } from '../pdf-viewer/PdfViewer';
+import { StructuredDataViewer } from '../structured-data-viewer/StructuredDataViewer';
+import { FileImporterRenderer } from './FileImporter.modal';
 
-type SupportedIcons = {
-  [key: string]: (size: string) => JSX.Element;
-};
-
-export const SUPPORTED_ICONS: SupportedIcons = {
-  pdf: (size: string) => <BsFiletypePdf size={size} />,
-  csv: (size: string) => <BsFiletypeCsv size={size} />,
-  xlsx: (size: string) => <BsFiletypeXlsx size={size} />,
-  odt: (size: string) => <BsFiletypeDoc size={size} />,
-  docx: (size: string) => <BsFiletypeDocx size={size} />,
-  jpg: (size: string) => <BsFiletypeJpg size={size} />,
-  png: (size: string) => <BsFiletypePng size={size} />,
-  json: (size: string) => <BsFiletypeJson size={size} />,
-  yml: (size: string) => <BsFiletypeYml size={size} />,
-  default: (size: string) => <BsFile size={size} />,
+export const FILE_RENDERERS: FileImporterRenderer = {
+  pdf: (buffer) => <PdfViewer buffer={buffer} />,
+  mp4: (buffer, mimetype) => <MediaPlayer buffer={buffer} mimetype={mimetype} />,
+  mp3: (buffer, mimetype) => <MediaPlayer buffer={buffer} mimetype={mimetype} />,
+  wav: (buffer, mimetype) => <MediaPlayer buffer={buffer} mimetype={mimetype} />,
+  mov: (buffer, mimetype) => <MediaPlayer buffer={buffer} mimetype={mimetype} />,
+  webm: (buffer, mimetype) => <MediaPlayer buffer={buffer} mimetype={mimetype} />,
+  ogv: (buffer, mimetype) => <MediaPlayer buffer={buffer} mimetype={mimetype} />,
+  jpg: (buffer, mimetype) => <ImageViewer buffer={buffer} mimetype={mimetype} />,
+  png: (buffer, mimetype) => <ImageViewer buffer={buffer} mimetype={mimetype} />,
+  json: (buffer, mimetype) => <StructuredDataViewer buffer={buffer} mimetype={mimetype} />,
+  yml: (buffer, mimetype) => <StructuredDataViewer buffer={buffer} mimetype={mimetype} />,
+  yaml: (buffer, mimetype) => <StructuredDataViewer buffer={buffer} mimetype={mimetype} />,
 };
