@@ -14,7 +14,6 @@ const MB16 = '16777216';
 const BODY_LIMIT = parseInt(process.env.BODY_LIMIT ?? MB16, 10);
 
 void (async () => {
-  // TODO: put bodyLimit in config
   const adapter = new FastifyAdapter({ bodyLimit: BODY_LIMIT });
   adapter.enableCors({
     origin: '*',
@@ -27,7 +26,7 @@ void (async () => {
   const appService = app.get(AppService);
   const factory = app.get(ConfigFactoryService);
 
-  await app.register(multipart as any);
+  await app.register(multipart);
   appService.useGlobalPipes(app);
   appService.enableVersioning(app);
   appService.enableOpenApi(app);

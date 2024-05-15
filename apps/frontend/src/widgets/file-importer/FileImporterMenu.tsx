@@ -1,17 +1,16 @@
-import { Base64 } from 'js-base64';
 import { useState } from 'react';
 import { FaSave } from 'react-icons/fa';
 import { FaFileCirclePlus } from 'react-icons/fa6';
+import { GoFileBinary } from 'react-icons/go';
 import { RiShieldFlashFill } from 'react-icons/ri';
 
-import { post } from '@/api/fetcher.api';
+import { post, uPost } from '@/api/fetcher.api';
 import { FileInput, Tooltip } from '@/atomics';
 import { TextInput } from '@/atomics/input/text-input/TextInput';
 import { FlickerContainer, Pulse } from '@/effects';
 import { Line } from '@/layouts';
-import { JsonViewerMenu } from '@/widgets/json-viewer/JsonViewerMenu';
+import { UnstructuredDataViewerMenu } from '@/widgets/json-viewer/JsonViewerMenu';
 import { PdfViewerMenu } from '@/widgets/pdf-viewer/PdfViewerMenu';
-import { YmlViewerMenu } from '@/widgets/yml-viewer/YmlViewerMenu';
 
 import { Popup } from '../popup/Popup';
 import { Scrollbar } from '../scrollbar/Scrollbar';
@@ -22,6 +21,7 @@ import { FileImporterMenuCard } from './FileImporterMenuCard';
 export function FileImporterMenu(props: FileImporterMenuProps) {
   const [realm, setRealm] = useState<string>();
   const [configId, setConfigId] = useState<string>();
+  const [forceBlob, setForceBlob] = useState<boolean>(false);
   const fileSlice = useFileImporterImmerStore();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const selectedFileExtension = fileSlice.selectedFile?.extension;
@@ -30,8 +30,29 @@ export function FileImporterMenu(props: FileImporterMenuProps) {
     <div className="file-importer-menu">
       <div className="file-importer-menu-icons">
         {selectedFileExtension === 'pdf' && <PdfViewerMenu formatter={(p, t) => `${p} / ${t}`} />}
-        {selectedFileExtension === 'json' && <JsonViewerMenu />}
-        {selectedFileExtension === 'yml' && <YmlViewerMenu />}
+        {(selectedFileExtension === 'json' || selectedFileExtension === 'yml' || selectedFileExtension === 'yaml') && (
+          <UnstructuredDataViewerMenu />
+        )}
+        {(fileSlice.selectedFile?.extension === 'json' ||
+          fileSlice.selectedFile?.extension === 'yml' ||
+          fileSlice.selectedFile?.extension === 'yaml') && (
+            <FlickerContainer color="transparent" repeatFlickerBorder="1">
+              <GoFileBinary
+                size={'2rem'}
+                color={!forceBlob ? 'gray' : 'crimson'}
+                onClick={() => setForceBlob((toggle) => !toggle && Boolean(fileSlice.selectedFile))}
+                style={{ cursor: 'pointer' }}
+              />
+            </FlickerContainer>
+          )}
+        <FlickerContainer color="transparent" repeatFlickerBorder="1">
+          <FaSave
+            size={'2rem'}
+            color={!fileSlice.selectedFile ? 'gray' : 'orange'}
+            onClick={() => setIsModalOpen(Boolean(fileSlice.selectedFile))}
+            style={{ cursor: 'pointer' }}
+          />
+        </FlickerContainer>
         <FlickerContainer color="transparent" repeatFlickerBorder="1">
           <FileInput
             multiple
@@ -43,14 +64,6 @@ export function FileImporterMenu(props: FileImporterMenuProps) {
           >
             <FaFileCirclePlus size={'2rem'} color="skyblue" />
           </FileInput>
-        </FlickerContainer>
-        <FlickerContainer color="transparent" repeatFlickerBorder="1">
-          <FaSave
-            size={'2rem'}
-            color={!fileSlice.selectedFile ? 'gray' : 'orange'}
-            onClick={() => setIsModalOpen(Boolean(fileSlice.selectedFile))}
-            style={{ cursor: 'pointer' }}
-          />
         </FlickerContainer>
       </div>
       <div className="file-importer-menu-list">
@@ -77,36 +90,56 @@ export function FileImporterMenu(props: FileImporterMenuProps) {
           onCancel={() => setIsModalOpen(false)}
           onClick={() => {
             if (!(realm && configId)) return;
-
-            const body = JSON.stringify([
-              {
-                id: configId,
-                value: {
-                  data: fileSlice.selectedFile?.buffer && Base64.fromUint8Array(fileSlice.selectedFile?.buffer, true),
-                  name: fileSlice.selectedFile?.name,
-                  extension: fileSlice.selectedFile?.extension,
-                  mimeType: fileSlice.selectedFile?.mimeType,
-                  size: fileSlice.selectedFile?.size,
-                },
-              },
-            ]);
-
-            post([`http://localhost:3001/api/v1/contents/${realm}`, { body }])
-              .catch(console.error)
-              .then(() => setIsModalOpen(false));
-            /* const { isLoading, data, error } = useSWR(
-              [
+            const extension = fileSlice.selectedFile?.extension;
+            // TODO: a field if you want to upload these files in minio
+            if (extension === 'json' || extension === 'yml' || (extension === 'yaml' && !forceBlob)) {
+              post([
                 `http://localhost:3001/api/v1/contents/${realm}`,
                 {
-                  method: 'post',
-                  body: JSON.stringify({
-                    id: fileSlice.selectedFile?.name,
-                    value: fileSlice.selectedFile,
-                  }),
-                } as RequestInit,
-              ],
-              ([url, init]) => fetcher([url, init]),
-            ); */
+                  body: JSON.stringify([
+                    {
+                      id: configId,
+                      value: {
+                        data: JSON.parse(fileSlice.selectedFile?.buffer.toString()!),
+                        name: fileSlice.selectedFile?.name,
+                        extension: fileSlice.selectedFile?.extension,
+                        mimetype: fileSlice.selectedFile?.mimetype,
+                        size: fileSlice.selectedFile?.size,
+                      },
+                    },
+                  ]),
+                },
+              ])
+                .catch(console.error)
+                .then(() => setIsModalOpen(false));
+            } else {
+              const form = new FormData();
+              const blob = new Blob([fileSlice.selectedFile?.buffer!], { type: 'application/octet-stream' });
+              form.append('file', blob, `${fileSlice.selectedFile?.name}.${fileSlice.selectedFile?.extension}`);
+              uPost(['http://localhost:3001/api/v1/objects', { body: form }])
+                .catch(console.error)
+                .then((data) => {
+                  post([
+                    `http://localhost:3001/api/v1/contents/${realm}`,
+                    {
+                      body: JSON.stringify([
+                        {
+                          id: configId,
+                          value: {
+                            ref: data.cuid2,
+                            name: fileSlice.selectedFile?.name,
+                            extension: fileSlice.selectedFile?.extension,
+                            mimetype: fileSlice.selectedFile?.mimetype,
+                            size: fileSlice.selectedFile?.size,
+                          },
+                        },
+                      ]),
+                    },
+                  ])
+                    .catch(console.error)
+                    .then(() => setIsModalOpen(false));
+                });
+            }
           }}
           onClose={() => setIsModalOpen(false)}
           contentStyle={{ display: 'flex', alignItems: 'center', padding: '5rem' }}
