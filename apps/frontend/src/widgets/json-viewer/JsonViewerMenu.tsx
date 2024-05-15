@@ -3,7 +3,7 @@ import { GiPlantRoots } from 'react-icons/gi';
 import { FlickerContainer } from '@/effects';
 import { useFileImporterImmerStore } from '@/widgets/file-importer/FileImporter.store';
 
-export function JsonViewerMenu() {
+export function UnstructuredDataViewerMenu() {
   const fileSlice = useFileImporterImmerStore();
 
   return (

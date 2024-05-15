@@ -4,7 +4,7 @@ export type FileMetadata = {
   uploadedOn: Date;
   extension?: string;
   name: string;
-  mimeType: string;
+  mimetype: string;
   lastModified: number;
   buffer: Buffer;
   size: string;
@@ -22,3 +22,5 @@ export type FileImporterMenuProps = {
   children?: ReactNode;
   onChange?: ProxyOnChange;
 };
+
+export type FileImporterRenderer = { [key: string]: (buffer: Buffer, mimetype?: string) => JSX.Element };

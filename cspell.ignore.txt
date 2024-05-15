@@ -49,6 +49,7 @@ nginx
 NKEY
 nrwl
 oderwat
+paralleldrive
 pkief
 postcss
 redhat
@@ -63,6 +64,7 @@ upserts
 usernamehw
 vite
 vitest
+webm
 wireframe
 wireframes
 Xmark

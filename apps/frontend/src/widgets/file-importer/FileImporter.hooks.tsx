@@ -2,7 +2,7 @@ import { Buffer } from 'buffer';
 import bytes from 'bytes';
 import { useEffect, useState } from 'react';
 
-import { SUPPORTED_ICONS } from './FileImporter.constants';
+import { FILE_RENDERERS } from './FileImporter.constants';
 import { FileMetadata } from './FileImporter.modal';
 import { useFileImporterImmerStore } from './FileImporter.store';
 
@@ -25,7 +25,7 @@ export function useLoadFileContents(files: Array<File>) {
           uploadedOn,
           extension,
           name,
-          mimeType: file.type,
+          mimetype: file.type,
           lastModified: file.lastModified,
           buffer: Buffer.from(await file.arrayBuffer()),
           size: bytes.format(file.size),
@@ -38,7 +38,7 @@ export function useLoadFileContents(files: Array<File>) {
   return metadata;
 }
 
-export const useIcon = (fileType?: string, size = '2rem') => {
-  if (!fileType) return SUPPORTED_ICONS.default(size);
-  return SUPPORTED_ICONS[fileType.toLowerCase()]?.(size) ?? SUPPORTED_ICONS.default(size);
-};
+export function useRenderer(file?: FileMetadata) {
+  if (!file?.extension) return;
+  return FILE_RENDERERS[file.extension](file.buffer, file.mimetype);
+}

@@ -1,14 +1,14 @@
 import { Controller, Post, Request } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import ShortUniqueId from 'short-unique-id';
+import { init } from '@paralleldrive/cuid2';
 
 import { GetObject } from '@/decorators/controller.method.decorators';
-import { ParamUUID } from '@/decorators/controller.parameter.decorators';
+import { ParamCUID2 } from '@/decorators/controller.parameter.decorators';
 import { OpenApi_GetObject, OpenApi_PutObjects } from '@/decorators/open-api.controller.decorators';
 import { BlobService } from '@/services/blob.service';
 import { ConfigFactoryService } from '@/services/config-factory.service';
 
-const UUID = new ShortUniqueId({ length: 36 });
+const createId = init({ length: 32, fingerprint: 'acap-cuid2' });
 
 @ApiTags('Objects')
 @Controller('objects')
@@ -20,23 +20,22 @@ export class ObjectController {
 
   @GetObject()
   @OpenApi_GetObject()
-  async getObject(@ParamUUID() uuid: string) {
-    return (await this.blobService.getObject(uuid, this.factory.minio.bucket)).file;
+  async getObject(@ParamCUID2() cuid2: string) {
+    return (await this.blobService.getObject(cuid2, this.factory.minio.bucket)).file;
   }
 
   @Post()
   @OpenApi_PutObjects()
   async putObjects(@Request() request: any) {
     const files: AsyncGenerator<any> = request.files();
-    if (!files) return;
     const uploadedBlobs: Array<Record<string, any>> = [];
     for await (const file of files) {
-      const uuid = UUID.randomUUID();
+      const cuid2 = createId();
       const buffer = await file.toBuffer();
       const filename = file.filename;
       const mimetype = file.mimetype;
-      await this.blobService.putObject(this.factory.minio.bucket, uuid, buffer, buffer.length, { filename, mimetype });
-      uploadedBlobs.push({ filename, mimetype, uuid });
+      await this.blobService.putObject(this.factory.minio.bucket, cuid2, buffer, buffer.length, { filename, mimetype });
+      uploadedBlobs.push({ filename, mimetype, cuid2 });
     }
 
     return uploadedBlobs;
