@@ -36,15 +36,15 @@ export function FileImporterMenu(props: FileImporterMenuProps) {
         {(fileSlice.selectedFile?.extension === 'json' ||
           fileSlice.selectedFile?.extension === 'yml' ||
           fileSlice.selectedFile?.extension === 'yaml') && (
-            <FlickerContainer color="transparent" repeatFlickerBorder="1">
-              <GoFileBinary
-                size={'2rem'}
-                color={!forceBlob ? 'gray' : 'crimson'}
-                onClick={() => setForceBlob((toggle) => !toggle && Boolean(fileSlice.selectedFile))}
-                style={{ cursor: 'pointer' }}
-              />
-            </FlickerContainer>
-          )}
+          <FlickerContainer color="transparent" repeatFlickerBorder="1">
+            <GoFileBinary
+              size={'2rem'}
+              color={!forceBlob ? 'gray' : 'crimson'}
+              onClick={() => setForceBlob((toggle) => !toggle && Boolean(fileSlice.selectedFile))}
+              style={{ cursor: 'pointer' }}
+            />
+          </FlickerContainer>
+        )}
         <FlickerContainer color="transparent" repeatFlickerBorder="1">
           <FaSave
             size={'2rem'}
@@ -100,7 +100,7 @@ export function FileImporterMenu(props: FileImporterMenuProps) {
                     {
                       id: configId,
                       value: {
-                        data: JSON.parse(fileSlice.selectedFile?.buffer.toString()!),
+                        data: fileSlice.selectedFile?.buffer && JSON.parse(fileSlice.selectedFile?.buffer.toString()),
                         name: fileSlice.selectedFile?.name,
                         extension: fileSlice.selectedFile?.extension,
                         mimetype: fileSlice.selectedFile?.mimetype,
@@ -114,8 +114,10 @@ export function FileImporterMenu(props: FileImporterMenuProps) {
                 .then(() => setIsModalOpen(false));
             } else {
               const form = new FormData();
-              const blob = new Blob([fileSlice.selectedFile?.buffer!], { type: 'application/octet-stream' });
-              form.append('file', blob, `${fileSlice.selectedFile?.name}.${fileSlice.selectedFile?.extension}`);
+              const blob =
+                fileSlice.selectedFile?.buffer &&
+                new Blob([fileSlice.selectedFile?.buffer], { type: 'application/octet-stream' });
+              blob && form.append('file', blob, `${fileSlice.selectedFile?.name}.${fileSlice.selectedFile?.extension}`);
               uPost(['http://localhost:3001/api/v1/objects', { body: form }])
                 .catch(console.error)
                 .then((data) => {
