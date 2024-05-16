@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { Buffer } from 'buffer';
 
 import { Container } from '@/layouts/container/Container';
 
-import { Buffer } from 'buffer';
 import { base64, mimetype } from './base64.jpg';
 import { ImageViewer } from './ImageViewer';
 
