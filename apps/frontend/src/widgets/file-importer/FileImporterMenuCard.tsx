@@ -1,17 +1,18 @@
+import bytes from 'bytes';
+
 import { FileCard } from '@/atomics/file-card/FileCard';
 import { Container } from '@/layouts/container/Container';
 
-import { useLoadFileContents } from './FileImporter.hooks';
 import { useFileImporterImmerStore } from './FileImporter.store';
 
 export function FileImporterMenuCard() {
   const fileSlice = useFileImporterImmerStore();
-  const metadata = useLoadFileContents(fileSlice.files)?.map((f, idx) =>
+  const metadata = fileSlice.files?.map((f, idx) => (
     <Container key={idx} fadeInOutMS={100 * idx}>
       <FileCard
         filename={f.name}
-        extension={f.extension!}
-        size={f.size}
+        extension={f.name.split('.').pop()}
+        size={bytes.format(f.size)}
         lastModified={f.lastModified}
         onClick={() => {
           fileSlice.setShowTreeView(false);
@@ -19,8 +20,7 @@ export function FileImporterMenuCard() {
         }}
       />
     </Container>
-  );
-
+  ));
 
   return metadata ? (
     <div style={{ display: 'flex', gap: '0.5rem', flexDirection: 'column' }}>{metadata}</div>

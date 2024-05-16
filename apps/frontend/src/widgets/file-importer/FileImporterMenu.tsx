@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { Buffer } from 'buffer';
+import { useEffect, useState } from 'react';
 import { FaSave } from 'react-icons/fa';
 import { FaFileCirclePlus } from 'react-icons/fa6';
 import { GoFileBinary } from 'react-icons/go';
@@ -24,18 +25,20 @@ export function FileImporterMenu(props: FileImporterMenuProps) {
   const [forceBlob, setForceBlob] = useState<boolean>(false);
   const fileSlice = useFileImporterImmerStore();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const selectedFileExtension = fileSlice.selectedFile?.extension;
+  const [buffer, setBuffer] = useState<Buffer>();
+  const selectedFileExtension = fileSlice.selectedFile?.name.split('.').pop();
+
+  useEffect(() => {
+    if (fileSlice.selectedFile) {
+      fileSlice.selectedFile.arrayBuffer().then((ab) => setBuffer(Buffer.from(ab)));
+    }
+  }, [fileSlice.selectedFile]);
 
   return (
     <div className="file-importer-menu">
       <div className="file-importer-menu-icons">
         {selectedFileExtension === 'pdf' && <PdfViewerMenu formatter={(p, t) => `${p} / ${t}`} />}
         {(selectedFileExtension === 'json' || selectedFileExtension === 'yml' || selectedFileExtension === 'yaml') && (
-          <UnstructuredDataViewerMenu />
-        )}
-        {(fileSlice.selectedFile?.extension === 'json' ||
-          fileSlice.selectedFile?.extension === 'yml' ||
-          fileSlice.selectedFile?.extension === 'yaml') && (
           <FlickerContainer color="transparent" repeatFlickerBorder="1">
             <GoFileBinary
               size={'2rem'}
@@ -44,6 +47,9 @@ export function FileImporterMenu(props: FileImporterMenuProps) {
               style={{ cursor: 'pointer' }}
             />
           </FlickerContainer>
+        )}
+        {(selectedFileExtension === 'json' || selectedFileExtension === 'yml' || selectedFileExtension === 'yaml') && (
+          <UnstructuredDataViewerMenu />
         )}
         <FlickerContainer color="transparent" repeatFlickerBorder="1">
           <FaSave
@@ -86,11 +92,11 @@ export function FileImporterMenu(props: FileImporterMenuProps) {
           closeGlyphColer="crimson"
           closeGlyphSize="1.4rem"
           isOpen={isModalOpen}
-          title={fileSlice.selectedFile?.name && `${fileSlice.selectedFile?.name}.${fileSlice.selectedFile?.extension}`}
+          title={fileSlice.selectedFile?.name}
           onCancel={() => setIsModalOpen(false)}
           onClick={() => {
             if (!(realm && configId)) return;
-            const extension = fileSlice.selectedFile?.extension;
+            const extension = selectedFileExtension;
             // TODO: a field if you want to upload these files in minio
             if (extension === 'json' || extension === 'yml' || (extension === 'yaml' && !forceBlob)) {
               post([
@@ -100,10 +106,10 @@ export function FileImporterMenu(props: FileImporterMenuProps) {
                     {
                       id: configId,
                       value: {
-                        data: fileSlice.selectedFile?.buffer && JSON.parse(fileSlice.selectedFile?.buffer.toString()),
+                        data: buffer && JSON.parse(buffer.toString()),
                         name: fileSlice.selectedFile?.name,
-                        extension: fileSlice.selectedFile?.extension,
-                        mimetype: fileSlice.selectedFile?.mimetype,
+                        extension: selectedFileExtension,
+                        mimetype: fileSlice.selectedFile?.type,
                         size: fileSlice.selectedFile?.size,
                       },
                     },
@@ -114,10 +120,7 @@ export function FileImporterMenu(props: FileImporterMenuProps) {
                 .then(() => setIsModalOpen(false));
             } else {
               const form = new FormData();
-              const blob =
-                fileSlice.selectedFile?.buffer &&
-                new Blob([fileSlice.selectedFile?.buffer], { type: 'application/octet-stream' });
-              blob && form.append('file', blob, `${fileSlice.selectedFile?.name}.${fileSlice.selectedFile?.extension}`);
+              fileSlice.selectedFile && form.append('file', fileSlice.selectedFile);
               uPost(['http://localhost:3001/api/v1/objects', { body: form }])
                 .catch(console.error)
                 .then((data) => {
@@ -130,8 +133,8 @@ export function FileImporterMenu(props: FileImporterMenuProps) {
                           value: {
                             ref: data.cuid2,
                             name: fileSlice.selectedFile?.name,
-                            extension: fileSlice.selectedFile?.extension,
-                            mimetype: fileSlice.selectedFile?.mimetype,
+                            extension: selectedFileExtension,
+                            mimetype: fileSlice.selectedFile?.type,
                             size: fileSlice.selectedFile?.size,
                           },
                         },
