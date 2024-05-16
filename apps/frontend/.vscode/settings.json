@@ -23,8 +23,9 @@
   },
   "editor.bracketPairColorization.enabled": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll": "explicit",
-    "source.fixAll.markdownlint": "explicit"
+    "source.fixAll": "always",
+    "source.sortMembers": "always",
+    "source.fixAll.markdownlint": "always"
   },
   "eslint.enable": true,
   "eslint.execArgv": ["--max_old_space_size=2048"],
@@ -50,5 +51,7 @@
     "./src/**/*.spec.jsx",
     "./src/**/*.spec.ts",
     "./src/**/*.spec.js"
-  ]
+  ],
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint"
 }
