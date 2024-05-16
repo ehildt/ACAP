@@ -8,9 +8,9 @@
   "editor.formatOnSaveMode": "modifications",
   "editor.defaultFormatter": "dbaeumer.vscode-eslint",
   "editor.codeActionsOnSave": {
-    "source.fixAll": "explicit",
-    "source.sortMembers": "explicit",
-    "source.fixAll.markdownlint": "explicit"
+    "source.fixAll": "always",
+    "source.sortMembers": "always",
+    "source.fixAll.markdownlint": "always"
   },
   "eslint.validate": ["javascript", "typescript"],
   "files.exclude": {
@@ -32,14 +32,8 @@
   "[shellscript]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"
   },
-  "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
   "[dockerfile]": {
     "editor.defaultFormatter": "ms-azuretools.vscode-docker"
-  },
-  "[typescript]": {
-    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
   },
   "[ignore]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"
