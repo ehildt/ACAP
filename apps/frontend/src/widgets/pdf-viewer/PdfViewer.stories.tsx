@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-
 import { Buffer } from 'buffer';
+
 import { pdfBase64Example } from './base64.pdf';
 import { PdfViewer } from './PdfViewer';
 

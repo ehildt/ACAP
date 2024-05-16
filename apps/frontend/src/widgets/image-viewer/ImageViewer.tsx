@@ -1,3 +1,4 @@
+import { Buffer } from 'buffer';
 import { useEffect, useRef, useState } from 'react';
 
 import { Container } from '@/layouts/container/Container';
@@ -5,26 +6,26 @@ import { Container } from '@/layouts/container/Container';
 import style from './ImageViewer.module.scss';
 
 type ImageViewerProps = {
-  buffer: Buffer;
-  mimetype?: string;
+  file?: File;
 };
 
-export function ImageViewer(props: ImageViewerProps) {
+export function ImageViewer({ file }: ImageViewerProps) {
   const ref = useRef<HTMLCanvasElement>(null);
   const [key, setKey] = useState(0);
+  const [buffer, setBuffer] = useState<Buffer>();
 
-  // We force re-rendering due to reacts optimization issue
-  // breaking the update whenever props.base64 changes
-  // TODO also apply to all the viewers which use base64
   useEffect(() => {
-    setKey((val) => val + 1);
-  }, [props.buffer]);
+    if (file) {
+      file.arrayBuffer().then((ab) => setBuffer(Buffer.from(ab)));
+      setKey((val) => val + 1);
+    }
+  }, [file]);
 
   useEffect(() => {
     if (ref.current) {
       const target = ref.current;
       const img = new Image();
-      img.src = `data:${props.mimetype};base64,${props.buffer.toString('base64')}`;
+      img.src = `data:${file?.type};base64,${buffer?.toString('base64')}`;
       img.onload = () => {
         const ctx = target?.getContext('2d', { willReadFrequently: true });
         target.width = img.naturalWidth;
@@ -32,7 +33,7 @@ export function ImageViewer(props: ImageViewerProps) {
         ctx?.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, target.width, target.height);
       };
     }
-  }, [key]);
+  }, [key, buffer]);
 
   return (
     <Container key={key}>
