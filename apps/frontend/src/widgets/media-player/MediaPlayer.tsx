@@ -1,6 +1,6 @@
 import cn from 'classnames';
 import { BsPlay } from 'react-icons/bs';
-import ReactPlayer from 'react-player';
+import ReactPlayer from 'react-player/lazy';
 
 import { MediaPlayerProps } from './MediaPlayer.modal';
 import style from './MediaPlayer.module.scss';
