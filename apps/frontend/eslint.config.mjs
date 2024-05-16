@@ -45,6 +45,7 @@ export default [
       'simple-import-sort/exports': 'warn',
       'sonarjs/cognitive-complexity': 'warn',
       'sonarjs/no-identical-expressions': 'warn',
+      'no-console': 'warn'
     },
   },
 ];

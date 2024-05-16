@@ -23,4 +23,4 @@ export type FileImporterMenuProps = {
   onChange?: ProxyOnChange;
 };
 
-export type FileImporterRenderer = { [key: string]: (buffer: Buffer, mimetype?: string) => JSX.Element };
+export type FileImporterRenderer = { [key: string]: (file?: File) => JSX.Element };

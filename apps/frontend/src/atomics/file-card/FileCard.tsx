@@ -6,7 +6,7 @@ import style from './FileCard.module.scss';
 type FileCardProps = {
   onClick?: () => void;
   filename: string;
-  extension: string;
+  extension?: string;
   lastModified: number;
   size: string;
 };
