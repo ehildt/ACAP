@@ -8,7 +8,7 @@
     "pnpm": ">=9"
   },
   "scripts": {
-    "prepare": "husky install",
+    "prepare": "husky",
     "ncu:update": "npx npm-check-updates --doctor -u"
   },
   "devDependencies": {
