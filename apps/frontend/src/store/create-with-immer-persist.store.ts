@@ -1,10 +1,10 @@
-import { create, StateCreator } from 'zustand';
-import { persist, PersistOptions } from 'zustand/middleware';
-import { immer } from 'zustand/middleware/immer';
+import { create, StateCreator } from "zustand";
+import { persist, PersistOptions } from "zustand/middleware";
+import { immer } from "zustand/middleware/immer";
 
 type StoreWithPersistImmerSlice<State> = StateCreator<
   State,
-  [['zustand/immer', never], ['zustand/persist', unknown]],
+  [["zustand/immer", never], ["zustand/persist", unknown]],
   Array<[any, any]>,
   State
 >;

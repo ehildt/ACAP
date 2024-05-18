@@ -1,13 +1,13 @@
 type FetchParams = [string, RequestInit?];
 
 const headers = {
-  'Content-Type': 'application/json',
+  "Content-Type": "application/json",
 };
 
 export const get = async ([url, init]: FetchParams) =>
   (
     await fetch(url, {
-      method: 'GET',
+      method: "GET",
       headers,
       ...init,
     })
@@ -16,7 +16,7 @@ export const get = async ([url, init]: FetchParams) =>
 export const post = async ([url, init]: FetchParams) =>
   (
     await fetch(url, {
-      method: 'POST',
+      method: "POST",
       headers,
       ...init,
     })
@@ -25,7 +25,7 @@ export const post = async ([url, init]: FetchParams) =>
 export const uPost = async ([url, init]: FetchParams) =>
   (
     await fetch(url, {
-      method: 'POST',
+      method: "POST",
       ...init,
     })
   )?.json();

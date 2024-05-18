@@ -3,8 +3,8 @@ appConfig:
   address: 0.0.0.0
   printEnv: true
   startSwagger: true
-  nodeEnv: 'local'
-  bodyLimit: '104857600'
+  nodeEnv: "local"
+  bodyLimit: "104857600"
   crypto:
     secret: CryptoShield2024
   realm:
@@ -26,12 +26,12 @@ mongoConfig:
   pass: mongo
 
 minioConfig:
-  endPoint: 'minio'
+  endPoint: "minio"
   port: 9000
   useSSL: false
-  accessKey: 'minio'
-  secretKey: 'minio2024'
-  bucket: 'acap'
+  accessKey: "minio"
+  secretKey: "minio2024"
+  bucket: "acap"
 
 redisConfig:
   host: redis
@@ -64,7 +64,7 @@ mqttClientConfig:
     connectTimeout: 5000
     reconnectPeriod: 1000
     resubscribe: true
-    protocol: 'mqtt'
+    protocol: "mqtt"
     hostname: mosquitto
     username: null
     password: null

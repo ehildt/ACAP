@@ -16,7 +16,8 @@ $glow-color: crimson;
   letter-spacing: var(--font-flicker-letter-spacing);
   transition: all 250ms ease-in-out;
   animation-fill-mode: forwards;
-  animation: text-flicker var(--ms-flicker-text) var(--ms-flicker-text-delay) linear var(--mode-flicker-text);
+  animation: text-flicker var(--ms-flicker-text) var(--ms-flicker-text-delay)
+    linear var(--mode-flicker-text);
   text-shadow:
     0 0 0.125rem rgba(0, 0, 0, 0.8),
     0 0 0.15rem var(--clr-flicker-glow);
@@ -27,8 +28,8 @@ $glow-color: crimson;
     --mode-flicker-text-faulty: infinite;
     opacity: 0.5;
     animation-fill-mode: forwards;
-    animation: faulty-flicker var(--ms-flicker-text-faulty) var(--ms-flicker-text-faulty-delay) linear
-      var(--mode-flicker-text-faulty);
+    animation: faulty-flicker var(--ms-flicker-text-faulty)
+      var(--ms-flicker-text-faulty-delay) linear var(--mode-flicker-text-faulty);
     transition: all 150ms linear;
   }
 

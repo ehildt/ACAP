@@ -1,9 +1,9 @@
-import { CSSProperties, ReactElement, ReactNode } from 'react';
+import { CSSProperties, ReactElement, ReactNode } from "react";
 
 export type CSSCustomVariables = {
-  '--time-popup--fadeOut'?: string;
-  '--size-popup--width'?: string;
-  '--size-popup--height'?: string;
+  "--time-popup--fadeOut"?: string;
+  "--size-popup--width"?: string;
+  "--size-popup--height"?: string;
 } & CSSProperties;
 
 export type PopupProps = {

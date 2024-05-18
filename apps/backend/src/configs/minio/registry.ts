@@ -1,5 +1,8 @@
-import { registerAs } from '@nestjs/config';
+import { registerAs } from "@nestjs/config";
 
-import { MinioConfigAdapter } from './adapter';
+import { MinioConfigAdapter } from "./adapter";
 
-export const MinioConfigRegistry = registerAs('MinioConfig', () => new MinioConfigAdapter());
+export const MinioConfigRegistry = registerAs(
+  "MinioConfig",
+  () => new MinioConfigAdapter(),
+);

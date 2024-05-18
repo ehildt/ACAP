@@ -1,13 +1,22 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from "@storybook/react";
 
-import { Container } from './Container';
+import { Container } from "./Container";
 
 export default {
-  title: 'layouts/container',
+  title: "layouts/container",
   component: Container,
   decorators: [
     (story) => (
-      <div style={{ display: 'inline-flex', flexDirection: 'column', gap: '0.5rem', width: '25dvw' }}>{story()}</div>
+      <div
+        style={{
+          display: "inline-flex",
+          flexDirection: "column",
+          gap: "0.5rem",
+          width: "25dvw",
+        }}
+      >
+        {story()}
+      </div>
     ),
   ],
 } satisfies Meta<typeof Container>;
@@ -15,7 +24,7 @@ export default {
 export const DefaultContainer = {
   render: () => (
     <Container>
-      <span onClick={() => confirm('clicked')}>some content</span>
+      <span onClick={() => confirm("clicked")}>some content</span>
     </Container>
   ),
 } satisfies StoryObj<typeof Container>;
@@ -23,22 +32,22 @@ export const DefaultContainer = {
 export const ContainersWithStyle = {
   render: () => (
     <>
-      <Container innerStyle={{ backgroundColor: 'grey', color: 'black' }}>
+      <Container innerStyle={{ backgroundColor: "grey", color: "black" }}>
         <span>some content</span>
       </Container>
-      <Container innerStyle={{ backgroundColor: 'lime', color: 'black' }}>
+      <Container innerStyle={{ backgroundColor: "lime", color: "black" }}>
         <span>some content</span>
       </Container>
-      <Container innerStyle={{ backgroundColor: 'skyblue', color: 'black' }}>
+      <Container innerStyle={{ backgroundColor: "skyblue", color: "black" }}>
         <span>some content</span>
       </Container>
-      <Container outerStyle={{ backgroundColor: 'grey' }}>
+      <Container outerStyle={{ backgroundColor: "grey" }}>
         <span>some content</span>
       </Container>
-      <Container outerStyle={{ backgroundColor: 'limegreen' }}>
+      <Container outerStyle={{ backgroundColor: "limegreen" }}>
         <span>some content</span>
       </Container>
-      <Container outerStyle={{ backgroundColor: 'pink' }}>
+      <Container outerStyle={{ backgroundColor: "pink" }}>
         <span>some content</span>
       </Container>
     </>
@@ -48,17 +57,24 @@ export const ContainersWithStyle = {
 export const ContainersWithHighlight = {
   render: () => (
     <>
-      <Container innerStyle={{ backgroundColor: 'skyblue', color: 'black' }} highlightColor="skyblue">
+      <Container
+        innerStyle={{ backgroundColor: "skyblue", color: "black" }}
+        highlightColor="skyblue"
+      >
         <span>some content</span>
       </Container>
       <Container
-        innerStyle={{ backgroundColor: 'coal', color: 'ghostwhite' }}
-        outerStyle={{ backgroundColor: 'yellowgreen' }}
+        innerStyle={{ backgroundColor: "coal", color: "ghostwhite" }}
+        outerStyle={{ backgroundColor: "yellowgreen" }}
         highlightAccentColor="gold"
       >
         <span>some content</span>
       </Container>
-      <Container outerStyle={{ backgroundColor: 'plum' }} highlightAccentColor="gold" highlightColor="orange">
+      <Container
+        outerStyle={{ backgroundColor: "plum" }}
+        highlightAccentColor="gold"
+        highlightColor="orange"
+      >
         <span>some content</span>
       </Container>
     </>
