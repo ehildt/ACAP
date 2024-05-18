@@ -10,6 +10,7 @@ on:
 
 env:
   STORE_PATH:
+  HUSKY: 0
 
 jobs:
   cache-and-install:
