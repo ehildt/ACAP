@@ -8,5 +8,13 @@
   border-radius: 0.3rem;
   border: 0.2rem solid gray;
   padding: 10vh;
-  border-image: linear-gradient(to left top, gray, transparent, transparent, transparent, gray) 1;
+  border-image: linear-gradient(
+      to left top,
+      gray,
+      transparent,
+      transparent,
+      transparent,
+      gray
+    )
+    1;
 }

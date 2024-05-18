@@ -1,14 +1,19 @@
-import { useRef } from 'react';
+import { useRef } from "react";
 
-import { useChangeEventProxy } from './FileInput.hooks';
-import { FileInputProps } from './FileInput.modal';
-import style from './FileInput.module.scss';
+import { useChangeEventProxy } from "./FileInput.hooks";
+import { FileInputProps } from "./FileInput.modal";
+import style from "./FileInput.module.scss";
 
 export function FileInput(props: FileInputProps) {
   const inputRef = useRef<any>(null);
 
   return (
-    <div style={props.style} className={style.fileInput} onClick={() => inputRef.current?.click()} tabIndex={0}>
+    <div
+      style={props.style}
+      className={style.fileInput}
+      onClick={() => inputRef.current?.click()}
+      tabIndex={0}
+    >
       <input
         ref={inputRef}
         type={props.type}

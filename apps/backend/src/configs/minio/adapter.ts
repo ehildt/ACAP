@@ -4,7 +4,7 @@ export class MinioConfigAdapter {
   }
 
   get USE_SSL(): boolean {
-    return process.env.MINIO_USE_SSL == 'true';
+    return process.env.MINIO_USE_SSL == "true";
   }
 
   get PORT(): number {

@@ -1,9 +1,9 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from "@storybook/react";
 
-import { Slider } from './Slider';
+import { Slider } from "./Slider";
 
 export default {
-  title: 'atomics/slider',
+  title: "atomics/slider",
   component: Slider,
 } satisfies Meta<typeof Slider>;
 

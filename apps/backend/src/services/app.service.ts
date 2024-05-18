@@ -1,13 +1,20 @@
-import { ConsoleLogger, Injectable, ValidationPipe, VersioningType } from '@nestjs/common';
-import { NestFastifyApplication } from '@nestjs/platform-fastify';
-import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { readFileSync } from 'fs';
-import { join } from 'path';
+import {
+  ConsoleLogger,
+  Injectable,
+  ValidationPipe,
+  VersioningType,
+} from "@nestjs/common";
+import { NestFastifyApplication } from "@nestjs/platform-fastify";
+import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
+import { readFileSync } from "fs";
+import { join } from "path";
 
-import { ACAP_BULLMQ_REALM_QUEUE, API_DOCS, API_DOCS_JSON } from '../constants/app.constants';
-import { ConfigFactoryService } from './config-factory.service';
+import { ACAP_MSBR, API_DOCS, API_DOCS_JSON } from "../constants/app.constants";
+import { ConfigFactoryService } from "./config-factory.service";
 
-const packageJson = JSON.parse(readFileSync(join(__dirname, '../../package.json'), 'utf8'));
+const packageJson = JSON.parse(
+  readFileSync(join(__dirname, "../../package.json"), "utf8"),
+);
 
 @Injectable()
 export class AppService {
@@ -33,8 +40,8 @@ export class AppService {
   enableVersioning(app: NestFastifyApplication) {
     app.enableVersioning({
       type: VersioningType.URI,
-      defaultVersion: '1',
-      prefix: 'api/v',
+      defaultVersion: "1",
+      prefix: "api/v",
     });
   }
 
@@ -61,10 +68,14 @@ export class AppService {
           ...this.configFactory.app,
           brokers: {
             useBullMQ: this.configFactory.app.brokers.useBullMQ
-              ? { channel: ACAP_BULLMQ_REALM_QUEUE, ...this.configFactory.bullMQ }
+              ? { channel: ACAP_MSBR, ...this.configFactory.bullMQ }
               : false,
-            useRedisPubSub: this.configFactory.app.brokers.useRedisPubSub ? this.configFactory.redisPubSub : false,
-            useMqtt: this.configFactory.app.brokers.useMQTT ? this.configFactory.mqtt : false,
+            useRedisPubSub: this.configFactory.app.brokers.useRedisPubSub
+              ? this.configFactory.redisPubSub
+              : false,
+            useMqtt: this.configFactory.app.brokers.useMQTT
+              ? this.configFactory.mqtt
+              : false,
           },
           databases: {
             mongo: this.configFactory.mongo,
@@ -72,7 +83,7 @@ export class AppService {
             minio: this.configFactory.minio,
           },
         },
-        'ACAP_CONFIGURATION',
+        "ACAP_CONFIGURATION",
       );
     }
 

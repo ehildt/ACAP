@@ -1,5 +1,8 @@
-import { registerAs } from '@nestjs/config';
+import { registerAs } from "@nestjs/config";
 
-import { RedisConfigAdapter } from './adapter';
+import { RedisConfigAdapter } from "./adapter";
 
-export const RedisConfigRegistry = registerAs('RedisConfig', () => new RedisConfigAdapter());
+export const RedisConfigRegistry = registerAs(
+  "RedisConfig",
+  () => new RedisConfigAdapter(),
+);

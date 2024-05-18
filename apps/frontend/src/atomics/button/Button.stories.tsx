@@ -1,13 +1,13 @@
-import { Source, Story, Subheading, Subtitle, Title } from '@storybook/blocks';
-import type { Meta, StoryObj } from '@storybook/react';
+import { Source, Story, Subheading, Subtitle, Title } from "@storybook/blocks";
+import type { Meta, StoryObj } from "@storybook/react";
 
-import { Button } from './Button';
+import { Button } from "./Button";
 
 const meta = {
-  includeStories: ['Primary'],
-  title: 'atomics/button',
+  includeStories: ["Primary"],
+  title: "atomics/button",
   component: Button,
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   parameters: {
     docs: {
       page: () => (
@@ -29,12 +29,12 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
-    color: 'plum',
-    hoverColor: 'black',
-    borderColor: 'white',
-    borderHoverColor: 'red',
-    backgroundColor: 'black',
-    backgroundHoverColor: 'gray',
+    color: "plum",
+    hoverColor: "black",
+    borderColor: "white",
+    borderHoverColor: "red",
+    backgroundColor: "black",
+    backgroundHoverColor: "gray",
   },
   render: (args) => <Button {...args}>colors</Button>,
 };

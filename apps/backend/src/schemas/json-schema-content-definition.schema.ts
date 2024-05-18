@@ -1,7 +1,8 @@
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
+import { Document } from "mongoose";
 
-export type JsonSchemaContentsDocument = JsonSchemaContentsDefinition & Document;
+export type JsonSchemaContentsDocument = JsonSchemaContentsDefinition &
+  Document;
 
 @Schema({ timestamps: true, strict: true })
 export class JsonSchemaContentsDefinition {
@@ -15,7 +16,6 @@ export class JsonSchemaContentsDefinition {
   value: string;
 }
 
-export const JsonSchemaContentSchema = SchemaFactory.createForClass(JsonSchemaContentsDefinition).index(
-  { realm: 1, id: 1 },
-  { unique: true },
-);
+export const JsonSchemaContentSchema = SchemaFactory.createForClass(
+  JsonSchemaContentsDefinition,
+).index({ realm: 1, id: 1 }, { unique: true });

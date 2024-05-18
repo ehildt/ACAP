@@ -1,9 +1,14 @@
-import { forwardRef, useRef } from 'react';
+import { forwardRef, useRef } from "react";
 
-import { useDimensionsWithStyle } from '@/hooks/use-dimensions-with-style';
+import { useDimensionsWithStyle } from "@/hooks/use-dimensions-with-style";
 
-import { useMouseEventProxy, useScrollbarCn, useScrollDirectionLtr, useScrollDirectionRtl } from './Scrollbar.hooks';
-import { ScrollbarProps } from './Scrollbar.modal';
+import {
+  useMouseEventProxy,
+  useScrollbarCn,
+  useScrollDirectionLtr,
+  useScrollDirectionRtl,
+} from "./Scrollbar.hooks";
+import { ScrollbarProps } from "./Scrollbar.modal";
 
 /**
  * @param ref (`optional`) the RefObject from which the width & height will be derived.
@@ -14,7 +19,10 @@ import { ScrollbarProps } from './Scrollbar.modal';
  * @param props (`optional`) overflow defaults to hidden.
  * @return ReactNode
  */
-export const Scrollbar = forwardRef(function Scrollbar(props: ScrollbarProps, ref?: any) {
+export const Scrollbar = forwardRef(function Scrollbar(
+  props: ScrollbarProps,
+  ref?: any,
+) {
   const scrollbarRef = useRef<HTMLDivElement>(null);
   useScrollDirectionLtr(scrollbarRef, props);
   useScrollDirectionRtl(scrollbarRef, props);
@@ -35,7 +43,7 @@ export const Scrollbar = forwardRef(function Scrollbar(props: ScrollbarProps, re
 });
 
 Scrollbar.defaultProps = {
-  overflow: 'auto',
-  direction: 'ltr',
-  behavior: 'smooth',
+  overflow: "auto",
+  direction: "ltr",
+  behavior: "smooth",
 } satisfies ScrollbarProps;

@@ -1,19 +1,27 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from "@storybook/react";
 
-import { Container } from '@/layouts/container/Container';
+import { Container } from "@/layouts/container/Container";
 
-import { Rotate } from './Rotate';
+import { Rotate } from "./Rotate";
 
 export default {
-  title: 'effects/transform/rotate',
+  title: "effects/transform/rotate",
   component: Rotate,
-  decorators: (render) => <div style={{ width: '300px' }}>{render()}</div>,
+  decorators: (render) => <div style={{ width: "300px" }}>{render()}</div>,
 } satisfies Meta<typeof Rotate>;
 
 export const RotateSamples = {
   render: () => (
     <>
-      <Rotate x="1turn" y="10deg" z="5deg" x2="2turn" y2="-10deg" z2="-5deg" ms2={500}>
+      <Rotate
+        x="1turn"
+        y="10deg"
+        z="5deg"
+        x2="2turn"
+        y2="-10deg"
+        z2="-5deg"
+        ms2={500}
+      >
         <Container>one</Container>
       </Rotate>
       <Rotate x="1turn" y="-3.5deg" z="0">
