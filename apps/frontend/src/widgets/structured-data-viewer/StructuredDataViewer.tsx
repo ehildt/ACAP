@@ -1,11 +1,11 @@
-import { Buffer } from 'buffer';
-import { useEffect, useState } from 'react';
-import { parse } from 'yaml';
+import { Buffer } from "buffer";
+import { useEffect, useState } from "react";
+import { parse } from "yaml";
 
-import { useFileImporterImmerStore } from '../file-importer/FileImporter.store';
-import { JsonViewer } from '../json-viewer/JsonViewer';
-import { TreeViewer } from '../tree-viewer/TreeViewer';
-import { YmlViewer } from '../yml-viewer/YmlViewer';
+import { useFileImporterImmerStore } from "../file-importer/FileImporter.store";
+import { JsonViewer } from "../json-viewer/JsonViewer";
+import { TreeViewer } from "../tree-viewer/TreeViewer";
+import { YmlViewer } from "../yml-viewer/YmlViewer";
 
 type StructuredDataViewerProps = {
   file?: File;
@@ -23,11 +23,19 @@ export function StructuredDataViewer({ file }: StructuredDataViewerProps) {
 
   if (!buffer) return;
 
-  if (file?.type?.endsWith('json')) {
+  if (file?.type?.endsWith("json")) {
     const data = JSON.parse(buffer.toString());
-    return showTreeView ? <TreeViewer data={data} /> : <JsonViewer data={data} style={{ width: '100%' }} />;
+    return showTreeView ? (
+      <TreeViewer data={data} />
+    ) : (
+      <JsonViewer data={data} style={{ width: "100%" }} />
+    );
   }
 
   const data = parse(buffer.toString());
-  return showTreeView ? <TreeViewer data={data} /> : <YmlViewer data={data} style={{ width: '100%' }} />;
+  return showTreeView ? (
+    <TreeViewer data={data} />
+  ) : (
+    <YmlViewer data={data} style={{ width: "100%" }} />
+  );
 }

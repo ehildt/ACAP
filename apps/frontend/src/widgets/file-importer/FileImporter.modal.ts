@@ -1,4 +1,4 @@
-import { ChangeEvent, ReactNode } from 'react';
+import { ChangeEvent, ReactNode } from "react";
 
 export type FileMetadata = {
   uploadedOn: Date;
@@ -23,4 +23,6 @@ export type FileImporterMenuProps = {
   onChange?: ProxyOnChange;
 };
 
-export type FileImporterRenderer = { [key: string]: (file?: File) => JSX.Element };
+export type FileImporterRenderer = {
+  [key: string]: (file?: File) => JSX.Element;
+};

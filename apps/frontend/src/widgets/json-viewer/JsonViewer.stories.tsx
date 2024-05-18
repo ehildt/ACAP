@@ -1,9 +1,9 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from "@storybook/react";
 
-import { JsonViewer } from './JsonViewer';
+import { JsonViewer } from "./JsonViewer";
 
 export default {
-  title: 'widgets/json-viewer',
+  title: "widgets/json-viewer",
   component: JsonViewer,
   decorators: [(story) => <>{story()}</>],
 } satisfies Meta<typeof JsonViewer>;
@@ -12,9 +12,9 @@ export const DefaultJsonViewer = {
   render: () => (
     <JsonViewer
       data={{
-        name: 'eugen',
+        name: "eugen",
         isSexy: false,
-        addresses: [{ city: 'bukarest' }, { city: 'moenchengladbach' }],
+        addresses: [{ city: "bukarest" }, { city: "moenchengladbach" }],
       }}
     />
   ),

@@ -1,4 +1,4 @@
-import { challengeContentValue } from './challenge-content-source.helper';
+import { challengeContentValue } from "./challenge-content-source.helper";
 
 export function reduceToContents(resolveEnv: boolean, entities?: Array<any>) {
   return entities?.reduce(

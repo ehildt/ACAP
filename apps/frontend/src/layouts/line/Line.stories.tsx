@@ -1,10 +1,10 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from "@storybook/react";
 
-import { Container } from '../container/Container';
-import { Line } from './Line';
+import { Container } from "../container/Container";
+import { Line } from "./Line";
 
 export default {
-  title: 'layouts/line',
+  title: "layouts/line",
   component: Line,
 } satisfies Meta<typeof Line>;
 

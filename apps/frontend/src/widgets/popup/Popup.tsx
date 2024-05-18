@@ -1,19 +1,19 @@
-import cn from 'classnames';
-import { useCallback, useEffect, useState } from 'react';
-import { FaCircleXmark } from 'react-icons/fa6';
+import cn from "classnames";
+import { useCallback, useEffect, useState } from "react";
+import { FaCircleXmark } from "react-icons/fa6";
 
-import { Button } from '@/atomics/button/Button';
-import { FlickerContainer } from '@/effects/animate/flicker/FlickerContainer';
-import { FlickerText } from '@/effects/animate/flicker/FlickerText';
-import { Pulse } from '@/effects/animate/pulse/Pulse';
-import { Line } from '@/layouts/line/Line';
+import { Button } from "@/atomics/button/Button";
+import { FlickerContainer } from "@/effects/animate/flicker/FlickerContainer";
+import { FlickerText } from "@/effects/animate/flicker/FlickerText";
+import { Pulse } from "@/effects/animate/pulse/Pulse";
+import { Line } from "@/layouts/line/Line";
 
-import { CSSCustomVariables, PopupProps } from './Popup.modal';
-import style from './Popup.module.scss';
+import { CSSCustomVariables, PopupProps } from "./Popup.modal";
+import style from "./Popup.module.scss";
 
 const defaultProps = {
-  closeGlyphColer: '#FF004F', // Folly Red
-  closeGlyphSize: '1.4rem',
+  closeGlyphColer: "#FF004F", // Folly Red
+  closeGlyphSize: "1.4rem",
   ms: 350,
 } as PopupProps;
 
@@ -26,9 +26,9 @@ export function Popup(props: PopupProps = defaultProps) {
   const [isFaded, setIsFaded] = useState(true);
 
   const cssCustomVariables: CSSCustomVariables = {
-    '--time-popup--fadeOut': `${props.ms}ms`,
-    '--size-popup--width': props.width,
-    '--size-popup--height': props.height,
+    "--time-popup--fadeOut": `${props.ms}ms`,
+    "--size-popup--width": props.width,
+    "--size-popup--height": props.height,
   };
 
   useEffect(() => {
@@ -50,17 +50,30 @@ export function Popup(props: PopupProps = defaultProps) {
 
   return (
     props.isOpen && (
-      <div className={cn([style.modalOverlay, { [style.modalOverlayFadeOut]: isFaded }])} style={cssCustomVariables}>
+      <div
+        className={cn([
+          style.modalOverlay,
+          { [style.modalOverlayFadeOut]: isFaded },
+        ])}
+        style={cssCustomVariables}
+      >
         <div className={style.modal}>
           <div className={style.modalHeader}>
             <h1 className={style.modalHeaderTitle}>{props.title}</h1>
             <div className={style.modalHeaderFarRight}>
-              <div className={style.modalHeaderFarRightInfoBar}>{props.infoBar}</div>
+              <div className={style.modalHeaderFarRightInfoBar}>
+                {props.infoBar}
+              </div>
               {!props.hideXButton && (
                 <Pulse to={1.2} ms={750} mode="passive">
                   <Button
-                    style={{ padding: '0px' }}
-                    iconBefore={<FaCircleXmark color={props.closeGlyphColer} size={props.closeGlyphSize} />}
+                    style={{ padding: "0px" }}
+                    iconBefore={
+                      <FaCircleXmark
+                        color={props.closeGlyphColer}
+                        size={props.closeGlyphSize}
+                      />
+                    }
                     onClick={() => onClickProxy()}
                   />
                 </Pulse>
@@ -71,17 +84,23 @@ export function Popup(props: PopupProps = defaultProps) {
             {props.children}
           </div>
           <div className={style.modalFooter}>
-            <Line style={{ marginInline: 'auto', gap: '5rem' }}>
+            <Line style={{ marginInline: "auto", gap: "5rem" }}>
               {props.onClick && (
                 <FlickerContainer color="#9ACD32">
-                  <button onClick={() => onClickProxy(props.onClick)} style={{ padding: '0.5rem' }}>
+                  <button
+                    onClick={() => onClickProxy(props.onClick)}
+                    style={{ padding: "0.5rem" }}
+                  >
                     <FlickerText text="submit" color="#9ACD32" />
                   </button>
                 </FlickerContainer>
               )}
               {props.onCancel && (
                 <FlickerContainer color="#FF00FF">
-                  <button onClick={() => onClickProxy(props.onClick)} style={{ padding: '0.5rem' }}>
+                  <button
+                    onClick={() => onClickProxy(props.onClick)}
+                    style={{ padding: "0.5rem" }}
+                  >
                     <FlickerText text="cancel" color="#FF00FF" />
                   </button>
                 </FlickerContainer>

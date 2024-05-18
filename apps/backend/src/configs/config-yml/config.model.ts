@@ -1,6 +1,6 @@
-import { Transport } from '@nestjs/microservices';
+import { Transport } from "@nestjs/microservices";
 
-import { MqttClientOptions } from '@/modules/mqtt-client.module';
+import { MqttClientOptions } from "@/modules/mqtt-client.module";
 
 export type AppConfigBrokers = {
   useBullMQ: boolean;

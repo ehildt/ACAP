@@ -9,6 +9,10 @@
       "name": "backend",
     },
     {
+      "path": "apps/bridge",
+      "name": "bridge",
+    },
+    {
       "path": "apps/frontend",
       "name": "frontend",
     },
@@ -17,7 +21,7 @@
     "files.exclude": {
       "**/node_modules": true,
       "**/dist": true,
-      "**/.vscode": true,
+      "**/.vscode": false,
     },
     "markdownlint.config": {
       "MD033": false,

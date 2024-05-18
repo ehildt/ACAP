@@ -1,14 +1,14 @@
-import { Source, Story, Subheading, Subtitle, Title } from '@storybook/blocks';
-import type { Meta, StoryObj } from '@storybook/react';
+import { Source, Story, Subheading, Subtitle, Title } from "@storybook/blocks";
+import type { Meta, StoryObj } from "@storybook/react";
 
-import { Container } from '@/layouts/container/Container';
+import { Container } from "@/layouts/container/Container";
 
-import { FileCard } from './FileCard';
+import { FileCard } from "./FileCard";
 
 const meta = {
-  title: 'atomics/file-card',
+  title: "atomics/file-card",
   component: FileCard,
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   parameters: {
     docs: {
       page: () => (
@@ -30,14 +30,14 @@ type Story = StoryObj<typeof meta>;
 
 export const PNG = {
   args: {
-    filename: 'tea-party',
-    extension: 'png',
-    onClick: () => confirm('clicked'),
+    filename: "tea-party",
+    extension: "png",
+    onClick: () => confirm("clicked"),
     lastModified: Date.now(),
-    size: '1.74MB',
+    size: "1.74MB",
   },
   render: (args) => (
-    <Container outerStyle={{ width: 'fit-content' }}>
+    <Container outerStyle={{ width: "fit-content" }}>
       <FileCard {...args} />
     </Container>
   ),
@@ -45,14 +45,14 @@ export const PNG = {
 
 export const JPG = {
   args: {
-    filename: 'tea-party',
-    extension: 'jpg',
-    onClick: () => confirm('clicked'),
+    filename: "tea-party",
+    extension: "jpg",
+    onClick: () => confirm("clicked"),
     lastModified: Date.now(),
-    size: '1.17MB',
+    size: "1.17MB",
   },
   render: (args) => (
-    <Container outerStyle={{ width: 'fit-content' }}>
+    <Container outerStyle={{ width: "fit-content" }}>
       <FileCard {...args} />
     </Container>
   ),
@@ -60,14 +60,14 @@ export const JPG = {
 
 export const JSON = {
   args: {
-    filename: 'tea-party',
-    extension: 'json',
-    onClick: () => confirm('clicked'),
+    filename: "tea-party",
+    extension: "json",
+    onClick: () => confirm("clicked"),
     lastModified: Date.now(),
-    size: '3KB',
+    size: "3KB",
   },
   render: (args) => (
-    <Container outerStyle={{ width: 'fit-content' }}>
+    <Container outerStyle={{ width: "fit-content" }}>
       <FileCard {...args} />
     </Container>
   ),

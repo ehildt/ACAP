@@ -1,8 +1,8 @@
-import cn from 'classnames';
+import cn from "classnames";
 
-import { RowProps } from './JsonViewer.model';
-import { JsonViewerRow } from './JsonViewerRow';
-import style from './JsonViewerRow.module.scss';
+import { RowProps } from "./JsonViewer.model";
+import { JsonViewerRow } from "./JsonViewerRow";
+import style from "./JsonViewerRow.module.scss";
 
 export function JsonRowArray(props: RowProps) {
   const length = props.kvPair.value.length;
@@ -24,11 +24,13 @@ export function JsonRowArray(props: RowProps) {
         navigator.clipboard.writeText(JSON.stringify(props.kvPair, null, 4));
       }}
     >
-      {props.kvPair.key && <span style={{ color: 'magenta' }}>{props.kvPair.key} : </span>}
-      <span style={{ color: 'magenta' }}>{'['}</span>
+      {props.kvPair.key && (
+        <span style={{ color: "magenta" }}>{props.kvPair.key} : </span>
+      )}
+      <span style={{ color: "magenta" }}>{"["}</span>
       {jsonViewerRows}
-      <span style={{ color: 'magenta' }}>{']'}</span>
-      {props.separate && ','}
+      <span style={{ color: "magenta" }}>{"]"}</span>
+      {props.separate && ","}
     </div>
   );
 }

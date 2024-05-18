@@ -1,13 +1,13 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from "@storybook/react";
 
-import { Container } from '@/layouts/container/Container';
+import { Container } from "@/layouts/container/Container";
 
-import { Skew } from './Skew';
+import { Skew } from "./Skew";
 
 export default {
-  title: 'effects/transform/skew',
+  title: "effects/transform/skew",
   component: Skew,
-  decorators: (render) => <div style={{ width: '300px' }}>{render()}</div>,
+  decorators: (render) => <div style={{ width: "300px" }}>{render()}</div>,
 } satisfies Meta<typeof Skew>;
 
 export const SkewSamples = {
