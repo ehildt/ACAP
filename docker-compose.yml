@@ -71,6 +71,22 @@ services:
       - acap-network
     restart: unless-stopped
 
+  bridge:
+    container_name: bridge
+    build:
+      context: ./apps/bridge
+      target: local
+    volumes:
+      - ./apps/bridge:/app
+      - ./node_modules:/node_modules
+    depends_on:
+      - redis
+      - mosquitto
+    env_file:
+      - ./apps/bridge/env/.env
+    ports:
+      - 3002:3002
+
   mongo:
     command: mongod --quiet --wiredTigerCacheSizeGB 1.5 --logpath /dev/null
     image: mongo
