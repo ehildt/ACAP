@@ -1,12 +1,12 @@
-import Joi from 'joi';
+import Joi from "joi";
 
-import { APP_SCHEMA } from './app.schema';
-import { BULLMQ_SCHEMA } from './bullmq.schema';
-import { MINIO_SCHEMA } from './minio.schema';
-import { MONGOOSE_SCHEMA } from './mongoose.schema';
-import { MQTT_SCHEMA } from './mqtt.schema';
-import { REDIS_SCHEMA } from './redis.schema';
-import { REDIS_PUBSUB_SCHEMA } from './redis-pubsub.schema';
+import { APP_SCHEMA } from "./app.schema";
+import { BULLMQ_SCHEMA } from "./bullmq.schema";
+import { MINIO_SCHEMA } from "./minio.schema";
+import { MONGOOSE_SCHEMA } from "./mongoose.schema";
+import { MQTT_SCHEMA } from "./mqtt.schema";
+import { REDIS_SCHEMA } from "./redis.schema";
+import { REDIS_PUBSUB_SCHEMA } from "./redis-pubsub.schema";
 
 export const validationSchema = Joi.object({
   ...APP_SCHEMA,

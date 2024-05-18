@@ -1,18 +1,18 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from "@storybook/react";
 
-import { Container } from '@/layouts/container/Container';
+import { Container } from "@/layouts/container/Container";
 
-import { Scrollbar } from './Scrollbar';
+import { Scrollbar } from "./Scrollbar";
 
 export default {
-  title: 'widgets/scrollbar',
+  title: "widgets/scrollbar",
   component: Scrollbar,
-  decorators: [(story) => <div style={{ width: '20dvw' }}>{story()}</div>],
+  decorators: [(story) => <div style={{ width: "20dvw" }}>{story()}</div>],
 } satisfies Meta<typeof Scrollbar>;
 
 export const ScrollbarLtr = {
   render: () => (
-    <Scrollbar style={{ maxHeight: '20dvh', gap: '0.3rem' }}>
+    <Scrollbar style={{ maxHeight: "20dvh", gap: "0.3rem" }}>
       <Container>element 1</Container>
       <Container>element 2</Container>
       <Container>element 3</Container>
@@ -25,7 +25,7 @@ export const ScrollbarLtr = {
 
 export const ScrollbarRtl = {
   render: () => (
-    <Scrollbar direction="rtl" style={{ maxHeight: '20dvh', gap: '0.3rem' }}>
+    <Scrollbar direction="rtl" style={{ maxHeight: "20dvh", gap: "0.3rem" }}>
       <Container>element 1</Container>
       <Container>element 2</Container>
       <Container>element 3</Container>

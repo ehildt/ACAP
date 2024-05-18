@@ -1,7 +1,7 @@
-import cn from 'classnames';
-import { CSSProperties, ReactNode, useRef } from 'react';
+import cn from "classnames";
+import { CSSProperties, ReactNode, useRef } from "react";
 
-import style from './Tooltip.module.scss';
+import style from "./Tooltip.module.scss";
 
 type TooltipProps = {
   children?: ReactNode;
@@ -12,7 +12,7 @@ type TooltipProps = {
 export function Tooltip(props: TooltipProps) {
   const refTooltip = useRef(null);
   const extendedStyle = {
-    '--percent-toolbar-offset': `${props.offset ?? 0}px`,
+    "--percent-toolbar-offset": `${props.offset ?? 0}px`,
   } as CSSProperties;
 
   return (

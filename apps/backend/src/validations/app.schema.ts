@@ -1,9 +1,11 @@
-import Joi from 'joi';
+import Joi from "joi";
 
-import { CONFIG_YML } from '@/configs/config-yml/loader';
+import { CONFIG_YML } from "@/configs/config-yml/loader";
 
 export const APP_SCHEMA = {
-  PORT: CONFIG_YML?.appConfig?.port ? Joi.number().default(CONFIG_YML.appConfig.port) : Joi.number().required(),
+  PORT: CONFIG_YML?.appConfig?.port
+    ? Joi.number().default(CONFIG_YML.appConfig.port)
+    : Joi.number().required(),
 
   ADDRESS: CONFIG_YML?.appConfig?.address
     ? Joi.string().default(CONFIG_YML.appConfig.address)
@@ -60,12 +62,14 @@ export const APP_SCHEMA = {
         .length(32)
         .length(24)
         .length(16)
-        .error(new Error('secret must have a length of [32, 24, 16]'))
+        .error(new Error("secret must have a length of [32, 24, 16]"))
         .default(CONFIG_YML?.appConfig.crypto?.secret)
     : Joi.string()
         .length(32)
         .length(24)
         .length(16)
-        .error(new Error('secret must have a character length of [32 | 24 | 16]'))
+        .error(
+          new Error("secret must have a character length of [32 | 24 | 16]"),
+        )
         .optional(),
 };

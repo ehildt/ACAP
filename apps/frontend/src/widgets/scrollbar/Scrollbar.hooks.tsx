@@ -1,53 +1,70 @@
-import cn from 'classnames';
-import { RefObject, useCallback, useEffect } from 'react';
+import cn from "classnames";
+import { RefObject, useCallback, useEffect } from "react";
 
-import { ProxyFunc, ScrollbarProps } from './Scrollbar.modal';
-import style from './Scrollbar.module.scss';
+import { ProxyFunc, ScrollbarProps } from "./Scrollbar.modal";
+import style from "./Scrollbar.module.scss";
 
 export function useScrollbarCn(props: ScrollbarProps) {
   return cn([
     style.scrollbar,
-    { [style.scrollbarLtr]: props.direction === 'ltr' },
-    { [style.scrollbarRtl]: props.direction === 'rtl' },
-    { [style.scrollbarOverflow]: props.overflow === 'auto' },
-    { [style.scrollbarOverflowY]: props.overflow === 'y' },
-    { [style.scrollbarOverflowX]: props.overflow === 'x' },
+    { [style.scrollbarLtr]: props.direction === "ltr" },
+    { [style.scrollbarRtl]: props.direction === "rtl" },
+    { [style.scrollbarOverflow]: props.overflow === "auto" },
+    { [style.scrollbarOverflowY]: props.overflow === "y" },
+    { [style.scrollbarOverflowX]: props.overflow === "x" },
   ]);
 }
 
-export function useMouseEventProxy(ref: RefObject<HTMLDivElement>, callback?: ProxyFunc) {
+export function useMouseEventProxy(
+  ref: RefObject<HTMLDivElement>,
+  callback?: ProxyFunc,
+) {
   return (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     if (ref.current && callback) callback(e.target as HTMLElement, ref.current);
   };
 }
 
-export function useScrollDirectionLtr(ref: RefObject<HTMLDivElement>, props: ScrollbarProps) {
+export function useScrollDirectionLtr(
+  ref: RefObject<HTMLDivElement>,
+  props: ScrollbarProps,
+) {
   const scroll = useScroll(ref, props);
   useEffect(() => {
-    if (!ref.current || props.direction === 'rtl') return;
-    else if (props.stickY === 'top' && props.stickX === 'left') scroll.topLeft();
-    else if (props.stickY === 'top' && props.stickX === 'right') scroll.topRight();
-    else if (props.stickY === 'bottom' && props.stickX === 'left') scroll.bottomLeft();
-    else if (props.stickY === 'bottom' && props.stickX === 'right') scroll.bottomRight();
-    else if (props.stickY === 'bottom') scroll.bottom();
-    else if (props.stickY === 'top') scroll.top();
-    else if (props.stickX === 'left') scroll.left();
-    else if (props.stickX === 'right') scroll.right();
+    if (!ref.current || props.direction === "rtl") return;
+    else if (props.stickY === "top" && props.stickX === "left")
+      scroll.topLeft();
+    else if (props.stickY === "top" && props.stickX === "right")
+      scroll.topRight();
+    else if (props.stickY === "bottom" && props.stickX === "left")
+      scroll.bottomLeft();
+    else if (props.stickY === "bottom" && props.stickX === "right")
+      scroll.bottomRight();
+    else if (props.stickY === "bottom") scroll.bottom();
+    else if (props.stickY === "top") scroll.top();
+    else if (props.stickX === "left") scroll.left();
+    else if (props.stickX === "right") scroll.right();
   }, [props.children]);
 }
 
-export function useScrollDirectionRtl(ref: RefObject<HTMLDivElement>, props: ScrollbarProps) {
+export function useScrollDirectionRtl(
+  ref: RefObject<HTMLDivElement>,
+  props: ScrollbarProps,
+) {
   const scroll = useScroll(ref, props);
   useEffect(() => {
-    if (!ref.current || props.direction === 'ltr') return;
-    else if (props.stickY === 'top' && props.stickX === 'left') scroll.topLeft();
-    else if (props.stickY === 'top' && props.stickX === 'right') scroll.topRightRtl();
-    else if (props.stickY === 'bottom' && props.stickX === 'left') scroll.bottomLeft();
-    else if (props.stickY === 'bottom' && props.stickX === 'right') scroll.bottomRightRtl();
-    else if (props.stickY === 'bottom') scroll.bottom();
-    else if (props.stickY === 'top') scroll.top();
-    else if (props.stickX === 'left') scroll.left();
-    else if (props.stickX === 'right') scroll.rightRtl();
+    if (!ref.current || props.direction === "ltr") return;
+    else if (props.stickY === "top" && props.stickX === "left")
+      scroll.topLeft();
+    else if (props.stickY === "top" && props.stickX === "right")
+      scroll.topRightRtl();
+    else if (props.stickY === "bottom" && props.stickX === "left")
+      scroll.bottomLeft();
+    else if (props.stickY === "bottom" && props.stickX === "right")
+      scroll.bottomRightRtl();
+    else if (props.stickY === "bottom") scroll.bottom();
+    else if (props.stickY === "top") scroll.top();
+    else if (props.stickX === "left") scroll.left();
+    else if (props.stickX === "right") scroll.rightRtl();
   }, [props.children]);
 }
 

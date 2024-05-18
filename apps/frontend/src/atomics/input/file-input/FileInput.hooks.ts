@@ -1,6 +1,6 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent } from "react";
 
-import { onChangeProxy } from './FileInput.modal';
+import { onChangeProxy } from "./FileInput.modal";
 
 export function useChangeEventProxy(callback?: onChangeProxy) {
   return (e: ChangeEvent<HTMLInputElement>) => {

@@ -4,10 +4,12 @@ autodocs
 autoprefixer
 azuretools
 bgclr
+BRCS
 bullmq
 BULLMQ
 cacheable
 callsite
+cobertura
 codecov
 codesnap
 conventionalcommits
@@ -44,6 +46,7 @@ mongodb
 mosquitto
 mqtt
 MQTT
+MSBR
 nestjs
 nginx
 NKEY

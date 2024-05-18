@@ -1,8 +1,8 @@
-import { CSSProperties, ReactNode } from 'react';
+import { CSSProperties, ReactNode } from "react";
 
 export type CSSCustomVariables = {
-  '--clr-container-highlight-accent'?: string;
-  '--clr-container-highlight'?: string;
+  "--clr-container-highlight-accent"?: string;
+  "--clr-container-highlight"?: string;
 } & CSSProperties;
 
 export type ContainerProps = {

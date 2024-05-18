@@ -3,7 +3,7 @@
   gap: 1rem;
   display: grid;
   grid-template-columns: 3fr 1fr;
-  grid-template-areas: 'preview menu';
+  grid-template-areas: "preview menu";
 
   &-menu {
     grid-area: menu;
@@ -28,7 +28,32 @@
       position: sticky;
       top: 185px;
       border: 0.2rem solid gray;
-      border-image: linear-gradient(to right, transparent, gray, gray, transparent) 1;
+      border-image: linear-gradient(
+          to right,
+          transparent,
+          gray,
+          gray,
+          transparent
+        )
+        1;
+
+      &-item {
+        display: inline-flex;
+        flex-direction: column;
+        gap: 0.3rem;
+        width: 100%;
+        position: absolute;
+        transform: scale(0.8);
+        pointer-events: none;
+        transition: all 250ms linear;
+        opacity: 0;
+
+        &--visible {
+          opacity: 1;
+          pointer-events: visible;
+          transform: scale(1);
+        }
+      }
     }
   }
 

@@ -157,8 +157,8 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(eslint@9.3.0)
       globals:
-        specifier: ^15.2.0
-        version: 15.2.0
+        specifier: ^15.3.0
+        version: 15.3.0
       jest:
         specifier: ^29.7.0
         version: 29.7.0(@types/node@20.12.12)(ts-node@10.9.2(@types/node@20.12.12)(typescript@5.4.5))
@@ -243,12 +243,6 @@ importers:
       '@paralleldrive/cuid2':
         specifier: ^2.2.2
         version: 2.2.2
-      ajv:
-        specifier: ^8.13.0
-        version: 8.13.0
-      ajv-formats:
-        specifier: ^3.0.1
-        version: 3.0.1(ajv@8.13.0)
       bullmq:
         specifier: ^5.7.9
         version: 5.7.9
@@ -264,18 +258,15 @@ importers:
       class-validator:
         specifier: ^0.14.1
         version: 0.14.1
+      ioredis:
+        specifier: ^5.4.1
+        version: 5.4.1
       joi:
         specifier: ^17.13.1
         version: 17.13.1
       js-yaml:
         specifier: ^4.1.0
         version: 4.1.0
-      minio:
-        specifier: ^8.0.0
-        version: 8.0.0
-      mongoose:
-        specifier: ^8.4.0
-        version: 8.4.0(socks@2.8.3)
       mqtt:
         specifier: ^5.6.1
         version: 5.6.1
@@ -4829,6 +4820,10 @@ packages:
 
   globals@15.2.0:
     resolution: {integrity: sha512-FQ5YwCHZM3nCmtb5FzEWwdUc9K5d3V/w9mzcz8iGD1gC/aOTHc6PouYu0kkKipNJqHAT7m51sqzQjEjIP+cK0A==}
+    engines: {node: '>=18'}
+
+  globals@15.3.0:
+    resolution: {integrity: sha512-cCdyVjIUVTtX8ZsPkq1oCsOsLmGIswqnjZYMJJTGaNApj1yHtLSymKhwH51ttirREn75z3p4k051clwg7rvNKA==}
     engines: {node: '>=18'}
 
   globalthis@1.0.4:
@@ -13959,6 +13954,8 @@ snapshots:
   globals@14.0.0: {}
 
   globals@15.2.0: {}
+
+  globals@15.3.0: {}
 
   globalthis@1.0.4:
     dependencies:

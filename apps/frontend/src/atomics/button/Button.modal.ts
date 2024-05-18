@@ -1,14 +1,17 @@
-import { CSSProperties, ReactElement, ReactNode } from 'react';
+import { CSSProperties, ReactElement, ReactNode } from "react";
 
-export type ProxyFunc = (target: HTMLElement, e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+export type ProxyFunc = (
+  target: HTMLElement,
+  e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+) => void;
 
 export type ExtendedCSSProperties = {
-  '--clr-button'?: string;
-  '--clr-button-hover'?: string;
-  '--clr-button-background'?: string;
-  '--clr-button-background-hover'?: string;
-  '--clr-button-border'?: string;
-  '--clr-button-border-hover'?: string;
+  "--clr-button"?: string;
+  "--clr-button-hover"?: string;
+  "--clr-button-background"?: string;
+  "--clr-button-background-hover"?: string;
+  "--clr-button-border"?: string;
+  "--clr-button-border-hover"?: string;
 } & CSSProperties;
 
 export type ButtonProps = {

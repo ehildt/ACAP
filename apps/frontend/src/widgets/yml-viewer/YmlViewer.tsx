@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
-import { Container } from '@/layouts/container/Container';
+import { Container } from "@/layouts/container/Container";
 
-import { YmlViewerProps } from './YmlViewer.model';
-import { YmlViewerRow } from './YmlViewerRow';
+import { YmlViewerProps } from "./YmlViewer.model";
+import { YmlViewerRow } from "./YmlViewerRow";
 
 export function YmlViewer(props: YmlViewerProps) {
   const [key, setKey] = useState(0);

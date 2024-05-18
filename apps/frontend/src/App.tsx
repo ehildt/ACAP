@@ -1,8 +1,13 @@
-import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
-import { DesktopLayout, DesktopLayoutFooter, DesktopLayoutHeader, DesktopLayoutMain } from './layouts';
-import { useCacheImmerStore } from './store/cache';
+import {
+  DesktopLayout,
+  DesktopLayoutFooter,
+  DesktopLayoutHeader,
+  DesktopLayoutMain,
+} from "./layouts";
+import { useCacheImmerStore } from "./store/cache";
 
 export function App() {
   const [isDisabled, setDisabled] = useState<boolean>(true);

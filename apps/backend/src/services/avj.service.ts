@@ -1,9 +1,11 @@
-import { Inject, Injectable } from '@nestjs/common';
-import Ajv, { ValidateFunction } from 'ajv';
+import { Inject, Injectable } from "@nestjs/common";
+import Ajv, { ValidateFunction } from "ajv";
+
+import { AVJ_TOKEN } from "@/constants/app.constants";
 
 @Injectable()
 export class AvjService {
-  constructor(@Inject('AVJ_TOKEN') private readonly avj: Ajv) {}
+  constructor(@Inject(AVJ_TOKEN) private readonly avj: Ajv) {}
 
   validate(config: any, schemaFunction?: ValidateFunction) {
     if (!schemaFunction) return;

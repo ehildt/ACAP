@@ -32,6 +32,22 @@ services:
     ports:
       - 3001:3001
 
+  bridge:
+    container_name: bridge
+    build:
+      context: ./apps/bridge
+      target: local
+    volumes:
+      - ./apps/bridge:/app
+      - ./node_modules:/node_modules
+    depends_on:
+      - redis
+      - mosquitto
+    env_file:
+      - ./apps/bridge/env/.env
+    ports:
+      - 3002:3002
+
   mongo:
     command: mongod --quiet --wiredTigerCacheSizeGB 1.5 --logpath /dev/null
     image: mongo
@@ -61,11 +77,14 @@ services:
       - minio_acap_data:/bitnami/minio/data
 
   redis:
-    image: redis
-    container_name: redis
+    #image: redis
+    image: eqalpha/keydb
+    #container_name: redis
+    container_name: keydb
     ports:
       - 6379:6379
-    command: redis-server --requirepass "redis" --logfile /dev/null
+    #command: redis-server --requirepass "redis" --logfile /dev/null
+    command: keydb-server --requirepass "redis"
 
   mosquitto:
     image: eclipse-mosquitto
