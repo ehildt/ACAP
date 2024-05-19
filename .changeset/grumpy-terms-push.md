@@ -1,6 +1,7 @@
 ---
-"@acap/backend": minor
-"@acap/frontend": minor
+"@acap/backend": major
+"@acap/frontend": major
+"@acap/ms-bridge": major
 ---
 
 # First Init

@@ -1,27 +1,27 @@
 {
   "folders": [
     {
-      "path": ".",
       "name": ".",
+      "path": "."
     },
     {
-      "path": "apps/backend",
       "name": "backend",
+      "path": "apps/backend"
     },
     {
-      "path": "apps/ms-bridge",
       "name": "ms-bridge",
+      "path": "apps/ms-bridge"
     },
     {
-      "path": "apps/frontend",
       "name": "frontend",
-    },
+      "path": "apps/frontend"
+    }
   ],
   "settings": {
     "files.exclude": {
       "**/node_modules": true,
       "**/dist": true,
-      "**/.vscode": true,
+      "**/.vscode": false,
     },
     "markdownlint.config": {
       "MD033": false,

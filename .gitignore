@@ -1,7 +1,6 @@
 node_modules
 lerna-debug.log
 .nx
-
-
+**/docker-compose.yml
 storybook-static
 *storybook.log

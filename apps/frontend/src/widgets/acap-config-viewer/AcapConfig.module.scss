@@ -4,17 +4,49 @@
   display: flex;
   gap: 0.3rem;
   position: relative;
-  top: 10dvh;
+  top: 8dvh;
   border-radius: 0.3rem;
   border: 0.2rem solid gray;
-  padding: 10vh;
+  padding: 8vh 12vw;
+  animation: border-flicker 1s ease 2s 2;
   border-image: linear-gradient(
+    to left top,
+    crimson,
+    transparent,
+    transparent,
+    transparent,
+    purple
+  )
+  1;
+}
+
+@keyframes border-flicker {
+  0%,
+  4%,
+  100% {
+    opacity: 0.1;
+    border-image: linear-gradient(
       to left top,
-      gray,
+      crimson,
       transparent,
       transparent,
       transparent,
-      gray
+      purple
     )
     1;
+  }
+  2%,
+  8%,
+  70% {
+    opacity: 1;
+    border-image: linear-gradient(
+      to left top,
+      crimson,
+      transparent,
+      transparent,
+      transparent,
+      purple
+    )
+    1;
+  }
 }

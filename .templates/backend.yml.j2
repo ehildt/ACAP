@@ -1,0 +1,71 @@
+services:  
+  backend:
+    container_name: backend
+    build:
+      context: ./apps/backend
+      target: local
+    volumes:
+      - ./apps/backend:/app
+      - ./node_modules:/node_modules
+    depends_on:
+      - mongo
+      - minio
+      - keydb
+     {%- if use_kafka or use_mqtt or use_rabbitmq %}
+      - msbridge
+     {%- endif %} 
+    env_file:
+      - ./apps/backend/env/.env
+    environment:
+      - NODE_ENV=production
+      - PRINT_ENV=false
+    ports:
+      - 3001:3001
+    networks:
+      - acap-network
+
+  keydb:
+    image: eqalpha/keydb
+    container_name: keydb
+    ports:
+      - 6379:6379
+    volumes:
+      - keydb_data:/data
+      - ./apps/ms-bridge/keydb.conf:/usr/local/etc/keydb/keydb.conf
+    command: keydb-server /usr/local/etc/keydb/keydb.conf
+    networks:
+      - acap-network
+    restart: unless-stopped
+
+  mongo:
+    command: mongod --quiet --wiredTigerCacheSizeGB 1.5 --logpath /dev/null
+    image: mongo
+    container_name: mongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=mongo
+      - MONGO_INITDB_ROOT_PASSWORD=mongo
+      - MONGO_INITDB_DATABASE=ACAP
+    volumes:
+      - mongo_data:/data/db
+    ports:
+      - 27017:27017
+    networks:
+      - acap-network
+    restart: unless-stopped
+
+  minio:
+    image: "bitnami/minio"
+    container_name: minio
+    ports:
+      - "9000:9000"
+      - "9002:9001" # Management UI port (optional)
+    environment:
+      - MINIO_ROOT_USER=minio
+      - MINIO_ROOT_PASSWORD=minio2024
+      - MINIO_SKIP_CLIENT=yes
+      - MINIO_DEFAULT_BUCKETS=acap
+    volumes:
+      - minio_data:/bitnami/minio/data
+    networks:
+      - acap-network
+    restart: unless-stopped

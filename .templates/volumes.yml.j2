@@ -1,0 +1,19 @@
+
+volumes:
+  mongo_data:
+  minio_data:
+  keydb_data:
+
+{%- if use_rabbitmq %}
+  rabbitmq_data:
+{%- endif %}
+
+{%- if use_kafka and use_bullmq%}
+  kafka_data:
+{%- endif %}
+
+{%- if use_mqtt and use_bullmq %}
+  mosquitto_data:
+  mosquitto_config:
+  mosquitto_log:
+{%- endif %}

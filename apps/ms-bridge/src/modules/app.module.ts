@@ -10,9 +10,11 @@ import {
   RABBITMQ_CLIENT,
   REDIS_PUBSUB,
 } from "@/constants/app.constants";
+import { MetaController } from "@/controllers/meta.controller";
 import { OutbreakController } from "@/controllers/outbreak.controller";
 import { AppService } from "@/services/app.service";
 import { ConfigFactoryService } from "@/services/config-factory.service";
+import { MetaService } from "@/services/meta.service";
 import { OutbreakService } from "@/services/outbreak.service";
 
 import { GlobalConfigFactoryModule } from "./global-config-factory.module";
@@ -108,7 +110,7 @@ if (process.env.USE_RABBITMQ === "true")
 
 @Module({
   imports,
-  providers: [AppService, ConsoleLogger, OutbreakService],
-  controllers: [OutbreakController],
+  providers: [AppService, ConsoleLogger, OutbreakService, MetaService],
+  controllers: [OutbreakController, MetaController],
 })
 export class AppModule {}

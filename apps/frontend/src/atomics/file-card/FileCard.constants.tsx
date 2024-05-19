@@ -1,5 +1,6 @@
 import {
   BsFile,
+  BsFileZip,
   BsFiletypeCsv,
   BsFiletypeDoc,
   BsFiletypeDocx,
@@ -11,7 +12,9 @@ import {
   BsFiletypeMp4,
   BsFiletypePdf,
   BsFiletypePng,
+  BsFiletypeTxt,
   BsFiletypeWav,
+  BsFiletypeWoff,
   BsFiletypeXlsx,
   BsFiletypeYml,
 } from "react-icons/bs";
@@ -39,5 +42,9 @@ export const SUPPORTED_ICONS: SupportedIcons = {
   webm: (size: string) => <FaVideo size={size} />,
   ogv: (size: string) => <FaVideo size={size} />,
   exe: (size: string) => <BsFiletypeExe size={size} />,
+  zip: (size: string) => <BsFileZip size={size} />,
+  doc: (size: string) => <BsFiletypeDoc size={size} />,
+  woff: (size: string) => <BsFiletypeWoff size={size} />,
+  txt: (size: string) => <BsFiletypeTxt size={size} />,
   default: (size: string) => <BsFile size={size} />,
 };

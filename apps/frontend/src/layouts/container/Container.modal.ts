@@ -12,4 +12,5 @@ export type ContainerProps = {
   highlightColor?: string;
   highlightAccentColor?: string;
   fadeInOutMS?: number;
+  onClick?: () => void;
 };
