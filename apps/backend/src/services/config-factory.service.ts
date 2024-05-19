@@ -43,10 +43,6 @@ export class ConfigFactoryService {
       },
       brokers: {
         useBullMQ: this.configService.get<boolean>("AppConfig.USE_BULLMQ"),
-        useRedisPubSub: this.configService.get<boolean>(
-          "AppConfig.USE_REDIS_PUBSUB",
-        ),
-        useMQTT: this.configService.get<boolean>("AppConfig.USE_MQTT"),
       },
     });
   }

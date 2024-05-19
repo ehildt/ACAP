@@ -25,11 +25,6 @@ export const APP_SCHEMA = {
     ? Joi.string().default(CONFIG_YML.appConfig.nodeEnv)
     : Joi.string().required(),
 
-  USE_REDIS_PUBSUB:
-    CONFIG_YML?.appConfig?.brokers.useRedisPubSub !== undefined
-      ? Joi.boolean().default(CONFIG_YML.appConfig.brokers.useRedisPubSub)
-      : Joi.boolean().required(),
-
   USE_BULLMQ:
     CONFIG_YML?.appConfig?.brokers.useBullMQ !== undefined
       ? Joi.boolean().default(CONFIG_YML.appConfig.brokers.useBullMQ)
