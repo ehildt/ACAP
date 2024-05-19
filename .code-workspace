@@ -9,8 +9,8 @@
       "name": "backend",
     },
     {
-      "path": "apps/bridge",
-      "name": "bridge",
+      "path": "apps/ms-bridge",
+      "name": "ms-bridge",
     },
     {
       "path": "apps/frontend",
