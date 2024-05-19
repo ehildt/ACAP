@@ -24,10 +24,7 @@ export class MetaService {
     return {
       databases: { redis: "redis", mongo: "mongoDB", minio: "minio" },
       brokers: {
-        mqtt: this.configFactory.app.brokers.useMQTT && "mqtt",
         bullMQ: this.configFactory.app.brokers.useBullMQ && "bullMQ",
-        redisPubSub:
-          this.configFactory.app.brokers.useRedisPubSub && "RedisPubSub",
       },
       services: {
         resolveEnv: this.configFactory.app.realm.resolveEnv && "resolveEnv",

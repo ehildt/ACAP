@@ -70,12 +70,6 @@ export class AppService {
             useBullMQ: this.configFactory.app.brokers.useBullMQ
               ? { channel: ACAP_MSBR, ...this.configFactory.bullMQ }
               : false,
-            useRedisPubSub: this.configFactory.app.brokers.useRedisPubSub
-              ? this.configFactory.redisPubSub
-              : false,
-            useMqtt: this.configFactory.app.brokers.useMQTT
-              ? this.configFactory.mqtt
-              : false,
           },
           databases: {
             mongo: this.configFactory.mongo,

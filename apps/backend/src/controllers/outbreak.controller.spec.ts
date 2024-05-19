@@ -26,19 +26,10 @@ describe("OutbreakController", () => {
       const reqs: Array<BreakoutUpsertReq> = [
         { realm: "TEST", contents: [{ value: "do-test" }] },
       ];
-      const useMQTT = false;
       const useBullMQ = false;
-      const useRedisPubSub = false;
-      const result = await controller.delegate(
-        reqs,
-        useMQTT,
-        useBullMQ,
-        useRedisPubSub,
-      );
+      const result = await controller.delegate(reqs, useBullMQ);
       expect(service.delegate).not.toHaveBeenCalledWith(reqs, {
         useBullMQ,
-        useMQTT,
-        useRedisPubSub,
       });
       expect(result).toEqual(undefined);
     });
@@ -47,19 +38,10 @@ describe("OutbreakController", () => {
       const reqs: Array<BreakoutUpsertReq> = [
         { realm: "TEST", contents: [{ value: "do-test" }] },
       ];
-      const useMQTT = true;
       const useBullMQ = true;
-      const useRedisPubSub = true;
-      const result = await controller.delegate(
-        reqs,
-        useMQTT,
-        useBullMQ,
-        useRedisPubSub,
-      );
+      const result = await controller.delegate(reqs, useBullMQ);
       expect(service.delegate).toHaveBeenCalledWith(reqs, {
         useBullMQ,
-        useMQTT,
-        useRedisPubSub,
       });
       expect(result).toEqual(undefined);
     });

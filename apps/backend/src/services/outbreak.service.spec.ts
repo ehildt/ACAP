@@ -46,8 +46,6 @@ describe("OutbreakService", () => {
       ];
 
       const args: AppConfigBrokers = {
-        useRedisPubSub: true,
-        useMQTT: true,
         useBullMQ: true,
       };
 
@@ -68,8 +66,6 @@ describe("OutbreakService", () => {
       ];
 
       const args: AppConfigBrokers = {
-        useRedisPubSub: false,
-        useMQTT: false,
         useBullMQ: false,
       };
 
