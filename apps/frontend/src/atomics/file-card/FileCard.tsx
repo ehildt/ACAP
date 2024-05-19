@@ -11,7 +11,7 @@ type FileCardProps = {
   lastModified: number;
   size: string;
   fileRef?: string;
-  id: string;
+  id?: string;
 };
 
 export function FileCard({
