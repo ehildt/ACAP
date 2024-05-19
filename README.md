@@ -103,9 +103,30 @@ Getting ACAP up and running is pretty straight forward.
 
 <h2>Docker</h2>
 
-1. Install pnpm `npm i -g pnpm`.
-2. Install the dependencies `pnpm install`.
-3. Run Docker `docker compose up`.
+Run the following commands to install the required dependencies:
+
+1. `npm i -g pnpm && pnpm install`.
+2. `sudo apt install python3 python3-pip`
+3. `pip install jinja2`
+
+Generate the docker-compose.yml:
+
+1. `pnpm run -r genpose`.
+2. `docker-compose.yml`
+
+Genpose will generate the docker-compose.yml based on the set environment variables.
+
+- USE_REDIS_PUBSUB=false
+- USE_BULLMQ=false
+- USE_MQTT=false
+- USE_KAFKA=false
+- USE_RABBITMQ=false
+
+Please note that without USE_RABBITMQ=true, no other services will be activated. This is because the backend relies on RabbitMQ to emit events to the message bridge, which then distributes them to the brokers.
+
+> For Kafka you would need to set **USE_RABBITMQ=true** and **USE_KAFKA=true**
+
+By default the message bridge as well as all brokers are disabled.
 
 <h2>CLI</h2>
 
@@ -548,6 +569,8 @@ ACAP supports [PubSub](https://redis.io/docs/interact/pubsub/). When this featur
 - **Real-time Data Exchange:** MQTT's ability to handle unreliable networks makes it an ideal choice for ACAP. It ensures that real-time data exchange between devices occurs smoothly, even in challenging network conditions, enhancing the overall reliability and responsiveness of your service. By utilizing MQTT, ACAP leverages the power of this open-standard protocol to overcome communication hurdles, optimize resource usage, ensure reliable message delivery, and provide a scalable solution for real-time data exchange in IoT deployments.
 
 ### Kafka
+
+Before emitting data to Kafka, make sure you create the **ACAP_BRCS** topic. This is where ACAPs MSBridge will emit it's data.
 
 to be continue..
 

@@ -1,0 +1,17 @@
+
+  frontend:
+    container_name: frontend
+    build:
+      context: ./apps/frontend
+      target: local
+    depends_on:
+      - backend
+    volumes:
+      - ./apps/frontend:/app
+      - ./node_modules:/node_modules
+    environment:
+      - ./apps/frontend/.env.development
+    ports:
+      - "5173:5173"
+    networks:
+      - acap-network

@@ -1,6 +1,7 @@
 acap
 adpyke
 amqp
+Apachekafka
 autodocs
 autoprefixer
 azuretools
@@ -28,6 +29,7 @@ dtos
 eqalpha
 errorlens
 fastify
+genpose
 gitconfiglocal
 github
 gitlab
@@ -35,7 +37,9 @@ hangxingliu
 Hildt
 Identificator
 INITDB
+Iobroker
 jackspeak
+jinja
 kafdrop
 kafkajs
 keepalive
@@ -76,6 +80,8 @@ redis
 releaserc
 reqs
 rimraf
+Securityscorecard
+Servicestack
 sonarjs
 spdx
 treeshake

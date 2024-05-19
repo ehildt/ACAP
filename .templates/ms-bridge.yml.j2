@@ -1,0 +1,34 @@
+
+  msbridge:
+    container_name: msbridge
+    build:
+      context: ./apps/ms-bridge
+      target: local
+    volumes:
+      - ./apps/ms-bridge:/app
+      - ./node_modules:/node_modules
+  {%- if use_pubsub or use_kafka or use_mqtt or use_pubsub %}  
+    depends_on:
+  {%- endif %}
+    {%- if use_pubsub %}
+      - keydb
+    {%- endif %}
+    {%- if use_kafka %}
+      - kafka
+    {%- endif %}
+    {%- if use_mqtt %}
+      - mosquitto
+    {%- endif %}
+    {%- if use_rabbitmq %}
+      - rabbitmq
+    {%- endif %}
+    env_file:
+      - ./apps/ms-bridge/env/.env
+    environment:
+      - KAFKAJS_NO_PARTITIONER_WARNING=1
+      - NODE_ENV=production
+      - PRINT_ENV=false
+    ports:
+      - 3002:3002
+    networks:
+      - acap-network

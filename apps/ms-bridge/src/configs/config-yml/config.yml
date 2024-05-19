@@ -1,16 +1,16 @@
 appConfig:
   port: 3002
   address: 0.0.0.0
-  printEnv: true
-  startSwagger: true
+  printEnv: false
+  startSwagger: false
   nodeEnv: local
   bodyLimit: 104857600
   brokers:
-    useRedisPubSub: true
-    useBullMQ: true
-    useMQTT: true
-    useKafka: true
-    useRabbitMQ: true
+    useRedisPubSub: false
+    useBullMQ: false
+    useMQTT: false
+    useKafka: false
+    useRabbitMQ: false
 
 redisPubSubConfig:
   options:
