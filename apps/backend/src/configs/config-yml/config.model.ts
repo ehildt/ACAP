@@ -4,8 +4,6 @@ import { MqttClientOptions } from "@/modules/mqtt-client.module";
 
 export type AppConfigBrokers = {
   useBullMQ: boolean;
-  useRedisPubSub: boolean;
-  useMQTT: boolean;
 };
 
 export type AppConfig = {

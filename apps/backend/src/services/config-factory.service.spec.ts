@@ -33,8 +33,6 @@ describe("ConfigFactoryService", () => {
         if (key === "AppConfig.RESOLVE_ENV") return true;
         if (key === "AppConfig.GZIP_THRESHOLD") return 1024;
         if (key === "AppConfig.USE_BULLMQ") return true;
-        if (key === "AppConfig.USE_REDIS_PUBSUB") return true;
-        if (key === "AppConfig.USE_MQTT") return true;
         return null;
       });
 
@@ -57,8 +55,6 @@ describe("ConfigFactoryService", () => {
         },
         brokers: {
           useBullMQ: true,
-          useRedisPubSub: true,
-          useMQTT: true,
         },
       });
     });

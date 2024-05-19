@@ -5,8 +5,6 @@ import { PostOutbreak } from "@/decorators/controller.method.decorators";
 import {
   BreakoutUpsertBody,
   QueryUseBullMQ,
-  QueryUseMqtt,
-  QueryUseRedisPubSub,
 } from "@/decorators/controller.parameter.decorators";
 import { OpenApi_Outbreak } from "@/decorators/open-api.controller.decorators";
 import { BreakoutUpsertReq } from "@/dtos/breakout-upsert.dto.req";
@@ -21,15 +19,11 @@ export class OutbreakController {
   @OpenApi_Outbreak()
   async delegate(
     @BreakoutUpsertBody() reqs: Array<BreakoutUpsertReq>,
-    @QueryUseMqtt() useMQTT = false,
     @QueryUseBullMQ() useBullMQ = false,
-    @QueryUseRedisPubSub() useRedisPubSub = false,
   ) {
-    if (!useRedisPubSub && !useMQTT && !useBullMQ) return;
+    if (!useBullMQ) return;
     return await this.outbreakService.delegate(reqs, {
       useBullMQ,
-      useMQTT,
-      useRedisPubSub,
     });
   }
 }
