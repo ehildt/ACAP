@@ -24,7 +24,7 @@ export class MetaService {
     return {
       databases: { redis: "redis", mongo: "mongoDB", minio: "minio" },
       brokers: {
-        bullMQ: this.configFactory.app.brokers.useBullMQ && "bullMQ",
+        useBullMQ: this.configFactory.app.brokers.useBullMQ,
       },
       services: {
         resolveEnv: this.configFactory.app.realm.resolveEnv && "resolveEnv",

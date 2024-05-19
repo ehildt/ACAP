@@ -5,7 +5,7 @@ import { AcapConfigItem } from "./AcapConfigItem";
 
 export function AcapConfigContainer(props: AcapConfigContainerProps) {
   return (
-    <div>
+    <div style={props.style}>
       <AcapConfigItem label={props.label}>{props.icon}</AcapConfigItem>
       <Container
         outerStyle={{ marginBlock: "0.3rem" }}
