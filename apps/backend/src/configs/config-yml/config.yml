@@ -13,9 +13,7 @@ appConfig:
     namespacePostfix: ACAP
     gzipThreshold: 20
   brokers:
-    useRedisPubSub: true
     useBullMQ: true
-    useMQTT: true
 
 mongoConfig:
   uri: mongodb://mongo:27017
@@ -34,7 +32,7 @@ minioConfig:
   bucket: "acap"
 
 redisConfig:
-  host: redis
+  host: keydb
   port: 6379
   ttl: 600
   max: 100
@@ -45,14 +43,14 @@ redisConfig:
 redisPubSubConfig:
   options:
     port: 6379
-    host: redis
+    host: keydb
     password: redis
     username: default
 
 bullMQConfig:
   connection:
     port: 6379
-    host: redis
+    host: keydb
     password: redis
     username: default
 

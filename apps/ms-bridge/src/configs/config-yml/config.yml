@@ -13,14 +13,14 @@ appConfig:
 redisPubSubConfig:
   options:
     port: 6379
-    host: redis
+    host: keydb
     password: redis
     username: default
 
 bullMQConfig:
   connection:
     port: 6379
-    host: redis
+    host: keydb
     password: redis
     username: default
 

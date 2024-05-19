@@ -27,8 +27,6 @@ import {
   ApiQuerySkip,
   ApiQueryTake,
   ApiQueryUseBullMQ,
-  ApiQueryUseMqtt,
-  ApiQueryUseRedisPubSub,
   ApiQueryVerbose,
 } from "./open-api.method.decorators";
 
@@ -148,9 +146,7 @@ export function OpenApi_Outbreak() {
         This endpoint ensures efficient fire-and-forget functionality.`,
     }),
     ApiCreatedResponse({ description: REQUEST_SUCCESSFUL }),
-    ApiQueryUseMqtt(),
     ApiQueryUseBullMQ(),
-    ApiQueryUseRedisPubSub(),
     ApiBreakoutUpsert(),
   );
 }
