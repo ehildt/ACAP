@@ -14,7 +14,7 @@ import {
 import { Readable } from "stream";
 
 export const MINIO_CLIENT = "MINIO_CLIENT";
-export const MINIO_CLIENT_OPTIONS = "MINIO_CLIENT_OPTIONS";
+const MINIO_CLIENT_OPTIONS = "MINIO_CLIENT_OPTIONS";
 
 type MinioClientModuleProps = {
   imports?: Array<any>;

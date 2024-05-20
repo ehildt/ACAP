@@ -40,29 +40,9 @@ redisConfig:
   password: redis
   username: default
 
-redisPubSubConfig:
-  options:
-    port: 6379
-    host: keydb
-    password: redis
-    username: default
-
 bullMQConfig:
   connection:
     port: 6379
     host: keydb
     password: redis
     username: default
-
-mqttClientConfig:
-  brokerUrl: null
-  options:
-    port: 1883
-    keepalive: 5000
-    connectTimeout: 5000
-    reconnectPeriod: 1000
-    resubscribe: true
-    protocol: "mqtt"
-    hostname: mosquitto
-    username: null
-    password: null

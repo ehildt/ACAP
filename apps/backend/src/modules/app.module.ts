@@ -2,11 +2,10 @@ import { BullModule } from "@nestjs/bullmq";
 import { CacheModule } from "@nestjs/cache-manager";
 import { ConsoleLogger, Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
-import { ClientsModule } from "@nestjs/microservices";
 import { MongooseModule } from "@nestjs/mongoose";
 import RedisStore from "cache-manager-ioredis";
 
-import { ACAP_MSBR, REDIS_PUBSUB } from "@/constants/app.constants";
+import { ACAP_MSBR } from "@/constants/app.constants";
 import { ObjectController } from "@/controllers/blob.controller";
 import { JsonSchemaController } from "@/controllers/json-schema.controller";
 import { MetaController } from "@/controllers/meta.controller";
@@ -42,94 +41,77 @@ import { SchemaService } from "@/services/schema.service";
 import { GlobalAvJModule } from "./global-ajv.module";
 import { GlobalConfigFactoryModule } from "./global-config-factory.module";
 import { MinioClientModule } from "./minio-client.module";
-import { MqttClientModule } from "./mqtt-client.module";
 
-const useRedisPubSub = process.env.USE_REDIS_PUBSUB === "true";
-const useBullMQ = process.env.USE_BULLMQ === "true";
-const useMQTTClient = process.env.USE_MQTT === "true";
+const imports = [
+  GlobalAvJModule,
+  GlobalConfigFactoryModule,
+  MongooseModule.forRootAsync({
+    imports: [ConfigModule],
+    inject: [ConfigFactoryService],
+    useFactory: ({ mongo }: ConfigFactoryService) => mongo,
+  }),
+  MongooseModule.forFeature([
+    {
+      name: RealmsSchemaDefinition.name,
+      schema: RealmsSchema,
+      collection: "REALM",
+    },
+    {
+      name: RealmContentsSchemaDefinition.name,
+      schema: RealmContentsSchema,
+      collection: "REALM_CONTENT",
+    },
+    {
+      name: JsonSchemaDefinition.name,
+      schema: JsonSchema,
+      collection: "SCHEMA",
+    },
+    {
+      name: JsonSchemaContentsDefinition.name,
+      schema: JsonSchemaContentSchema,
+      collection: "SCHEMA_CONTENT",
+    },
+  ]),
+  CacheModule.registerAsync({
+    isGlobal: true,
+    imports: [ConfigModule],
+    inject: [ConfigFactoryService],
+    extraProviders: [ConfigFactoryService],
+    useFactory: ({ redis }: ConfigFactoryService) => ({
+      ...redis,
+      store: RedisStore,
+    }),
+  }),
+  MinioClientModule.registerAsync({
+    imports: [ConfigModule],
+    inject: [ConfigFactoryService],
+    isGlobal: true,
+    useFactory: ({ minio }: ConfigFactoryService) => minio,
+  }),
+];
+
+if (process.env.USE_BULLMQ === "true")
+  imports.push(
+    BullModule.registerQueueAsync({
+      imports: [ConfigModule],
+      inject: [ConfigFactoryService],
+      name: ACAP_MSBR,
+      useFactory: async ({ bullMQ }: ConfigFactoryService) => ({
+        ...bullMQ,
+        defaultJobOptions: {
+          backoff: 300_000,
+          attempts: 12,
+          removeOnComplete: true,
+          removeOnFail: {
+            age: 604_800_000,
+          },
+        },
+      }),
+    }),
+  );
 
 @Module({
-  imports: [
-    GlobalAvJModule,
-    GlobalConfigFactoryModule,
-    useRedisPubSub &&
-      ClientsModule.registerAsync([
-        {
-          name: REDIS_PUBSUB,
-          imports: [ConfigModule],
-          inject: [ConfigFactoryService],
-          useFactory: async ({ redisPubSub }: ConfigFactoryService) =>
-            redisPubSub,
-        },
-      ]),
-    useBullMQ &&
-      BullModule.registerQueueAsync({
-        imports: [ConfigModule],
-        inject: [ConfigFactoryService],
-        name: ACAP_MSBR,
-        useFactory: async ({ bullMQ }: ConfigFactoryService) => ({
-          ...bullMQ,
-          defaultJobOptions: {
-            backoff: 300_000,
-            attempts: 12,
-            removeOnComplete: true,
-            removeOnFail: {
-              age: 604_800_000,
-            },
-          },
-        }),
-      }),
-    MongooseModule.forRootAsync({
-      imports: [ConfigModule],
-      inject: [ConfigFactoryService],
-      useFactory: ({ mongo }: ConfigFactoryService) => mongo,
-    }),
-    MongooseModule.forFeature([
-      {
-        name: RealmsSchemaDefinition.name,
-        schema: RealmsSchema,
-        collection: "REALM",
-      },
-      {
-        name: RealmContentsSchemaDefinition.name,
-        schema: RealmContentsSchema,
-        collection: "REALM_CONTENT",
-      },
-      {
-        name: JsonSchemaDefinition.name,
-        schema: JsonSchema,
-        collection: "SCHEMA",
-      },
-      {
-        name: JsonSchemaContentsDefinition.name,
-        schema: JsonSchemaContentSchema,
-        collection: "SCHEMA_CONTENT",
-      },
-    ]),
-    useMQTTClient &&
-      MqttClientModule.registerAsync({
-        imports: [ConfigModule],
-        inject: [ConfigFactoryService],
-        isGlobal: true,
-        useFactory: ({ mqtt }: ConfigFactoryService) => mqtt,
-      }),
-    CacheModule.registerAsync({
-      isGlobal: true,
-      imports: [ConfigModule],
-      inject: [ConfigFactoryService],
-      extraProviders: [ConfigFactoryService],
-      useFactory: ({ redis }: ConfigFactoryService) => ({
-        ...redis,
-        store: RedisStore,
-      }),
-    }),
-    MinioClientModule.registerAsync({
-      imports: [ConfigModule],
-      inject: [ConfigFactoryService],
-      isGlobal: true,
-      useFactory: ({ minio }: ConfigFactoryService) => minio,
-    }),
-  ].filter((exists) => exists),
+  imports,
   providers: [
     AppService,
     ConsoleLogger,

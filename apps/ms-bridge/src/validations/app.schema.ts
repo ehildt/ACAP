@@ -35,6 +35,11 @@ export const APP_SCHEMA = {
       ? Joi.boolean().default(CONFIG_YML.appConfig.brokers.useBullMQ)
       : Joi.boolean().required(),
 
+  USE_KAFKA:
+    CONFIG_YML?.appConfig?.brokers.useKafka !== undefined
+      ? Joi.boolean().default(CONFIG_YML.appConfig.brokers.useKafka)
+      : Joi.boolean().required(),
+
   BODY_LIMIT: CONFIG_YML?.appConfig.bodyLimit
     ? Joi.number().default(CONFIG_YML.appConfig.bodyLimit)
     : Joi.number().required(),

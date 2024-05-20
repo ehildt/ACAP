@@ -26,6 +26,7 @@ describe("OutbreakController", () => {
       const reqs: Array<BreakoutUpsertReq> = [
         { realm: "TEST", contents: [{ value: "do-test" }] },
       ];
+      const useKafka = false;
       const useMQTT = false;
       const useBullMQ = false;
       const useRedisPubSub = false;
@@ -34,11 +35,13 @@ describe("OutbreakController", () => {
         useMQTT,
         useBullMQ,
         useRedisPubSub,
+        useKafka,
       );
       expect(service.delegate).toHaveBeenCalledWith(reqs, {
         useBullMQ,
         useMQTT,
         useRedisPubSub,
+        useKafka,
       });
       expect(result).toEqual(undefined);
     });
@@ -47,6 +50,7 @@ describe("OutbreakController", () => {
       const reqs: Array<BreakoutUpsertReq> = [
         { realm: "TEST", contents: [{ value: "do-test" }] },
       ];
+      const useKafka = true;
       const useMQTT = true;
       const useBullMQ = true;
       const useRedisPubSub = true;
@@ -55,11 +59,13 @@ describe("OutbreakController", () => {
         useMQTT,
         useBullMQ,
         useRedisPubSub,
+        useKafka,
       );
       expect(service.delegate).toHaveBeenCalledWith(reqs, {
         useBullMQ,
         useMQTT,
         useRedisPubSub,
+        useKafka,
       });
       expect(result).toEqual(undefined);
     });

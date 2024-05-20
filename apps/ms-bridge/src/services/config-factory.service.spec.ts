@@ -30,6 +30,7 @@ describe("ConfigFactoryService", () => {
         if (key === "AppConfig.USE_BULLMQ") return true;
         if (key === "AppConfig.USE_REDIS_PUBSUB") return true;
         if (key === "AppConfig.USE_MQTT") return true;
+        if (key === "AppConfig.USE_KAFKA") return true;
         return null;
       });
 
@@ -44,6 +45,7 @@ describe("ConfigFactoryService", () => {
           useBullMQ: true,
           useRedisPubSub: true,
           useMQTT: true,
+          useKafka: true,
         },
       });
     });
