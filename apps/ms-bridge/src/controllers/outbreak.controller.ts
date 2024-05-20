@@ -7,6 +7,7 @@ import {
   QueryUseBullMQ,
   QueryUseKafka,
   QueryUseMqtt,
+  QueryUseRabbitMQ,
   QueryUseRedisPubSub,
 } from "@/decorators/controller.parameter.decorators";
 import { OpenApi_Outbreak } from "@/decorators/open-api.controller.decorators";
@@ -26,12 +27,14 @@ export class OutbreakController {
     @QueryUseBullMQ() useBullMQ = false,
     @QueryUseRedisPubSub() useRedisPubSub = false,
     @QueryUseKafka() useKafka = false,
+    @QueryUseRabbitMQ() useRabbitMQ = false,
   ) {
     return await this.outbreakService.delegate(reqs, {
       useBullMQ,
       useMQTT,
       useRedisPubSub,
       useKafka,
+      useRabbitMQ,
     });
   }
 }

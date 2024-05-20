@@ -2,7 +2,4 @@ import { registerAs } from "@nestjs/config";
 
 import { MQTTClientAdapter } from "./adapter";
 
-export const MQTTClientRegistry = registerAs(
-  "MQTTClientConfig",
-  () => new MQTTClientAdapter(),
-);
+export const MQTTRegistry = registerAs("MQTT", () => new MQTTClientAdapter());

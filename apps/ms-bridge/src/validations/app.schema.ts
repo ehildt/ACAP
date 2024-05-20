@@ -40,6 +40,11 @@ export const APP_SCHEMA = {
       ? Joi.boolean().default(CONFIG_YML.appConfig.brokers.useKafka)
       : Joi.boolean().required(),
 
+  USE_RABBITMQ:
+    CONFIG_YML?.appConfig?.brokers.useRabbitMQ !== undefined
+      ? Joi.boolean().default(CONFIG_YML.appConfig.brokers.useRabbitMQ)
+      : Joi.boolean().required(),
+
   BODY_LIMIT: CONFIG_YML?.appConfig.bodyLimit
     ? Joi.number().default(CONFIG_YML.appConfig.bodyLimit)
     : Joi.number().required(),

@@ -1,6 +1,6 @@
 import { createId } from "@paralleldrive/cuid2";
 
-export class AppConfigAdapter {
+export class AppAdapter {
   get PORT(): number {
     return parseInt(process.env.PORT, 10);
   }

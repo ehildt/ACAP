@@ -1,8 +1,5 @@
 import { registerAs } from "@nestjs/config";
 
-import { AppConfigAdapter } from "./adapter";
+import { AppAdapter } from "./adapter";
 
-export const AppConfigRegistry = registerAs(
-  "AppConfig",
-  async () => new AppConfigAdapter(),
-);
+export const AppRegistry = registerAs("App", async () => new AppAdapter());

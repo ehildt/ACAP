@@ -2,21 +2,22 @@ import { Transport } from "@nestjs/microservices";
 
 import { MqttClientOptions } from "@/modules/mqtt-client.module";
 
-export type AppConfigBrokers = {
+export type AppBrokers = {
   useBullMQ: boolean;
   useRedisPubSub: boolean;
   useMQTT: boolean;
   useKafka: boolean;
+  useRabbitMQ: boolean;
 };
 
-export type AppConfig = {
+export type App = {
   port: number;
   nodeEnv: string;
   address: string;
   printEnv: boolean;
   bodyLimit: number;
   startSwagger: boolean;
-  brokers: AppConfigBrokers;
+  brokers: AppBrokers;
 };
 
 export type RedisPubSubConfig = {
@@ -40,20 +41,32 @@ export type BullMQConfig = {
 
 export type KafkaClientConfig = {
   options: {
-    consumer: {
-      groupId: string;
-    };
     client: {
+      ssl: boolean;
       clientId: string;
       brokers: Array<string>;
+      retry: {
+        retries: number;
+        initialRetryTime: number;
+        factor: number;
+        multiplier: number;
+        maxRetryTime: number;
+      };
     };
   };
 };
 
+export type RabbitMQClientConfig = {
+  options: {
+    urls: Array<string>;
+  };
+};
+
 export type Config = {
-  appConfig: AppConfig;
+  appConfig: App;
   redisPubSubConfig: RedisPubSubConfig;
   bullMQConfig: BullMQConfig;
   mqttClientConfig: MqttClientOptions;
   kafkaClientConfig: KafkaClientConfig;
+  rabbitMQClientConfig: RabbitMQClientConfig;
 };

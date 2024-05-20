@@ -2,7 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 
 import {
-  AppConfig,
+  App,
   BullMQConfig,
   MinioConfig,
   MongoConfig,
@@ -15,31 +15,29 @@ export class ConfigFactoryService {
   constructor(private readonly configService: ConfigService) {}
 
   get app() {
-    const secret = this.configService.get<string>("AppConfig.SYMMETRIC_KEY");
+    const secret = this.configService.get<string>("App.SYMMETRIC_KEY");
     const algorithm = secret ? ALGORITHM[secret.length] : undefined;
-    return Object.freeze<AppConfig>({
-      port: this.configService.get<number>("AppConfig.PORT"),
-      address: this.configService.get<string>("AppConfig.ADDRESS"),
-      startSwagger: this.configService.get<boolean>("AppConfig.START_SWAGGER"),
-      printEnv: this.configService.get<boolean>("AppConfig.PRINT_ENV"),
-      nodeEnv: this.configService.get<string>("AppConfig.NODE_ENV"),
-      bodyLimit: this.configService.get<number>("AppConfig.BODY_LIMIT"),
+    return Object.freeze<App>({
+      port: this.configService.get<number>("App.PORT"),
+      address: this.configService.get<string>("App.ADDRESS"),
+      startSwagger: this.configService.get<boolean>("App.START_SWAGGER"),
+      printEnv: this.configService.get<boolean>("App.PRINT_ENV"),
+      nodeEnv: this.configService.get<string>("App.NODE_ENV"),
+      bodyLimit: this.configService.get<number>("App.BODY_LIMIT"),
       crypto: {
         secret,
         algorithm,
       },
       realm: {
-        ttl: this.configService.get<number>("AppConfig.TTL"),
+        ttl: this.configService.get<number>("App.TTL"),
         namespacePostfix: this.configService.get<string>(
-          "AppConfig.NAMESPACE_POSTFIX",
+          "App.NAMESPACE_POSTFIX",
         ),
-        resolveEnv: this.configService.get<boolean>("AppConfig.RESOLVE_ENV"),
-        gzipThreshold: this.configService.get<number>(
-          "AppConfig.GZIP_THRESHOLD",
-        ),
+        resolveEnv: this.configService.get<boolean>("App.RESOLVE_ENV"),
+        gzipThreshold: this.configService.get<number>("App.GZIP_THRESHOLD"),
       },
       brokers: {
-        useBullMQ: this.configService.get<boolean>("AppConfig.USE_BULLMQ"),
+        useBullMQ: this.configService.get<boolean>("App.USE_BULLMQ"),
       },
     });
   }
