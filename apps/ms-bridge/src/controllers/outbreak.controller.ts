@@ -5,6 +5,7 @@ import { PostOutbreak } from "@/decorators/controller.method.decorators";
 import {
   BreakoutUpsertBody,
   QueryUseBullMQ,
+  QueryUseKafka,
   QueryUseMqtt,
   QueryUseRedisPubSub,
 } from "@/decorators/controller.parameter.decorators";
@@ -24,11 +25,13 @@ export class OutbreakController {
     @QueryUseMqtt() useMQTT = false,
     @QueryUseBullMQ() useBullMQ = false,
     @QueryUseRedisPubSub() useRedisPubSub = false,
+    @QueryUseKafka() useKafka = false,
   ) {
     return await this.outbreakService.delegate(reqs, {
       useBullMQ,
       useMQTT,
       useRedisPubSub,
+      useKafka,
     });
   }
 }

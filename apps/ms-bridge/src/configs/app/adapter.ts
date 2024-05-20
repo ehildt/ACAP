@@ -33,6 +33,10 @@ export class AppConfigAdapter {
     return process.env.USE_MQTT === "true";
   }
 
+  get USE_KAFKA(): boolean {
+    return process.env.USE_KAFKA === "true";
+  }
+
   get NAMESPACE_POSTFIX(): string {
     return process.env.REALM_NAMESPACE_POSTFIX ?? createId();
   }

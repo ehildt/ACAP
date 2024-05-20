@@ -1,5 +1,4 @@
 import { ConfigService } from "@nestjs/config";
-import { Transport } from "@nestjs/microservices";
 import { Test, TestingModule } from "@nestjs/testing";
 
 import { ConfigFactoryService } from "./config-factory.service";
@@ -109,28 +108,6 @@ describe("ConfigFactoryService", () => {
     });
   });
 
-  describe("redisPubSub", () => {
-    it("should return a valid RedisPubSubConfig object", () => {
-      jest.spyOn(configService, "get").mockImplementation((key) => {
-        if (key === "RedisPubSub.PORT") return 6379;
-        if (key === "RedisPubSub.HOST") return "localhost";
-        if (key === "RedisPubSub.PASS") return "redispassword";
-        if (key === "RedisPubSub.USER") return "redisuser";
-        return null;
-      });
-
-      expect(service.redisPubSub).toEqual({
-        transport: Transport.REDIS,
-        options: {
-          port: 6379,
-          host: "localhost",
-          password: "redispassword",
-          username: "redisuser",
-        },
-      });
-    });
-  });
-
   describe("bullMQ", () => {
     it("should return a valid BullMQConfig object", () => {
       jest.spyOn(configService, "get").mockImplementation((key) => {
@@ -147,40 +124,6 @@ describe("ConfigFactoryService", () => {
           host: "localhost",
           password: "bullmqpassword",
           username: "bullmquser",
-        },
-      });
-    });
-  });
-
-  describe("mqtt", () => {
-    it("should return a valid MqttClientOptions object", () => {
-      jest.spyOn(configService, "get").mockImplementation((key) => {
-        if (key === "MQTTClientConfig.BROKER_URL")
-          return "mqtt://localhost:1883";
-        if (key === "MQTTClientConfig.KEEPALIVE") return 60;
-        if (key === "MQTTClientConfig.CONNECTION_TIMEOUT") return 30 * 1000;
-        if (key === "MQTTClientConfig.RECONNECT_PERIOD") return 10 * 1000;
-        if (key === "MQTTClientConfig.RESUBSCRIBE") return true;
-        if (key === "MQTTClientConfig.PROTOCOL") return undefined;
-        if (key === "MQTTClientConfig.HOSTNAME") return "localhost";
-        if (key === "MQTTClientConfig.PORT") return 1883;
-        if (key === "MQTTClientConfig.USERNAME") return "mqttuser";
-        if (key === "MQTTClientConfig.PASSWORD") return "mqttpassword";
-        return null;
-      });
-
-      expect(service.mqtt).toEqual({
-        brokerUrl: "mqtt://localhost:1883",
-        options: {
-          keepalive: 60,
-          connectTimeout: 30 * 1000,
-          reconnectPeriod: 10 * 1000,
-          resubscribe: true,
-          protocol: undefined,
-          hostname: "localhost",
-          port: 1883,
-          username: "mqttuser",
-          password: "mqttpassword",
         },
       });
     });
