@@ -2,7 +2,7 @@ import { InjectQueue } from "@nestjs/bullmq";
 import { Injectable, Optional } from "@nestjs/common";
 import { Queue } from "bullmq";
 
-import { AppConfigBrokers } from "@/configs/config-yml/config.model";
+import { AppBrokers } from "@/configs/config-yml/config.model";
 import { ACAP_MSBR } from "@/constants/app.constants";
 import { BreakoutUpsertReq } from "@/dtos/breakout-upsert.dto.req";
 
@@ -12,7 +12,7 @@ export class OutbreakService {
     @Optional() @InjectQueue(ACAP_MSBR) private readonly bullmq: Queue,
   ) {}
 
-  async delegate(reqs: Array<BreakoutUpsertReq>, args: AppConfigBrokers) {
+  async delegate(reqs: Array<BreakoutUpsertReq>, args: AppBrokers) {
     reqs.forEach(({ realm, contents }) => {
       contents.forEach(({ value }) => {
         args.useBullMQ &&

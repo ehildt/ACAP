@@ -46,6 +46,8 @@
     "@nestjs/platform-fastify": "^10.3.8",
     "@nestjs/swagger": "^7.3.1",
     "@paralleldrive/cuid2": "^2.2.2",
+    "amqp-connection-manager": "^4.1.14",
+    "amqplib": "^0.10.4",
     "bullmq": "^5.7.9",
     "cache-manager": "^5.5.2",
     "cache-manager-ioredis": "^2.1.0",

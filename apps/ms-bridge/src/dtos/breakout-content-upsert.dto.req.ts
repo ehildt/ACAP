@@ -14,7 +14,7 @@ export class BreakoutContentUpsertReq {
       { type: "object", items: { type: "any", additionalProperties: true } },
     ],
   })
-  value: string | number | boolean | Record<string, unknown> | Array<unknown>;
+  value: any;
 
   @IsOptional()
   @IsObject()

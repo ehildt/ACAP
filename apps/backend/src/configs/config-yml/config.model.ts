@@ -1,8 +1,8 @@
-export type AppConfigBrokers = {
+export type AppBrokers = {
   useBullMQ: boolean;
 };
 
-export type AppConfig = {
+export type App = {
   port: number;
   nodeEnv: string;
   address: string;
@@ -19,7 +19,7 @@ export type AppConfig = {
     resolveEnv: boolean;
     ttl: number;
   };
-  brokers: AppConfigBrokers;
+  brokers: AppBrokers;
 };
 
 export type MongoConfig = {
@@ -60,7 +60,7 @@ export type MinioConfig = {
 };
 
 export type Config = {
-  appConfig: AppConfig;
+  appConfig: App;
   mongoConfig: MongoConfig;
   minioConfig: MinioConfig;
   redisConfig: RedisConfig;
