@@ -5,6 +5,7 @@ import { Transport } from "@nestjs/microservices";
 import {
   AppConfig,
   BullMQConfig,
+  KafkaClientConfig,
   RedisPubSubConfig,
 } from "@/configs/config-yml/config.model";
 import { MqttClientOptions } from "@/modules/mqtt-client.module";
@@ -23,10 +24,11 @@ export class ConfigFactoryService {
       bodyLimit: this.configService.get<number>("AppConfig.BODY_LIMIT"),
       brokers: {
         useBullMQ: this.configService.get<boolean>("AppConfig.USE_BULLMQ"),
+        useMQTT: this.configService.get<boolean>("AppConfig.USE_MQTT"),
+        useKafka: this.configService.get<boolean>("AppConfig.USE_KAFKA"),
         useRedisPubSub: this.configService.get<boolean>(
           "AppConfig.USE_REDIS_PUBSUB",
         ),
-        useMQTT: this.configService.get<boolean>("AppConfig.USE_MQTT"),
       },
     });
   }
@@ -58,6 +60,25 @@ export class ConfigFactoryService {
         host,
         password,
         username,
+      },
+    });
+  }
+
+  get kafka() {
+    const clientId = this.configService.get<string>("KafkaClient.CLIENT_ID");
+    const groupId = this.configService.get<string>("KafkaClient.GROUP_ID");
+    const brokers = this.configService.get<Array<string>>(
+      "KafkaClient.BROKERS",
+    );
+    return Object.freeze<KafkaClientConfig>({
+      options: {
+        client: {
+          clientId,
+          brokers,
+        },
+        consumer: {
+          groupId,
+        },
       },
     });
   }

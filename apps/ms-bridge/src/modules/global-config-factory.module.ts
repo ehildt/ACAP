@@ -3,6 +3,7 @@ import { ConfigModule } from "@nestjs/config";
 
 import { AppConfigRegistry } from "@/configs/app/registry";
 import { BullMQRegistry } from "@/configs/bullmq/registry";
+import { KafkaRegistry } from "@/configs/kafka/registry";
 import { MQTTClientRegistry } from "@/configs/mqtt/registry";
 import { RedisPubSubRegistry } from "@/configs/redis-pubsub/registry";
 import { ConfigFactoryService } from "@/services/config-factory.service";
@@ -21,6 +22,7 @@ import { validationSchema } from "@/validations/validation.schema";
         RedisPubSubRegistry,
         BullMQRegistry,
         MQTTClientRegistry,
+        KafkaRegistry,
       ],
     }),
   ],

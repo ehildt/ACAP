@@ -10,3 +10,4 @@ ignores:
   - "ts-jest"
   - "ts-loader"
   - "tsconfig-paths"
+  - "rimraf"

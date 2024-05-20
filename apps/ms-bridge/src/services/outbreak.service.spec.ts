@@ -1,9 +1,13 @@
-import { ClientProxy } from "@nestjs/microservices";
+import { ClientKafka, ClientProxy } from "@nestjs/microservices";
 import { Test } from "@nestjs/testing";
 import { Queue } from "bullmq";
 
 import { AppConfigBrokers } from "@/configs/config-yml/config.model";
-import { ACAP_BRCS, REDIS_PUBSUB } from "@/constants/app.constants";
+import {
+  ACAP_BRCS,
+  KAFKA_CLIENT,
+  REDIS_PUBSUB,
+} from "@/constants/app.constants";
 import { BreakoutUpsertReq } from "@/dtos/breakout-upsert.dto.req";
 import { MQTT_CLIENT, MqttClient } from "@/modules/mqtt-client.module";
 
@@ -13,6 +17,7 @@ import { OutbreakService } from "./outbreak.service";
 describe("OutbreakService", () => {
   let outbreakService: OutbreakService;
   let mockRedisPubSub: jest.Mocked<ClientProxy>;
+  let mockKafka: jest.Mocked<ClientKafka>;
   let mockMQTTClient: jest.Mocked<MqttClient>;
   let mockBullMQQueue: jest.Mocked<Queue>;
   let mockConfigFactory: Partial<ConfigFactoryService>;
@@ -38,6 +43,12 @@ describe("OutbreakService", () => {
           },
         },
         {
+          provide: KAFKA_CLIENT,
+          useValue: {
+            emit: jest.fn(),
+          },
+        },
+        {
           provide: MQTT_CLIENT,
           useValue: {
             publish: jest.fn(),
@@ -56,6 +67,7 @@ describe("OutbreakService", () => {
     mockRedisPubSub = moduleRef.get(REDIS_PUBSUB);
     mockMQTTClient = moduleRef.get(MQTT_CLIENT);
     mockBullMQQueue = moduleRef.get(ACAP_BRCS);
+    mockKafka = moduleRef.get(KAFKA_CLIENT);
   });
 
   afterEach(() => {
@@ -76,6 +88,7 @@ describe("OutbreakService", () => {
       ];
 
       const args: AppConfigBrokers = {
+        useKafka: true,
         useRedisPubSub: true,
         useMQTT: true,
         useBullMQ: true,
@@ -83,9 +96,10 @@ describe("OutbreakService", () => {
 
       await outbreakService.delegate(reqs, args);
       expect(mockRedisPubSub.emit).toHaveBeenCalledTimes(2);
+      expect(mockKafka.emit).toHaveBeenCalledTimes(2);
       expect(mockMQTTClient.publish).toHaveBeenCalledTimes(2);
-      // this one is un-mockable
-      expect(mockBullMQQueue.add).not.toHaveBeenCalled();
+      // TODO: fix test - mockable?
+      expect(mockBullMQQueue.add).toHaveBeenCalledTimes(0);
     });
 
     it("should not distribute data if no messaging options are enabled", async () => {
@@ -101,6 +115,7 @@ describe("OutbreakService", () => {
       ];
 
       const args: AppConfigBrokers = {
+        useKafka: false,
         useRedisPubSub: false,
         useMQTT: false,
         useBullMQ: false,
@@ -108,6 +123,7 @@ describe("OutbreakService", () => {
 
       await outbreakService.delegate(reqs, args);
       expect(mockRedisPubSub.emit).not.toHaveBeenCalled();
+      expect(mockKafka.emit).not.toHaveBeenCalled();
       expect(mockMQTTClient.publish).not.toHaveBeenCalled();
       expect(mockBullMQQueue.add).not.toHaveBeenCalled();
     });

@@ -1,7 +1,3 @@
-import { Transport } from "@nestjs/microservices";
-
-import { MqttClientOptions } from "@/modules/mqtt-client.module";
-
 export type AppConfigBrokers = {
   useBullMQ: boolean;
 };
@@ -33,16 +29,6 @@ export type MongoConfig = {
   pass: string;
   ssl: boolean;
   tlsAllowInvalidCertificates: boolean;
-};
-
-export type RedisPubSubConfig = {
-  transport: Transport.REDIS;
-  options: {
-    port: number;
-    host: string;
-    password: string;
-    username: string;
-  };
 };
 
 export type BullMQConfig = {
@@ -78,7 +64,5 @@ export type Config = {
   mongoConfig: MongoConfig;
   minioConfig: MinioConfig;
   redisConfig: RedisConfig;
-  redisPubSubConfig: RedisPubSubConfig;
   bullMQConfig: BullMQConfig;
-  mqttClientConfig: MqttClientOptions;
 };
