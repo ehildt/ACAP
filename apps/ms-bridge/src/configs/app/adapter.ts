@@ -1,6 +1,6 @@
 import { createId } from "@paralleldrive/cuid2";
 
-export class AppConfigAdapter {
+export class AppAdapter {
   get PORT(): number {
     return parseInt(process.env.PORT, 10);
   }
@@ -35,6 +35,10 @@ export class AppConfigAdapter {
 
   get USE_KAFKA(): boolean {
     return process.env.USE_KAFKA === "true";
+  }
+
+  get USE_RABBITMQ(): boolean {
+    return process.env.USE_RABBITMQ === "true";
   }
 
   get NAMESPACE_POSTFIX(): string {

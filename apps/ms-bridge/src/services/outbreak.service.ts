@@ -1,13 +1,15 @@
 import { InjectQueue } from "@nestjs/bullmq";
 import { Inject, Injectable, Optional } from "@nestjs/common";
-import { ClientKafka, ClientProxy } from "@nestjs/microservices";
+import { ClientKafka, ClientProxy, ClientRMQ } from "@nestjs/microservices";
 import { Job, Queue, Worker } from "bullmq";
 
-import { AppConfigBrokers } from "@/configs/config-yml/config.model";
+import { AppBrokers } from "@/configs/config-yml/config.model";
 import {
   ACAP_BRCS,
   ACAP_MSBR,
+  BULLMQ_CLIENT,
   KAFKA_CLIENT,
+  RABBITMQ_CLIENT,
   REDIS_PUBSUB,
 } from "@/constants/app.constants";
 import { BreakoutUpsertReq } from "@/dtos/breakout-upsert.dto.req";
@@ -20,9 +22,10 @@ export class OutbreakService {
   constructor(
     private readonly factory: ConfigFactoryService,
     @Optional() @Inject(REDIS_PUBSUB) private readonly redisPubSub: ClientProxy,
-    @Optional() @InjectQueue(ACAP_BRCS) private readonly bullmq: Queue,
+    @Optional() @InjectQueue(BULLMQ_CLIENT) private readonly bullmq: Queue,
     @Optional() @Inject(MQTT_CLIENT) private readonly mqtt: MqttClient,
     @Optional() @Inject(KAFKA_CLIENT) private readonly kafka: ClientKafka,
+    @Optional() @Inject(RABBITMQ_CLIENT) private readonly rabbitmq: ClientRMQ,
   ) {}
 
   onModuleInit() {
@@ -30,29 +33,34 @@ export class OutbreakService {
       ACAP_MSBR,
       async (job: Job) => {
         for (let index = 0; index < job.data.length; index++) {
-          const item = job.data[index];
+          const realm = job.name;
+          const item = JSON.stringify({ realm, ...job.data[index] });
           if (this.factory.app.brokers.useRedisPubSub)
-            this.redisPubSub?.emit(job.name, item);
+            this.redisPubSub?.emit(ACAP_BRCS, item);
+          if (this.factory.app.brokers.useRabbitMQ)
+            this.rabbitmq.emit(ACAP_BRCS, item);
           if (this.factory.app.brokers.useMQTT)
-            this.mqtt?.publish(job.name, JSON.stringify(item));
+            this.mqtt?.publish(ACAP_BRCS, item);
           if (this.factory.app.brokers.useBullMQ)
-            this.bullmq?.add(job.name, item).catch((error) => error);
+            this.bullmq?.add(ACAP_BRCS, item).catch((error) => error);
           if (this.factory.app.brokers.useKafka)
-            this.kafka.emit(job.name, item);
+            this.kafka.emit(ACAP_BRCS, item);
         }
       },
       { connection: this.factory.bullMQ.connection },
     );
   }
 
-  async delegate(reqs: Array<BreakoutUpsertReq>, args: AppConfigBrokers) {
+  async delegate(reqs: Array<BreakoutUpsertReq>, args: AppBrokers) {
     reqs.forEach(({ realm, contents }) => {
-      contents.forEach(({ value, jobOptions }) => {
-        if (args.useKafka) this.kafka.emit(realm, value);
-        if (args.useRedisPubSub) this.redisPubSub?.emit(realm, value);
-        if (args.useMQTT) this.mqtt?.publish(realm, JSON.stringify(value));
+      contents.forEach(({ value }) => {
+        const item = JSON.stringify({ realm, ...value });
+        if (args.useRabbitMQ) this.rabbitmq.emit(ACAP_BRCS, item);
+        if (args.useKafka) this.kafka.emit(ACAP_BRCS, item);
+        if (args.useRedisPubSub) this.redisPubSub?.emit(ACAP_BRCS, item);
+        if (args.useMQTT) this.mqtt?.publish(ACAP_BRCS, item);
         if (args.useBullMQ)
-          this.bullmq?.add(realm, value, jobOptions).catch((error) => error);
+          this.bullmq?.add(ACAP_BRCS, item).catch((error) => error);
       });
     });
   }

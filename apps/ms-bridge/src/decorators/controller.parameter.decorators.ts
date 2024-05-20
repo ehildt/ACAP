@@ -11,3 +11,4 @@ export const QueryUseMqtt = () => Query("useMqtt", ParseBoolPipe);
 export const QueryUseBullMQ = () => Query("useBullMQ", ParseBoolPipe);
 export const QueryUseKafka = () => Query("useKafka", ParseBoolPipe);
 export const QueryUseRedisPubSub = () => Query("useRedisPubSub", ParseBoolPipe);
+export const QueryUseRabbitMQ = () => Query("useRabbitMQ", ParseBoolPipe);

@@ -1,7 +1,7 @@
 import { Global, Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
 
-import { AppConfigRegistry } from "@/configs/app/registry";
+import { AppRegistry } from "@/configs/app/registry";
 import { BullMQRegistry } from "@/configs/bullmq/registry";
 import { MinioConfigRegistry } from "@/configs/minio/registry";
 import { MongoConfigRegistry } from "@/configs/mongo/registry";
@@ -18,7 +18,7 @@ import { validationSchema } from "@/validations/validation.schema";
       ignoreEnvFile: true,
       validationSchema,
       load: [
-        AppConfigRegistry,
+        AppRegistry,
         MongoConfigRegistry,
         MinioConfigRegistry,
         RedisConfigRegistry,

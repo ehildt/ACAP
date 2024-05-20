@@ -6,7 +6,8 @@ import { Partitioners } from "kafkajs";
 
 import {
   ACAP_BRCS,
-  KAFKA_CLIENT,
+  BULLMQ_CLIENT,
+  RABBITMQ_CLIENT,
   REDIS_PUBSUB,
 } from "@/constants/app.constants";
 import { OutbreakController } from "@/controllers/outbreak.controller";
@@ -38,15 +39,18 @@ if (process.env.USE_KAFKA === "true")
   imports.push(
     ClientsModule.registerAsync([
       {
-        name: KAFKA_CLIENT,
+        name: "KAFKA_CLIENT",
         imports: [ConfigModule],
         inject: [ConfigFactoryService],
-        useFactory: async ({ kafka }: ConfigFactoryService) => ({
-          name: "ACAP_BRCS",
-          transport: Transport.KAFKA,
-          ...kafka,
-          createPartitioner: Partitioners.DefaultPartitioner,
-        }),
+        useFactory: async (configFactoryService: ConfigFactoryService) => {
+          const { kafka } = configFactoryService;
+          return {
+            name: "ACAP_BRCS",
+            transport: Transport.KAFKA,
+            createPartitioner: Partitioners.DefaultPartitioner,
+            options: kafka.options,
+          };
+        },
       },
     ]),
   );
@@ -56,8 +60,9 @@ if (process.env.USE_BULLMQ === "true")
     BullModule.registerQueueAsync({
       imports: [ConfigModule],
       inject: [ConfigFactoryService],
-      name: ACAP_BRCS,
+      name: BULLMQ_CLIENT,
       useFactory: async ({ bullMQ }: ConfigFactoryService) => ({
+        name: ACAP_BRCS,
         ...bullMQ,
         defaultJobOptions: {
           backoff: 300_000,
@@ -79,6 +84,26 @@ if (process.env.USE_MQTT === "true")
       isGlobal: true,
       useFactory: ({ mqtt }: ConfigFactoryService) => mqtt,
     }),
+  );
+
+if (process.env.USE_RABBITMQ === "true")
+  imports.push(
+    ClientsModule.registerAsync([
+      {
+        name: RABBITMQ_CLIENT,
+        imports: [ConfigModule],
+        inject: [ConfigFactoryService],
+        useFactory: async ({ rabbitmq }: ConfigFactoryService) => ({
+          name: ACAP_BRCS,
+          transport: Transport.RMQ,
+          options: {
+            urls: rabbitmq.options.urls,
+            queue: ACAP_BRCS,
+            noAck: true,
+          },
+        }),
+      },
+    ]),
   );
 
 @Module({

@@ -18,20 +18,20 @@ describe("ConfigFactoryService", () => {
 
   describe("app", () => {
     const SYMMETRIC_KEY = "aaaaaaaaaaaabbbbbbbbbbbb";
-    it("should return a valid AppConfig object", () => {
+    it("should return a valid App object", () => {
       jest.spyOn(configService, "get").mockImplementation((key) => {
-        if (key === "AppConfig.BODY_LIMIT") return 1000;
-        if (key === "AppConfig.PORT") return 3000;
-        if (key === "AppConfig.ADDRESS") return "localhost";
-        if (key === "AppConfig.START_SWAGGER") return true;
-        if (key === "AppConfig.PRINT_ENV") return true;
-        if (key === "AppConfig.NODE_ENV") return "production";
-        if (key === "AppConfig.SYMMETRIC_KEY") return SYMMETRIC_KEY;
-        if (key === "AppConfig.TTL") return 3600;
-        if (key === "AppConfig.NAMESPACE_POSTFIX") return "prod";
-        if (key === "AppConfig.RESOLVE_ENV") return true;
-        if (key === "AppConfig.GZIP_THRESHOLD") return 1024;
-        if (key === "AppConfig.USE_BULLMQ") return true;
+        if (key === "App.BODY_LIMIT") return 1000;
+        if (key === "App.PORT") return 3000;
+        if (key === "App.ADDRESS") return "localhost";
+        if (key === "App.START_SWAGGER") return true;
+        if (key === "App.PRINT_ENV") return true;
+        if (key === "App.NODE_ENV") return "production";
+        if (key === "App.SYMMETRIC_KEY") return SYMMETRIC_KEY;
+        if (key === "App.TTL") return 3600;
+        if (key === "App.NAMESPACE_POSTFIX") return "prod";
+        if (key === "App.RESOLVE_ENV") return true;
+        if (key === "App.GZIP_THRESHOLD") return 1024;
+        if (key === "App.USE_BULLMQ") return true;
         return null;
       });
 

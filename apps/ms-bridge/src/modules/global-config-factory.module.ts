@@ -1,10 +1,11 @@
 import { Global, Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
 
-import { AppConfigRegistry } from "@/configs/app/registry";
+import { AppRegistry } from "@/configs/app/registry";
 import { BullMQRegistry } from "@/configs/bullmq/registry";
 import { KafkaRegistry } from "@/configs/kafka/registry";
-import { MQTTClientRegistry } from "@/configs/mqtt/registry";
+import { MQTTRegistry } from "@/configs/mqtt/registry";
+import { RabbitMQRegistry } from "@/configs/rabbitmq/registry";
 import { RedisPubSubRegistry } from "@/configs/redis-pubsub/registry";
 import { ConfigFactoryService } from "@/services/config-factory.service";
 import { validationSchema } from "@/validations/validation.schema";
@@ -18,11 +19,12 @@ import { validationSchema } from "@/validations/validation.schema";
       ignoreEnvFile: true,
       validationSchema,
       load: [
-        AppConfigRegistry,
+        AppRegistry,
         RedisPubSubRegistry,
         BullMQRegistry,
-        MQTTClientRegistry,
+        MQTTRegistry,
         KafkaRegistry,
+        RabbitMQRegistry,
       ],
     }),
   ],

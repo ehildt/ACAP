@@ -1,5 +1,6 @@
 acap
 adpyke
+amqp
 autodocs
 autoprefixer
 azuretools
@@ -60,6 +61,8 @@ PARTITIONER
 Partitioners
 pkief
 postcss
+rabbitmq
+RABBITMQ
 redhat
 redis
 releaserc
