@@ -76,6 +76,9 @@ export class AppService {
             useMqtt: this.configFactory.app.brokers.useMQTT
               ? this.configFactory.mqtt
               : false,
+            useKafka: this.configFactory.app.brokers.useKafka
+              ? this.configFactory.kafka
+              : false,
           },
         },
         "ACAP_CONFIGURATION",

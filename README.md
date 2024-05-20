@@ -81,7 +81,7 @@ Table of Contents
 [Whats in the box?](#whats-in-the-box)  
 [Content Validation](#content-validation)  
 [Content Encryption](#content-encryption)  
-[Redis](#redis)  
+[Caching](#caching)  
 [Redis Publish Subscribe](#redis-publish-subscribe)  
 [MQTT](#mqtt)  
 [BullMQ](#bullmq)  
@@ -406,11 +406,13 @@ Security: AES-128-CBC uses a 128-bit key, which is still considered secure but i
 </div>
 <br />
 
-### Redis
+### Caching
 
-Under the hood, ACAP utilizes [Redis](https://redis.io/docs/) for optimization. It efficiently updates the cache whenever the content is modified, except during the initial creation. If existing content is updated, the cache is also updated as long as the content is currently cached. When fetching the content, and if it already exists in the cache, the time-to-live (TTL) is reset. This approach minimizes unnecessary database I/O operations. Otherwise the content is fetched from the database and populated in the cache.
+Under the hood, ACAP utilizes [KeyDB](https://docs.keydb.dev/), a drop-in alternative for [Redis](https://redis.io/). ACAP builds on top of KeyDB and efficiently updates the cache whenever content is modified or fetched. Notably, only structured data is cached in memory. Unstructured data and all optimization are handled by MinIO. However, the metadata of unstructured files is stored and cached in memory as a reference and persisted in MongoDB.
 
-`The Redis cache is a highly efficient in-memory key-value storage system. ACAP further enhances its capabilities by introducing a dynamic content management system, adding flexibility and versatility to its functionality.`
+> KeyDB, ValKey, and Dragonfly are just a few drop-in alternatives to Redis. Feel free to use any compatible in-memory cache service you prefer.
+
+`KeyDB is a high performance open source database used at Snap, and a powerful drop-in alternative to Redis. While many databases keep the best features locked in their paid offerings, KeyDB remains fully open source. This best enables Snap & the community to collaborate and benefit together in the projects development.`
 
 ### Redis Publish Subscribe
 

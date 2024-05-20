@@ -9,6 +9,7 @@ appConfig:
     useRedisPubSub: true
     useBullMQ: true
     useMQTT: true
+    useKafka: true
 
 redisPubSubConfig:
   options:
@@ -23,6 +24,14 @@ bullMQConfig:
     host: keydb
     password: redis
     username: default
+
+kafkaClientConfig:
+  options: 
+    consumer:
+      groupId: "acap-group"
+    client: 
+      clientId: "acap-client"
+      brokers: "kafka:9092"
 
 mqttClientConfig:
   brokerUrl: null

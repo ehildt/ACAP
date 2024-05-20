@@ -13,6 +13,8 @@ services:
       - ./apps/frontend/.env.development
     ports:
       - "5173:5173"
+    networks:
+      - acap-network
 
   backend:
     container_name: backend
@@ -26,10 +28,13 @@ services:
       - mongo
       - minio
       - keydb
+      - msbridge
     env_file:
       - ./apps/backend/env/.env
     ports:
       - 3001:3001
+    networks:
+      - acap-network
 
   msbridge:
     container_name: msbridge
@@ -41,14 +46,17 @@ services:
       - ./node_modules:/node_modules
     depends_on:
       - keydb
+      - kafka
       - mosquitto
     env_file:
       - ./apps/ms-bridge/env/.env
+    environment:
+      - KAFKAJS_NO_PARTITIONER_WARNING=1
     ports:
       - 3002:3002
+    networks:
+      - acap-network
 
-  # feel free to switch to any redis 
-  # compatible opt-in service
   keydb:
     image: eqalpha/keydb
     container_name: keydb
@@ -58,6 +66,8 @@ services:
       - keydb_data:/data
       - ./apps/ms-bridge/keydb.conf:/usr/local/etc/keydb/keydb.conf
     command: keydb-server /usr/local/etc/keydb/keydb.conf
+    networks:
+      - acap-network
 
   mongo:
     command: mongod --quiet --wiredTigerCacheSizeGB 1.5 --logpath /dev/null
@@ -68,9 +78,11 @@ services:
       - MONGO_INITDB_ROOT_PASSWORD=mongo
       - MONGO_INITDB_DATABASE=ACAP
     volumes:
-      - mongo_acap_data:/data/db
+      - mongo_data:/data/db
     ports:
       - 27017:27017
+    networks:
+      - acap-network
 
   minio:
     image: "bitnami/minio:latest"
@@ -83,9 +95,10 @@ services:
       - MINIO_ROOT_PASSWORD=minio2024
       - MINIO_SKIP_CLIENT=yes
       - MINIO_DEFAULT_BUCKETS=acap
-
     volumes:
-      - minio_acap_data:/bitnami/minio/data
+      - minio_data:/bitnami/minio/data
+    networks:
+      - acap-network
 
   mosquitto:
     image: eclipse-mosquitto
@@ -97,16 +110,45 @@ services:
       - mosquitto_data:/mosquitto/data
       - ./mosquitto.conf:/mosquitto/config/mosquitto.conf
       - mosquitto_log:/mosquitto/log
+    networks:
+      - acap-network
+
+  kafka:
+    image: 'bitnami/kafka'
+    container_name: kafka
+    ports:
+      - '9092:9092'
+      - '9093:9093'
+    volumes:
+      - kafka_data:/bitnami/kafka
+    command: /bin/sh -c "exec /opt/bitnami/scripts/kafka/run.sh > /dev/null 2>&1"
+    environment:
+      - KAFKA_CFG_NODE_ID=1
+      - KAFKA_CFG_PROCESS_ROLES=broker,controller
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://0.0.0.0:9092,CONTROLLER://0.0.0.0:9093
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092
+      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT
+      - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=1@kafka:9093
+      - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
+      - KAFKA_CFG_OFFSETS_TOPIC_REPLICATION_FACTOR=1
+      - KAFKA_CFG_TRANSACTION_STATE_LOG_REPLICATION_FACTOR=1
+      - KAFKA_CFG_TRANSACTION_STATE_LOG_MIN_ISR=1
+      - KAFKA_CFG_LOG_DIRS=/bitnami/kafka/data
+      - ALLOW_PLAINTEXT_LISTENER=yes
+      - KAFKA_LOG4J_LOGGERS=kafka.controller=INFO,kafka.producer.async.DefaultEventHandler=INFO,state.change.logger=INFO
+      - KAFKA_LOG4J_ROOT_LOGLEVEL=WARN
+    networks:
+      - acap-network
 
 volumes:
-  mongo_acap_data:
-  minio_acap_data:
+  mongo_data:
+  minio_data:
   keydb_data:
+  kafka_data:
   mosquitto_data:
   mosquitto_config:
   mosquitto_log:
 
 networks:
-  default:
+  acap-network:
     driver: bridge
-    name: ACAP_NETWORK

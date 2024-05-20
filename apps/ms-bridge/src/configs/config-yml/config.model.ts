@@ -6,6 +6,7 @@ export type AppConfigBrokers = {
   useBullMQ: boolean;
   useRedisPubSub: boolean;
   useMQTT: boolean;
+  useKafka: boolean;
 };
 
 export type AppConfig = {
@@ -37,9 +38,22 @@ export type BullMQConfig = {
   };
 };
 
+export type KafkaClientConfig = {
+  options: {
+    consumer: {
+      groupId: string;
+    };
+    client: {
+      clientId: string;
+      brokers: Array<string>;
+    };
+  };
+};
+
 export type Config = {
   appConfig: AppConfig;
   redisPubSubConfig: RedisPubSubConfig;
   bullMQConfig: BullMQConfig;
   mqttClientConfig: MqttClientOptions;
+  kafkaClientConfig: KafkaClientConfig;
 };
