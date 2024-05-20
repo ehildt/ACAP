@@ -18,19 +18,19 @@ describe("ConfigFactoryService", () => {
   });
 
   describe("app", () => {
-    it("should return a valid AppConfig object", () => {
+    it("should return a valid App object", () => {
       jest.spyOn(configService, "get").mockImplementation((key) => {
-        if (key === "AppConfig.BODY_LIMIT") return 1000;
-        if (key === "AppConfig.PORT") return 3000;
-        if (key === "AppConfig.ADDRESS") return "localhost";
-        if (key === "AppConfig.START_SWAGGER") return true;
-        if (key === "AppConfig.PRINT_ENV") return true;
-        if (key === "AppConfig.NODE_ENV") return "production";
-        if (key === "AppConfig.TTL") return 3600;
-        if (key === "AppConfig.USE_BULLMQ") return true;
-        if (key === "AppConfig.USE_REDIS_PUBSUB") return true;
-        if (key === "AppConfig.USE_MQTT") return true;
-        if (key === "AppConfig.USE_KAFKA") return true;
+        if (key === "App.BODY_LIMIT") return 1000;
+        if (key === "App.PORT") return 3000;
+        if (key === "App.ADDRESS") return "localhost";
+        if (key === "App.START_SWAGGER") return true;
+        if (key === "App.PRINT_ENV") return true;
+        if (key === "App.NODE_ENV") return "production";
+        if (key === "App.TTL") return 3600;
+        if (key === "App.USE_BULLMQ") return true;
+        if (key === "App.USE_REDIS_PUBSUB") return true;
+        if (key === "App.USE_MQTT") return true;
+        if (key === "App.USE_KAFKA") return true;
         return null;
       });
 
@@ -97,17 +97,16 @@ describe("ConfigFactoryService", () => {
   describe("mqtt", () => {
     it("should return a valid MqttClientOptions object", () => {
       jest.spyOn(configService, "get").mockImplementation((key) => {
-        if (key === "MQTTClientConfig.BROKER_URL")
-          return "mqtt://localhost:1883";
-        if (key === "MQTTClientConfig.KEEPALIVE") return 60;
-        if (key === "MQTTClientConfig.CONNECTION_TIMEOUT") return 30 * 1000;
-        if (key === "MQTTClientConfig.RECONNECT_PERIOD") return 10 * 1000;
-        if (key === "MQTTClientConfig.RESUBSCRIBE") return true;
-        if (key === "MQTTClientConfig.PROTOCOL") return undefined;
-        if (key === "MQTTClientConfig.HOSTNAME") return "localhost";
-        if (key === "MQTTClientConfig.PORT") return 1883;
-        if (key === "MQTTClientConfig.USERNAME") return "mqttuser";
-        if (key === "MQTTClientConfig.PASSWORD") return "mqttpassword";
+        if (key === "MQTT.BROKER_URL") return "mqtt://localhost:1883";
+        if (key === "MQTT.KEEPALIVE") return 60;
+        if (key === "MQTT.CONNECTION_TIMEOUT") return 30 * 1000;
+        if (key === "MQTT.RECONNECT_PERIOD") return 10 * 1000;
+        if (key === "MQTT.RESUBSCRIBE") return true;
+        if (key === "MQTT.PROTOCOL") return undefined;
+        if (key === "MQTT.HOSTNAME") return "localhost";
+        if (key === "MQTT.PORT") return 1883;
+        if (key === "MQTT.USERNAME") return "mqttuser";
+        if (key === "MQTT.PASSWORD") return "mqttpassword";
         return null;
       });
 

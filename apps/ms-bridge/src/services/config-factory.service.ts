@@ -3,9 +3,10 @@ import { ConfigService } from "@nestjs/config";
 import { Transport } from "@nestjs/microservices";
 
 import {
-  AppConfig,
+  App,
   BullMQConfig,
   KafkaClientConfig,
+  RabbitMQClientConfig,
   RedisPubSubConfig,
 } from "@/configs/config-yml/config.model";
 import { MqttClientOptions } from "@/modules/mqtt-client.module";
@@ -15,20 +16,19 @@ export class ConfigFactoryService {
   constructor(private readonly configService: ConfigService) {}
 
   get app() {
-    return Object.freeze<AppConfig>({
-      port: this.configService.get<number>("AppConfig.PORT"),
-      address: this.configService.get<string>("AppConfig.ADDRESS"),
-      startSwagger: this.configService.get<boolean>("AppConfig.START_SWAGGER"),
-      printEnv: this.configService.get<boolean>("AppConfig.PRINT_ENV"),
-      nodeEnv: this.configService.get<string>("AppConfig.NODE_ENV"),
-      bodyLimit: this.configService.get<number>("AppConfig.BODY_LIMIT"),
+    return Object.freeze<App>({
+      port: this.configService.get<number>("App.PORT"),
+      address: this.configService.get<string>("App.ADDRESS"),
+      startSwagger: this.configService.get<boolean>("App.START_SWAGGER"),
+      printEnv: this.configService.get<boolean>("App.PRINT_ENV"),
+      nodeEnv: this.configService.get<string>("App.NODE_ENV"),
+      bodyLimit: this.configService.get<number>("App.BODY_LIMIT"),
       brokers: {
-        useBullMQ: this.configService.get<boolean>("AppConfig.USE_BULLMQ"),
-        useMQTT: this.configService.get<boolean>("AppConfig.USE_MQTT"),
-        useKafka: this.configService.get<boolean>("AppConfig.USE_KAFKA"),
-        useRedisPubSub: this.configService.get<boolean>(
-          "AppConfig.USE_REDIS_PUBSUB",
-        ),
+        useRabbitMQ: this.configService.get<boolean>("App.USE_RABBITMQ"),
+        useBullMQ: this.configService.get<boolean>("App.USE_BULLMQ"),
+        useMQTT: this.configService.get<boolean>("App.USE_MQTT"),
+        useKafka: this.configService.get<boolean>("App.USE_KAFKA"),
+        useRedisPubSub: this.configService.get<boolean>("App.USE_REDIS_PUBSUB"),
       },
     });
   }
@@ -65,43 +65,53 @@ export class ConfigFactoryService {
   }
 
   get kafka() {
-    const clientId = this.configService.get<string>("KafkaClient.CLIENT_ID");
-    const groupId = this.configService.get<string>("KafkaClient.GROUP_ID");
-    const brokers = this.configService.get<Array<string>>(
-      "KafkaClient.BROKERS",
-    );
     return Object.freeze<KafkaClientConfig>({
       options: {
         client: {
-          clientId,
-          brokers,
+          ssl: this.configService.get<boolean>("Kafka.SSL"),
+          clientId: this.configService.get<string>("Kafka.CLIENT_ID"),
+          brokers: this.configService.get<Array<string>>("Kafka.BROKERS"),
+          retry: {
+            factor: this.configService.get<number>("Kafka.RETRY_FACTOR"),
+            retries: this.configService.get<number>("Kafka.RETRIES"),
+            multiplier: this.configService.get<number>("Kafka.RETRY_SCALAR"),
+            initialRetryTime:
+              this.configService.get<number>("Kafka.RETRY_TIME"),
+            maxRetryTime: this.configService.get<number>(
+              "Kafka.RETRY_MAX_TIMES",
+            ),
+          },
         },
-        consumer: {
-          groupId,
-        },
+      },
+    });
+  }
+
+  get rabbitmq() {
+    const urls = this.configService.get<Array<string>>("RabbitMQ.URLS");
+    return Object.freeze<RabbitMQClientConfig>({
+      options: {
+        urls,
       },
     });
   }
 
   get mqtt() {
     return Object.freeze<MqttClientOptions>({
-      brokerUrl: this.configService.get<string>("MQTTClientConfig.BROKER_URL"),
+      brokerUrl: this.configService.get<string>("MQTT.BROKER_URL"),
       options: {
-        keepalive: this.configService.get<number>("MQTTClientConfig.KEEPALIVE"),
+        keepalive: this.configService.get<number>("MQTT.KEEPALIVE"),
         connectTimeout: this.configService.get<number>(
-          "MQTTClientConfig.CONNECTION_TIMEOUT",
+          "MQTT.CONNECTION_TIMEOUT",
         ),
         reconnectPeriod: this.configService.get<number>(
-          "MQTTClientConfig.RECONNECT_PERIOD",
+          "MQTT.RECONNECT_PERIOD",
         ),
-        resubscribe: this.configService.get<boolean>(
-          "MQTTClientConfig.RESUBSCRIBE",
-        ),
-        protocol: this.configService.get<any>("MQTTClientConfig.PROTOCOL"),
-        hostname: this.configService.get<string>("MQTTClientConfig.HOSTNAME"),
-        port: this.configService.get<number>("MQTTClientConfig.PORT"),
-        username: this.configService.get<string>("MQTTClientConfig.USERNAME"),
-        password: this.configService.get<string>("MQTTClientConfig.PASSWORD"),
+        resubscribe: this.configService.get<boolean>("MQTT.RESUBSCRIBE"),
+        protocol: this.configService.get<any>("MQTT.PROTOCOL"),
+        hostname: this.configService.get<string>("MQTT.HOSTNAME"),
+        port: this.configService.get<number>("MQTT.PORT"),
+        username: this.configService.get<string>("MQTT.USERNAME"),
+        password: this.configService.get<string>("MQTT.PASSWORD"),
       },
     });
   }

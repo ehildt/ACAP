@@ -2,7 +2,7 @@ import { ClientKafka, ClientProxy } from "@nestjs/microservices";
 import { Test } from "@nestjs/testing";
 import { Queue } from "bullmq";
 
-import { AppConfigBrokers } from "@/configs/config-yml/config.model";
+import { AppBrokers } from "@/configs/config-yml/config.model";
 import {
   ACAP_BRCS,
   KAFKA_CLIENT,
@@ -87,7 +87,7 @@ describe("OutbreakService", () => {
         },
       ];
 
-      const args: AppConfigBrokers = {
+      const args: AppBrokers = {
         useKafka: true,
         useRedisPubSub: true,
         useMQTT: true,
@@ -114,7 +114,7 @@ describe("OutbreakService", () => {
         },
       ];
 
-      const args: AppConfigBrokers = {
+      const args: AppBrokers = {
         useKafka: false,
         useRedisPubSub: false,
         useMQTT: false,

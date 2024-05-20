@@ -3,6 +3,7 @@ import {
   BsFiletypeCsv,
   BsFiletypeDoc,
   BsFiletypeDocx,
+  BsFiletypeExe,
   BsFiletypeJpg,
   BsFiletypeJson,
   BsFiletypeMov,
@@ -37,5 +38,6 @@ export const SUPPORTED_ICONS: SupportedIcons = {
   mov: (size: string) => <BsFiletypeMov size={size} />,
   webm: (size: string) => <FaVideo size={size} />,
   ogv: (size: string) => <FaVideo size={size} />,
+  exe: (size: string) => <BsFiletypeExe size={size} />,
   default: (size: string) => <BsFile size={size} />,
 };

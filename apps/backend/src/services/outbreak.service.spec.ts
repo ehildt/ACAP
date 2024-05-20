@@ -1,7 +1,7 @@
 import { Test } from "@nestjs/testing";
 import { Queue } from "bullmq";
 
-import { AppConfigBrokers } from "@/configs/config-yml/config.model";
+import { AppBrokers } from "@/configs/config-yml/config.model";
 import { ACAP_MSBR } from "@/constants/app.constants";
 import { BreakoutUpsertReq } from "@/dtos/breakout-upsert.dto.req";
 
@@ -45,7 +45,7 @@ describe("OutbreakService", () => {
         },
       ];
 
-      const args: AppConfigBrokers = {
+      const args: AppBrokers = {
         useBullMQ: true,
       };
 
@@ -65,7 +65,7 @@ describe("OutbreakService", () => {
         },
       ];
 
-      const args: AppConfigBrokers = {
+      const args: AppBrokers = {
         useBullMQ: false,
       };
 

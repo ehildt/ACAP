@@ -3,13 +3,14 @@ appConfig:
   address: 0.0.0.0
   printEnv: true
   startSwagger: true
-  nodeEnv: "local"
-  bodyLimit: "104857600"
+  nodeEnv: local
+  bodyLimit: 104857600
   brokers:
     useRedisPubSub: true
     useBullMQ: true
     useMQTT: true
     useKafka: true
+    useRabbitMQ: true
 
 redisPubSubConfig:
   options:
@@ -27,11 +28,20 @@ bullMQConfig:
 
 kafkaClientConfig:
   options: 
-    consumer:
-      groupId: "acap-group"
     client: 
-      clientId: "acap-client"
-      brokers: "kafka:9092"
+      ssl: false
+      clientId: acap
+      brokers: kafka:9092
+      retry:
+        retries: 12
+        initialRetryTime: 300000
+        factor: 1
+        multiplier: 1
+        maxRetryTime: 3600000
+
+rabbitMQClientConfig:
+  options:
+    urls: amqp://rabbitmq:rabbitmq@rabbitmq:5672
 
 mqttClientConfig:
   brokerUrl: null
@@ -41,7 +51,7 @@ mqttClientConfig:
     connectTimeout: 5000
     reconnectPeriod: 1000
     resubscribe: true
-    protocol: "mqtt"
+    protocol: mqtt
     hostname: mosquitto
     username: null
     password: null

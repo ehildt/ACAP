@@ -4,6 +4,7 @@ import { APP_SCHEMA } from "./app.schema";
 import { BULLMQ_SCHEMA } from "./bullmq.schema";
 import { KAFKA_SCHEMA } from "./kafka.schema";
 import { MQTT_SCHEMA } from "./mqtt.schema";
+import { RABBITMQ_SCHEMA } from "./rabbitmq.schema";
 import { REDIS_PUBSUB_SCHEMA } from "./redis-pubsub.schema";
 
 export const validationSchema = Joi.object({
@@ -12,4 +13,5 @@ export const validationSchema = Joi.object({
   ...BULLMQ_SCHEMA,
   ...MQTT_SCHEMA,
   ...KAFKA_SCHEMA,
+  ...RABBITMQ_SCHEMA,
 });
