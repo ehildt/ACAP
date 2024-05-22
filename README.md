@@ -84,6 +84,8 @@ Table of Contents
 [Caching](#caching)  
 [Redis Publish Subscribe](#redis-publish-subscribe)  
 [MQTT](#mqtt)  
+[Kafka](#kafka)  
+[RabbitMQ](#rabbitmq)  
 [BullMQ](#bullmq)  
 [Outbreak API](#outbreak-api)
 
@@ -142,28 +144,35 @@ appConfig:
   printEnv: true
   startSwagger: true
   nodeEnv: "local"
+  bodyLimit: "104857600"
   crypto:
-    secret: null
+    secret: CryptoShield2024
   realm:
     ttl: 300
-    resolveEnv: false
+    resolveEnv: true
     namespacePostfix: ACAP
     gzipThreshold: 20
   brokers:
-    useRedisPubSub: false
-    useBullMQ: false
-    useMQTT: false
+    useBullMQ: true
 
 mongoConfig:
   uri: mongodb://mongo:27017
   ssl: false
-  tlsAllowInvalidCertificates: true
+  tlsAllowInvalidCertificates: false
   dbName: ACAP
   user: mongo
   pass: mongo
 
+minioConfig:
+  endPoint: "minio"
+  port: 9000
+  useSSL: false
+  accessKey: "minio"
+  secretKey: "minio2024"
+  bucket: "acap"
+
 redisConfig:
-  host: redis
+  host: keydb
   port: 6379
   ttl: 600
   max: 100
@@ -171,32 +180,12 @@ redisConfig:
   password: redis
   username: default
 
-redisPubSubConfig:
-  options:
-    port: 6379
-    host: redis
-    password: redis
-    username: default
-
 bullMQConfig:
   connection:
     port: 6379
-    host: redis
+    host: keydb
     password: redis
     username: default
-
-mqttClientConfig:
-  brokerUrl: null
-  options:
-    port: 1883
-    keepalive: 5000
-    connectTimeout: 5000
-    reconnectPeriod: 1000
-    resubscribe: true
-    protocol: "mqtt"
-    hostname: mosquitto
-    username: null
-    password: null
 ```
 
 </div>
@@ -210,24 +199,81 @@ mqttClientConfig:
 <div align="left">
 
 ```yml
-version: "3.9"
-brokers:
-  acap:
-    container_name: acap
+services:
+  frontend:
+    container_name: frontend
     build:
-      context: https://github.com/ehildt/ACAP.git
-      target: production
+      context: ./apps/frontend
+      target: local
+    depends_on:
+      - backend
+    volumes:
+      - ./apps/frontend:/app
+      - ./node_modules:/node_modules
+    environment:
+      - ./apps/frontend/.env.development
+    ports:
+      - "5173:5173"
+    networks:
+      - acap-network
+
+  backend:
+    container_name: backend
+    build:
+      context: ./apps/backend
+      target: local
+    volumes:
+      - ./apps/backend:/app
+      - ./node_modules:/node_modules
     depends_on:
       - mongo
-      - redis
-      - mosquitto
-    volumes:
-      - ./config.yml:/app/config.yml
+      - minio
+      - keydb
+      - msbridge
+    env_file:
+      - ./apps/backend/env/.env
     ports:
       - 3001:3001
+    networks:
+      - acap-network
+
+  msbridge:
+    container_name: msbridge
+    build:
+      context: ./apps/ms-bridge
+      target: local
+    volumes:
+      - ./apps/ms-bridge:/app
+      - ./node_modules:/node_modules
+    depends_on:
+      - keydb
+      - kafka
+      - mosquitto
+      - rabbitmq
+    env_file:
+      - ./apps/ms-bridge/env/.env
+    environment:
+      - KAFKAJS_NO_PARTITIONER_WARNING=1
+    ports:
+      - 3002:3002
+    networks:
+      - acap-network
+
+  keydb:
+    image: eqalpha/keydb
+    container_name: keydb
+    ports:
+      - 6379:6379
+    volumes:
+      - keydb_data:/data
+      - ./apps/ms-bridge/keydb.conf:/usr/local/etc/keydb/keydb.conf
+    command: keydb-server /usr/local/etc/keydb/keydb.conf
+    networks:
+      - acap-network
+    restart: unless-stopped
 
   mongo:
-    command: mongod --wiredTigerCacheSizeGB 1.5 --logpath /dev/null
+    command: mongod --quiet --wiredTigerCacheSizeGB 1.5 --logpath /dev/null
     image: mongo
     container_name: mongo
     environment:
@@ -235,19 +281,30 @@ brokers:
       - MONGO_INITDB_ROOT_PASSWORD=mongo
       - MONGO_INITDB_DATABASE=ACAP
     volumes:
-      - mongo_acap_data:/data/db
+      - mongo_data:/data/db
     ports:
       - 27017:27017
+    networks:
+      - acap-network
+    restart: unless-stopped
 
-  redis:
-    image: redis
-    container_name: redis
+  minio:
+    image: "bitnami/minio"
+    container_name: minio
     ports:
-      - 6379:6379
-    command: redis-server --requirepass "redis" --loglevel "warning"
+      - "9000:9000"
+      - "9002:9001" # Management UI port (optional)
+    environment:
+      - MINIO_ROOT_USER=minio
+      - MINIO_ROOT_PASSWORD=minio2024
+      - MINIO_SKIP_CLIENT=yes
+      - MINIO_DEFAULT_BUCKETS=acap
+    volumes:
+      - minio_data:/bitnami/minio/data
+    networks:
+      - acap-network
+    restart: unless-stopped
 
-  # We use Mosquitto for demonstration purposes.
-  # You are free to choose any MQTT service you prefer.
   mosquitto:
     image: eclipse-mosquitto
     container_name: mosquitto
@@ -258,16 +315,74 @@ brokers:
       - mosquitto_data:/mosquitto/data
       - ./mosquitto.conf:/mosquitto/config/mosquitto.conf
       - mosquitto_log:/mosquitto/log
+    networks:
+      - acap-network
+    restart: unless-stopped
+
+  kafka:
+    image: 'bitnami/kafka'
+    container_name: kafka
+    ports:
+      - '9092:9092'
+      - '9093:9093'
+    volumes:
+      - kafka_data:/bitnami/kafka
+    environment:
+      - KAFKA_CFG_NODE_ID=1
+      - KAFKA_CFG_PROCESS_ROLES=broker,controller
+      - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=1@kafka:9093
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092,CONTROLLER://:9093
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092
+      - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
+      - KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE=true
+      - KAFKA_CFG_OFFSETS_TOPIC_REPLICATION_FACTOR=1
+      - KAFKA_CFG_TRANSACTION_STATE_LOG_REPLICATION_FACTOR=1
+      - KAFKA_CFG_TRANSACTION_STATE_LOG_MIN_ISR=1
+      - KAFKA_CFG_LOG_DIRS=/bitnami/kafka/data
+      - ALLOW_PLAINTEXT_LISTENER=yes
+    networks:
+      - acap-network
+    restart: unless-stopped
+
+  kafdrop:
+    image: obsidiandynamics/kafdrop
+    container_name: kafdrop
+    ports:
+      - '9003:9000'
+    environment:
+      KAFKA_BROKERCONNECT: 'kafka:9092'
+      JVM_OPTS: '-Xms32M -Xmx64M'
+    depends_on:
+      - kafka
+    networks:
+      - acap-network
+
+  rabbitmq:
+    image: rabbitmq
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - rabbitmq_data:/bitnami/rabbitmq
+      - ./apps/ms-bridge/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
+    networks:
+      - acap-network
+    restart: unless-stopped
 
 volumes:
-  mongo_acap_data:
+  mongo_data:
+  minio_data:
+  keydb_data:
+  kafka_data:
+  rabbitmq_data:
   mosquitto_data:
   mosquitto_config:
   mosquitto_log:
 
 networks:
-  default:
-    name: ACAP_NETWORK
+  acap-network:
+    driver: bridge
 ```
 
 </div>
@@ -287,15 +402,16 @@ PORT=3001
 ADDRESS='0.0.0.0'
 NODE_ENV='local'
 REALM_TTL=300
-REALM_NAMESPACE_POSTFIX='ACAP'  # Optional
-REALM_GZIP_THRESHOLD=20         # Kilobyte
-PRINT_ENV=false                 # Default
-START_SWAGGER=false             # Default
-REALM_RESOLVE_ENV=false         # Default
-USE_REDIS_PUBSUB=false          # Default
-USE_BULLMQ=false                # Default
-USE_MQTT=false                  # Default
-SYMMETRIC_KEY=''                # Optional - 16, 24, 32 byte of key length
+REALM_NAMESPACE_POSTFIX='ACAP'
+REALM_GZIP_THRESHOLD=20
+PRINT_ENV=true
+START_SWAGGER=true
+REALM_RESOLVE_ENV=true
+USE_REDIS_PUBSUB=true
+USE_BULLMQ=true
+USE_MQTT=true
+SYMMETRIC_KEY='a4e8b65e2c3e167942bcf48abf6e9d71'
+BODY_LIMIT=104857600
 
 REDIS_PUBSUB_PORT=6379
 REDIS_PUBSUB_USER='default'
@@ -307,16 +423,16 @@ BULLMQ_REDIS_USER='default'
 BULLMQ_REDIS_PASS='redis'
 BULLMQ_REDIS_HOST='redis'
 
-MQTT_KEEPALIVE=5000             # Milliseconds
-MQTT_CONNECTION_TIMEOUT=5000    # Milliseconds
-MQTT_RECONNECT_PERIOD=1000      # Milliseconds
-MQTT_PORT=1883                  # Default
-MQTT_PROTOCOL='mqtt'            # Default
-MQTT_RESUBSCRIBE=true           # Default
-MQTT_BROKER_URL=''              # Optional
-MQTT_HOSTNAME=''                # Optional
-MQTT_USERNAME=''                # Optional
-MQTT_PASSWORD=''                # Optional
+MQTT_KEEPALIVE=5000
+MQTT_CONNECTION_TIMEOUT=5000
+MQTT_RECONNECT_PERIOD=1000
+MQTT_RESUBSCRIBE=true
+MQTT_BROKER_URL='mqtt://localhost'
+MQTT_PROTOCOL='mqtt'
+MQTT_HOSTNAME='localhost'
+MQTT_PORT=1883
+MQTT_USERNAME='mqtt'
+MQTT_PASSWORD='mqtt'
 
 MONGO_USER='mongo'
 MONGO_PASS='mongo'
@@ -332,6 +448,13 @@ REDIS_PORT=6379
 REDIS_TTL=600
 REDIS_MAX_RESPONSES=100
 REDIS_DB_INDEX=0
+
+MINIO_ENDPOINT='minio'
+MINIO_ACCESS_KEY='minio'
+MINIO_SECRET_KEY='minio'
+MINIO_PORT=9000
+MINIO_USE_SSL=false
+MINIO_BUCKET='acap'
 ```
 
 </div>
@@ -345,11 +468,7 @@ With this, you have everything you need to make the ACAP your own and harness it
 
 ## Serialization and Persistance
 
-**NOT YET IMPLEMENTED**.
-
 Structured data, like JSON and YAML, is housed in mongoDB for persistence. Meanwhile, unstructured data such as images and files is stored in minio, with their metadata structured and stored in mongoDB for efficient retrieval. Structured is cached by redis, while unstructured is cached and managed by minio.
-
-to be continued..
 
 <br />
 
@@ -406,7 +525,7 @@ Security: AES-128-CBC uses a 128-bit key, which is still considered secure but i
 </div>
 <br />
 
-### Caching
+### KeyDB
 
 Under the hood, ACAP utilizes [KeyDB](https://docs.keydb.dev/), a drop-in alternative for [Redis](https://redis.io/). ACAP builds on top of KeyDB and efficiently updates the cache whenever content is modified or fetched. Notably, only structured data is cached in memory. Unstructured data and all optimization are handled by MinIO. However, the metadata of unstructured files is stored and cached in memory as a reference and persisted in MongoDB.
 
@@ -414,9 +533,9 @@ Under the hood, ACAP utilizes [KeyDB](https://docs.keydb.dev/), a drop-in altern
 
 `KeyDB is a high performance open source database used at Snap, and a powerful drop-in alternative to Redis. While many databases keep the best features locked in their paid offerings, KeyDB remains fully open source. This best enables Snap & the community to collaborate and benefit together in the projects development.`
 
-### Redis Publish Subscribe
+### Publish Subscribe
 
-ACAP supports [Redis Publish Subscribe](https://redis.io/docs/interact/pubsub/). When this feature is enabled, ACAP automatically publishes content using the realm as the channel, which can be subscribed to by other clients and services. The **fire-and-forget** strategy for **Redis Publish Subscribe** ensures non-blocking transmission, allowing for a seamless content distribution without any interruptions.
+ACAP supports [PubSub](https://redis.io/docs/interact/pubsub/). When this feature is enabled, ACAP automatically publishes content using the realm as the channel, which can be subscribed to by other clients and services. The **fire-and-forget** strategy for **Redis Publish Subscribe** ensures non-blocking transmission, allowing for a seamless content distribution without any interruptions.
 
 ### MQTT
 
@@ -427,6 +546,14 @@ ACAP supports [Redis Publish Subscribe](https://redis.io/docs/interact/pubsub/).
 - **Reliable Message Delivery:** ACAP leverages MQTT's message queuing capabilities, enabling devices to reliably publish messages to specific topics. This ensures that important data is delivered without loss or duplication, guaranteeing the integrity of the information exchanged.
 - **Scalability:** MQTT's scalable nature allows ACAP to accommodate a growing number of devices within the IoT ecosystem. As your service expands, MQTT ensures seamless and efficient communication, enabling ACAP to handle a large volume of messages without sacrificing performance.
 - **Real-time Data Exchange:** MQTT's ability to handle unreliable networks makes it an ideal choice for ACAP. It ensures that real-time data exchange between devices occurs smoothly, even in challenging network conditions, enhancing the overall reliability and responsiveness of your service. By utilizing MQTT, ACAP leverages the power of this open-standard protocol to overcome communication hurdles, optimize resource usage, ensure reliable message delivery, and provide a scalable solution for real-time data exchange in IoT deployments.
+
+### Kafka
+
+to be continue..
+
+### RabbitMQ
+
+to be continue..
 
 ### BullMQ
 
