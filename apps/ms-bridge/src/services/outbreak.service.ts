@@ -36,15 +36,14 @@ export class OutbreakService {
           const realm = job.name;
           const item = JSON.stringify({ realm, ...job.data[index] });
           if (this.factory.app.brokers.useRedisPubSub)
-            this.redisPubSub?.emit(ACAP_BRCS, item);
+            this.redisPubSub?.emit(realm, item);
           if (this.factory.app.brokers.useRabbitMQ)
-            this.rabbitmq.emit(ACAP_BRCS, item);
-          if (this.factory.app.brokers.useMQTT)
-            this.mqtt?.publish(ACAP_BRCS, item);
+            this.rabbitmq?.emit(realm, item);
+          if (this.factory.app.brokers.useMQTT) this.mqtt?.publish(realm, item);
           if (this.factory.app.brokers.useBullMQ)
-            this.bullmq?.add(ACAP_BRCS, item).catch((error) => error);
+            this.bullmq?.add(realm, item).catch((error) => error);
           if (this.factory.app.brokers.useKafka)
-            this.kafka.emit(ACAP_BRCS, item);
+            this.kafka?.emit(ACAP_BRCS, { key: realm, value: item });
         }
       },
       { connection: this.factory.bullMQ.connection },
@@ -55,12 +54,13 @@ export class OutbreakService {
     reqs.forEach(({ realm, contents }) => {
       contents.forEach(({ value }) => {
         const item = JSON.stringify({ realm, ...value });
-        if (args.useRabbitMQ) this.rabbitmq.emit(ACAP_BRCS, item);
-        if (args.useKafka) this.kafka.emit(ACAP_BRCS, item);
+        if (args.useRabbitMQ) this.rabbitmq?.emit(ACAP_BRCS, item);
         if (args.useRedisPubSub) this.redisPubSub?.emit(ACAP_BRCS, item);
         if (args.useMQTT) this.mqtt?.publish(ACAP_BRCS, item);
         if (args.useBullMQ)
           this.bullmq?.add(ACAP_BRCS, item).catch((error) => error);
+        if (args.useKafka)
+          this.kafka?.emit(ACAP_BRCS, { key: realm, value: item });
       });
     });
   }
