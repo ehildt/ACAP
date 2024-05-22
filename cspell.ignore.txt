@@ -5,7 +5,9 @@ autodocs
 autoprefixer
 azuretools
 bgclr
+bitnami
 BRCS
+BROKERCONNECT
 bullmq
 BULLMQ
 cacheable
@@ -23,6 +25,7 @@ depcruiserrc
 dotenv
 dotfiles
 dtos
+eqalpha
 errorlens
 fastify
 gitconfiglocal
@@ -31,7 +34,9 @@ gitlab
 hangxingliu
 Hildt
 Identificator
+INITDB
 jackspeak
+kafdrop
 kafkajs
 keepalive
 keydb
@@ -43,6 +48,7 @@ languagedetector
 litlbyte
 Lngs
 localstorage
+logpath
 mhutchie
 mikestead
 mongodb
@@ -50,10 +56,12 @@ mosquitto
 mqtt
 MQTT
 MSBR
+msbridge
 nestjs
 nginx
 NKEY
 nrwl
+obsidiandynamics
 oderwat
 paralleldrive
 partitioner
