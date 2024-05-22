@@ -30,18 +30,21 @@ describe("OutbreakController", () => {
       const useMQTT = false;
       const useBullMQ = false;
       const useRedisPubSub = false;
+      const useRabbitMQ = false;
       const result = await controller.delegate(
         reqs,
         useMQTT,
         useBullMQ,
         useRedisPubSub,
         useKafka,
+        useRabbitMQ,
       );
       expect(service.delegate).toHaveBeenCalledWith(reqs, {
         useBullMQ,
         useMQTT,
         useRedisPubSub,
         useKafka,
+        useRabbitMQ,
       });
       expect(result).toEqual(undefined);
     });
@@ -54,18 +57,21 @@ describe("OutbreakController", () => {
       const useMQTT = true;
       const useBullMQ = true;
       const useRedisPubSub = true;
+      const useRabbitMQ = true;
       const result = await controller.delegate(
         reqs,
         useMQTT,
         useBullMQ,
         useRedisPubSub,
         useKafka,
+        useRabbitMQ,
       );
       expect(service.delegate).toHaveBeenCalledWith(reqs, {
         useBullMQ,
         useMQTT,
         useRedisPubSub,
         useKafka,
+        useRabbitMQ,
       });
       expect(result).toEqual(undefined);
     });

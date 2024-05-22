@@ -88,6 +88,7 @@ describe("OutbreakService", () => {
       ];
 
       const args: AppBrokers = {
+        useRabbitMQ: true,
         useKafka: true,
         useRedisPubSub: true,
         useMQTT: true,
@@ -115,6 +116,7 @@ describe("OutbreakService", () => {
       ];
 
       const args: AppBrokers = {
+        useRabbitMQ: false,
         useKafka: false,
         useRedisPubSub: false,
         useMQTT: false,

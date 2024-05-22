@@ -31,6 +31,7 @@ describe("ConfigFactoryService", () => {
         if (key === "App.USE_REDIS_PUBSUB") return true;
         if (key === "App.USE_MQTT") return true;
         if (key === "App.USE_KAFKA") return true;
+        if (key === "App.USE_RABBITMQ") return true;
         return null;
       });
 
@@ -46,6 +47,7 @@ describe("ConfigFactoryService", () => {
           useRedisPubSub: true,
           useMQTT: true,
           useKafka: true,
+          useRabbitMQ: true,
         },
       });
     });
