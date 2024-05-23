@@ -1,9 +1,7 @@
 # @acap/frontend
 
-## 2.0.0
+## 1.0.1
 
-### Major Changes
+### Patch Changes
 
-- 303f70d: # First Init
-
-  Changeset init, replacing semantic release and it's previous CHANGELOG.
+- 74f427d: initial commit with changeset
