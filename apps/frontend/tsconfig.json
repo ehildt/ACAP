@@ -25,6 +25,7 @@
     "node_modules", 
     "**/*.spec.ts", 
     "**/*.test.ts", 
+    "**/*.stories.tsx"
   ],
   "references": [
     {
