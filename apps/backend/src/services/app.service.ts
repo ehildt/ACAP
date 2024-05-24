@@ -81,10 +81,12 @@ export class AppService {
       );
     }
 
+    const swaggerPath = `http://localhost:${this.configFactory.app.port}`;
+    this.logger.log(swaggerPath);
+
     if (this.configFactory.app.startSwagger) {
-      const swaggerPath = `http://localhost:${this.configFactory.app.port}`;
-      this.logger.log(`${swaggerPath}/${API_DOCS_JSON}`);
-      this.logger.log(`${swaggerPath}/${API_DOCS}`);
+      this.logger.warn(`${swaggerPath}/${API_DOCS_JSON}`);
+      this.logger.warn(`${swaggerPath}/${API_DOCS}`);
     }
   }
 }
