@@ -2,11 +2,15 @@ import os
 import sys
 import shutil
 
+NODE_MODULES = 'node_modules'
+
 def clean_folders(root_dir, folder_names):
     for root, dirs, _ in os.walk(root_dir):
         for folder_name in folder_names:
             if folder_name in dirs:
                 folder_path = os.path.join(root, folder_name)
+                if NODE_MODULES in folder_path and folder_name is not NODE_MODULES:
+                    return
                 try:
                     shutil.rmtree(folder_path)
                 except PermissionError:

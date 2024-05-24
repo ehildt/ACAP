@@ -1,9 +1,16 @@
 {
   "$schema": "https://unpkg.com/@changesets/config@3.0.0/schema.json",
   "changelog": "@changesets/cli/changelog",
-  "commit": true,
+  "commit": false,
   "fixed": [],
-  "linked": [],
+  "linked": [
+    [
+      "@litlbyte/acap",
+      "@acap/frontend",
+      "@acap/backend",
+      "@acap/ms-bridge"
+    ]
+  ],
   "access": "restricted",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",

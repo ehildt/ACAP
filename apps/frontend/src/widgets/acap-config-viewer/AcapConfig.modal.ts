@@ -6,7 +6,7 @@ export type AcapConfigContainerProps = {
   size: string;
   children: ReactNode;
   icon: ReactNode;
-  style?: CSSProperties
+  style?: CSSProperties;
 };
 
 export type AcapConfigItemProps = {

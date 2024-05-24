@@ -126,13 +126,15 @@ export function FileImporterMenu(props: FileImporterMenuProps) {
                   body: JSON.stringify([
                     {
                       id: configId,
-                      value: [{
-                        data,
-                        name: fileSlice.selectedFile?.name,
-                        extension: selectedFileExtension,
-                        mimetype: fileSlice.selectedFile?.type,
-                        size: fileSlice.selectedFile?.size,
-                      }],
+                      value: [
+                        {
+                          data,
+                          name: fileSlice.selectedFile?.name,
+                          extension: selectedFileExtension,
+                          mimetype: fileSlice.selectedFile?.type,
+                          size: fileSlice.selectedFile?.size,
+                        },
+                      ],
                     },
                   ]),
                 },
@@ -152,13 +154,15 @@ export function FileImporterMenu(props: FileImporterMenuProps) {
                       body: JSON.stringify([
                         {
                           id: configId,
-                          value: [{
-                            ref: data[0].cuid2,
-                            name: fileSlice.selectedFile?.name,
-                            extension: selectedFileExtension,
-                            mimetype: fileSlice.selectedFile?.type,
-                            size: fileSlice.selectedFile?.size,
-                          }],
+                          value: [
+                            {
+                              ref: data[0].cuid2,
+                              name: fileSlice.selectedFile?.name,
+                              extension: selectedFileExtension,
+                              mimetype: fileSlice.selectedFile?.type,
+                              size: fileSlice.selectedFile?.size,
+                            },
+                          ],
                         },
                       ]),
                     },

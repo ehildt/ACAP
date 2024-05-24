@@ -5,4 +5,9 @@ if [ "$#" -lt 1 ]; then
     exit 1
 fi
 
-python3 .python/clean.py ../ "$@"
+if ! [ -x "$(command -v sudo)" ]; then
+    echo 'Error: sudo is not installed. Please install sudo or run the script as a superuser.' >&2
+    exit 1
+fi
+
+sudo python3 .python/clean.py ../ "$@"

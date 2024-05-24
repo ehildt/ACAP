@@ -1,8 +1,4 @@
-import {
-  FaCompress,
-  FaDatabase,
-  FaServicestack
-} from "react-icons/fa6";
+import { FaCompress, FaDatabase, FaServicestack } from "react-icons/fa6";
 import {
   SiApachekafka,
   SiDotenv,
@@ -28,7 +24,10 @@ function getColor(condition: boolean, enabled: string, disabled: string) {
 }
 
 export function AcapConfigViewer() {
-  const msBridge = useSWR(["http://localhost:3002/api/v1/metae/ms-bridge"], get);
+  const msBridge = useSWR(
+    ["http://localhost:3002/api/v1/metae/ms-bridge"],
+    get,
+  );
   const acap = useSWR(["http://localhost:3001/api/v1/metae/acap"], get);
 
   return (
@@ -42,19 +41,31 @@ export function AcapConfigViewer() {
         <AcapConfigItem label="Swagger">
           <SiSwagger
             size={"1.2rem"}
-            color={getColor(acap?.data?.services.swagger, "yellowgreen", "crimson")}
+            color={getColor(
+              acap?.data?.services.swagger,
+              "yellowgreen",
+              "crimson",
+            )}
           />
         </AcapConfigItem>
         <AcapConfigItem label="Crypto">
           <SiSecurityscorecard
             size={"1.2rem"}
-            color={getColor(acap?.data?.services.crypto, "yellowgreen", "crimson")}
+            color={getColor(
+              acap?.data?.services.crypto,
+              "yellowgreen",
+              "crimson",
+            )}
           />
         </AcapConfigItem>
         <AcapConfigItem label="GZIP">
           <FaCompress
             size={"1.2rem"}
-            color={getColor(acap?.data?.services.gzip, "yellowgreen", "crimson")}
+            color={getColor(
+              acap?.data?.services.gzip,
+              "yellowgreen",
+              "crimson",
+            )}
           />
         </AcapConfigItem>
         <AcapConfigItem label="EnvVars">
@@ -78,25 +89,42 @@ export function AcapConfigViewer() {
         <AcapConfigItem label="Redis">
           <SiRedis
             size={"1.2rem"}
-            color={getColor(acap?.data?.databases.redis, "yellowgreen", "crimson")}
+            color={getColor(
+              acap?.data?.databases.redis,
+              "yellowgreen",
+              "crimson",
+            )}
           />
         </AcapConfigItem>
         <AcapConfigItem label="MongoDB">
           <SiMongodb
             size={"1.2rem"}
-            color={getColor(acap?.data?.databases.mongo, "yellowgreen", "crimson")}
+            color={getColor(
+              acap?.data?.databases.mongo,
+              "yellowgreen",
+              "crimson",
+            )}
           />
         </AcapConfigItem>
         <AcapConfigItem label="Minio">
           <SiMinio
             size={"1.2rem"}
-            color={getColor(acap?.data?.databases.minio, "yellowgreen", "crimson")}
+            color={getColor(
+              acap?.data?.databases.minio,
+              "yellowgreen",
+              "crimson",
+            )}
           />
         </AcapConfigItem>
       </AcapConfigContainer>
 
       <AcapConfigContainer
-        style={{ opacity: msBridge?.data?.brokers || acap?.data?.brokers?.useBullMQ ? '1' : '0.35' }}
+        style={{
+          opacity:
+            msBridge?.data?.brokers || acap?.data?.brokers?.useBullMQ
+              ? "1"
+              : "0.35",
+        }}
         label="Brokers"
         color="orange"
         size="1.2rem"
@@ -105,13 +133,22 @@ export function AcapConfigViewer() {
         <AcapConfigItem label="BullMQ">
           <SiSecurityscorecard
             size={"1.2rem"}
-            color={getColor(msBridge?.data?.brokers.useBullMQ || acap?.data?.brokers?.useBullMQ, "yellowgreen", "crimson")}
+            color={getColor(
+              msBridge?.data?.brokers.useBullMQ ||
+                acap?.data?.brokers?.useBullMQ,
+              "yellowgreen",
+              "crimson",
+            )}
           />
         </AcapConfigItem>
         <AcapConfigItem label="MQTT">
           <SiMqtt
             size={"1.2rem"}
-            color={getColor(msBridge?.data?.brokers.useMQTT, "yellowgreen", "crimson")}
+            color={getColor(
+              msBridge?.data?.brokers.useMQTT,
+              "yellowgreen",
+              "crimson",
+            )}
           />
         </AcapConfigItem>
         <AcapConfigItem label="PubSub">
@@ -146,6 +183,5 @@ export function AcapConfigViewer() {
         </AcapConfigItem>
       </AcapConfigContainer>
     </div>
-
   );
 }
