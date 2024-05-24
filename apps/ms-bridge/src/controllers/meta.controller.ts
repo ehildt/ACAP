@@ -66,7 +66,7 @@ export function OpenApi_GetMeta() {
 @ApiTags("Metae")
 @Controller("metae")
 export class MetaController {
-  constructor(private readonly metaService: MetaService) { }
+  constructor(private readonly metaService: MetaService) {}
 
   @GetMeta()
   @OpenApi_GetMeta()

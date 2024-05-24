@@ -1,6 +1,5 @@
 import {
   BsFile,
-  BsFileZip,
   BsFiletypeCsv,
   BsFiletypeDoc,
   BsFiletypeDocx,
@@ -17,6 +16,7 @@ import {
   BsFiletypeWoff,
   BsFiletypeXlsx,
   BsFiletypeYml,
+  BsFileZip,
 } from "react-icons/bs";
 import { FaVideo } from "react-icons/fa6";
 
