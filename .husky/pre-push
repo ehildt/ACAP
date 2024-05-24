@@ -19,5 +19,7 @@ info 'pnpm -r ts-unused-exports' && pnpm -r ts-unused-exports
 # add known orphans to .depcruiserrc.json
 info 'pnpm -r depcruiser' && pnpm -r depcruiser
 
-# add known orphans to .depcruiserrc.json
+# clean all build folders before build check
+info 'pnpm run clean dist' && pnpm run clean dist
+
 info 'pnpm -r build' && pnpm -r build -- --if-present
