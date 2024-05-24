@@ -1,36 +1,63 @@
-import { challengeContentValue } from "./challenge-content-source.helper";
+import { challengeTraverseObject } from "./challenge-traverse-object.helper";
 
-const ENV_CACHE = new Map();
+describe("challengeTraverseObject", () => {
+  it("should apply callback function to each value in the object", () => {
+    const input = {
+      key1: "value1",
+      key2: {
+        nestedKey1: "nestedValue1",
+        nestedKey2: [
+          "nestedArrayValue1",
+          "nestedArrayValue2",
+          { deepNestedKey: "deepNestedKey1" },
+        ],
+        nestedKey3: false,
+        nestedKey4: 4,
+      },
+    };
 
-describe("challengeContentValue", () => {
-  beforeEach(() => {
-    // Clear the ENV_CACHE before each test
-    ENV_CACHE.clear();
+    const expectedOutput = {
+      key1: "#1",
+      key2: {
+        nestedKey1: "#1",
+        nestedKey2: ["#1", "#2", { deepNestedKey: "#1" }],
+        nestedKey3: false,
+        nestedKey4: 4,
+      },
+    };
+
+    const mockCallback = jest.fn((val) =>
+      typeof val === "string" ? `#${val.slice(-1)}` : val,
+    );
+    const result = challengeTraverseObject(input, mockCallback);
+    expect(result).toEqual(expectedOutput);
+    expect(mockCallback).toHaveBeenCalledTimes(7);
   });
 
-  it("should return the parsed value if it is an object", () => {
-    const result = challengeContentValue("{}", true);
-    expect(result).toEqual({});
+  it("should handle arrays correctly", () => {
+    const input = [
+      "value1",
+      { nestedKey: "nestedValue2" },
+      ["nestedArrayValue3"],
+    ];
+
+    const expectedOutput = ["#1", { nestedKey: "#2" }, ["#3"]];
+    const mockCallback = jest.fn((val) => `#${val.slice(-1)}`);
+    const result = challengeTraverseObject(input, mockCallback);
+    expect(result).toEqual(expectedOutput);
+    expect(mockCallback).toHaveBeenCalledTimes(3);
   });
 
-  it("should return the parsed value if resolveEnv is false", () => {
-    const result = challengeContentValue("SOME_VALUE", false);
-    expect(result).toEqual("SOME_VALUE");
+  it("should return null if input is undefined or null", () => {
+    expect(challengeTraverseObject(undefined, jest.fn())).toBeNull();
+    expect(challengeTraverseObject(null, jest.fn())).toBeNull();
   });
 
-  it("should parse and cache value from process.env", () => {
-    const value = "SOME_VALUE";
-    const parsedValue = "Parsed Data";
-    ENV_CACHE.set(value, parsedValue);
-    process.env.SOME_VALUE = parsedValue;
-    const result = challengeContentValue(value, true);
-    expect(result).toEqual(parsedValue);
-    expect(ENV_CACHE.get(value)).toEqual(parsedValue);
-  });
-
-  it("should return the original value if parsing from process.env fails", () => {
-    const value = "NON_EXISTING_VALUE";
-    const result = challengeContentValue(value, true);
-    expect(result).toEqual("NON_EXISTING_VALUE");
+  it("should return the original value if it is not an object or array", () => {
+    const input = "notAnObject";
+    const mockCallback = jest.fn();
+    const result = challengeTraverseObject(input, mockCallback);
+    expect(result).toEqual(input);
+    expect(mockCallback).toHaveReturnedWith(undefined);
   });
 });

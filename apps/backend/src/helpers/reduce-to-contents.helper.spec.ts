@@ -4,7 +4,7 @@ import { reduceToContents } from "./reduce-to-contents.helper";
 describe("reduceToContents", () => {
   it("should return undefined if no entities are provided", () => {
     const result = reduceToContents(true);
-    expect(result).toBeUndefined();
+    expect(result).toBeNull();
   });
 
   it("should reduce the provided entities into an object using id as key", () => {

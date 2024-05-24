@@ -33,6 +33,7 @@ import {
 } from "@/decorators/open-api.controller.decorators";
 import { ContentUpsertReq } from "@/dtos/content-upsert-req.dto";
 import { RealmsUpsertReq } from "@/dtos/realms-upsert.dto.req";
+import { challengeContentValue } from "@/helpers/challenge-content-source.helper";
 import {
   CacheObject,
   gunzipSyncCacheObject,
@@ -85,13 +86,16 @@ export class RealmController {
         this.configFactory.app.realm.resolveEnv,
         await this.realmService.getRealm(realm),
       );
+
       if (!Object.keys(data)?.length)
         throw new NotFoundException(`No such REALM::${realm}`);
+
       const cacheObj = gzipSyncCacheObject(
         data,
         this.configFactory.app.realm.gzipThreshold,
         Object.keys(data).length,
       );
+
       await this.cache.set(postfix, cacheObj, this.configFactory.app.realm.ttl);
       return data;
     }
@@ -101,11 +105,13 @@ export class RealmController {
     const matchedKeys = Object.keys(cache.content).filter((c) =>
       filteredIds.includes(c),
     );
+
     if (matchedKeys?.length)
       content = matchedKeys.reduce(
         (acc, key) => ({ ...acc, [key]: cache.content[key] }),
         {},
       );
+
     if (matchedKeys?.length === filteredIds?.length) {
       // @ we reset the ttl
       await this.cache.set(
@@ -113,22 +119,32 @@ export class RealmController {
         cachedRealm,
         this.configFactory.app.realm.ttl,
       );
+
       return content;
     }
+
     const unmatchedKeys = filteredIds.filter(
       (fk) => !matchedKeys.find((mk) => fk === mk),
     );
+
     const entities = await this.realmService.getRealmContentByIds(
       realm,
       unmatchedKeys,
     );
+
     const count = await this.realmService.countRealmContents();
-    content = { ...content, ...entities };
+
+    content = reduceToContents(this.configFactory.app.realm.resolveEnv, {
+      ...content,
+      ...entities,
+    });
+
     const cacheObj = gzipSyncCacheObject(
       content,
       this.configFactory.app.realm.gzipThreshold,
       count,
     );
+
     await this.cache.set(postfix, cacheObj, this.configFactory.app.realm.ttl);
     return content;
   }
@@ -198,8 +214,10 @@ export class RealmController {
       realm,
       this.configFactory.app.realm.namespacePostfix,
     );
+
     const cachedRealm = await this.cache.get<CacheObject>(postfix);
     const { content } = gunzipSyncCacheObject(cachedRealm);
+
     if (content[id]) {
       // @ we reset the ttl
       await this.cache.set(
@@ -209,15 +227,23 @@ export class RealmController {
       );
       return content[id];
     }
-    const data = await this.realmService.getRealmContentByIds(realm, [id]);
+
+    const data = challengeContentValue(
+      await this.realmService.getRealmContentByIds(realm, [id]),
+      this.configFactory.app.realm.resolveEnv,
+    );
+
     const count = await this.realmService.countRealmContents();
+
     if (!data[id])
       throw new NotFoundException(`No such ID::${id} on REALM::${realm}`);
+
     const cacheObj = gzipSyncCacheObject(
       { ...content, ...data },
       this.configFactory.app.realm.gzipThreshold,
       count,
     );
+
     await this.cache.set(postfix, cacheObj, this.configFactory.app.realm.ttl);
     return data[id];
   }
