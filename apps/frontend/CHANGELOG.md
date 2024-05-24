@@ -1,5 +1,11 @@
 # @acap/frontend
 
+## 1.0.2
+
+### Patch Changes
+
+- fbce227: updated genpose and readme
+
 ## 1.0.1
 
 ### Patch Changes
