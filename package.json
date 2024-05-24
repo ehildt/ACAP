@@ -10,7 +10,8 @@
   "scripts": {
     "prepare": "husky",
     "ncu:update": "npx npm-check-updates --doctor -u",
-    "genpose": "./genpose.sh"
+    "genpose": "./genpose.sh",
+    "changeset": "npx changeset add"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.1",

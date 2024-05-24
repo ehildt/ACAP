@@ -4,4 +4,4 @@
 "@acap/backend": patch
 ---
 
-updated genpose and readme
+chore: updated genpose
