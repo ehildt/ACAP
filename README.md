@@ -39,9 +39,14 @@ By delivering personalized and relevant content, ACAP helps other services impro
 ![License](https://img.shields.io/github/license/ehildt/acap?style=flat&color=brown)
 ![DockerPulls](https://img.shields.io/docker/pulls/ehildt/acap?color=darkgreen&label=docker%20pulls&logo=docker)  
 ![Branch](https://img.shields.io/badge/branch-main-blue?style=flat&logo=git&logoColor=white)
-![Version](https://img.shields.io/github/package-json/v/ehildt/acap?style=flat&color=orange)
 ![Node](https://img.shields.io/badge/node-LTS-purple?style=flat&logo=node.js&logoColor=white)
 ![BuildStatus](https://img.shields.io/badge/build-passing-darkgreen?style=flat&logo=github&logoColor=white)  
+![WebUi](https://img.shields.io/github/package-json/v/ehildt/acap?filename=apps/frontend/package.json&style=flat&color=lightgreen&label=WebUI
+)
+![Backend](https://img.shields.io/github/package-json/v/ehildt/acap?filename=apps/backend/package.json&style=flat&color=lightgreen&label=Backend
+)
+![MSBridge](https://img.shields.io/github/package-json/v/ehildt/acap?filename=apps/ms-bridge/package.json&style=flat&color=lightgreen&label=MSBridge
+)  
 ![codecov](https://codecov.io/gh/ehildt/acap/graph/badge.svg?token=MCL18OCNV7)
 ![Changeset](https://img.shields.io/badge/Changeset-SemVer-green)
 </div>
