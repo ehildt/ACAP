@@ -101,8 +101,8 @@ Table of Contents
 
 <br />
 
-> VSCODE: Before we start, please do yourself a favor and open the **.code-workspace** file in the project root with vscode.
-Trust me, it will make your life much simpler. Now back to topic.
+> VSCODE: Before we start, please do yourself a favor and open the **.code-workspace**
+file in the project root with vscode. Trust me, it will make your life much simpler. Now back to topic.
 
 Getting ACAP up and running is pretty straight forward.
 
@@ -110,32 +110,34 @@ Getting ACAP up and running is pretty straight forward.
 
 Run the following commands to install the required dependencies:
 
-1. `npm i -g pnpm && pnpm install`.
-2. `sudo apt install python3 python3-pip`
-3. `pip install jinja2`
+- `npm i -g pnpm && pnpm install`.
+- `sudo apt install python3 python3-pip`
+- `pip install jinja2`
 
 Generate the docker-compose.yml:
 
-1. `pnpm run -r genpose`.
-2. `docker-compose.yml`
+- `pnpm run -r genpose`.
 
-Genpose will generate the docker-compose.yml based on the set environment variables.
+You can optionally add the **--up** flag to automatically start the containers
+defined in your docker-compose.yml file after it's generated.
 
-- USE_REDIS_PUBSUB=false
-- USE_BULLMQ=false
-- USE_MQTT=false
-- USE_KAFKA=false
-- USE_RABBITMQ=false
+Genpose creates the docker-compose.yml file using the values of your environment variables
+which are defined in `./apps/backend/env/.env`, `./apps/ms-bridge/env/.env` or if set globally.
 
-Please note that without USE_RABBITMQ=true, no other services will be activated. This is because the backend relies on RabbitMQ to emit events to the message bridge, which then distributes them to the brokers.
+- USE_REDIS_PUBSUB
+- USE_BULLMQ
+- USE_MQTT
+- USE_KAFKA
+- USE_RABBITMQ
 
-> For Kafka you would need to set **USE_RABBITMQ=true** and **USE_KAFKA=true**
-
+Please note that the backend relies on RabbitMQ to emit events to the message bridge,
+which then distributes them to the brokers.
 By default the message bridge as well as all brokers are disabled.
 
 <h2>CLI</h2>
 
-We recommend utilizing [pnpm](https://pnpm.io/), as it streamlines the execution of tests, linting processes, and script initialization, resulting in improved efficiency and ease of use.
+We recommend utilizing [pnpm](https://pnpm.io/), as it streamlines the execution of tests,
+linting processes, and script initialization, resulting in improved efficiency and ease of use.
 
 - Install pnpm `npm i -g pnpm`.
 - Install the dependencies `pnpm install`.
@@ -152,9 +154,15 @@ You can run storybook explicitly or execute tests in parallel:
 
 <h2>Config</h2>
 
-**ACAP** simplifies the initialization process by providing a convenient ready-to-use setup. It leverages a `config.yml` file, reducing dependence on system environment variables, while still allowing flexibility to set them when required.
+**ACAP** simplifies the initialization process by providing a convenient ready-to-use setup.
+It leverages a `config.yml` file, reducing dependence on system environment variables,
+while still allowing flexibility to set them when required.
 
-When utilizing ACAP in Docker or Kubernetes (K8S), configuring the service is effortless. By binding the `/app/config.yml` to a volume, you can easily adjust the service settings. The `config.yml` file contains default presets, which, when combined with Docker Compose, enable a speedy setup for local development. This approach facilitates a seamless spin-up process for your projects.
+When utilizing ACAP in Docker or Kubernetes, configuring the service is effortless.
+By binding the `/app/config.yml` to a volume, you can easily adjust the service settings.
+The `config.yml` file contains default presets, which, when combined with Docker Compose,
+enable a speedy setup for local development. This approach facilitates a seamless spin-up
+process for your projects.
 
 <br />
 
