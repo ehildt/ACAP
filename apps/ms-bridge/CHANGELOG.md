@@ -8,6 +8,10 @@
 - 4d07969: chore: moved all .py and related scripts to .python dir
 - d82a9b3: chore: updated genpose
 - f8dceba: feat: updated logging on server start
+- 28eb897: chore: updated .py scripts and workspaces
+- 5c0a18e: chore: moved all .py and related scripts to .python dir
+- 04adf08: chore: updated genpose
+- 463a377: feat: updated logging on server start
 
 ## 1.0.1
 
