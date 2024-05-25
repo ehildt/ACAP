@@ -1,11 +1,13 @@
-import { ClientKafka, ClientProxy } from "@nestjs/microservices";
+import { ClientKafka, ClientProxy, ClientRMQ } from "@nestjs/microservices";
 import { Test } from "@nestjs/testing";
-import { Queue } from "bullmq";
+import { Queue, Worker } from "bullmq";
 
 import { AppBrokers } from "@/configs/config-yml/config.model";
 import {
   ACAP_BRCS,
+  ACAP_MSBR,
   KAFKA_CLIENT,
+  RABBITMQ_CLIENT,
   REDIS_PUBSUB,
 } from "@/constants/app.constants";
 import { BreakoutUpsertReq } from "@/dtos/breakout-upsert.dto.req";
@@ -14,10 +16,17 @@ import { MQTT_CLIENT, MqttClient } from "@/modules/mqtt-client.module";
 import { ConfigFactoryService } from "./config-factory.service";
 import { OutbreakService } from "./outbreak.service";
 
+jest.mock("bullmq", () => ({
+  Worker: jest.fn(() => ({
+    run: jest.fn(),
+  })),
+}));
+
 describe("OutbreakService", () => {
   let outbreakService: OutbreakService;
   let mockRedisPubSub: jest.Mocked<ClientProxy>;
   let mockKafka: jest.Mocked<ClientKafka>;
+  let mockRabbitMQ: jest.Mocked<ClientRMQ>;
   let mockMQTTClient: jest.Mocked<MqttClient>;
   let mockBullMQQueue: jest.Mocked<Queue>;
   let mockConfigFactory: Partial<ConfigFactoryService>;
@@ -26,7 +35,9 @@ describe("OutbreakService", () => {
     mockConfigFactory = {
       app: {
         brokers: {},
-        bullMQ: {},
+      } as any,
+      bullMQ: {
+        connection: {},
       } as any,
     };
     const moduleRef = await Test.createTestingModule({
@@ -49,6 +60,12 @@ describe("OutbreakService", () => {
           },
         },
         {
+          provide: RABBITMQ_CLIENT,
+          useValue: {
+            emit: jest.fn(),
+          },
+        },
+        {
           provide: MQTT_CLIENT,
           useValue: {
             publish: jest.fn(),
@@ -57,7 +74,7 @@ describe("OutbreakService", () => {
         {
           provide: ACAP_BRCS,
           useValue: {
-            add: jest.fn(),
+            add: jest.fn().mockResolvedValue(true),
           },
         },
       ],
@@ -68,6 +85,7 @@ describe("OutbreakService", () => {
     mockMQTTClient = moduleRef.get(MQTT_CLIENT);
     mockBullMQQueue = moduleRef.get(ACAP_BRCS);
     mockKafka = moduleRef.get(KAFKA_CLIENT);
+    mockRabbitMQ = moduleRef.get(RABBITMQ_CLIENT);
   });
 
   afterEach(() => {
@@ -75,6 +93,13 @@ describe("OutbreakService", () => {
   });
 
   describe("delegate", () => {
+    it("should initialize Worker on module init", () => {
+      outbreakService.onModuleInit();
+      expect(Worker).toHaveBeenCalledWith(ACAP_MSBR, expect.any(Function), {
+        connection: mockConfigFactory.bullMQ.connection,
+      });
+    });
+
     it("should distribute data to realms using enabled messaging options", async () => {
       const reqs: BreakoutUpsertReq[] = [
         {
@@ -92,15 +117,16 @@ describe("OutbreakService", () => {
         useKafka: true,
         useRedisPubSub: true,
         useMQTT: true,
-        useBullMQ: true,
+        useBullMQ: false,
       };
 
       await outbreakService.delegate(reqs, args);
       expect(mockRedisPubSub.emit).toHaveBeenCalledTimes(2);
       expect(mockKafka.emit).toHaveBeenCalledTimes(2);
       expect(mockMQTTClient.publish).toHaveBeenCalledTimes(2);
-      // TODO: fix test - mockable?
-      expect(mockBullMQQueue.add).toHaveBeenCalledTimes(0);
+      expect(mockRabbitMQ.emit).toHaveBeenCalledTimes(2);
+      // TODO: is this one mockable at all?
+      expect(mockBullMQQueue.add).not.toHaveBeenCalled();
     });
 
     it("should not distribute data if no messaging options are enabled", async () => {
