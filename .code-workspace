@@ -26,6 +26,7 @@
     "markdownlint.config": {
       "MD033": false,
       "MD051": false,
+      "MD024": false
     },
   },
   "extensions": {

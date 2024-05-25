@@ -46,7 +46,7 @@
     "@nestjs/platform-fastify": "^10.3.8",
     "@nestjs/swagger": "^7.3.1",
     "@paralleldrive/cuid2": "^2.2.2",
-    "ajv": "^8.13.0",
+    "ajv": "^8.14.0",
     "ajv-formats": "^3.0.1",
     "bullmq": "^5.7.12",
     "cache-manager": "^5.5.3",

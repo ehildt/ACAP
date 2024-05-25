@@ -3,14 +3,7 @@
   "changelog": "@changesets/cli/changelog",
   "commit": false,
   "fixed": [],
-  "linked": [
-    [
-      "@litlbyte/acap",
-      "@acap/frontend",
-      "@acap/backend",
-      "@acap/ms-bridge"
-    ]
-  ],
+  "linked": [],
   "access": "restricted",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",

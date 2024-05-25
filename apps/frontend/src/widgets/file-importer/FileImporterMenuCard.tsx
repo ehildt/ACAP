@@ -15,7 +15,7 @@ export function FileImporterMenuCard() {
         size={bytes.format(f.size)}
         lastModified={f.lastModified}
         onClick={() => {
-          fileSlice.setShowTreeView(false);
+          // fileSlice.setShowTreeView(false);
           fileSlice.setSelectedFile(f);
         }}
       />

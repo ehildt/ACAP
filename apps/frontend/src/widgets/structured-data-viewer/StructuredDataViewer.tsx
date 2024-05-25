@@ -23,19 +23,19 @@ export function StructuredDataViewer({ file }: StructuredDataViewerProps) {
 
   if (!buffer) return;
 
-  if (file?.type?.endsWith("json")) {
+  try {
     const data = JSON.parse(buffer.toString());
     return showTreeView ? (
       <TreeViewer data={data} />
     ) : (
       <JsonViewer data={data} style={{ width: "100%" }} />
     );
+  } catch {
+    const data = parse(buffer.toString());
+    return showTreeView ? (
+      <TreeViewer data={data} />
+    ) : (
+      <YmlViewer data={data} style={{ width: "100%" }} />
+    );
   }
-
-  const data = parse(buffer.toString());
-  return showTreeView ? (
-    <TreeViewer data={data} />
-  ) : (
-    <YmlViewer data={data} style={{ width: "100%" }} />
-  );
 }

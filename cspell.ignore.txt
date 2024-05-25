@@ -85,6 +85,7 @@ Servicestack
 sonarjs
 spdx
 transformative
+traversive
 treeshake
 tseslint
 upserted

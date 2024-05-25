@@ -108,12 +108,12 @@ export function FileImporterMenu(props: FileImporterMenuProps) {
           onClick={() => {
             if (!(realm && configId)) return;
             const extension = selectedFileExtension;
-            // TODO: a field if you want to upload these files in minio
-            if (
+            const isStructuredData =
               extension === "json" ||
               extension === "yml" ||
-              (extension === "yaml" && !forceBlob)
-            ) {
+              extension === "yaml";
+            // TODO: a field if you want to upload these files in minio
+            if (isStructuredData && !forceBlob) {
               let data;
               try {
                 data = buffer && JSON.parse(buffer.toString());
@@ -145,6 +145,7 @@ export function FileImporterMenu(props: FileImporterMenuProps) {
               const form = new FormData();
               fileSlice.selectedFile &&
                 form.append("file", fileSlice.selectedFile);
+              console.log({ forceBlob });
               uPost(["http://localhost:3001/api/v1/objects", { body: form }])
                 .catch(console.error)
                 .then((data) => {
