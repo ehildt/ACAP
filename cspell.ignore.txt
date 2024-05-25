@@ -84,6 +84,7 @@ Securityscorecard
 Servicestack
 sonarjs
 spdx
+transformative
 treeshake
 tseslint
 upserted
