@@ -1,5 +1,18 @@
 # @acap/backend
 
+## 2.0.0
+
+### Minor Changes
+
+- 4a099a0: feat: traversive environment resolution
+
+### Patch Changes
+
+- 28eb897: chore: updated .py scripts and workspaces
+- 5c0a18e: chore: moved all .py and related scripts to .python dir
+- 04adf08: chore: updated genpose
+- 463a377: feat: updated logging on server start
+
 ## 1.0.1
 
 ### Patch Changes
