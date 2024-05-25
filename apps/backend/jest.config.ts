@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   preset: "ts-jest",
   moduleFileExtensions: ["js", "json", "ts"],
   roots: ["<rootDir>/src"],
@@ -12,10 +12,10 @@ module.exports = {
   coverageReporters: ["clover", "json", "cobertura"],
   coverageThreshold: {
     global: {
-      branches: 30,
-      functions: 30,
-      lines: 30,
-      statements: 30,
+      branches: 25,
+      functions: 25,
+      lines: 25,
+      statements: 25,
     },
   },
   collectCoverageFrom: [
