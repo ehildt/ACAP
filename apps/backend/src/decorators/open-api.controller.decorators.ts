@@ -47,9 +47,7 @@ export function OpenApi_Upsert() {
         is skipped. The upsert operation updates the cache with the new content only for the data that already exists
         in the cache. If certain content is not present in the cache, it is unaffected by this operation. Additionally,
         if services like MQTT, BullMQ, and Redis PubSub are enabled, the endpoint emits the new content to these services.
-        This allows other parts of your application to be notified of the changes and react accordingly. In summary, 
-        this endpoint helps maintain data consistency within a realm, selectively updates the cache with the new content,
-        and provides real-time notifications to enabled services when changes occur.`,
+        This allows other parts of your application to be notified of the changes and react accordingly.`,
     }),
     ApiBodyRealmUpsert(),
     ApiCreatedResponse({ description: REQUEST_SUCCESSFUL }),
@@ -72,10 +70,7 @@ export function OpenApi_SchemaUpsert() {
         to the expected JSON schema format, the endpoint throws an UnprocessableEntityException error. The upsert operation 
         selectively updates the cache with the new content for the data already present in the cache. Any content that does 
         not exist in the cache remains unaffected. Upon completion of the upsert operation, the endpoint returns the updated 
-        result of the realm. In summary, this endpoint allows you to upsert JSON schema content into a specified realm. 
-        It performs validation to ensure the content adheres to the expected JSON schema format, throws an 
-        UnprocessableEntityException if the validation fails, and updates the cache accordingly. The endpoint ensures data 
-        consistency and returns the updated result of the realm.`,
+        result of the realm.`,
     }),
     ApiBodyRealmUpsert(),
     ApiCreatedResponse({ description: REQUEST_SUCCESSFUL }),
@@ -120,9 +115,7 @@ export function OpenApi_UpsertRealms() {
         data against predefined schemas (if available) to ensure data consistency. The operation updates the cache selectively,
         affecting only the data already present in the cache. If some content is absent from the cache, it remains unaffected.
         If services like MQTT, BullMQ, and Redis PubSub are enabled, the endpoint emits new content to these services, 
-        facilitating real-time notifications and enabling other parts of your application to react to changes. In summary, 
-        this API streamlines upserts across multiple data realms, ensuring data integrity, optimizing memory use, and 
-        providing real-time notifications for enabled services to respond to data changes.`,
+        facilitating real-time notifications and enabling other parts of your application to react to changes.`,
     }),
     ApiBodyRealmUpsertPerRealm(),
     ApiCreatedResponse({ description: REQUEST_SUCCESSFUL }),
@@ -162,8 +155,7 @@ export function OpenApi_GetRealm() {
         available in a cache, and if not, it fetches the data, caches it for future use, and returns it. If you do provide a 
         list of content IDs, the endpoint will attempt to fetch only the data corresponding to those IDs. It checks the cache 
         for any matching content and returns it. If some content IDs are not found in the cache, it fetches the missing data, 
-        updates the cache, and returns the combined result. In summary, this endpoint provides efficient access to realm data, 
-        minimizing unnecessary data retrieval and optimizing performance through caching.`,
+        updates the cache, and returns the combined result.`,
     }),
     ApiOkResponse({
       type: OpenApiGetRealmProperty,

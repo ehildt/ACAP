@@ -67,7 +67,9 @@ powered by
 ![Prettier](https://img.shields.io/badge/Prettier-F7B93E?style=for-the-badge&logo=prettier&logoColor=white)
 ![Jest](https://img.shields.io/badge/Jest-C21325?style=for-the-badge&logo=jest&logoColor=white)
 ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
-![Minio](https://img.shields.io/badge/-MinIO-C72E49?style=for-the-badge&logo=minio&logoColor=white)
+![Minio](https://img.shields.io/badge/-MinIO-C72E49?style=for-the-badge&logo=minio&logoColor=white)  
+![Apache Kafka](https://img.shields.io/badge/Apache%20Kafka-blue?style=for-the-badge)
+![RabbitMQ](https://img.shields.io/badge/RabbitMQ-orange?style=for-the-badge)
 
   </div>
 </div>

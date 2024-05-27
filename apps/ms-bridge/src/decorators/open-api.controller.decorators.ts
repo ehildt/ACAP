@@ -3,7 +3,9 @@ import { ApiCreatedResponse, ApiOperation } from "@nestjs/swagger";
 
 import {
   ApiBreakoutUpsert,
+  ApiQueryRabbitMQ,
   ApiQueryUseBullMQ,
+  ApiQueryUseKafka,
   ApiQueryUseMqtt,
   ApiQueryUseRedisPubSub,
 } from "./open-api.method.decorators";
@@ -24,6 +26,8 @@ export function OpenApi_Outbreak() {
     ApiQueryUseMqtt(),
     ApiQueryUseBullMQ(),
     ApiQueryUseRedisPubSub(),
+    ApiQueryUseKafka(),
+    ApiQueryRabbitMQ(),
     ApiBreakoutUpsert(),
   );
 }
