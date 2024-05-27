@@ -1,5 +1,11 @@
 # @acap/backend
 
+## 2.1.0
+
+### Minor Changes
+
+- 71ebc97: rm version from root package.json and updated linked packages
+
 ## 2.0.0
 
 ### Minor Changes
