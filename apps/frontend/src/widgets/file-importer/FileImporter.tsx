@@ -5,7 +5,7 @@ import { useFileImporterImmerStore } from "./FileImporter.store";
 import { FileImporterMenu } from "./FileImporterMenu";
 import { FileImporterPreview } from "./FileImporterPreview";
 
-export function FileImporter() {
+export default function FileImporter() {
   const fileSlice = useFileImporterImmerStore();
 
   // TODO: move to backend config

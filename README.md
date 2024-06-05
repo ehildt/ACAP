@@ -54,24 +54,27 @@ capabilities, empowering you to innovate and thrive in today's dynamic digital l
 
 powered by
 
-[![NestJs](https://img.shields.io/badge/nestjs-E0234E?style=for-the-badge&logo=nestjs&logoColor=white)](https://nestjs.com/)
-[![Fastify](https://img.shields.io/badge/fastify-202020?style=for-the-badge&logo=fastify&logoColor=white)](https://fastify.dev/)
-[![KeyDB](https://img.shields.io/badge/keydb-%23DD0031.svg?&style=for-the-badge&logo=redis&logoColor=white)](https://docs.keydb.dev/)
-[![BullMQ](https://img.shields.io/badge/bullmq-%233C5280?style=for-the-badge&logo=bullmq&logoColor=white)](https://docs.bullmq.io/)
-[![PubSub](https://img.shields.io/badge/pubsub-aC5cce?style=for-the-badge&logo=redis&logoColor=white)](https://docs.keydb.dev/docs/pubsub/)
-[![MQTT](https://img.shields.io/badge/MQTT-660066?style=for-the-badge&logo=mqtt&logoColor=white)](https://mosquitto.org/)  
-[![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
-[![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/)
-[![Swagger](https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=Swagger&logoColor=black)](https://swagger.io/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)  
+[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![ESLint](https://img.shields.io/badge/ESLint-4B32C3?style=for-the-badge&logo=eslint&logoColor=white)](https://eslint.org/)
 [![Prettier](https://img.shields.io/badge/Prettier-F7B93E?style=for-the-badge&logo=prettier&logoColor=white)](https://prettier.io/)
 [![Jest](https://img.shields.io/badge/Jest-C21325?style=for-the-badge&logo=jest&logoColor=white)](https://jestjs.io/)
 [![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)](https://git-scm.com/)
+
+special thanks to
+
+[![NestJs](https://img.shields.io/badge/nestjs-E0234E?style=for-the-badge&logo=nestjs&logoColor=white)](https://nestjs.com/)
+[![Fastify](https://img.shields.io/badge/fastify-202020?style=for-the-badge&logo=fastify&logoColor=white)](https://fastify.dev/)
+[![KeyDB](https://img.shields.io/badge/keydb-%23DD0031.svg?&style=for-the-badge&logo=redis&logoColor=white)](https://docs.keydb.dev/)
+[![BullMQ](https://img.shields.io/badge/bullmq-%233C5280?style=for-the-badge&logo=bullmq&logoColor=white)](https://docs.bullmq.io/)
+[![PubSub](https://img.shields.io/badge/pubsub-aC5cce?style=for-the-badge&logo=redis&logoColor=white)](https://docs.keydb.dev/docs/pubsub/)  
+[![MQTT](https://img.shields.io/badge/MQTT-660066?style=for-the-badge&logo=mqtt&logoColor=white)](https://mosquitto.org/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
+[![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/)
+[![Swagger](https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=Swagger&logoColor=black)](https://swagger.io/)
 [![Minio](https://img.shields.io/badge/-MinIO-C72E49?style=for-the-badge&logo=minio&logoColor=white)](https://min.io/)  
 [![Apache Kafka](https://img.shields.io/badge/Apache%20Kafka-blue?style=for-the-badge&logo=apache%20kafka)](https://kafka.apache.org/)
 [![RabbitMQ](https://img.shields.io/badge/RabbitMQ-gray?style=for-the-badge&logo=rabbitmq)](https://www.rabbitmq.com/)
-![Storybook](https://img.shields.io/badge/storybook-darkblue?style=for-the-badge&logo=storybook)
+[![Storybook](https://img.shields.io/badge/storybook-darkblue?style=for-the-badge&logo=storybook)](https://storybook.js.org/)
 
   </div>
 </div>
@@ -80,7 +83,7 @@ powered by
 <div align="center">
 
 `Have inquiries or eager to engage and contribute?`  
-`Don't hesitate to reach out to us via email or by creating an issue`
+`Don't hesitate to reach out to us via email or by creating an issue.`
 
 <br />
 

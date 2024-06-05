@@ -27,6 +27,7 @@ export function Container(props: ContainerProps) {
 
   return (
     <div
+      onClick={props.onClick}
       ref={ref}
       style={{ ...props.outerStyle, ...cssCustomVariables }}
       className={classNames([

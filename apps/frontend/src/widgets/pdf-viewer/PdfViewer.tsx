@@ -9,7 +9,7 @@ import { Container } from "@/layouts/container/Container";
 import style from "./PdfViewer.module.scss";
 import { usePdfViewImmerStore } from "./PdfViewer.store";
 
-pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
+pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
 type PdfViewerProps = {
   file?: File;
@@ -36,9 +36,10 @@ export function PdfViewer(props: PdfViewerProps) {
             setCurrentPage(1);
             setPages(numPages);
           }}
+          onLoadError={(e) => console.error(e)}
         >
           <Container>
-            <Page pageNumber={currentPage} renderAnnotationLayer={false} />
+            <Page pageNumber={currentPage} />
           </Container>
         </Document>
       </div>

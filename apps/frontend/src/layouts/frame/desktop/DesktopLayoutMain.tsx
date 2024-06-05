@@ -1,16 +1,20 @@
+import { lazy, Suspense } from "react";
 import { FaHome } from "react-icons/fa";
 import { FaUpload } from "react-icons/fa6";
 import { RiListSettingsLine } from "react-icons/ri";
 
 import { Button } from "@/atomics";
 import { Line } from "@/layouts/line/Line";
-import { AcapConfigViewer } from "@/widgets/acap-config-viewer/AcapConfig";
-import { FileImporter } from "@/widgets/file-importer/FileImporter";
-import { Metae } from "@/widgets/metae/Metae";
 
 import { FlickerContainer, FlickerText } from "../../../effects";
 import { useTabMenuImmerStore } from "./DesktopLayoutHeaderMenu.store";
 import style from "./DesktopLayoutMain.module.scss";
+
+const Metae = lazy(() => import("@/widgets/metae/Metae"));
+const FileImporter = lazy(() => import("@/widgets/file-importer/FileImporter"));
+const AcapConfigViewer = lazy(
+  () => import("@/widgets/acap-config-viewer/AcapConfig"),
+);
 
 export function DesktopLayoutMain() {
   // TODO: replace for a router
@@ -61,9 +65,21 @@ export function DesktopLayoutMain() {
             />
           </FlickerContainer>
         </Line>
-        {tab === "metae" && <Metae />}
-        {tab === "home" && <AcapConfigViewer />}
-        {tab === "importer" && <FileImporter />}
+        {tab === "metae" && (
+          <Suspense>
+            <Metae />
+          </Suspense>
+        )}
+        {tab === "home" && (
+          <Suspense>
+            <AcapConfigViewer />
+          </Suspense>
+        )}
+        {tab === "importer" && (
+          <Suspense>
+            <FileImporter />
+          </Suspense>
+        )}
       </div>
     </main>
   );

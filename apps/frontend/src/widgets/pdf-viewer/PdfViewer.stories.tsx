@@ -10,10 +10,14 @@ export default {
   decorators: [(renderer) => <div>{renderer()}</div>],
 } satisfies Meta<typeof PdfViewer>;
 
+const BUFFER = new Uint8Array(Buffer.from(pdfBase64Example, "base64"));
+const BLOB = new Blob([BUFFER], { type: "application/pdf" });
+const FILE = new File([BLOB], "example.pdf", { type: BLOB.type });
+
 export const DefaultPdfViewer = {
   render: () => (
     <PdfViewer
-      buffer={Buffer.from(pdfBase64Example)}
+      file={FILE}
       formatter={(currentPageNumber, totalPageCount) =>
         `Page ${currentPageNumber} of ${totalPageCount}`
       }

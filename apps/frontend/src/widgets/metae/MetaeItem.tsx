@@ -2,6 +2,7 @@ import cn from "classnames";
 import { useState } from "react";
 
 import { FileCard } from "@/atomics/file-card/FileCard";
+import { FlickerText } from "@/effects";
 import { Line } from "@/layouts";
 import { Container } from "@/layouts/container/Container";
 
@@ -15,7 +16,7 @@ export function MetaeItem(props: MetaeItemProps) {
 
   return (
     <>
-      <div
+      <div // this is the realm list
         className={cn([
           style.metaeMenuListItem,
           { [style.metaeMenuListItemVisible]: !realmKey },
@@ -35,7 +36,13 @@ export function MetaeItem(props: MetaeItemProps) {
               outerStyle={{ padding: "1rem", cursor: "pointer" }}
             >
               <Line>
-                <h2>{key}</h2>
+                <FlickerText
+                  text={key}
+                  letterSpacing="1px"
+                  repeatFlickerText="1"
+                  repeatFlickerTextFaulty="2"
+                  color="yellowgreen"
+                />
                 <h1 style={{ marginLeft: "auto" }}>
                   {props.metae?.[key].length}
                 </h1>
@@ -45,7 +52,7 @@ export function MetaeItem(props: MetaeItemProps) {
         ))}
       </div>
 
-      <div
+      <div // this is the realm content list
         className={cn([
           style.metaeMenuListItem,
           { [style.metaeMenuListItemVisible]: realmKey },
@@ -57,18 +64,18 @@ export function MetaeItem(props: MetaeItemProps) {
         />
         {realmKey &&
           props.metae?.[realmKey]?.map((item: any, idx: any) => {
-            console.log({ item });
             const { id, hasSchema, hasRealm, createdAt, updatedAt, value } =
               item;
+
             return (
               <Container fadeInOutMS={100 * idx} key={`${item.id}_${idx}`}>
                 <FileCard
                   id={id}
-                  fileRef={value.cuid2}
-                  filename={value.name}
+                  fileRef={value[0].cuid2}
+                  filename={value[0].name}
                   lastModified={updatedAt}
-                  size={value.size}
-                  extension={value.extension}
+                  size={value[0].size}
+                  extension={value[0].extension}
                 />
               </Container>
             );
