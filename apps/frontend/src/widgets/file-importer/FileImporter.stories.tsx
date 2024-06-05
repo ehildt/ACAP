@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { FileImporter } from "./FileImporter";
+import FileImporter from "./FileImporter";
 
 export default {
   /* 👇 The title prop is optional.

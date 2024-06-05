@@ -24,8 +24,6 @@ const meta = {
 
 export default meta;
 
-
-
 export const H1Tooltip = {
   args: {
     tooltip: "some tooltip that describes some content",

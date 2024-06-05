@@ -15,20 +15,23 @@ export function MetaeSubListItemHeader({
 }: MetaeItemHeaderProps) {
   return (
     text && (
-      <Container innerStyle={{ padding: "0.3rem" }}>
+      <Container
+        innerStyle={{ padding: "0.3rem", cursor: "pointer" }}
+        onClick={onClick}
+      >
         <Line style={{ width: "100%" }}>
           {
             <FlickerText
-              text={text?.toUpperCase()}
+              text={text}
               color="crimson"
               repeatFlickerText="1"
               repeatFlickerTextFaulty="2"
+              letterSpacing="1px"
             />
           }
           <PiArrowFatLinesLeftFill
-            onClick={onClick}
             size={"1.5rem"}
-            style={{ marginLeft: "auto", cursor: "pointer" }}
+            style={{ marginLeft: "auto" }}
           />
         </Line>
       </Container>

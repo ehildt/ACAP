@@ -6,7 +6,7 @@ import { MetaeProps } from "./Metae.modal";
 import style from "./Metae.module.scss";
 import { MetaeMenu } from "./MetaeMenu";
 
-export function Metae(props: MetaeProps) {
+export default function Metae(props: MetaeProps) {
   const [take, setTake] = useState<number>(3);
   const [skip, setSkip] = useState<number>(0);
   const [source, setSource] = useState<METAE_SOURCE>("realms");

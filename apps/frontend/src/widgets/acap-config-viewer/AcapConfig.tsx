@@ -23,7 +23,7 @@ function getColor(condition: boolean, enabled: string, disabled: string) {
   return condition ? enabled : disabled;
 }
 
-export function AcapConfigViewer() {
+export default function AcapConfigViewer() {
   const msBridge = useSWR(
     ["http://localhost:3002/api/v1/metae/ms-bridge"],
     get,

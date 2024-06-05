@@ -1,3 +1,5 @@
+// @use '@styles/partials/colors' as c
+
 .acap-config {
   width: fit-content;
   margin: auto;
@@ -15,7 +17,7 @@
     transparent,
     transparent,
     transparent,
-    purple
+    purple /* c.$color-blue */
   )
   1;
 }

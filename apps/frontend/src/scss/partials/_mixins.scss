@@ -1,5 +1,29 @@
-@mixin flex-center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+@mixin flex-center() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin global-scrollbar() {
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-clr-thumb-bgColor);
+    outline: var(--scrollbar-clr-thumb-outline);
+    border-radius: var(--scrollbar-clr-thumb-brdRadius);
   }
+
+  ::-webkit-scrollbar {
+    width: 0.75rem;
+    height: 0.75rem;
+    background-color: transparent;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: transparent;
+    border-radius: 0.7rem;
+  }
+
+  ::-webkit-scrollbar-button,
+  ::-webkit-scrollbar-corner {
+    display: none;
+  }
+}
