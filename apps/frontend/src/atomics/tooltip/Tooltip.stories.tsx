@@ -24,9 +24,9 @@ const meta = {
 
 export default meta;
 
-type Story = StoryObj<typeof meta>;
 
-export const H1Tooltip: Story = {
+
+export const H1Tooltip = {
   args: {
     tooltip: "some tooltip that describes some content",
   },
@@ -35,4 +35,4 @@ export const H1Tooltip: Story = {
       <h1>do you like candy?</h1>
     </Tooltip>
   ),
-};
+} satisfies StoryObj<typeof meta>;

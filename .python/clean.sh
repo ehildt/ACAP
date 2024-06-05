@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ "$#" -lt 1 ]; then
-    echo "Usage: $0 <directory> <arguments...>"
+    echo "Usage: $0 <directories...>"
     exit 1
 fi
 

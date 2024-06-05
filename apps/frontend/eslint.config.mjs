@@ -1,17 +1,15 @@
-import pluginJs from '@eslint/js';
-import eslintConfigPrettier from 'eslint-config-prettier';
-import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
+import eslint from '@eslint/js';
+import eslintPrettier from 'eslint-plugin-prettier/recommended';
 import react from 'eslint-plugin-react';
 import simpleImportSort from 'eslint-plugin-simple-import-sort';
 import sonarjs from 'eslint-plugin-sonarjs';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
-export default [
-  pluginJs.configs.recommended,
+export default tseslint.config(
+  eslint.configs.recommended,
+  eslintPrettier,
   ...tseslint.configs.recommended,
-  eslintConfigPrettier,
-  eslintPluginPrettierRecommended,
   {
     settings: {
       react: {
@@ -28,15 +26,17 @@ export default [
       parserOptions: {
         ecmaVersion: 'latest',
         sourceType: 'module',
-        parser: '@typescript-eslint/parser',
         ecmaFeatures: {
           jsx: true,
         },
       },
     },
-    ignores: ['dist', '.husky', '.gitlab', '.vscode', 'node_modules', '.json'],
+    ignores: [
+      ".husky",
+      ".gitlab",
+      ".vscode"
+    ],
     rules: {
-      'prettier/prettier': ['warn', { usePrettierrc: true }],
       'sort-imports': 'off',
       'import/order': 'off',
       '@typescript-eslint/no-explicit-any': 'off',
@@ -45,7 +45,14 @@ export default [
       'simple-import-sort/exports': 'warn',
       'sonarjs/cognitive-complexity': 'warn',
       'sonarjs/no-identical-expressions': 'warn',
-      'no-console': 'warn'
+      'no-console': 'warn',
+      'react/react-in-jsx-scope': 'off',
+      'react/jsx-uses-react': 'error',
+      'react/jsx-uses-vars': 'error',
+      "no-redeclare": "off",
+      "@typescript-eslint/no-redeclare": "error"
     },
   },
-];
+);
+
+

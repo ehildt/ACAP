@@ -23,6 +23,7 @@ dccs
 DCCS
 depcruiser
 depcruiserrc
+docgen
 dotenv
 dotfiles
 dtos
