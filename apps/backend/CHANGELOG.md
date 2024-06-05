@@ -1,5 +1,11 @@
 # @acap/backend
 
+## 2.1.1
+
+### Patch Changes
+
+- 84ee356: updated badges & swagger docs
+
 ## 2.1.0
 
 ### Minor Changes
