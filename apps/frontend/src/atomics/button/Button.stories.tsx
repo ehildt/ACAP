@@ -24,10 +24,7 @@ const meta = {
 } satisfies Meta<typeof Button>;
 
 export default meta;
-
-type Story = StoryObj<typeof meta>;
-
-export const Primary: Story = {
+export const Primary = {
   args: {
     color: "plum",
     hoverColor: "black",
@@ -37,7 +34,7 @@ export const Primary: Story = {
     backgroundHoverColor: "gray",
   },
   render: (args) => <Button {...args}>colors</Button>,
-};
+} satisfies StoryObj<typeof meta>;
 
 /* export const DefaultButton = {
   render: () => <Button onClick={() => confirm('button clicked!')}>clickMe</Button>,

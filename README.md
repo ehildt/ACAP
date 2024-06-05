@@ -33,43 +33,45 @@ capabilities, empowering you to innovate and thrive in today's dynamic digital l
 <br />
 <div align="center">
 
-![Name](https://img.shields.io/badge/open_source-ACAP-gold)
+![ACAP](https://img.shields.io/badge/open-source-gold)
 ![License](https://img.shields.io/github/license/ehildt/acap?style=flat&color=brown)
-![DockerPulls](https://img.shields.io/docker/pulls/ehildt/acap?color=darkgreen&label=docker%20pulls&logo=docker)  
+![Docker](https://img.shields.io/docker/pulls/ehildt/acap?color=darkgreen&label=docker&logo=docker)  
 ![Branch](https://img.shields.io/badge/branch-main-blue?style=flat&logo=git&logoColor=white)
 ![Node](https://img.shields.io/badge/node-LTS-purple?style=flat&logo=node.js&logoColor=white)
 ![BuildStatus](https://img.shields.io/badge/build-passing-darkgreen?style=flat&logo=github&logoColor=white)  
-![WebUi](https://img.shields.io/github/package-json/v/ehildt/acap?filename=apps/frontend/package.json&style=flat&color=lightgreen&label=WebUI
+![web-ui](https://img.shields.io/github/package-json/v/ehildt/acap?filename=apps/frontend/package.json&style=flat&color=lightgreen&label=web-ui
 )
-![Backend](https://img.shields.io/github/package-json/v/ehildt/acap?filename=apps/backend/package.json&style=flat&color=lightgreen&label=Backend
+![backend](https://img.shields.io/github/package-json/v/ehildt/acap?filename=apps/backend/package.json&style=flat&color=lightgreen&label=backend
 )
-![MSBridge](https://img.shields.io/github/package-json/v/ehildt/acap?filename=apps/ms-bridge/package.json&style=flat&color=lightgreen&label=MSBridge
+![ms-bridge](https://img.shields.io/github/package-json/v/ehildt/acap?filename=apps/ms-bridge/package.json&style=flat&color=lightgreen&label=ms-bridge
 )  
-![codecov](https://codecov.io/gh/ehildt/acap/graph/badge.svg?token=MCL18OCNV7)
-![Changeset](https://img.shields.io/badge/Changeset-SemVer-green)
+[![codecov](https://codecov.io/gh/ehildt/acap/graph/badge.svg?token=MCL18OCNV7)](https://app.codecov.io/gh/ehildt/acap)
+[![changesets](https://img.shields.io/badge/Changeset-SemVer-green)](https://github.com/changesets/changesets)
+
 </div>
 
   <div align="center">
 
 powered by
 
-![NestJs](https://img.shields.io/badge/nestjs-E0234E?style=for-the-badge&logo=nestjs&logoColor=white)
-![Fastify](https://img.shields.io/badge/fastify-202020?style=for-the-badge&logo=fastify&logoColor=white)
-![Redis](https://img.shields.io/badge/redis-%23DD0031.svg?&style=for-the-badge&logo=redis&logoColor=white)
-![BullMQ](https://img.shields.io/badge/bullmq-%233C5280?style=for-the-badge&logo=redis&logoColor=white)
-![PubSub](https://img.shields.io/badge/pubsub-aC5cce?style=for-the-badge&logo=redis&logoColor=white)  
-![MQTT](https://img.shields.io/badge/MQTT-660066?style=for-the-badge&logo=mqtt&logoColor=white)
-![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
-![Swagger](https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=Swagger&logoColor=black)
-![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)  
-![ESLint](https://img.shields.io/badge/ESLint-4B32C3?style=for-the-badge&logo=eslint&logoColor=white)
-![Prettier](https://img.shields.io/badge/Prettier-F7B93E?style=for-the-badge&logo=prettier&logoColor=white)
-![Jest](https://img.shields.io/badge/Jest-C21325?style=for-the-badge&logo=jest&logoColor=white)
-![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
-![Minio](https://img.shields.io/badge/-MinIO-C72E49?style=for-the-badge&logo=minio&logoColor=white)  
-![Apache Kafka](https://img.shields.io/badge/Apache%20Kafka-blue?style=for-the-badge)
-![RabbitMQ](https://img.shields.io/badge/RabbitMQ-orange?style=for-the-badge)
+[![NestJs](https://img.shields.io/badge/nestjs-E0234E?style=for-the-badge&logo=nestjs&logoColor=white)](https://nestjs.com/)
+[![Fastify](https://img.shields.io/badge/fastify-202020?style=for-the-badge&logo=fastify&logoColor=white)](https://fastify.dev/)
+[![KeyDB](https://img.shields.io/badge/keydb-%23DD0031.svg?&style=for-the-badge&logo=redis&logoColor=white)](https://docs.keydb.dev/)
+[![BullMQ](https://img.shields.io/badge/bullmq-%233C5280?style=for-the-badge&logo=bullmq&logoColor=white)](https://docs.bullmq.io/)
+[![PubSub](https://img.shields.io/badge/pubsub-aC5cce?style=for-the-badge&logo=redis&logoColor=white)](https://docs.keydb.dev/docs/pubsub/)
+[![MQTT](https://img.shields.io/badge/MQTT-660066?style=for-the-badge&logo=mqtt&logoColor=white)](https://mosquitto.org/)  
+[![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
+[![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/)
+[![Swagger](https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=Swagger&logoColor=black)](https://swagger.io/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)  
+[![ESLint](https://img.shields.io/badge/ESLint-4B32C3?style=for-the-badge&logo=eslint&logoColor=white)](https://eslint.org/)
+[![Prettier](https://img.shields.io/badge/Prettier-F7B93E?style=for-the-badge&logo=prettier&logoColor=white)](https://prettier.io/)
+[![Jest](https://img.shields.io/badge/Jest-C21325?style=for-the-badge&logo=jest&logoColor=white)](https://jestjs.io/)
+[![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)](https://git-scm.com/)
+[![Minio](https://img.shields.io/badge/-MinIO-C72E49?style=for-the-badge&logo=minio&logoColor=white)](https://min.io/)  
+[![Apache Kafka](https://img.shields.io/badge/Apache%20Kafka-blue?style=for-the-badge&logo=apache%20kafka)](https://kafka.apache.org/)
+[![RabbitMQ](https://img.shields.io/badge/RabbitMQ-gray?style=for-the-badge&logo=rabbitmq)](https://www.rabbitmq.com/)
+![Storybook](https://img.shields.io/badge/storybook-darkblue?style=for-the-badge&logo=storybook)
 
   </div>
 </div>
