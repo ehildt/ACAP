@@ -13,8 +13,8 @@
       "path": "apps/ms-bridge"
     },
     {
-      "name": "frontend",
-      "path": "apps/frontend"
+      "name": "web-ui",
+      "path": "apps/web-ui"
     }
   ],
   "settings": {
