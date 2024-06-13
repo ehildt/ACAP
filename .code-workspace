@@ -18,16 +18,19 @@
     }
   ],
   "settings": {
+    "terminal.integrated.env.linux": {
+      "NPM_CONFIG_USERCONFIG": "/dev/null"
+    },
     "files.exclude": {
       "**/node_modules": true,
       "**/dist": true,
-      "**/.vscode": false,
+      "**/.vscode": false
     },
     "markdownlint.config": {
       "MD033": false,
       "MD051": false,
       "MD024": false
-    },
+    }
   },
   "extensions": {
     "recommendations": [
@@ -43,6 +46,8 @@
       "streetsidesoftware.code-spell-checker-scientific-terms",
       "ms-azuretools.vscode-docker",
       "usernamehw.errorlens",
-    ],
-  },
+      "moyu.snapcode",
+      "sibiraj-s.vscode-scss-formatter"
+    ]
+  }
 }

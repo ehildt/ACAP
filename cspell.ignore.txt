@@ -58,6 +58,7 @@ mhutchie
 mikestead
 mongodb
 mosquitto
+moyu
 mqtt
 MQTT
 MSBR
@@ -83,6 +84,8 @@ reqs
 rimraf
 Securityscorecard
 Servicestack
+sibiraj
+snapcode
 sonarjs
 spdx
 transformative
@@ -91,6 +94,7 @@ treeshake
 tseslint
 upserted
 upserts
+USERCONFIG
 usernamehw
 vite
 vitest

@@ -28,7 +28,6 @@
     "source.fixAll.markdownlint": "always"
   },
   "eslint.enable": true,
-  "eslint.execArgv": ["--max_old_space_size=2048"],
   "eslint.options": {
     "extensions": [".js", ".jsx", ".ts", ".tsx"]
   },
@@ -55,10 +54,10 @@
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "dbaeumer.vscode-eslint",
   "[typescript]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features"
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
   },
   "[javascript]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features"
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
   },
   "[ignore]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"

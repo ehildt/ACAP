@@ -12,14 +12,14 @@
   padding: 8vh 12vw;
   animation: border-flicker 1s ease 2s 2;
   border-image: linear-gradient(
-    to left top,
-    crimson,
-    transparent,
-    transparent,
-    transparent,
-    purple /* c.$color-blue */
-  )
-  1;
+      to left top,
+      crimson,
+      transparent,
+      transparent,
+      transparent,
+      purple /* c.$color-blue */
+    )
+    1;
 }
 
 @keyframes border-flicker {
@@ -28,27 +28,27 @@
   100% {
     opacity: 0.1;
     border-image: linear-gradient(
-      to left top,
-      crimson,
-      transparent,
-      transparent,
-      transparent,
-      purple
-    )
-    1;
+        to left top,
+        crimson,
+        transparent,
+        transparent,
+        transparent,
+        purple
+      )
+      1;
   }
   2%,
   8%,
   70% {
     opacity: 1;
     border-image: linear-gradient(
-      to left top,
-      crimson,
-      transparent,
-      transparent,
-      transparent,
-      purple
-    )
-    1;
+        to left top,
+        crimson,
+        transparent,
+        transparent,
+        transparent,
+        purple
+      )
+      1;
   }
 }

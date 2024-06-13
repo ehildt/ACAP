@@ -10,7 +10,9 @@ export const KAFKA_SCHEMA = {
     : Joi.string().optional(),
 
   KAFKA_BROKERS: options.client.brokers
-    ? Joi.array<string>().default(options.client.brokers)
+    ? Joi.string().default(
+        options.client.brokers.reduce((acc, val) => `${acc},${val}`),
+      )
     : Joi.required().optional(),
 
   KAFKA_SSL:
