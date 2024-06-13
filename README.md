@@ -33,8 +33,8 @@ capabilities, empowering you to innovate and thrive in today's dynamic digital l
 <br />
 <div align="center">
 
-![ACAP](https://img.shields.io/badge/open-source-gold)
-![License](https://img.shields.io/github/license/ehildt/acap?style=flat&color=brown)
+[![OpenSource](https://img.shields.io/badge/open-source-gold)](https://opensource.com/resources/what-open-source)
+[![License](https://img.shields.io/github/license/ehildt/acap?style=flat&color=brown)](https://snyk.io/learn/what-is-mit-license/)
 ![Docker](https://img.shields.io/docker/pulls/ehildt/acap?color=darkgreen&label=docker&logo=docker)  
 ![Branch](https://img.shields.io/badge/branch-main-blue?style=flat&logo=git&logoColor=white)
 ![Node](https://img.shields.io/badge/node-LTS-purple?style=flat&logo=node.js&logoColor=white)
@@ -50,7 +50,7 @@ capabilities, empowering you to innovate and thrive in today's dynamic digital l
 
 </div>
 
-  <div align="center">
+<div align="center">
 
 powered by
 
@@ -58,10 +58,7 @@ powered by
 [![ESLint](https://img.shields.io/badge/ESLint-4B32C3?style=for-the-badge&logo=eslint&logoColor=white)](https://eslint.org/)
 [![Prettier](https://img.shields.io/badge/Prettier-F7B93E?style=for-the-badge&logo=prettier&logoColor=white)](https://prettier.io/)
 [![Jest](https://img.shields.io/badge/Jest-C21325?style=for-the-badge&logo=jest&logoColor=white)](https://jestjs.io/)
-[![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)](https://git-scm.com/)
-
-special thanks to
-
+[![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)](https://git-scm.com/)  
 [![NestJs](https://img.shields.io/badge/nestjs-E0234E?style=for-the-badge&logo=nestjs&logoColor=white)](https://nestjs.com/)
 [![Fastify](https://img.shields.io/badge/fastify-202020?style=for-the-badge&logo=fastify&logoColor=white)](https://fastify.dev/)
 [![KeyDB](https://img.shields.io/badge/keydb-%23DD0031.svg?&style=for-the-badge&logo=redis&logoColor=white)](https://docs.keydb.dev/)
@@ -89,9 +86,9 @@ special thanks to
 
 <p align="center">
   <a href="https://github.com/ehildt/acap/wiki/ACAP">Wiki</a> |
-  <a href="https://github.com/ehildt/acap/issues">Report an Issue</a> |
-  <a href="mailto:eugen.hildt@gmail.com">Contact Us</a> |
-   <a href="https://www.paypal.com/paypalme/@eugenhildt">Support us</a>
+  <a href="https://github.com/ehildt/acap/issues">Issue</a> |
+  <a href="mailto:eugen.hildt@gmail.com">Contact</a> |
+  <a href="https://www.paypal.com/paypalme/@eugenhildt">Donate</a>
 </p>
 
 </div>

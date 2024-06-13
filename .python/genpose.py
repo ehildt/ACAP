@@ -38,7 +38,7 @@ def generate_docker_compose(template_dir):
     }
 
     envs = SimpleNamespace(**env_vars)
-    templates = ['backend.yml.j2', 'frontend.yml.j2']
+    templates = ['backend.yml.j2', 'web-ui.yml.j2']
 
     if (envs.use_pubsub or envs.use_bullmq or envs.use_kafka) and envs.use_rabbitmq:
         templates.append('ms-bridge.yml.j2')

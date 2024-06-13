@@ -1,16 +1,16 @@
 
-  frontend:
-    container_name: frontend
+  web-ui:
+    container_name: web-ui
     build:
-      context: ./apps/frontend
+      context: ./apps/web-ui
       target: local
     depends_on:
       - backend
     volumes:
-      - ./apps/frontend:/app
+      - ./apps/web-ui:/app
       - ./node_modules:/node_modules
     environment:
-      - ./apps/frontend/.env.development
+      - ./apps/web-ui/.env.development
     ports:
       - "5173:5173"
     networks:
