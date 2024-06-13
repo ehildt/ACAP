@@ -27,8 +27,8 @@ bullMQConfig:
     username: default
 
 kafkaClientConfig:
-  options: 
-    client: 
+  options:
+    client:
       ssl: false
       clientId: acap
       brokers: kafka:9092

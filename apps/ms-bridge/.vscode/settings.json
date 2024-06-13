@@ -2,7 +2,6 @@
   "eslint.enable": true,
   "editor.formatOnSave": true,
   "diffEditor.codeLens": true,
-  "editor.formatOnPaste": true,
   "editor.tabSize": 2,
   "editor.bracketPairColorization.enabled": true,
   "editor.formatOnSaveMode": "modifications",
@@ -12,7 +11,6 @@
     "source.sortMembers": "always",
     "source.fixAll.markdownlint": "always"
   },
-  "eslint.validate": ["javascript", "typescript"],
   "files.exclude": {
     "**/.git": true,
     "**/.svn": true,
@@ -39,7 +37,7 @@
     "editor.defaultFormatter": "foxundermoon.shell-format"
   },
   "[typescript]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features"
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
   },
   "[javascript]": {
     "editor.defaultFormatter": "dbaeumer.vscode-eslint"
