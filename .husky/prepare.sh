@@ -1,5 +1,4 @@
 #!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
 
 # constants
 CURRENT_BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)

@@ -1,0 +1,19 @@
+  chat-hub:
+    container_name: chat-hub
+    build:
+      context: ./apps/chat-hub
+      target: local
+    volumes:
+      - ./apps/chat-hub:/app
+      - ./node_modules:/node_modules  
+    depends_on:
+      - keydb
+    env_file:
+      - ./apps/chat-hub/env/.env
+    environment:
+      - NODE_ENV=production
+      - PRINT_ENV=false
+    ports:
+      - 3003:3003
+    networks:
+      - acap-network

@@ -1,14 +1,14 @@
-import { CSSProperties, ReactNode } from "react";
+import { CSSProperties, ReactNode } from 'react';
 
 export type ExtendedCSSProperties = {
-  "--animation-rotate-speedMS"?: string;
-  "--animation-rotate-speedMS2"?: string;
-  "--animation-rotateX"?: string;
-  "--animation-rotateY"?: string;
-  "--animation-rotateZ"?: string;
-  "--animation-rotateX2"?: string;
-  "--animation-rotateY2"?: string;
-  "--animation-rotateZ2"?: string;
+  '--animation-rotate-speedMS'?: string;
+  '--animation-rotate-speedMS2'?: string;
+  '--animation-rotateX'?: string;
+  '--animation-rotateY'?: string;
+  '--animation-rotateZ'?: string;
+  '--animation-rotateX2'?: string;
+  '--animation-rotateY2'?: string;
+  '--animation-rotateZ2'?: string;
 } & CSSProperties;
 
 export type RotateProps = {

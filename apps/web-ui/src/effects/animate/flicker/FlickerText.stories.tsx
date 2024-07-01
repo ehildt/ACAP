@@ -1,10 +1,10 @@
-import { Source, Story, Subheading, Subtitle, Title } from "@storybook/blocks";
-import type { Meta, StoryObj } from "@storybook/react";
+import { Source, Story, Subheading, Subtitle, Title } from '@storybook/blocks';
+import type { Meta, StoryObj } from '@storybook/react';
 
-import { FlickerText } from "./FlickerText";
+import { FlickerText } from './FlickerText';
 
 const meta = {
-  title: "effects/animate/flicker",
+  title: 'effects/animate/flicker',
   component: FlickerText,
   parameters: {
     docs: {
@@ -27,8 +27,8 @@ type FlickerStory = StoryObj<typeof meta>;
 
 export const Text: FlickerStory = {
   args: {
-    color: "crimson",
-    text: "save me crimson senpai",
+    color: 'crimson',
+    text: 'save me crimson senpai',
   },
   render: (args) => <FlickerText {...args} />,
 };

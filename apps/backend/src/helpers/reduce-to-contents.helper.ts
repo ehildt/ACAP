@@ -1,9 +1,6 @@
-import { challengeContentValue } from "./challenge-content-source.helper";
+import { challengeContentValue } from './challenge-content-source.helper';
 
-export function reduceToContents(
-  resolveEnv: boolean,
-  entities?: Array<any> | Record<string, unknown>,
-) {
+export function reduceToContents(resolveEnv: boolean, entities?: Array<any> | Record<string, unknown>) {
   if (Array.isArray(entities))
     return entities?.reduce((acc, { id, value }) => {
       let parsedValue: string | Record<string, unknown>;

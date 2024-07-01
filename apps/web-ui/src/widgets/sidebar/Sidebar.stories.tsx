@@ -1,11 +1,11 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from '@storybook/react';
 
-import { Sidebar } from "./Sidebar";
+import { Sidebar } from './Sidebar';
 
 export default {
-  title: "widgets/sidebar",
+  title: 'widgets/sidebar',
   component: Sidebar,
-  decorators: [(story) => <div style={{ width: "20dvw" }}>{story()}</div>],
+  decorators: [(story) => <div style={{ width: '20dvw' }}>{story()}</div>],
 } satisfies Meta<typeof Sidebar>;
 
 export const SidebarExample = {

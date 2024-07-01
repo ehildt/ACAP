@@ -1,6 +1,6 @@
-import Joi from "joi";
+import Joi from 'joi';
 
-import { CONFIG_YML } from "@/configs/config-yml/loader";
+import { CONFIG_YML } from '@/configs/config-yml/loader';
 
 export const MQTT_SCHEMA = {
   MQTT_HOSTNAME: CONFIG_YML?.mqttClientConfig?.options?.hostname

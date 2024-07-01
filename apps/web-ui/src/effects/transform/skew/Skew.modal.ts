@@ -1,12 +1,12 @@
-import { CSSProperties, ReactNode } from "react";
+import { CSSProperties, ReactNode } from 'react';
 
 export type ExtendedCSSProperties = {
-  "--animation-skew-speedMS"?: string;
-  "--animation-skew-speedMS2"?: string;
-  "--animation-skewX"?: string;
-  "--animation-skewY"?: string;
-  "--animation-skewX2"?: string;
-  "--animation-skewY2"?: string;
+  '--animation-skew-speedMS'?: string;
+  '--animation-skew-speedMS2'?: string;
+  '--animation-skewX'?: string;
+  '--animation-skewY'?: string;
+  '--animation-skewX2'?: string;
+  '--animation-skewY2'?: string;
 } & CSSProperties;
 
 export type SkewProps = {

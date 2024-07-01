@@ -4,15 +4,15 @@ volumes:
   minio_data:
   keydb_data:
 
-{%- if use_rabbitmq %}
+{%- if USE_RABBITMQ %}
   rabbitmq_data:
 {%- endif %}
 
-{%- if use_kafka and use_bullmq%}
+{%- if USE_KAFKA and USE_BULLMQ %}
   kafka_data:
 {%- endif %}
 
-{%- if use_mqtt and use_bullmq %}
+{%- if USE_MQTT and USE_BULLMQ %}
   mosquitto_data:
   mosquitto_config:
   mosquitto_log:

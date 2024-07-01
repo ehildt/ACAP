@@ -1,4 +1,4 @@
-import { ReactPlayerProps } from "react-player";
+import { ReactPlayerProps } from 'react-player';
 
 export type MediaPlayerProps = {
   file?: File;

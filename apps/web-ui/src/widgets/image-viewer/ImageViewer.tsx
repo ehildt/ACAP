@@ -1,9 +1,9 @@
-import { Buffer } from "buffer";
-import { useEffect, useRef, useState } from "react";
+import { Buffer } from 'buffer';
+import { useEffect, useRef, useState } from 'react';
 
-import { Container } from "@/layouts/container/Container";
+import { Container } from '@/layouts/container/Container';
 
-import style from "./ImageViewer.module.scss";
+import style from './ImageViewer.module.scss';
 
 type ImageViewerProps = {
   file?: File;
@@ -25,22 +25,12 @@ export function ImageViewer({ file }: ImageViewerProps) {
     if (ref.current) {
       const target = ref.current;
       const img = new Image();
-      img.src = `data:${file?.type};base64,${buffer?.toString("base64")}`;
+      img.src = `data:${file?.type};base64,${buffer?.toString('base64')}`;
       img.onload = () => {
-        const ctx = target?.getContext("2d", { willReadFrequently: true });
+        const ctx = target?.getContext('2d', { willReadFrequently: true });
         target.width = img.naturalWidth;
         target.height = img.naturalHeight;
-        ctx?.drawImage(
-          img,
-          0,
-          0,
-          img.naturalWidth,
-          img.naturalHeight,
-          0,
-          0,
-          target.width,
-          target.height,
-        );
+        ctx?.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, target.width, target.height);
       };
     }
   }, [key, buffer]);

@@ -1,24 +1,21 @@
-export const useMapKeyValueToTreeData = (
-  value: any = {},
-  key: string | number = "ROOT",
-): any => {
+export const useMapKeyValueToTreeData = (value: any = {}, key: string | number = 'ROOT'): any => {
   if (value === null)
     return {
-      name: key ?? "null",
+      name: key ?? 'null',
       attributes: {
-        null: "null",
+        null: 'null',
       },
     };
 
   if (value === undefined)
     return {
-      name: key ?? "undefined",
+      name: key ?? 'undefined',
       attributes: {
-        null: "undefined",
+        null: 'undefined',
       },
     };
 
-  if (typeof value === "string")
+  if (typeof value === 'string')
     return {
       name: key,
       attributes: {
@@ -26,7 +23,7 @@ export const useMapKeyValueToTreeData = (
       },
     };
 
-  if (typeof value === "number")
+  if (typeof value === 'number')
     return {
       name: key,
       attributes: {
@@ -34,7 +31,7 @@ export const useMapKeyValueToTreeData = (
       },
     };
 
-  if (typeof value === "boolean")
+  if (typeof value === 'boolean')
     return {
       name: key,
       attributes: {
@@ -45,16 +42,12 @@ export const useMapKeyValueToTreeData = (
   if (Array.isArray(value))
     return {
       name: key,
-      children: value.map((item, index) =>
-        useMapKeyValueToTreeData(item, index),
-      ),
+      children: value.map((item, index) => useMapKeyValueToTreeData(item, index)),
     };
 
-  if (typeof value === "object")
+  if (typeof value === 'object')
     return {
       name: key,
-      children: Object.keys(value).map((key, index) =>
-        useMapKeyValueToTreeData(value[key], key ?? index),
-      ),
+      children: Object.keys(value).map((key, index) => useMapKeyValueToTreeData(value[key], key ?? index)),
     };
 };

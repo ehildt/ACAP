@@ -3,7 +3,7 @@
   flex-direction: column;
   padding: 1rem;
 
-  input[type="button"] {
+  input[type='button'] {
     width: fit-content;
     margin-top: 0.5rem;
     transition: color 250ms ease-in-out;
@@ -13,7 +13,7 @@
     }
   }
 
-  input[type="text"] {
+  input[type='text'] {
     padding-bottom: 0.5rem;
     border: none;
     outline: none;
@@ -29,7 +29,7 @@
     color: red;
   }
 
-  &.do-shake > input[type="button"]:hover {
+  &.do-shake > input[type='button']:hover {
     color: red !important;
   }
 }

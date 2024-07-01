@@ -13,6 +13,10 @@
       "path": "apps/ms-bridge"
     },
     {
+      "name": "chat-hub",
+      "path": "apps/chat-hub"
+    },
+    {
       "name": "web-ui",
       "path": "apps/web-ui"
     }
@@ -47,7 +51,8 @@
       "ms-azuretools.vscode-docker",
       "usernamehw.errorlens",
       "moyu.snapcode",
-      "sibiraj-s.vscode-scss-formatter"
+      "sibiraj-s.vscode-scss-formatter",
+      "github.vscode-github-actions"
     ]
   }
 }

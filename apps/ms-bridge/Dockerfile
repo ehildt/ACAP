@@ -1,5 +1,9 @@
+# Setup corepack
+FROM node:20-slim AS base
+RUN corepack enable pnpm
+
 # Target: local (entrypoint for local development)
-FROM node:20 AS local
+FROM base AS local
 WORKDIR /app
 ENV PNPM_HOME="/pnpm" PATH="$PNPM_HOME:$PATH"
 EXPOSE 3001
@@ -7,7 +11,7 @@ RUN corepack enable pnpm
 ENTRYPOINT ["pnpm", "run", "start:dev"]
 
 # Target: builder (shared build stage)
-FROM node:20-slim AS builder
+FROM base AS builder
 WORKDIR /app
 
 ENV PNPM_HOME="/pnpm" PATH="$PNPM_HOME:$PATH"
@@ -30,7 +34,7 @@ WORKDIR /app
 RUN pnpm run build:prod
 
 # Target: development (entrypoint for dev-stage)
-FROM node:20-slim AS development
+FROM base AS development
 WORKDIR /app
 
 ENV                                         \
@@ -53,7 +57,7 @@ USER node
 ENTRYPOINT ["pnpm", "run", "start:node"]
 
 # Target: production (entrypoint for prod-stage)
-FROM node:20-slim AS production
+FROM base AS production
 WORKDIR /app
 
 ENV                                         \

@@ -7,19 +7,19 @@
     volumes:
       - ./apps/ms-bridge:/app
       - ./node_modules:/node_modules
-  {%- if use_pubsub or use_kafka or use_mqtt or use_pubsub %}  
+  {%- if USE_PUBSUB or USE_KAFKA or USE_MQTT or USE_PUBSUB %}  
     depends_on:
   {%- endif %}
-    {%- if use_pubsub %}
+    {%- if USE_PUBSUB %}
       - keydb
     {%- endif %}
-    {%- if use_kafka %}
+    {%- if USE_KAFKA %}
       - kafka
     {%- endif %}
-    {%- if use_mqtt %}
+    {%- if USE_MQTT %}
       - mosquitto
     {%- endif %}
-    {%- if use_rabbitmq %}
+    {%- if USE_RABBITMQ %}
       - rabbitmq
     {%- endif %}
     env_file:

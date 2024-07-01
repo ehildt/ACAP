@@ -1,14 +1,9 @@
-import { applyDecorators, Controller, Get } from "@nestjs/common";
-import {
-  ApiOkResponse,
-  ApiOperation,
-  ApiProperty,
-  ApiTags,
-} from "@nestjs/swagger";
+import { applyDecorators, Controller, Get } from '@nestjs/common';
+import { ApiOkResponse, ApiOperation, ApiProperty, ApiTags } from '@nestjs/swagger';
 
-import { MetaService } from "@/services/meta.service";
+import { MetaService } from '@/services/meta.service';
 
-export const GetMeta = () => Get("ms-bridge");
+export const GetMeta = () => Get('ms-bridge');
 
 class MetaItem {
   @ApiProperty()
@@ -26,11 +21,11 @@ class MetaItem {
   @ApiProperty({
     required: false,
     oneOf: [
-      { type: "string" },
-      { type: "number" },
-      { type: "boolean" },
-      { type: "array", items: { type: "object", additionalProperties: true } },
-      { type: "object", additionalProperties: true },
+      { type: 'string' },
+      { type: 'number' },
+      { type: 'boolean' },
+      { type: 'array', items: { type: 'object', additionalProperties: true } },
+      { type: 'object', additionalProperties: true },
     ],
   })
   value?: any;
@@ -43,13 +38,13 @@ class MetaObject {
 
 export class OpenApiMetaProperty {
   @ApiProperty({
-    description: "as in the amount of total realms/schemas in the database",
+    description: 'as in the amount of total realms/schemas in the database',
   })
   count: number;
 
   @ApiProperty({
     type: MetaObject,
-    description: "a simple POJO",
+    description: 'a simple POJO',
   })
   data: Record<string, unknown>;
 }
@@ -58,13 +53,13 @@ export function OpenApi_GetMeta() {
   return applyDecorators(
     ApiOkResponse({ type: OpenApiMetaProperty }),
     ApiOperation({
-      description: "Returns the meta data",
+      description: 'Returns the meta data',
     }),
   );
 }
 
-@ApiTags("Metae")
-@Controller("metae")
+@ApiTags('Metae')
+@Controller('metae')
 export class MetaController {
   constructor(private readonly metaService: MetaService) {}
 

@@ -1,4 +1,4 @@
-import zlib from "zlib";
+import zlib from 'zlib';
 
 export type CacheObject = { zipped: boolean; content: any; count?: number };
 
@@ -13,9 +13,7 @@ export function gunzipSyncCacheObject(cacheObj?: CacheObject): CacheObject {
   return cacheObj.zipped
     ? {
         ...cacheObj,
-        content: JSON.parse(
-          zlib.gunzipSync(Buffer.from(cacheObj.content)).toString(),
-        ),
+        content: JSON.parse(zlib.gunzipSync(Buffer.from(cacheObj.content)).toString()),
       }
     : cacheObj;
 }

@@ -1,0 +1,13 @@
+  mosquitto:
+    image: eclipse-mosquitto
+    container_name: mosquitto
+    ports:
+      - 1883:1883
+      - 9001:9001
+    volumes:
+      - mosquitto_data:/mosquitto/data
+      - ./mosquitto.conf:/mosquitto/config/mosquitto.conf
+      - mosquitto_log:/mosquitto/log
+    networks:
+      - acap-network
+    restart: unless-stopped

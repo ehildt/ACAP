@@ -1,5 +1,5 @@
-import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import { Document } from "mongoose";
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document } from 'mongoose';
 
 export type RealmsDocument = RealmsSchemaDefinition & Document;
 
@@ -9,6 +9,4 @@ export class RealmsSchemaDefinition {
   realm: string;
 }
 
-export const RealmsSchema = SchemaFactory.createForClass(
-  RealmsSchemaDefinition,
-).index({ realm: 1 }, { unique: true });
+export const RealmsSchema = SchemaFactory.createForClass(RealmsSchemaDefinition).index({ realm: 1 }, { unique: true });

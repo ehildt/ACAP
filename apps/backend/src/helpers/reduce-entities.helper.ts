@@ -1,7 +1,7 @@
-import { JsonSchemaContentsDocument } from "@/schemas/json-schema-content-definition.schema";
-import { RealmContentsDocument } from "@/schemas/realm-content-definition.schema";
+import { JsonSchemaContentsDocument } from '@/schemas/json-schema-content-definition.schema';
+import { RealmContentsDocument } from '@/schemas/realm-content-definition.schema';
 
-import { challengeContentValue } from "./challenge-content-source.helper";
+import { challengeContentValue } from './challenge-content-source.helper';
 
 const entityReducer = (
   previous: Record<string, unknown>,
@@ -9,18 +9,12 @@ const entityReducer = (
   resolveEnv: boolean,
 ) => ({
   ...previous,
-  [document.id]:
-    document.id &&
-    document.value &&
-    challengeContentValue(document.value, resolveEnv),
+  [document.id]: document.id && document.value && challengeContentValue(document.value, resolveEnv),
 });
 
 export function reduceEntities(
   resolveEnv: boolean,
   documents?: Array<RealmContentsDocument | JsonSchemaContentsDocument>,
 ) {
-  return documents?.reduce(
-    (acc, val) => entityReducer(acc, val, resolveEnv),
-    {},
-  );
+  return documents?.reduce((acc, val) => entityReducer(acc, val, resolveEnv), {});
 }

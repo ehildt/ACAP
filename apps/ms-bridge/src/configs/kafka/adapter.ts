@@ -4,11 +4,11 @@ export class KafkaAdapter {
   }
 
   get BROKERS(): Array<string> {
-    return process.env.KAFKA_BROKERS?.split(",");
+    return process.env.KAFKA_BROKERS?.split(',');
   }
 
   get SSL(): boolean {
-    return process.env.KAFKA_SSL === "true";
+    return process.env.KAFKA_SSL === 'true';
   }
 
   get RETRIES(): number {

@@ -30,27 +30,27 @@ def generate_docker_compose(template_dir):
     """
 
     env_vars = {
-        'use_kafka': get_env(ENV_USE_KAFKA),
-        'use_pubsub': get_env(ENV_USE_REDIS_PUBSUB),
-        'use_bullmq': get_env(ENV_USE_BULLMQ),
-        'use_mqtt': get_env(ENV_USE_MQTT),
-        'use_rabbitmq': get_env(ENV_USE_RABBITMQ),
+        'USE_KAFKA': get_env(ENV_USE_KAFKA),
+        'USE_PUBSUB': get_env(ENV_USE_REDIS_PUBSUB),
+        'USE_BULLMQ': get_env(ENV_USE_BULLMQ),
+        'USE_MQTT': get_env(ENV_USE_MQTT),
+        'USE_RABBITMQ': get_env(ENV_USE_RABBITMQ),
     }
 
     envs = SimpleNamespace(**env_vars)
-    templates = ['backend.yml.j2', 'web-ui.yml.j2']
+    templates = ['backend.yml.j2', 'web-ui.yml.j2', 'chat-hub.yml.j2']
 
-    if (envs.use_pubsub or envs.use_bullmq or envs.use_kafka) and envs.use_rabbitmq:
+    if (envs.USE_PUBSUB or envs.USE_BULLMQ or envs.USE_KAFKA) and envs.USE_RABBITMQ:
         templates.append('ms-bridge.yml.j2')
     
     # is used by both backend and ms-bridge
-    if envs.use_rabbitmq:
+    if envs.USE_RABBITMQ:
         templates.append('rabbitmq.yml.j2')
 
-    if envs.use_kafka and envs.use_bullmq:
+    if envs.USE_KAFKA and envs.USE_BULLMQ:
         templates.append('kafka.yml.j2')
     
-    if envs.use_mqtt and envs.use_bullmq:
+    if envs.USE_MQTT and envs.USE_BULLMQ:
         templates.append('mqtt.yml.j2')
     
     templates.extend(['volumes.yml.j2', 'networks.yml.j2'])

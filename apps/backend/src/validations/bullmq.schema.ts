@@ -1,6 +1,6 @@
-import Joi from "joi";
+import Joi from 'joi';
 
-import { CONFIG_YML } from "@/configs/config-yml/loader";
+import { CONFIG_YML } from '@/configs/config-yml/loader';
 
 export const BULLMQ_SCHEMA = {
   BULLMQ_REDIS_HOST: CONFIG_YML?.bullMQConfig?.connection?.host

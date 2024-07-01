@@ -1,14 +1,14 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from '@storybook/react';
 
-import { Container } from "@/layouts/container/Container";
+import { Container } from '@/layouts/container/Container';
 
-import { Rotate } from "../../transform/rotate/Rotate";
-import { Pulse } from "./Pulse";
+import { Rotate } from '../../transform/rotate/Rotate';
+import { Pulse } from './Pulse';
 
 export default {
-  title: "effects/animate/pulse",
+  title: 'effects/animate/pulse',
   component: Pulse,
-  decorators: (render) => <div style={{ width: "300px" }}>{render()}</div>,
+  decorators: (render) => <div style={{ width: '300px' }}>{render()}</div>,
 } satisfies Meta<typeof Pulse>;
 
 export const PulseActive = {

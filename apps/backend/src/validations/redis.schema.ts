@@ -1,11 +1,9 @@
-import Joi from "joi";
+import Joi from 'joi';
 
-import { CONFIG_YML } from "@/configs/config-yml/loader";
+import { CONFIG_YML } from '@/configs/config-yml/loader';
 
 export const REDIS_SCHEMA = {
-  REDIS_TTL: CONFIG_YML?.redisConfig?.ttl
-    ? Joi.number().default(CONFIG_YML.redisConfig.ttl)
-    : Joi.number().required(),
+  REDIS_TTL: CONFIG_YML?.redisConfig?.ttl ? Joi.number().default(CONFIG_YML.redisConfig.ttl) : Joi.number().required(),
 
   REDIS_MAX_RESPONSES: CONFIG_YML?.redisConfig?.max
     ? Joi.number().default(CONFIG_YML.redisConfig.max)

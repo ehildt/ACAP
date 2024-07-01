@@ -1,24 +1,24 @@
-import { Buffer } from "buffer";
-import { useEffect, useState } from "react";
-import { FaSave } from "react-icons/fa";
-import { FaFileCirclePlus } from "react-icons/fa6";
-import { GoFileBinary } from "react-icons/go";
-import { RiShieldFlashFill } from "react-icons/ri";
-import { parse } from "yaml";
+import { Buffer } from 'buffer';
+import { useEffect, useState } from 'react';
+import { FaSave } from 'react-icons/fa';
+import { FaFileCirclePlus } from 'react-icons/fa6';
+import { GoFileBinary } from 'react-icons/go';
+import { RiShieldFlashFill } from 'react-icons/ri';
+import { parse } from 'yaml';
 
-import { post, uPost } from "@/api/fetcher.api";
-import { FileInput, Tooltip } from "@/atomics";
-import { TextInput } from "@/atomics/input/text-input/TextInput";
-import { FlickerContainer, Pulse } from "@/effects";
-import { Line } from "@/layouts";
-import { UnstructuredDataViewerMenu } from "@/widgets/json-viewer/JsonViewerMenu";
-import { PdfViewerMenu } from "@/widgets/pdf-viewer/PdfViewerMenu";
+import { post, uPost } from '@/api/fetcher.api';
+import { FileInput, Tooltip } from '@/atomics';
+import { TextInput } from '@/atomics/input/text-input/TextInput';
+import { FlickerContainer, Pulse } from '@/effects';
+import { Line } from '@/layouts';
+import { UnstructuredDataViewerMenu } from '@/widgets/json-viewer/JsonViewerMenu';
+import { PdfViewerMenu } from '@/widgets/pdf-viewer/PdfViewerMenu';
 
-import { Popup } from "../popup/Popup";
-import { Scrollbar } from "../scrollbar/Scrollbar";
-import { FileImporterMenuProps } from "./FileImporter.modal";
-import { useFileImporterImmerStore } from "./FileImporter.store";
-import { FileImporterMenuCard } from "./FileImporterMenuCard";
+import { Popup } from '../popup/Popup';
+import { Scrollbar } from '../scrollbar/Scrollbar';
+import { FileImporterMenuProps } from './FileImporter.modal';
+import { useFileImporterImmerStore } from './FileImporter.store';
+import { FileImporterMenuCard } from './FileImporterMenuCard';
 
 export function FileImporterMenu(props: FileImporterMenuProps) {
   const [realm, setRealm] = useState<string>();
@@ -27,47 +27,37 @@ export function FileImporterMenu(props: FileImporterMenuProps) {
   const fileSlice = useFileImporterImmerStore();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [buffer, setBuffer] = useState<Buffer>();
-  const selectedFileExtension = fileSlice.selectedFile?.name.split(".").pop();
+  const selectedFileExtension = fileSlice.selectedFile?.name.split('.').pop();
 
   useEffect(() => {
     if (fileSlice.selectedFile) {
-      fileSlice.selectedFile
-        .arrayBuffer()
-        .then((ab) => setBuffer(Buffer.from(ab)));
+      fileSlice.selectedFile.arrayBuffer().then((ab) => setBuffer(Buffer.from(ab)));
     }
   }, [fileSlice.selectedFile]);
 
   return (
     <div className="file-importer-menu">
       <div className="file-importer-menu-icons">
-        {selectedFileExtension === "pdf" && (
-          <PdfViewerMenu formatter={(p, t) => `${p} / ${t}`} />
-        )}
-        {(selectedFileExtension === "json" ||
-          selectedFileExtension === "yml" ||
-          selectedFileExtension === "yaml") && (
+        {selectedFileExtension === 'pdf' && <PdfViewerMenu formatter={(p, t) => `${p} / ${t}`} />}
+        {(selectedFileExtension === 'json' || selectedFileExtension === 'yml' || selectedFileExtension === 'yaml') && (
           <FlickerContainer color="transparent" repeatFlickerBorder="1">
             <GoFileBinary
-              size={"2rem"}
-              color={!forceBlob ? "gray" : "crimson"}
-              onClick={() =>
-                setForceBlob(
-                  (toggle) => !toggle && Boolean(fileSlice.selectedFile),
-                )
-              }
-              style={{ cursor: "pointer" }}
+              size={'2rem'}
+              color={!forceBlob ? 'gray' : 'crimson'}
+              onClick={() => setForceBlob((toggle) => !toggle && Boolean(fileSlice.selectedFile))}
+              style={{ cursor: 'pointer' }}
             />
           </FlickerContainer>
         )}
-        {(selectedFileExtension === "json" ||
-          selectedFileExtension === "yml" ||
-          selectedFileExtension === "yaml") && <UnstructuredDataViewerMenu />}
+        {(selectedFileExtension === 'json' || selectedFileExtension === 'yml' || selectedFileExtension === 'yaml') && (
+          <UnstructuredDataViewerMenu />
+        )}
         <FlickerContainer color="transparent" repeatFlickerBorder="1">
           <FaSave
-            size={"2rem"}
-            color={!fileSlice.selectedFile ? "gray" : "orange"}
+            size={'2rem'}
+            color={!fileSlice.selectedFile ? 'gray' : 'orange'}
             onClick={() => setIsModalOpen(Boolean(fileSlice.selectedFile))}
-            style={{ cursor: "pointer" }}
+            style={{ cursor: 'pointer' }}
           />
         </FlickerContainer>
         <FlickerContainer color="transparent" repeatFlickerBorder="1">
@@ -79,7 +69,7 @@ export function FileImporterMenu(props: FileImporterMenuProps) {
               if (files) fileSlice.selectFiles(Array.from(files));
             }}
           >
-            <FaFileCirclePlus size={"2rem"} color="skyblue" />
+            <FaFileCirclePlus size={'2rem'} color="skyblue" />
           </FileInput>
         </FlickerContainer>
       </div>
@@ -88,10 +78,10 @@ export function FileImporterMenu(props: FileImporterMenuProps) {
           behavior="smooth"
           overflow="y"
           style={{
-            maxHeight: "60vh",
-            height: fileSlice.files?.length ? "auto" : "60vh",
-            width: "25vw",
-            padding: "5px",
+            maxHeight: '60vh',
+            height: fileSlice.files?.length ? 'auto' : '60vh',
+            width: '25vw',
+            padding: '5px',
           }}
         >
           <FileImporterMenuCard />
@@ -108,10 +98,7 @@ export function FileImporterMenu(props: FileImporterMenuProps) {
           onClick={() => {
             if (!(realm && configId)) return;
             const extension = selectedFileExtension;
-            const isStructuredData =
-              extension === "json" ||
-              extension === "yml" ||
-              extension === "yaml";
+            const isStructuredData = extension === 'json' || extension === 'yml' || extension === 'yaml';
             // TODO: a field if you want to upload these files in minio
             if (isStructuredData && !forceBlob) {
               let data;
@@ -143,10 +130,9 @@ export function FileImporterMenu(props: FileImporterMenuProps) {
                 .then(() => setIsModalOpen(false));
             } else {
               const form = new FormData();
-              fileSlice.selectedFile &&
-                form.append("file", fileSlice.selectedFile);
+              fileSlice.selectedFile && form.append('file', fileSlice.selectedFile);
               console.log({ forceBlob });
-              uPost(["http://localhost:3001/api/v1/objects", { body: form }])
+              uPost(['http://localhost:3001/api/v1/objects', { body: form }])
                 .catch(console.error)
                 .then((data) => {
                   post([
@@ -175,29 +161,21 @@ export function FileImporterMenu(props: FileImporterMenuProps) {
           }}
           onClose={() => setIsModalOpen(false)}
           contentStyle={{
-            display: "flex",
-            alignItems: "center",
-            padding: "5rem",
+            display: 'flex',
+            alignItems: 'center',
+            padding: '5rem',
           }}
           infoBar={
-            <Tooltip tooltip={"four eyes recommended"}>
+            <Tooltip tooltip={'four eyes recommended'}>
               <Pulse to={1.2} ms={750} mode="passive">
-                <RiShieldFlashFill color="skyblue" size={"1.5rem"} />
+                <RiShieldFlashFill color="skyblue" size={'1.5rem'} />
               </Pulse>
             </Tooltip>
           }
         >
-          <Line vertical style={{ width: "100%", gap: "30px" }}>
-            <TextInput
-              label="realm"
-              style={{ width: "100%" }}
-              onChange={setRealm}
-            />
-            <TextInput
-              label="config-id"
-              style={{ width: "100%" }}
-              onChange={setConfigId}
-            />
+          <Line vertical style={{ width: '100%', gap: '30px' }}>
+            <TextInput label="realm" style={{ width: '100%' }} onChange={setRealm} />
+            <TextInput label="config-id" style={{ width: '100%' }} onChange={setConfigId} />
           </Line>
         </Popup>
       )}

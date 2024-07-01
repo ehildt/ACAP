@@ -1,9 +1,9 @@
-import "./PageSwitcher.scss";
+import './PageSwitcher.scss';
 
-import cn from "classnames";
-import { FaLeftLong, FaRightLong } from "react-icons/fa6";
+import cn from 'classnames';
+import { FaLeftLong, FaRightLong } from 'react-icons/fa6';
 
-import { PageSwitcherProps } from "./PageSwitcher.model";
+import { PageSwitcherProps } from './PageSwitcher.model';
 
 /**
  * @param onLeftIconClick ProxyOnClick
@@ -18,20 +18,16 @@ export function PageSwitcher(props: PageSwitcherProps) {
       <i
         onClick={props.onLeftIconClick}
         className={cn({
-          "page-switcher--disabled": props.take
-            ? props.skip / props.take + 1 <= 1
-            : false,
+          'page-switcher--disabled': props.take ? props.skip / props.take + 1 <= 1 : false,
         })}
       >
         <FaLeftLong />
       </i>
-      <span>
-        {props.count && props.take ? props.skip / props.take + 1 : "⦻"}
-      </span>
+      <span>{props.count && props.take ? props.skip / props.take + 1 : '⦻'}</span>
       <i
         onClick={props.onRightIconClick}
         className={cn({
-          "page-switcher--disabled": props.skip + props.take >= props.count,
+          'page-switcher--disabled': props.skip + props.take >= props.count,
         })}
       >
         <FaRightLong />

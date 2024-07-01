@@ -1,13 +1,7 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { BackoffOptions, JobsOptions, KeepJobs, RepeatOptions } from "bullmq";
-import { Type } from "class-transformer";
-import {
-  IsBoolean,
-  IsDate,
-  IsInt,
-  IsOptional,
-  IsString,
-} from "class-validator";
+import { ApiProperty } from '@nestjs/swagger';
+import { BackoffOptions, JobsOptions, KeepJobs, RepeatOptions } from 'bullmq';
+import { Type } from 'class-transformer';
+import { IsBoolean, IsDate, IsInt, IsOptional, IsString } from 'class-validator';
 
 class BullBackoffOptions implements BackoffOptions {
   @IsOptional()
@@ -16,8 +10,8 @@ class BullBackoffOptions implements BackoffOptions {
   delay?: number;
 
   @IsString()
-  @ApiProperty({ enum: ["fixed", "exponential"] })
-  type: "fixed" | "exponential" | string;
+  @ApiProperty({ enum: ['fixed', 'exponential'] })
+  type: 'fixed' | 'exponential' | string;
 }
 
 class BullKeepJobs implements KeepJobs {

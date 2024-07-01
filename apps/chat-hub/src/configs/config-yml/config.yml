@@ -1,0 +1,14 @@
+appConfig:
+  port: 3003
+  address: 0.0.0.0
+  printEnv: false
+  startSwagger: false
+  nodeEnv: local
+  bodyLimit: 104857600
+
+redisPubSubConfig:
+  options:
+    port: 6379
+    host: keydb
+    password: redis
+    username: default

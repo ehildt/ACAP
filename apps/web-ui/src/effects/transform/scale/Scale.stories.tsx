@@ -1,13 +1,13 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from '@storybook/react';
 
-import { Container } from "@/layouts/container/Container";
+import { Container } from '@/layouts/container/Container';
 
-import { Scale } from "./Scale";
+import { Scale } from './Scale';
 
 export default {
-  title: "effects/transform/scale",
+  title: 'effects/transform/scale',
   component: Scale,
-  decorators: (render) => <div style={{ width: "300px" }}>{render()}</div>,
+  decorators: (render) => <div style={{ width: '300px' }}>{render()}</div>,
 } satisfies Meta<typeof Scale>;
 
 export const ScaleSamples = {

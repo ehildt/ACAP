@@ -16,10 +16,10 @@ export class MongoConfigAdapter {
   }
 
   get SSL(): boolean {
-    return process.env.MONGO_SSL == "true";
+    return process.env.MONGO_SSL == 'true';
   }
 
   get TLS_ALLOW_INVALID_CERTIFICATES(): boolean {
-    return process.env.MONGO_TLS_ALLOW_INVALID_CERTIFICATES == "true";
+    return process.env.MONGO_TLS_ALLOW_INVALID_CERTIFICATES == 'true';
   }
 }

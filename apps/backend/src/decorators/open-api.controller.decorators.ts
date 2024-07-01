@@ -1,4 +1,4 @@
-import { applyDecorators } from "@nestjs/common";
+import { applyDecorators } from '@nestjs/common';
 import {
   ApiBody,
   ApiConsumes,
@@ -9,10 +9,10 @@ import {
   ApiOperation,
   ApiResponse,
   ApiUnprocessableEntityResponse,
-} from "@nestjs/swagger";
+} from '@nestjs/swagger';
 
-import { OpenApiGetRealmProperty } from "@/dtos/open-api-get-realm.property.dto";
-import { OpenApiMetaProperty } from "@/dtos/open-api-meta.property.dto";
+import { OpenApiGetRealmProperty } from '@/dtos/open-api-get-realm.property.dto';
+import { OpenApiMetaProperty } from '@/dtos/open-api-meta.property.dto';
 
 import {
   ApiBodyRealmUpsert,
@@ -28,13 +28,12 @@ import {
   ApiQueryTake,
   ApiQueryUseBullMQ,
   ApiQueryVerbose,
-} from "./open-api.method.decorators";
+} from './open-api.method.decorators';
 
-const REQUEST_SUCCESSFUL = "request successful";
-const REQUEST_SOMETHING_HAS_GONE_SERIOUSLY_WRONG =
-  "something has seriously gone wrong..";
-const REQUEST_SCHEMA_COMPILATION_FAILED = "schema compilation failed";
-const REQUEST_SCHEMA_VALIDATION_FAILED = "schema validation failed";
+const REQUEST_SUCCESSFUL = 'request successful';
+const REQUEST_SOMETHING_HAS_GONE_SERIOUSLY_WRONG = 'something has seriously gone wrong..';
+const REQUEST_SCHEMA_COMPILATION_FAILED = 'schema compilation failed';
+const REQUEST_SCHEMA_VALIDATION_FAILED = 'schema validation failed';
 
 export function OpenApi_Upsert() {
   return applyDecorators(
@@ -161,7 +160,7 @@ export function OpenApi_GetRealm() {
       type: OpenApiGetRealmProperty,
       description: REQUEST_SUCCESSFUL,
     }),
-    ApiNotFoundResponse({ description: "requested realm or id not found" }),
+    ApiNotFoundResponse({ description: 'requested realm or id not found' }),
     ApiQueryConfigIds(),
     ApiQueryRealm(),
   );
@@ -178,9 +177,9 @@ export function OpenApi_GetRealmContent() {
     }),
     ApiOkResponse({
       description: REQUEST_SUCCESSFUL,
-      schema: { allOf: [{ type: "any" }] },
+      schema: { allOf: [{ type: 'any' }] },
     }),
-    ApiNotFoundResponse({ description: "requested realm or id not found" }),
+    ApiNotFoundResponse({ description: 'requested realm or id not found' }),
     ApiParamConfigId(),
     ApiParamRealm(),
   );
@@ -189,7 +188,7 @@ export function OpenApi_GetRealmContent() {
 export function OpenApi_GetMeta() {
   return applyDecorators(
     ApiOperation({
-      description: "Returns the meta data",
+      description: 'Returns the meta data',
     }),
     ApiParamMeta(),
     ApiOkResponse({ type: OpenApiMetaProperty }),
@@ -205,7 +204,7 @@ export function OpenApi_GetACAPMeta() {
   return applyDecorators(
     ApiOkResponse({ type: OpenApiMetaProperty }),
     ApiOperation({
-      description: "Returns the acap meta data",
+      description: 'Returns the acap meta data',
     }),
   );
 }
@@ -230,17 +229,17 @@ export function OpenApi_DeleteRealm() {
 
 export function OpenApi_PutObjects() {
   return applyDecorators(
-    ApiCreatedResponse({ description: "Request successful" }),
-    ApiConsumes("multipart/form-data"),
+    ApiCreatedResponse({ description: 'Request successful' }),
+    ApiConsumes('multipart/form-data'),
     ApiBody({
       schema: {
-        type: "object",
+        type: 'object',
         properties: {
           files: {
-            type: "array",
+            type: 'array',
             items: {
-              type: "string",
-              format: "binary",
+              type: 'string',
+              format: 'binary',
             },
           },
         },
@@ -254,10 +253,10 @@ export function OpenApi_GetObject() {
     ApiResponse({
       status: 200,
       content: {
-        "application/octet-stream": {
+        'application/octet-stream': {
           schema: {
-            type: "string",
-            format: "binary",
+            type: 'string',
+            format: 'binary',
           },
         },
       },

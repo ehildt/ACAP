@@ -37,8 +37,6 @@ export default tseslint.config(
       ".vscode"
     ],
     rules: {
-      'sort-imports': 'off',
-      'import/order': 'off',
       '@typescript-eslint/no-explicit-any': 'off',
       '@typescript-eslint/no-unused-vars': 'warn',
       'simple-import-sort/imports': 'warn',

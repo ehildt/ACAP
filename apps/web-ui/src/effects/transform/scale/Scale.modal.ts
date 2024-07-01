@@ -1,12 +1,12 @@
-import { CSSProperties, ReactNode } from "react";
+import { CSSProperties, ReactNode } from 'react';
 
 export type ExtendedCSSProperties = {
-  "--animation-scale-speedMS"?: string;
-  "--animation-scale-speedMS2"?: string;
-  "--animation-scaleX"?: number;
-  "--animation-scaleY"?: number;
-  "--animation-scaleX2"?: number;
-  "--animation-scaleY2"?: number;
+  '--animation-scale-speedMS'?: string;
+  '--animation-scale-speedMS2'?: string;
+  '--animation-scaleX'?: number;
+  '--animation-scaleY'?: number;
+  '--animation-scaleX2'?: number;
+  '--animation-scaleY2'?: number;
 } & CSSProperties;
 
 export type ScaleProps = {

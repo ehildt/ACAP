@@ -1,5 +1,5 @@
 #!/bin/sh
-. "$(dirname "$0")/prepare.sh"
+. "$(dirname "$0")/../prepare.sh"
 
 check_working_directory
 check_branch_identifier

@@ -1,17 +1,16 @@
 .pulse {
   &-default {
-    animation: reset-pulse var(--animation-pulse-speedMS, 250ms) ease-in-out
-      alternate;
+    animation: reset-pulse var(--animation-pulse-speedMS, 250ms) ease-in-out alternate;
   }
 
   &-active {
-    animation: pulse var(--animation-pulse-speedMS, 250ms) ease-in-out
-      var(--animation-pulse-delay, 0ms) infinite alternate;
+    animation: pulse var(--animation-pulse-speedMS, 250ms) ease-in-out var(--animation-pulse-delay, 0ms) infinite
+      alternate;
   }
 
   &-passive {
-    animation: pulse var(--animation-pulse-speedMS, 250ms) ease-in-out
-      var(--animation-pulse-delay, 0ms) infinite alternate;
+    animation: pulse var(--animation-pulse-speedMS, 250ms) ease-in-out var(--animation-pulse-delay, 0ms) infinite
+      alternate;
   }
 }
 

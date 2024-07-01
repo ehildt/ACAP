@@ -1,8 +1,8 @@
-import cn from "classnames";
+import cn from 'classnames';
 
-import { RowProps } from "./YmlViewer.model";
-import { YmlViewerRow } from "./YmlViewerRow";
-import style from "./YmlViewerRow.module.scss";
+import { RowProps } from './YmlViewer.model';
+import { YmlViewerRow } from './YmlViewerRow';
+import style from './YmlViewerRow.module.scss';
 
 export function YmlRowObject(props: RowProps) {
   const keys = Object.keys(props.kvPair.value);
@@ -24,9 +24,7 @@ export function YmlRowObject(props: RowProps) {
         navigator.clipboard.writeText(JSON.stringify(props.kvPair, null, 4));
       }}
     >
-      {props.kvPair.key && (
-        <span style={{ color: "red" }}>{props.kvPair.key}</span>
-      )}
+      {props.kvPair.key && <span style={{ color: 'red' }}>{props.kvPair.key}</span>}
       {props.separate && <span>:</span>}
       {ymlViewRows}
     </div>

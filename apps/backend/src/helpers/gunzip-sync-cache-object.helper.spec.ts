@@ -1,22 +1,17 @@
-import zlib from "zlib";
+import zlib from 'zlib';
 
-import {
-  CacheObject,
-  gunzipSyncCacheObject,
-} from "./gunzip-sync-cache-object.helper";
+import { CacheObject, gunzipSyncCacheObject } from './gunzip-sync-cache-object.helper';
 
-const SAMPLE_CONTENT = { name: "Gandalf", job: "Mage" };
+const SAMPLE_CONTENT = { name: 'Gandalf', job: 'Mage' };
 
-describe("gunzipSyncCacheObject", () => {
-  it("should return CACHE_DEFAULT when cacheObj is undefined", () => {
+describe('gunzipSyncCacheObject', () => {
+  it('should return CACHE_DEFAULT when cacheObj is undefined', () => {
     const result = gunzipSyncCacheObject(undefined);
     expect(result).toEqual({ zipped: false, content: {}, count: undefined });
   });
 
-  it("should return the cacheObj with the unzipped content when cacheObj is zipped", () => {
-    const zippedContent = zlib.gzipSync(
-      Buffer.from(JSON.stringify(SAMPLE_CONTENT)),
-    );
+  it('should return the cacheObj with the unzipped content when cacheObj is zipped', () => {
+    const zippedContent = zlib.gzipSync(Buffer.from(JSON.stringify(SAMPLE_CONTENT)));
     const cacheObj: CacheObject = { zipped: true, content: zippedContent };
     const result = gunzipSyncCacheObject(cacheObj);
     expect(result.zipped).toBe(true);
@@ -24,7 +19,7 @@ describe("gunzipSyncCacheObject", () => {
     expect(result.count).toBeUndefined();
   });
 
-  it("should return the same cacheObj when cacheObj is not zipped", () => {
+  it('should return the same cacheObj when cacheObj is not zipped', () => {
     const cacheObj: CacheObject = {
       zipped: false,
       content: SAMPLE_CONTENT,

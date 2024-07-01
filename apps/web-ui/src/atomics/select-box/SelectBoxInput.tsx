@@ -1,8 +1,8 @@
-import cn from "classnames";
-import { useEffect, useRef, useState } from "react";
+import cn from 'classnames';
+import { useEffect, useRef, useState } from 'react';
 
-import { SelectBoxInputProps } from "./SelectBoxInput.model";
-import style from "./SelectBoxInput.module.scss";
+import { SelectBoxInputProps } from './SelectBoxInput.model';
+import style from './SelectBoxInput.module.scss';
 
 export function SelectBoxInput(props: SelectBoxInputProps) {
   const ref = useRef<HTMLInputElement>(null);
@@ -22,7 +22,7 @@ export function SelectBoxInput(props: SelectBoxInputProps) {
       }}
       onMouseLeave={() => {
         refInput.current?.blur();
-        refInput.current!.value = "";
+        refInput.current!.value = '';
       }}
     >
       <input
@@ -34,7 +34,7 @@ export function SelectBoxInput(props: SelectBoxInputProps) {
           if (e.target.value?.length && !parseInt(e.target.value, 10)) {
             setShake(() => true);
             setTimeout(() => setShake(() => false), 500);
-            e.target.value = "";
+            e.target.value = '';
           }
         }}
       />
@@ -49,7 +49,7 @@ export function SelectBoxInput(props: SelectBoxInputProps) {
             refInput.current?.focus();
           } else {
             props.onClick(refInput.current.value);
-            refInput.current.value = "";
+            refInput.current.value = '';
             refInput.current?.focus();
           }
         }}
@@ -59,5 +59,5 @@ export function SelectBoxInput(props: SelectBoxInputProps) {
 }
 
 SelectBoxInput.defaultProps = {
-  label: "take",
+  label: 'take',
 } as SelectBoxInputProps;

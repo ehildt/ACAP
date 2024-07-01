@@ -1,10 +1,10 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from '@storybook/react';
 
-import { YmlViewer } from "./YmlViewer";
-import { YmlViewerMenu } from "./YmlViewerMenu";
+import { YmlViewer } from './YmlViewer';
+import { YmlViewerMenu } from './YmlViewerMenu';
 
 export default {
-  title: "widgets/yml-viewer",
+  title: 'widgets/yml-viewer',
   component: YmlViewer,
   decorators: [(story) => <>{story()}</>],
 } satisfies Meta<typeof YmlViewer>;
@@ -16,10 +16,10 @@ export const DefaultYmlViewer = {
       <hr />
       <YmlViewer
         data={{
-          name: "eugen",
+          name: 'eugen',
           isSexy: false,
-          addresses: [{ city: "bukarest" }, { city: "moenchengladbach" }],
-          magic: { firebolt: "lvl2", type: "fire" },
+          addresses: [{ city: 'bukarest' }, { city: 'moenchengladbach' }],
+          magic: { firebolt: 'lvl2', type: 'fire' },
         }}
       />
     </>
@@ -33,10 +33,10 @@ export const YmlViewerHighlighted = {
       <hr />
       <YmlViewer
         data={{
-          name: "eugen",
+          name: 'eugen',
           isSexy: false,
-          addresses: [{ city: "bukarest" }, { city: "moenchengladbach" }],
-          magic: { firebolt: "lvl2", type: "fire" },
+          addresses: [{ city: 'bukarest' }, { city: 'moenchengladbach' }],
+          magic: { firebolt: 'lvl2', type: 'fire' },
         }}
       />
     </>

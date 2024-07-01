@@ -1,4 +1,4 @@
-import { ChangeEvent, CSSProperties, ReactNode } from "react";
+import { ChangeEvent, CSSProperties, ReactNode } from 'react';
 
 export type onChangeProxy = (props: {
   files: FileList | null;
@@ -7,28 +7,28 @@ export type onChangeProxy = (props: {
 }) => unknown;
 
 type InputType =
-  | "button"
-  | "checkbox"
-  | "color"
-  | "date"
-  | "datetime-local"
-  | "email"
-  | "file"
-  | "hidden"
-  | "image"
-  | "month"
-  | "number"
-  | "password"
-  | "radio"
-  | "range"
-  | "reset"
-  | "search"
-  | "submit"
-  | "tel"
-  | "text"
-  | "time"
-  | "url"
-  | "week";
+  | 'button'
+  | 'checkbox'
+  | 'color'
+  | 'date'
+  | 'datetime-local'
+  | 'email'
+  | 'file'
+  | 'hidden'
+  | 'image'
+  | 'month'
+  | 'number'
+  | 'password'
+  | 'radio'
+  | 'range'
+  | 'reset'
+  | 'search'
+  | 'submit'
+  | 'tel'
+  | 'text'
+  | 'time'
+  | 'url'
+  | 'week';
 
 export type FileInputProps = {
   type?: InputType;

@@ -1,8 +1,8 @@
-import { ImageViewer } from "../image-viewer/ImageViewer";
-import { MediaPlayer } from "../media-player/MediaPlayer";
-import { PdfViewer } from "../pdf-viewer/PdfViewer";
-import { StructuredDataViewer } from "../structured-data-viewer/StructuredDataViewer";
-import { FileImporterRenderer } from "./FileImporter.modal";
+import { ImageViewer } from '../image-viewer/ImageViewer';
+import { MediaPlayer } from '../media-player/MediaPlayer';
+import { PdfViewer } from '../pdf-viewer/PdfViewer';
+import { StructuredDataViewer } from '../structured-data-viewer/StructuredDataViewer';
+import { FileImporterRenderer } from './FileImporter.modal';
 
 export const FILE_RENDERERS: FileImporterRenderer = {
   pdf: (file) => <PdfViewer file={file} />,

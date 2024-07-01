@@ -1,0 +1,30 @@
+  backend:
+    container_name: backend
+    build:
+      context: ./apps/backend
+      target: local
+    volumes:
+      - ./apps/backend:/app
+      - ./node_modules:/node_modules
+    depends_on:
+    {%- if USE_MONGODB %}
+      - mongo
+    {%- endif %} 
+    {%- if USE_MINIO %}
+      - minio
+    {%- endif %} 
+    {%- if USE_KEYDB %}
+      - keydb
+    {%- endif %} 
+    {%- if (USE_KAFKA or USE_MQTT or USE_RABBITMQ) and USE_BULLMQ%}
+      - msbridge
+    {%- endif %} 
+    env_file:
+      - ./apps/backend/env/.env
+    environment:
+      - NODE_ENV={{ TARGET }}
+      - PRINT_ENV=false
+    ports:
+      - 3001:3001
+    networks:
+      - acap-network

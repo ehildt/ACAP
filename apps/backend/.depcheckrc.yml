@@ -1,13 +1,13 @@
 skip-missing: true
 ignores:
-  - "@nestjs/schematics"
-  - "@types/jest"
-  - "@types/prettier"
-  - "conventional-changelog-conventionalcommits"
-  - "dependency-cruiser"
-  - "jest-junit"
-  - "source-map-support"
-  - "ts-jest"
-  - "ts-loader"
-  - "tsconfig-paths"
-  - "rimraf"
+  - '@nestjs/schematics'
+  - '@types/jest'
+  - '@types/prettier'
+  - 'conventional-changelog-conventionalcommits'
+  - 'dependency-cruiser'
+  - 'jest-junit'
+  - 'source-map-support'
+  - 'ts-jest'
+  - 'ts-loader'
+  - 'tsconfig-paths'
+  - 'rimraf'

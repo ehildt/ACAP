@@ -28,9 +28,9 @@
   min-width: var(--size-popup--width, 40dvw);
   min-height: var(--size-popup--height, 40dvh);
   grid-template-areas:
-    "header"
-    "content"
-    "footer";
+    'header'
+    'content'
+    'footer';
   position: relative;
   background-color: white;
   z-index: 1001;

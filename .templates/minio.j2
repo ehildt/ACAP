@@ -1,0 +1,16 @@
+  minio:
+    image: "bitnami/minio"
+    container_name: minio
+    ports:
+      - "9000:9000"
+      - "9002:9001" # Management UI port (optional)
+    environment:
+      - MINIO_ROOT_USER=minio
+      - MINIO_ROOT_PASSWORD=minio2024
+      - MINIO_SKIP_CLIENT=yes
+      - MINIO_DEFAULT_BUCKETS=acap
+    volumes:
+      - minio_data:/bitnami/minio/data
+    networks:
+      - acap-network
+    restart: unless-stopped

@@ -1,8 +1,5 @@
-import { registerAs } from "@nestjs/config";
+import { registerAs } from '@nestjs/config';
 
-import { KafkaAdapter } from "./adapter";
+import { KafkaAdapter } from './adapter';
 
-export const KafkaRegistry = registerAs(
-  "Kafka",
-  async () => new KafkaAdapter(),
-);
+export const KafkaRegistry = registerAs('Kafka', async () => new KafkaAdapter());

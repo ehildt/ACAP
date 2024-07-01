@@ -1,15 +1,11 @@
-import {
-  Injectable,
-  InternalServerErrorException,
-  NotFoundException,
-} from "@nestjs/common";
+import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 
-import { ContentUpsertReq } from "@/dtos/content-upsert-req.dto";
-import { RealmsUpsertReq } from "@/dtos/realms-upsert.dto.req";
-import { reduceEntities } from "@/helpers/reduce-entities.helper";
-import { SchemaRepository } from "@/repositories/schema.repository";
+import { ContentUpsertReq } from '@/dtos/content-upsert-req.dto';
+import { RealmsUpsertReq } from '@/dtos/realms-upsert.dto.req';
+import { reduceEntities } from '@/helpers/reduce-entities.helper';
+import { SchemaRepository } from '@/repositories/schema.repository';
 
-import { ConfigFactoryService } from "./config-factory.service";
+import { ConfigFactoryService } from './config-factory.service';
 
 @Injectable()
 export class SchemaService {
@@ -30,11 +26,7 @@ export class SchemaService {
     return result;
   }
 
-  async getRealmContentByIds(
-    realm: string,
-    ids: Array<string>,
-    allowThrow = true,
-  ) {
+  async getRealmContentByIds(realm: string, ids: Array<string>, allowThrow = true) {
     const entities = await this.schemaRepository.where({
       realm,
       id: { $in: ids },

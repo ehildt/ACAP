@@ -1,6 +1,6 @@
-import { useMouseEventProxy } from "./Button.hooks";
-import { ButtonProps, ExtendedCSSProperties } from "./Button.modal";
-import style from "./Button.module.scss";
+import { useMouseEventProxy } from './Button.hooks';
+import { ButtonProps, ExtendedCSSProperties } from './Button.modal';
+import style from './Button.module.scss';
 
 // wip on scss
 // support colors textContent and bgColor
@@ -11,12 +11,12 @@ export function Button(props: ButtonProps) {
   const onClick = useMouseEventProxy(props.onClick);
 
   const extendedStyle: ExtendedCSSProperties = {
-    "--clr-button-hover": props.hoverColor,
-    "--clr-button": props.color,
-    "--clr-button-border": props.borderColor,
-    "--clr-button-border-hover": props.borderHoverColor,
-    "--clr-button-background": props.backgroundColor,
-    "--clr-button-background-hover": props.backgroundHoverColor,
+    '--clr-button-hover': props.hoverColor,
+    '--clr-button': props.color,
+    '--clr-button-border': props.borderColor,
+    '--clr-button-border-hover': props.borderHoverColor,
+    '--clr-button-background': props.backgroundColor,
+    '--clr-button-background-hover': props.backgroundHoverColor,
   };
 
   return (

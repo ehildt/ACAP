@@ -1,4 +1,4 @@
-import { createStoreWithImmer } from "@/store/create-with-immer.store";
+import { createStoreWithImmer } from '@/store/create-with-immer.store';
 
 type Data = {
   pages: number;
@@ -10,17 +10,15 @@ type Mutations = {
   setCurrentPage: (currentPage: number) => void;
 };
 
-export const usePdfViewImmerStore = createStoreWithImmer<Data & Mutations>(
-  (set) => ({
-    pages: 0,
-    currentPage: 1,
-    setPages: (pages) =>
-      set((store) => {
-        if (pages) store.pages = pages;
-      }),
-    setCurrentPage: (currentPage) =>
-      set((store) => {
-        if (currentPage) store.currentPage = currentPage;
-      }),
-  }),
-);
+export const usePdfViewImmerStore = createStoreWithImmer<Data & Mutations>((set) => ({
+  pages: 0,
+  currentPage: 1,
+  setPages: (pages) =>
+    set((store) => {
+      if (pages) store.pages = pages;
+    }),
+  setCurrentPage: (currentPage) =>
+    set((store) => {
+      if (currentPage) store.currentPage = currentPage;
+    }),
+}));

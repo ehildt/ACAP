@@ -6,13 +6,5 @@
     "sourceMap": false,
     "removeComments": true
   },
-  "exclude": [
-    "node_modules",
-    "test",
-    "dist",
-    "**/*.spec.ts",
-    ".prettierrc.mjs",
-    "jest.config.ts",
-    "**/*.test.ts"
-  ]
+  "exclude": ["node_modules", "test", "dist", "**/*.spec.ts", ".prettierrc.mjs", "jest.config.ts", "**/*.test.ts"]
 }

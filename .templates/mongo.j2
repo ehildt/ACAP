@@ -1,0 +1,15 @@
+  mongo:
+    command: mongod --quiet --wiredTigerCacheSizeGB 1.5 --logpath /dev/null
+    image: mongo
+    container_name: mongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=mongo
+      - MONGO_INITDB_ROOT_PASSWORD=mongo
+      - MONGO_INITDB_DATABASE=ACAP
+    volumes:
+      - mongo_data:/data/db
+    ports:
+      - 27017:27017
+    networks:
+      - acap-network
+    restart: unless-stopped

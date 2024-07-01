@@ -1,20 +1,9 @@
-import {
-  ConsoleLogger,
-  DynamicModule,
-  Inject,
-  Injectable,
-  Module,
-} from "@nestjs/common";
-import {
-  Client,
-  ClientOptions,
-  ItemBucketMetadata,
-  MakeBucketOpt,
-} from "minio";
-import { Readable } from "stream";
+import { ConsoleLogger, DynamicModule, Inject, Injectable, Module } from '@nestjs/common';
+import { Client, ClientOptions, ItemBucketMetadata, MakeBucketOpt } from 'minio';
+import { Readable } from 'stream';
 
-export const MINIO_CLIENT = "MINIO_CLIENT";
-const MINIO_CLIENT_OPTIONS = "MINIO_CLIENT_OPTIONS";
+export const MINIO_CLIENT = 'MINIO_CLIENT';
+const MINIO_CLIENT_OPTIONS = 'MINIO_CLIENT_OPTIONS';
 
 type MinioClientModuleProps = {
   imports?: Array<any>;
@@ -53,18 +42,12 @@ export class MinioClientModule {
 @Injectable()
 export class MinioClient {
   private readonly client: Client;
-  constructor(
-    @Inject(MINIO_CLIENT_OPTIONS) private readonly options: ClientOptions,
-  ) {
+  constructor(@Inject(MINIO_CLIENT_OPTIONS) private readonly options: ClientOptions) {
     this.client = new Client(this.options);
     this.client.traceOff();
   }
 
-  async createBucketIfNotExists(
-    bucketName: string,
-    region?: string,
-    opts?: MakeBucketOpt,
-  ) {
+  async createBucketIfNotExists(bucketName: string, region?: string, opts?: MakeBucketOpt) {
     const exists = await this.client.bucketExists(bucketName);
     if (!exists) await this.client.makeBucket(bucketName, region, opts);
   }
@@ -76,20 +59,10 @@ export class MinioClient {
     size?: number,
     metaData?: ItemBucketMetadata,
   ) {
-    return await this.client.putObject(
-      bucketName,
-      objectName,
-      stream,
-      size,
-      metaData,
-    );
+    return await this.client.putObject(bucketName, objectName, stream, size, metaData);
   }
 
-  async getObject(
-    bucketName: string,
-    objectName: string,
-    getOpts?: { versionId?: string },
-  ) {
+  async getObject(bucketName: string, objectName: string, getOpts?: { versionId?: string }) {
     const file = await this.client.getObject(bucketName, objectName, getOpts);
     const metadata = await this.client.statObject(bucketName, objectName);
     return {

@@ -1,20 +1,15 @@
-import { InjectQueue } from "@nestjs/bullmq";
-import {
-  Injectable,
-  InternalServerErrorException,
-  NotFoundException,
-  Optional,
-} from "@nestjs/common";
-import { Queue } from "bullmq";
+import { InjectQueue } from '@nestjs/bullmq';
+import { Injectable, InternalServerErrorException, NotFoundException, Optional } from '@nestjs/common';
+import { Queue } from 'bullmq';
 
-import { ACAP_MSBR } from "@/constants/app.constants";
-import { ContentUpsertReq } from "@/dtos/content-upsert-req.dto";
-import { RealmsUpsertReq } from "@/dtos/realms-upsert.dto.req";
-import { reduceEntities } from "@/helpers/reduce-entities.helper";
-import { RealmRepository } from "@/repositories/realm.repository";
+import { ACAP_MSBR } from '@/constants/app.constants';
+import { ContentUpsertReq } from '@/dtos/content-upsert-req.dto';
+import { RealmsUpsertReq } from '@/dtos/realms-upsert.dto.req';
+import { reduceEntities } from '@/helpers/reduce-entities.helper';
+import { RealmRepository } from '@/repositories/realm.repository';
 
-import { ConfigFactoryService } from "./config-factory.service";
-import { CryptoService } from "./crypto.service";
+import { ConfigFactoryService } from './config-factory.service';
+import { CryptoService } from './crypto.service';
 
 @Injectable()
 export class RealmService {
@@ -27,9 +22,7 @@ export class RealmService {
   ) {}
 
   async upsertRealm(realm: string, reqs: Array<ContentUpsertReq>) {
-    const payload = this.factory.app.crypto.algorithm
-      ? this.cryptoService.encryptContentUpsertReqs(reqs)
-      : reqs;
+    const payload = this.factory.app.crypto.algorithm ? this.cryptoService.encryptContentUpsertReqs(reqs) : reqs;
     const result = await this.configRepo.upsert(realm, payload);
     if (!result?.ok) throw new InternalServerErrorException(result);
     this.bullmq?.add(realm, reqs).catch((error) => error);
@@ -37,14 +30,10 @@ export class RealmService {
   }
 
   async upsertRealms(reqs: Array<RealmsUpsertReq>) {
-    const payload = this.factory.app.crypto.algorithm
-      ? this.cryptoService.encryptRealmsUpsertReq(reqs)
-      : reqs;
+    const payload = this.factory.app.crypto.algorithm ? this.cryptoService.encryptRealmsUpsertReq(reqs) : reqs;
     const result = await this.configRepo.upsertMany(payload);
     if (!result?.ok) throw new InternalServerErrorException(result);
-    reqs.forEach(({ realm, contents }) =>
-      this.bullmq?.add(realm, contents).catch((error) => error),
-    );
+    reqs.forEach(({ realm, contents }) => this.bullmq?.add(realm, contents).catch((error) => error));
     return result;
   }
 
@@ -58,10 +47,7 @@ export class RealmService {
 
     return !this.factory.app.crypto.algorithm
       ? reduceEntities(this.factory.app.realm.resolveEnv, entities)
-      : reduceEntities(
-          this.factory.app.realm.resolveEnv,
-          this.cryptoService.decryptEntityValues(entities),
-        );
+      : reduceEntities(this.factory.app.realm.resolveEnv, this.cryptoService.decryptEntityValues(entities));
   }
 
   async deleteRealm(realm: string) {
@@ -80,9 +66,7 @@ export class RealmService {
 
   async getRealm(realm: string) {
     const entities = await this.configRepo.where({ realm });
-    return !this.factory.app.crypto.algorithm
-      ? entities
-      : this.cryptoService.decryptEntityValues(entities);
+    return !this.factory.app.crypto.algorithm ? entities : this.cryptoService.decryptEntityValues(entities);
   }
 
   async countRealmContents() {
