@@ -1,13 +1,13 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from '@storybook/react';
 
-import FileImporter from "./FileImporter";
+import FileImporter from './FileImporter';
 
 export default {
   /* 👇 The title prop is optional.
    * See https://storybook.js.org/docs/react/configure/overview#configure-story-loading
    * to learn how to generate automatic titles
    */
-  title: "widgets/file-importer",
+  title: 'widgets/file-importer',
   component: FileImporter,
 } satisfies Meta<typeof FileImporter>;
 

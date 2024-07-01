@@ -1,6 +1,6 @@
-import { CSSProperties, ReactNode } from "react";
+import { CSSProperties, ReactNode } from 'react';
 
-import style from "./DesktopLayout.module.scss";
+import style from './DesktopLayout.module.scss';
 
 type DesktopLayoutProps = {
   children: ReactNode;

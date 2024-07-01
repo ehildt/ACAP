@@ -1,7 +1,7 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { ArrayNotEmpty, IsString } from "class-validator";
+import { ApiProperty } from '@nestjs/swagger';
+import { ArrayNotEmpty, IsString } from 'class-validator';
 
-import { BreakoutContentUpsertReq } from "./breakout-content-upsert.dto.req";
+import { BreakoutContentUpsertReq } from './breakout-content-upsert.dto.req';
 
 export class BreakoutUpsertReq {
   @IsString()

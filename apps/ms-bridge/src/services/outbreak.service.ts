@@ -1,9 +1,9 @@
-import { InjectQueue } from "@nestjs/bullmq";
-import { Inject, Injectable, Optional } from "@nestjs/common";
-import { ClientKafka, ClientProxy, ClientRMQ } from "@nestjs/microservices";
-import { Job, Queue, Worker } from "bullmq";
+import { InjectQueue } from '@nestjs/bullmq';
+import { Inject, Injectable, Optional } from '@nestjs/common';
+import { ClientKafka, ClientProxy, ClientRMQ } from '@nestjs/microservices';
+import { Job, Queue, Worker } from 'bullmq';
 
-import { AppBrokers } from "@/configs/config-yml/config.model";
+import { AppBrokers } from '@/configs/config-yml/config.model';
 import {
   ACAP_BRCS,
   ACAP_MSBR,
@@ -11,11 +11,11 @@ import {
   KAFKA_CLIENT,
   RABBITMQ_CLIENT,
   REDIS_PUBSUB,
-} from "@/constants/app.constants";
-import { BreakoutUpsertReq } from "@/dtos/breakout-upsert.dto.req";
-import { MQTT_CLIENT, MqttClient } from "@/modules/mqtt-client.module";
+} from '@/constants/app.constants';
+import { BreakoutUpsertReq } from '@/dtos/breakout-upsert.dto.req';
+import { MQTT_CLIENT, MqttClient } from '@/modules/mqtt-client.module';
 
-import { ConfigFactoryService } from "./config-factory.service";
+import { ConfigFactoryService } from './config-factory.service';
 
 @Injectable()
 export class OutbreakService {
@@ -35,15 +35,11 @@ export class OutbreakService {
         for (let index = 0; index < job.data.length; index++) {
           const realm = job.name;
           const item = JSON.stringify({ realm, ...job.data[index] });
-          if (this.factory.app.brokers.useRedisPubSub)
-            this.redisPubSub?.emit(realm, item);
-          if (this.factory.app.brokers.useRabbitMQ)
-            this.rabbitmq?.emit(realm, item);
+          if (this.factory.app.brokers.useRedisPubSub) this.redisPubSub?.emit(realm, item);
+          if (this.factory.app.brokers.useRabbitMQ) this.rabbitmq?.emit(realm, item);
           if (this.factory.app.brokers.useMQTT) this.mqtt?.publish(realm, item);
-          if (this.factory.app.brokers.useBullMQ)
-            this.bullmq?.add(realm, item).catch((error) => error);
-          if (this.factory.app.brokers.useKafka)
-            this.kafka?.emit(ACAP_BRCS, { key: realm, value: item });
+          if (this.factory.app.brokers.useBullMQ) this.bullmq?.add(realm, item).catch((error) => error);
+          if (this.factory.app.brokers.useKafka) this.kafka?.emit(ACAP_BRCS, { key: realm, value: item });
         }
       },
       { connection: this.factory.bullMQ.connection },
@@ -57,10 +53,8 @@ export class OutbreakService {
         if (args.useRabbitMQ) this.rabbitmq?.emit(ACAP_BRCS, item);
         if (args.useRedisPubSub) this.redisPubSub?.emit(ACAP_BRCS, item);
         if (args.useMQTT) this.mqtt?.publish(ACAP_BRCS, item);
-        if (args.useBullMQ)
-          this.bullmq?.add(ACAP_BRCS, item).catch((error) => error);
-        if (args.useKafka)
-          this.kafka?.emit(ACAP_BRCS, { key: realm, value: item });
+        if (args.useBullMQ) this.bullmq?.add(ACAP_BRCS, item).catch((error) => error);
+        if (args.useKafka) this.kafka?.emit(ACAP_BRCS, { key: realm, value: item });
       });
     });
   }

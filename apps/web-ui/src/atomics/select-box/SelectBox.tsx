@@ -1,11 +1,11 @@
-import cn from "classnames";
-import { useEffect, useMemo, useRef, useState } from "react";
+import cn from 'classnames';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
-import { SelectedBoxProps } from "./SelectBox.model";
-import style from "./SelectBox.module.scss";
-import { SelectBoxInput } from "./SelectBoxInput";
+import { SelectedBoxProps } from './SelectBox.model';
+import style from './SelectBox.module.scss';
+import { SelectBoxInput } from './SelectBoxInput';
 
-const CUSTOM_INPUT_SYMBOLS = "🍀ヅ💕";
+const CUSTOM_INPUT_SYMBOLS = '🍀ヅ💕';
 
 export function SelectBox(props: SelectedBoxProps) {
   const defaultItem = props.items.at(props.defaultIndex ?? 0);
@@ -19,24 +19,20 @@ export function SelectBox(props: SelectedBoxProps) {
 
   useEffect(() => {
     if (ref.current?.offsetWidth) setWidth(() => ref.current!.offsetWidth);
-    if (refSpan.current?.offsetHeight)
-      setHeight(() => refSpan.current!.offsetHeight);
+    if (refSpan.current?.offsetHeight) setHeight(() => refSpan.current!.offsetHeight);
   }, [ref.current, refSpan.current]);
 
   const elements = useMemo(() => {
     const fragments = props.items.map((item, index) => (
       <li
-        className={cn(
-          { [style.selected]: item.name === name },
-          { [style.disabled]: item.name === name },
-        )}
+        className={cn({ [style.selected]: item.name === name }, { [style.disabled]: item.name === name })}
         data-value={item.value}
         data-name={item.name}
         key={`select-box-item_${index}`}
         onClick={(e: any) => {
-          setValue(() => e.target.getAttribute("data-value"));
-          setName(() => e.target.getAttribute("data-name"));
-          props.onClick(e.target.getAttribute("data-value"));
+          setValue(() => e.target.getAttribute('data-value'));
+          setName(() => e.target.getAttribute('data-name'));
+          props.onClick(e.target.getAttribute('data-value'));
         }}
       >
         {item.name}
@@ -74,11 +70,7 @@ export function SelectBox(props: SelectedBoxProps) {
       onMouseOver={() => setSelectable(() => true)}
       onMouseLeave={() => setSelectable(() => false)}
     >
-      <span
-        ref={refSpan}
-        style={{ width: `${width}px` }}
-        className={cn({ [style.selected]: selectable })}
-      >
+      <span ref={refSpan} style={{ width: `${width}px` }} className={cn({ [style.selected]: selectable })}>
         {name}
       </span>
       <ul

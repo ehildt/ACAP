@@ -11,7 +11,7 @@ services:
       - mongo
       - minio
       - keydb
-     {%- if use_kafka or use_mqtt or use_rabbitmq %}
+     {%- if USE_KAFKA or USE_MQTT or USE_RABBITMQ %}
       - msbridge
      {%- endif %} 
     env_file:

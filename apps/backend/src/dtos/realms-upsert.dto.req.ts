@@ -1,7 +1,7 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { ArrayNotEmpty, IsString } from "class-validator";
+import { ApiProperty } from '@nestjs/swagger';
+import { ArrayNotEmpty, IsString } from 'class-validator';
 
-import { ContentUpsertReq } from "./content-upsert-req.dto";
+import { ContentUpsertReq } from './content-upsert-req.dto';
 
 export class RealmsUpsertReq {
   @IsString()

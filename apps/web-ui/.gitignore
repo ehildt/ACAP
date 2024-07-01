@@ -13,6 +13,7 @@ coverage
 dist-ssr
 *.local
 !Dockerfile.local
+.env.local
 
 # Editor directories and files
 .vscode/*

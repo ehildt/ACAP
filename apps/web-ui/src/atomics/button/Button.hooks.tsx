@@ -1,4 +1,4 @@
-import { ProxyFunc } from "./Button.modal";
+import { ProxyFunc } from './Button.modal';
 
 export function useMouseEventProxy(callback?: ProxyFunc) {
   return (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {

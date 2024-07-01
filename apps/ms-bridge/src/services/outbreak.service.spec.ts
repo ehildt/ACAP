@@ -1,28 +1,22 @@
-import { ClientKafka, ClientProxy, ClientRMQ } from "@nestjs/microservices";
-import { Test } from "@nestjs/testing";
-import { Queue, Worker } from "bullmq";
+import { ClientKafka, ClientProxy, ClientRMQ } from '@nestjs/microservices';
+import { Test } from '@nestjs/testing';
+import { Queue, Worker } from 'bullmq';
 
-import { AppBrokers } from "@/configs/config-yml/config.model";
-import {
-  ACAP_BRCS,
-  ACAP_MSBR,
-  KAFKA_CLIENT,
-  RABBITMQ_CLIENT,
-  REDIS_PUBSUB,
-} from "@/constants/app.constants";
-import { BreakoutUpsertReq } from "@/dtos/breakout-upsert.dto.req";
-import { MQTT_CLIENT, MqttClient } from "@/modules/mqtt-client.module";
+import { AppBrokers } from '@/configs/config-yml/config.model';
+import { ACAP_BRCS, ACAP_MSBR, KAFKA_CLIENT, RABBITMQ_CLIENT, REDIS_PUBSUB } from '@/constants/app.constants';
+import { BreakoutUpsertReq } from '@/dtos/breakout-upsert.dto.req';
+import { MQTT_CLIENT, MqttClient } from '@/modules/mqtt-client.module';
 
-import { ConfigFactoryService } from "./config-factory.service";
-import { OutbreakService } from "./outbreak.service";
+import { ConfigFactoryService } from './config-factory.service';
+import { OutbreakService } from './outbreak.service';
 
-jest.mock("bullmq", () => ({
+jest.mock('bullmq', () => ({
   Worker: jest.fn(() => ({
     run: jest.fn(),
   })),
 }));
 
-describe("OutbreakService", () => {
+describe('OutbreakService', () => {
   let outbreakService: OutbreakService;
   let mockRedisPubSub: jest.Mocked<ClientProxy>;
   let mockKafka: jest.Mocked<ClientKafka>;
@@ -92,23 +86,23 @@ describe("OutbreakService", () => {
     jest.clearAllMocks();
   });
 
-  describe("delegate", () => {
-    it("should initialize Worker on module init", () => {
+  describe('delegate', () => {
+    it('should initialize Worker on module init', () => {
       outbreakService.onModuleInit();
       expect(Worker).toHaveBeenCalledWith(ACAP_MSBR, expect.any(Function), {
         connection: mockConfigFactory.bullMQ.connection,
       });
     });
 
-    it("should distribute data to realms using enabled messaging options", async () => {
+    it('should distribute data to realms using enabled messaging options', async () => {
       const reqs: BreakoutUpsertReq[] = [
         {
-          realm: "realm1",
-          contents: [{ value: "value1" }],
+          realm: 'realm1',
+          contents: [{ value: 'value1' }],
         },
         {
-          realm: "realm2",
-          contents: [{ value: "value2" }],
+          realm: 'realm2',
+          contents: [{ value: 'value2' }],
         },
       ];
 
@@ -129,13 +123,13 @@ describe("OutbreakService", () => {
       expect(mockBullMQQueue.add).not.toHaveBeenCalled();
     });
 
-    it("should not distribute data if no messaging options are enabled", async () => {
+    it('should not distribute data if no messaging options are enabled', async () => {
       const reqs: BreakoutUpsertReq[] = [
         {
-          realm: "realm1",
+          realm: 'realm1',
           contents: [
             {
-              value: "value1",
+              value: 'value1',
             },
           ],
         },

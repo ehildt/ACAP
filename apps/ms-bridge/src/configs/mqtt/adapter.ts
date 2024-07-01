@@ -16,7 +16,7 @@ export class MQTTClientAdapter {
   }
 
   get RESUBSCRIBE(): boolean {
-    return process.env.MQTT_RESUBSCRIBE === "true";
+    return process.env.MQTT_RESUBSCRIBE === 'true';
   }
 
   get BROKER_URL(): string {

@@ -1,9 +1,9 @@
-import { CSSProperties, useRef } from "react";
+import { CSSProperties, useRef } from 'react';
 
-import { FlickerText } from "@/effects";
-import { useDimensionsWithStyle } from "@/hooks/use-dimensions-with-style";
+import { FlickerText } from '@/effects';
+import { useDimensionsWithStyle } from '@/hooks/use-dimensions-with-style';
 
-import style from "./TextInput.module.scss";
+import style from './TextInput.module.scss';
 
 type TextInputProps = {
   label: string;
@@ -24,13 +24,7 @@ export function TextInput(props: TextInputProps) {
         style={{ width }}
         onChange={({ target }) => props.onChange(target.value)}
       />
-      <FlickerText
-        text={props.label}
-        color="#ccc"
-        maxFaulty={0.3}
-        letterSpacing={"0.1rem"}
-        style={{ width }}
-      />
+      <FlickerText text={props.label} color="#ccc" maxFaulty={0.3} letterSpacing={'0.1rem'} style={{ width }} />
     </div>
   );
 }

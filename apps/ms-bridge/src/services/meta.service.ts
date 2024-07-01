@@ -1,6 +1,6 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable } from '@nestjs/common';
 
-import { ConfigFactoryService } from "./config-factory.service";
+import { ConfigFactoryService } from './config-factory.service';
 
 @Injectable()
 export class MetaService {

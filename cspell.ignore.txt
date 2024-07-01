@@ -24,12 +24,14 @@ DCCS
 depcruiser
 depcruiserrc
 docgen
+docpose
 dotenv
 dotfiles
 dtos
 eqalpha
 errorlens
 fastify
+fieldtypes
 genpose
 gitconfiglocal
 github
@@ -50,6 +52,7 @@ Langkey
 langkify
 Langkify
 languagedetector
+levelname
 litlbyte
 Lngs
 localstorage
@@ -65,6 +68,8 @@ MSBR
 msbridge
 nestjs
 nginx
+ngrok
+NGROK
 NKEY
 nrwl
 obsidiandynamics
@@ -79,6 +84,8 @@ rabbitmq
 RABBITMQ
 redhat
 redis
+redispassword
+redisuser
 releaserc
 reqs
 rimraf
@@ -99,6 +106,8 @@ usernamehw
 vite
 vitest
 webm
+webui
+WEBUI
 wireframe
 wireframes
 Xmark

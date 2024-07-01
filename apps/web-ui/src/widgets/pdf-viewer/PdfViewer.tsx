@@ -1,13 +1,13 @@
-import "./PdfViewer.overwrite.scss";
+import './PdfViewer.overwrite.scss';
 
-import { Buffer } from "buffer";
-import { useEffect, useState } from "react";
-import { Document, Page, pdfjs } from "react-pdf";
+import { Buffer } from 'buffer';
+import { useEffect, useState } from 'react';
+import { Document, Page, pdfjs } from 'react-pdf';
 
-import { Container } from "@/layouts/container/Container";
+import { Container } from '@/layouts/container/Container';
 
-import style from "./PdfViewer.module.scss";
-import { usePdfViewImmerStore } from "./PdfViewer.store";
+import style from './PdfViewer.module.scss';
+import { usePdfViewImmerStore } from './PdfViewer.store';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
@@ -31,7 +31,7 @@ export function PdfViewer(props: PdfViewerProps) {
     <div className={style.pdfViewer}>
       <div className={style.pdfViewerContainer}>
         <Document
-          file={`data:application/pdf;base64,${buffer?.toString("base64")}`}
+          file={`data:application/pdf;base64,${buffer?.toString('base64')}`}
           onLoadSuccess={({ numPages }) => {
             setCurrentPage(1);
             setPages(numPages);

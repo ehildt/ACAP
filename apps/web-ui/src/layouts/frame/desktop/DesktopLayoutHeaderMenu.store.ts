@@ -1,6 +1,6 @@
-import { createStoreWithImmer } from "@/store/create-with-immer.store";
+import { createStoreWithImmer } from '@/store/create-with-immer.store';
 
-type TAB = "home" | "importer" | "metae";
+type TAB = 'home' | 'importer' | 'metae';
 
 type Data = {
   tab?: TAB;
@@ -10,12 +10,10 @@ type Mutations = {
   setTab: (tab: TAB) => void;
 };
 
-export const useTabMenuImmerStore = createStoreWithImmer<Data & Mutations>(
-  (set) => ({
-    tab: "home",
-    setTab: (tab) =>
-      set((store) => {
-        store.tab = tab;
-      }),
-  }),
-);
+export const useTabMenuImmerStore = createStoreWithImmer<Data & Mutations>((set) => ({
+  tab: 'home',
+  setTab: (tab) =>
+    set((store) => {
+      store.tab = tab;
+    }),
+}));

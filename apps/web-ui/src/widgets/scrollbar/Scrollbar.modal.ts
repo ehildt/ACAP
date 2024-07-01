@@ -1,10 +1,10 @@
-import { CSSProperties, ReactNode } from "react";
+import { CSSProperties, ReactNode } from 'react';
 
-type ScrollStickY = "top" | "bottom";
-type ScrollStickX = "left" | "right";
-type ScrollOverflow = "x" | "y" | "auto" | "hidden";
-type ScrollBehavior = "smooth" | "auto";
-type ScrollDirection = "ltr" | "rtl";
+type ScrollStickY = 'top' | 'bottom';
+type ScrollStickX = 'left' | 'right';
+type ScrollOverflow = 'x' | 'y' | 'auto' | 'hidden';
+type ScrollBehavior = 'smooth' | 'auto';
+type ScrollDirection = 'ltr' | 'rtl';
 
 export type ProxyFunc = (item: HTMLElement, scrollbar: HTMLDivElement) => void;
 

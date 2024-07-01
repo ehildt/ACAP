@@ -9,7 +9,8 @@
   "editor.codeActionsOnSave": {
     "source.fixAll": "always",
     "source.sortMembers": "always",
-    "source.fixAll.markdownlint": "always"
+    "source.fixAll.markdownlint": "always",
+    "source.organizeImports": "always"
   },
   "files.exclude": {
     "**/.git": true,
@@ -24,17 +25,8 @@
   "[jsonc]": {
     "editor.defaultFormatter": "vscode.json-language-features"
   },
-  "[dotenv]": {
-    "editor.defaultFormatter": "foxundermoon.shell-format"
-  },
-  "[shellscript]": {
-    "editor.defaultFormatter": "foxundermoon.shell-format"
-  },
   "[dockerfile]": {
     "editor.defaultFormatter": "ms-azuretools.vscode-docker"
-  },
-  "[ignore]": {
-    "editor.defaultFormatter": "foxundermoon.shell-format"
   },
   "[typescript]": {
     "editor.defaultFormatter": "dbaeumer.vscode-eslint"

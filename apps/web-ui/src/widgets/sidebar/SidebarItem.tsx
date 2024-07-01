@@ -1,5 +1,6 @@
-import { ReactElement } from "react";
-import style from "./SidebarItem.module.scss";
+import { ReactElement } from 'react';
+
+import style from './SidebarItem.module.scss';
 
 type SidebarItemProps = {
   title: string;

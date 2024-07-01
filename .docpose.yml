@@ -1,0 +1,76 @@
+
+kafka: &KAFKA kafka.j2
+webui: &WEBUI webui.j2
+keydb: &KEYDB keydb.j2
+mongo: &MONGO mongo.j2
+minio: &MINIO minio.j2
+ngrok: &NGROK ngrok.j2
+volumes: &VOLUMES volumes.j2
+kafdrop: &KAFDROP kafdrop.j2
+backend: &BACKEND backend.j2
+service: &SERVICES services.j2
+networks: &NETWORKS networks.j2
+msbridge: &MSBRIDGE ms-bridge.j2
+USE_NGROK: &USE_NGROK $USE_NGROK
+USE_MINIO: &USE_MINIO $USE_MINIO
+USE_KEYDB: &USE_KEYDB $USE_KEYDB
+USE_MONGODB: &USE_MONGODB $USE_MONGODB
+USE_BULLMQ: &USE_BULLMQ $USE_BULLMQ
+USE_KAFKA: &USE_KAFKA $USE_KAFKA
+
+source:
+  template_dir: .templates
+  outputs: compose.yml
+  env_files:
+    - apps/backend/env/.env
+    - apps/backend/env/.env.local
+    - apps/ms-bridge/env/.env
+    - apps/ms-bridge/env/.env.local
+    - .env.global
+
+compose:
+  - *SERVICES
+
+  - template: *BACKEND
+    environment:
+      - TARGET: production
+      - USE_MONGODB: true
+      - USE_MINIO: true
+      - USE_KEYDB: true
+    depends_on:
+      - *KEYDB
+      - *MONGO
+      - *MINIO
+      - *USE_MONGODB
+      - *USE_MINIO
+      - *USE_KEYDB
+
+  - template: *WEBUI
+    depends_on:
+      - *BACKEND
+
+  - template: *MSBRIDGE
+    depends_on:
+      - *KEYDB
+      - *USE_BULLMQ
+
+  - template: *KEYDB
+  - template: *MONGO
+  - template: *MINIO
+
+  - template: *KAFKA
+    depends_on:
+      - *MSBRIDGE
+      - *USE_KAFKA
+  - template: *KAFDROP
+    depends_on:
+      - *KAFKA
+      - *USE_KAFKA
+
+  - template: *NGROK
+    depends_on:
+      - *BACKEND
+      - *USE_NGROK
+    
+  - *VOLUMES
+  - *NETWORKS

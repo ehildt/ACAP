@@ -1,0 +1,14 @@
+  rabbitmq:
+    image: rabbitmq
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      - RABBITMQ_PLUGINS=rabbitmq_management,rabbitmq_management_visualiser
+    volumes:
+      - rabbitmq_data:/bitnami/rabbitmq
+      - ./apps/ms-bridge/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
+    networks:
+      - acap-network
+    restart: unless-stopped

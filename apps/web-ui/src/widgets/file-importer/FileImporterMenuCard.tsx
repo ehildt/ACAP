@@ -1,9 +1,9 @@
-import bytes from "bytes";
+import bytes from 'bytes';
 
-import { FileCard } from "@/atomics/file-card/FileCard";
-import { Container } from "@/layouts/container/Container";
+import { FileCard } from '@/atomics/file-card/FileCard';
+import { Container } from '@/layouts/container/Container';
 
-import { useFileImporterImmerStore } from "./FileImporter.store";
+import { useFileImporterImmerStore } from './FileImporter.store';
 
 export function FileImporterMenuCard() {
   const fileSlice = useFileImporterImmerStore();
@@ -11,7 +11,7 @@ export function FileImporterMenuCard() {
     <Container key={idx} fadeInOutMS={100 * idx}>
       <FileCard
         filename={f.name}
-        extension={f.name.split(".").pop()}
+        extension={f.name.split('.').pop()}
         size={bytes.format(f.size)}
         lastModified={f.lastModified}
         onClick={() => {
@@ -23,10 +23,8 @@ export function FileImporterMenuCard() {
   ));
 
   return metadata ? (
-    <div style={{ display: "flex", gap: "0.5rem", flexDirection: "column" }}>
-      {metadata}
-    </div>
+    <div style={{ display: 'flex', gap: '0.5rem', flexDirection: 'column' }}>{metadata}</div>
   ) : (
-    <div style={{ margin: "auto", userSelect: "none" }}>No Files Selected.</div>
+    <div style={{ margin: 'auto', userSelect: 'none' }}>No Files Selected.</div>
   );
 }

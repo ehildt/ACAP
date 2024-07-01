@@ -1,13 +1,12 @@
-import { ApiBody, ApiQuery } from "@nestjs/swagger";
+import { ApiBody, ApiQuery } from '@nestjs/swagger';
 
-import { BreakoutUpsertReq } from "@/dtos/breakout-upsert.dto.req";
+import { BreakoutUpsertReq } from '@/dtos/breakout-upsert.dto.req';
 
-export const ApiQueryUseMqtt = () =>
-  ApiQuery({ name: "useMqtt", type: Boolean, example: false, required: false });
+export const ApiQueryUseMqtt = () => ApiQuery({ name: 'useMqtt', type: Boolean, example: false, required: false });
 
 export const ApiQueryUseBullMQ = () =>
   ApiQuery({
-    name: "useBullMQ",
+    name: 'useBullMQ',
     type: Boolean,
     example: false,
     required: false,
@@ -15,7 +14,7 @@ export const ApiQueryUseBullMQ = () =>
 
 export const ApiQueryUseRedisPubSub = () =>
   ApiQuery({
-    name: "useRedisPubSub",
+    name: 'useRedisPubSub',
     type: Boolean,
     example: false,
     required: false,
@@ -23,7 +22,7 @@ export const ApiQueryUseRedisPubSub = () =>
 
 export const ApiQueryUseKafka = () =>
   ApiQuery({
-    name: "useKafka",
+    name: 'useKafka',
     type: Boolean,
     example: false,
     required: false,
@@ -31,7 +30,7 @@ export const ApiQueryUseKafka = () =>
 
 export const ApiQueryRabbitMQ = () =>
   ApiQuery({
-    name: "useRabbitMQ",
+    name: 'useRabbitMQ',
     type: Boolean,
     example: false,
     required: false,

@@ -1,13 +1,10 @@
-import { forwardRef, useRef } from "react";
+import { forwardRef, useRef } from 'react';
 
-import { useChangeEventProxy, useWheelEventProxy } from "./Slider.hooks";
-import { SliderProps } from "./Slider.modal";
-import style from "./Slider.module.scss";
+import { useChangeEventProxy, useWheelEventProxy } from './Slider.hooks';
+import { SliderProps } from './Slider.modal';
+import style from './Slider.module.scss';
 
-export const Slider = forwardRef(function Slider(
-  props: SliderProps,
-  forwardedRef?: any,
-) {
+export const Slider = forwardRef(function Slider(props: SliderProps, forwardedRef?: any) {
   const ref = forwardedRef ?? useRef<HTMLInputElement>(null);
   return (
     <div
@@ -41,8 +38,8 @@ export const Slider = forwardRef(function Slider(
 });
 
 Slider.defaultProps = {
-  defaultValue: "1",
-  max: "5",
-  min: "0",
-  step: "0.1",
+  defaultValue: '1',
+  max: '5',
+  min: '0',
+  step: '0.1',
 } as Partial<SliderProps>;

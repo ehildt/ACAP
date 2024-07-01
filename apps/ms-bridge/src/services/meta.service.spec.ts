@@ -1,9 +1,9 @@
-import { Test } from "@nestjs/testing";
+import { Test } from '@nestjs/testing';
 
-import { ConfigFactoryService } from "./config-factory.service";
-import { MetaService } from "./meta.service";
+import { ConfigFactoryService } from './config-factory.service';
+import { MetaService } from './meta.service';
 
-describe("MetaService", () => {
+describe('MetaService', () => {
   let metaService: MetaService;
   let mockConfigFactory: Partial<ConfigFactoryService>;
 
@@ -33,8 +33,8 @@ describe("MetaService", () => {
     metaService = moduleRef.get<MetaService>(MetaService);
   });
 
-  describe("getMsBridgeMeta", () => {
-    it("should return metadata", async () => {
+  describe('getMsBridgeMeta', () => {
+    it('should return metadata', async () => {
       const expectedData = {
         brokers: {
           useKafka: false,

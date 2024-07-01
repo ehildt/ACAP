@@ -1,0 +1,16 @@
+  web-ui:
+    container_name: web-ui
+    build:
+      context: ./apps/web-ui
+      target: local
+    depends_on:
+      - backend
+    volumes:
+      - ./apps/web-ui:/app
+      - ./node_modules:/node_modules
+    environment:
+      - ./apps/web-ui/.env.development
+    ports:
+      - "5173:5173"
+    networks:
+      - acap-network

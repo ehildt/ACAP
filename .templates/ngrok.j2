@@ -1,0 +1,12 @@
+  ngrok:
+    image: wernight/ngrok
+    container_name: ngrok
+    environment:
+      - NGROK_AUTHTOKEN={{NGROK_AUTHTOKEN}}
+      - NGROK_PORT=ecos-platform:3002
+    ports:
+      - "4040:4040" # ngrok web interface
+    networks:
+      - fiege-network
+    depends_on:
+      - ecos-platform

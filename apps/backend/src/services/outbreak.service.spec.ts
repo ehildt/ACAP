@@ -1,13 +1,13 @@
-import { Test } from "@nestjs/testing";
-import { Queue } from "bullmq";
+import { Test } from '@nestjs/testing';
+import { Queue } from 'bullmq';
 
-import { AppBrokers } from "@/configs/config-yml/config.model";
-import { ACAP_MSBR } from "@/constants/app.constants";
-import { BreakoutUpsertReq } from "@/dtos/breakout-upsert.dto.req";
+import { AppBrokers } from '@/configs/config-yml/config.model';
+import { ACAP_MSBR } from '@/constants/app.constants';
+import { BreakoutUpsertReq } from '@/dtos/breakout-upsert.dto.req';
 
-import { OutbreakService } from "./outbreak.service";
+import { OutbreakService } from './outbreak.service';
 
-describe("OutbreakService", () => {
+describe('OutbreakService', () => {
   let outbreakService: OutbreakService;
   let mockBullMQQueue: jest.Mocked<Queue>;
 
@@ -32,16 +32,16 @@ describe("OutbreakService", () => {
     jest.clearAllMocks();
   });
 
-  describe("delegate", () => {
-    it("should distribute data to realms using enabled messaging options", async () => {
+  describe('delegate', () => {
+    it('should distribute data to realms using enabled messaging options', async () => {
       const reqs: BreakoutUpsertReq[] = [
         {
-          realm: "realm1",
-          contents: [{ value: "value1" }],
+          realm: 'realm1',
+          contents: [{ value: 'value1' }],
         },
         {
-          realm: "realm2",
-          contents: [{ value: "value2" }],
+          realm: 'realm2',
+          contents: [{ value: 'value2' }],
         },
       ];
 
@@ -53,13 +53,13 @@ describe("OutbreakService", () => {
       expect(mockBullMQQueue.add).not.toHaveBeenCalled();
     });
 
-    it("should not distribute data if no messaging options are enabled", async () => {
+    it('should not distribute data if no messaging options are enabled', async () => {
       const reqs: BreakoutUpsertReq[] = [
         {
-          realm: "realm1",
+          realm: 'realm1',
           contents: [
             {
-              value: "value1",
+              value: 'value1',
             },
           ],
         },

@@ -1,3 +1,3 @@
-import { Post } from "@nestjs/common";
+import { Post } from '@nestjs/common';
 
-export const PostOutbreak = () => Post("delegates");
+export const PostOutbreak = () => Post('delegates');

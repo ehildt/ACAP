@@ -1,14 +1,14 @@
-import cn from "classnames";
-import { useState } from "react";
+import cn from 'classnames';
+import { useState } from 'react';
 
-import { FileCard } from "@/atomics/file-card/FileCard";
-import { FlickerText } from "@/effects";
-import { Line } from "@/layouts";
-import { Container } from "@/layouts/container/Container";
+import { FileCard } from '@/atomics/file-card/FileCard';
+import { FlickerText } from '@/effects';
+import { Line } from '@/layouts';
+import { Container } from '@/layouts/container/Container';
 
-import { MetaeItemProps } from "./Metae.modal";
-import style from "./Metae.module.scss";
-import { MetaeSubListItemHeader } from "./MetaeSubListItemHeader";
+import { MetaeItemProps } from './Metae.modal';
+import style from './Metae.module.scss';
+import { MetaeSubListItemHeader } from './MetaeSubListItemHeader';
 
 export function MetaeItem(props: MetaeItemProps) {
   const keys = Object.keys(props.metae);
@@ -17,10 +17,7 @@ export function MetaeItem(props: MetaeItemProps) {
   return (
     <>
       <div // this is the realm list
-        className={cn([
-          style.metaeMenuListItem,
-          { [style.metaeMenuListItemVisible]: !realmKey },
-        ])}
+        className={cn([style.metaeMenuListItem, { [style.metaeMenuListItemVisible]: !realmKey }])}
       >
         {keys.map((key, index) => (
           <div onClick={() => setRealmKey(key)}>
@@ -28,12 +25,12 @@ export function MetaeItem(props: MetaeItemProps) {
               key={`${key}_${index}`}
               fadeInOutMS={100 * index}
               innerStyle={{
-                display: "flex",
-                flexDirection: "column",
-                gap: "0.3rem",
-                userSelect: "none",
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '0.3rem',
+                userSelect: 'none',
               }}
-              outerStyle={{ padding: "1rem", cursor: "pointer" }}
+              outerStyle={{ padding: '1rem', cursor: 'pointer' }}
             >
               <Line>
                 <FlickerText
@@ -43,9 +40,7 @@ export function MetaeItem(props: MetaeItemProps) {
                   repeatFlickerTextFaulty="2"
                   color="yellowgreen"
                 />
-                <h1 style={{ marginLeft: "auto" }}>
-                  {props.metae?.[key].length}
-                </h1>
+                <h1 style={{ marginLeft: 'auto' }}>{props.metae?.[key].length}</h1>
               </Line>
             </Container>
           </div>
@@ -53,19 +48,12 @@ export function MetaeItem(props: MetaeItemProps) {
       </div>
 
       <div // this is the realm content list
-        className={cn([
-          style.metaeMenuListItem,
-          { [style.metaeMenuListItemVisible]: realmKey },
-        ])}
+        className={cn([style.metaeMenuListItem, { [style.metaeMenuListItemVisible]: realmKey }])}
       >
-        <MetaeSubListItemHeader
-          text={realmKey}
-          onClick={() => setRealmKey(undefined)}
-        />
+        <MetaeSubListItemHeader text={realmKey} onClick={() => setRealmKey(undefined)} />
         {realmKey &&
           props.metae?.[realmKey]?.map((item: any, idx: any) => {
-            const { id, hasSchema, hasRealm, createdAt, updatedAt, value } =
-              item;
+            const { id, hasSchema, hasRealm, createdAt, updatedAt, value } = item;
 
             return (
               <Container fadeInOutMS={100 * idx} key={`${item.id}_${idx}`}>

@@ -1,12 +1,12 @@
-"use strict";
+'use strict';
 
 /** @type {import('prettier').Config} */
 export default {
-  endOfLine: "lf",
+  endOfLine: 'lf',
   printWidth: 120,
   semi: true,
   singleQuote: true,
-  trailingComma: "all",
+  trailingComma: 'all',
   useTabs: false,
   bracketSpacing: true,
 };

@@ -1,5 +1,5 @@
-import { applyDecorators } from "@nestjs/common";
-import { ApiCreatedResponse, ApiOperation } from "@nestjs/swagger";
+import { applyDecorators } from '@nestjs/common';
+import { ApiCreatedResponse, ApiOperation } from '@nestjs/swagger';
 
 import {
   ApiBreakoutUpsert,
@@ -8,9 +8,9 @@ import {
   ApiQueryUseKafka,
   ApiQueryUseMqtt,
   ApiQueryUseRedisPubSub,
-} from "./open-api.method.decorators";
+} from './open-api.method.decorators';
 
-const REQUEST_SUCCESSFUL = "request successful";
+const REQUEST_SUCCESSFUL = 'request successful';
 
 export function OpenApi_Outbreak() {
   return applyDecorators(

@@ -1,13 +1,10 @@
-import {
-  FastifyAdapter,
-  NestFastifyApplication,
-} from "@nestjs/platform-fastify";
-import { Test, TestingModule } from "@nestjs/testing";
-import request from "supertest";
+import { FastifyAdapter, NestFastifyApplication } from '@nestjs/platform-fastify';
+import { Test, TestingModule } from '@nestjs/testing';
+import request from 'supertest';
 
-import { AppModule } from "@/modules/app.module";
+import { AppModule } from '@/modules/app.module';
 
-describe("AppController (e2e)", () => {
+describe('AppController (e2e)', () => {
   let app: NestFastifyApplication;
 
   beforeEach(async () => {
@@ -15,9 +12,7 @@ describe("AppController (e2e)", () => {
       imports: [AppModule],
     }).compile();
 
-    app = moduleFixture.createNestApplication<NestFastifyApplication>(
-      new FastifyAdapter(),
-    );
+    app = moduleFixture.createNestApplication<NestFastifyApplication>(new FastifyAdapter());
     await app.init();
   });
 
@@ -25,9 +20,7 @@ describe("AppController (e2e)", () => {
     await app?.close();
   });
 
-  it("/api/v1/metae (GET)", async () => {
-    await request(app.getHttpServer())
-      .get("/api/v1/metae?source=realms&take=1&skip=0&verbose=false")
-      .expect(200);
+  it('/api/v1/metae (GET)', async () => {
+    await request(app.getHttpServer()).get('/api/v1/metae?source=realms&take=1&skip=0&verbose=false').expect(200);
   });
 });

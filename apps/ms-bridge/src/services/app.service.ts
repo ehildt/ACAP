@@ -1,20 +1,13 @@
-import {
-  ConsoleLogger,
-  Injectable,
-  ValidationPipe,
-  VersioningType,
-} from "@nestjs/common";
-import { NestFastifyApplication } from "@nestjs/platform-fastify";
-import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
-import { readFileSync } from "fs";
-import { join } from "path";
+import { ConsoleLogger, Injectable, ValidationPipe, VersioningType } from '@nestjs/common';
+import { NestFastifyApplication } from '@nestjs/platform-fastify';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { readFileSync } from 'fs';
+import { join } from 'path';
 
-import { ACAP_MSBR, API_DOCS, API_DOCS_JSON } from "../constants/app.constants";
-import { ConfigFactoryService } from "./config-factory.service";
+import { ACAP_MSBR, API_DOCS, API_DOCS_JSON } from '../constants/app.constants';
+import { ConfigFactoryService } from './config-factory.service';
 
-const packageJson = JSON.parse(
-  readFileSync(join(__dirname, "../../package.json"), "utf8"),
-);
+const packageJson = JSON.parse(readFileSync(join(__dirname, '../../package.json'), 'utf8'));
 
 @Injectable()
 export class AppService {
@@ -40,8 +33,8 @@ export class AppService {
   enableVersioning(app: NestFastifyApplication) {
     app.enableVersioning({
       type: VersioningType.URI,
-      defaultVersion: "1",
-      prefix: "api/v",
+      defaultVersion: '1',
+      prefix: 'api/v',
     });
   }
 
@@ -70,21 +63,13 @@ export class AppService {
             useBullMQ: this.configFactory.app.brokers.useBullMQ
               ? { channel: ACAP_MSBR, ...this.configFactory.bullMQ }
               : false,
-            useRedisPubSub: this.configFactory.app.brokers.useRedisPubSub
-              ? this.configFactory.redisPubSub
-              : false,
-            useMqtt: this.configFactory.app.brokers.useMQTT
-              ? this.configFactory.mqtt
-              : false,
-            useKafka: this.configFactory.app.brokers.useKafka
-              ? this.configFactory.kafka
-              : false,
-            useRabbitMQ: this.configFactory.app.brokers.useRabbitMQ
-              ? this.configFactory.rabbitmq
-              : false,
+            useRedisPubSub: this.configFactory.app.brokers.useRedisPubSub ? this.configFactory.redisPubSub : false,
+            useMqtt: this.configFactory.app.brokers.useMQTT ? this.configFactory.mqtt : false,
+            useKafka: this.configFactory.app.brokers.useKafka ? this.configFactory.kafka : false,
+            useRabbitMQ: this.configFactory.app.brokers.useRabbitMQ ? this.configFactory.rabbitmq : false,
           },
         },
-        "ACAP_CONFIGURATION",
+        'ACAP_CONFIGURATION',
       );
     }
 

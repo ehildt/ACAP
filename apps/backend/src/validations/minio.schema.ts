@@ -1,6 +1,6 @@
-import Joi from "joi";
+import Joi from 'joi';
 
-import { CONFIG_YML } from "@/configs/config-yml/loader";
+import { CONFIG_YML } from '@/configs/config-yml/loader';
 
 export const MINIO_SCHEMA = {
   MINIO_ENDPOINT: CONFIG_YML?.minioConfig?.endPoint

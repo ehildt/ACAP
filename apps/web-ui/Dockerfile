@@ -1,14 +1,17 @@
-FROM node:20 AS local
+# Setup corepack
+FROM node:20-slim AS base
+RUN corepack enable pnpm
+
+FROM base AS local
 WORKDIR /app
 ENV PORT 5173
 EXPOSE ${PORT}
-RUN npm i -g pnpm
 ENTRYPOINT ["pnpm", "run", "start:dev"]
 
-FROM node:20-slim AS bundle
+FROM base AS bundle
 WORKDIR /app
 COPY ./ ./
-RUN npm i -g pnpm && pnpm i --ignore-scripts && pnpm run build:prod
+RUN pnpm i --ignore-scripts && pnpm run build:prod
 
 FROM nginx:alpine AS production
 ENV NGINX_HOST 127.0.0.1

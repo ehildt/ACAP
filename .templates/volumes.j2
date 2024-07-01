@@ -1,0 +1,29 @@
+{%- if USE_MONGODB or USE_MINIO or USE_KEYDB or USE_RABBITMQ or USE_KAFKA or USE_MQTT%}
+volumes:
+{%- endif %}
+
+{%- if USE_MONGODB %}
+  mongo_data:
+{%- endif %}
+
+{%- if USE_MINIO %}
+  minio_data:
+{%- endif %}
+
+{%- if USE_KEYDB %}
+  keydb_data:
+{%- endif %}
+
+{%- if USE_RABBITMQ %}
+  rabbitmq_data:
+{%- endif %}
+
+{%- if USE_KAFKA %}
+  kafka_data:
+{%- endif %}
+
+{%- if USE_MQTT %}
+  mosquitto_data:
+  mosquitto_config:
+  mosquitto_log:
+{%- endif %}

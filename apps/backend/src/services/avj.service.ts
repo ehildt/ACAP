@@ -1,7 +1,7 @@
-import { Inject, Injectable } from "@nestjs/common";
-import Ajv, { ValidateFunction } from "ajv";
+import { Inject, Injectable } from '@nestjs/common';
+import Ajv, { ValidateFunction } from 'ajv';
 
-import { AVJ_TOKEN } from "@/constants/app.constants";
+import { AVJ_TOKEN } from '@/constants/app.constants';
 
 @Injectable()
 export class AvjService {

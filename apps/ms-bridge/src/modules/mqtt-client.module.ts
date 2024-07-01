@@ -1,17 +1,11 @@
-import {
-  ConsoleLogger,
-  DynamicModule,
-  Inject,
-  Injectable,
-  Module,
-} from "@nestjs/common";
-import mqtt, { connect, IClientSubscribeOptions } from "mqtt";
+import { ConsoleLogger, DynamicModule, Inject, Injectable, Module } from '@nestjs/common';
+import mqtt, { connect, IClientSubscribeOptions } from 'mqtt';
 
-export const MQTT_CLIENT = "MQTT_CLIENT";
+export const MQTT_CLIENT = 'MQTT_CLIENT';
 export type { MqttClient };
 
-const MQTT_CLIENT_OPTIONS = "MQTT_CLIENT_OPTIONS";
-const ANONYMOUS_HANDLER = "ANONYMOUS_HANDLER";
+const MQTT_CLIENT_OPTIONS = 'MQTT_CLIENT_OPTIONS';
+const ANONYMOUS_HANDLER = 'ANONYMOUS_HANDLER';
 
 type Handler = (payload: string, topic?: string) => void;
 
@@ -64,19 +58,13 @@ class MqttClient {
     @Inject(MQTT_CLIENT_OPTIONS) private readonly props: MqttClientOptions,
   ) {
     this.client = (
-      this.props.brokerUrl
-        ? connect(this.props.brokerUrl, this.props.options)
-        : connect(this.props.options)
+      this.props.brokerUrl ? connect(this.props.brokerUrl, this.props.options) : connect(this.props.options)
     )
-      .on("reconnect", () => this.logger.log(`reconnecting..`, MQTT_CLIENT))
-      .on("disconnect", () => this.logger.log(`disconnected..`, MQTT_CLIENT))
-      .on("error", (error) =>
-        this.logger.error(JSON.stringify(error, null, 4), MQTT_CLIENT),
-      )
-      .on("message", (topic: string, payload: Buffer) => {
-        this.topics
-          .get(topic)
-          ?.forEach((handler) => handler?.(payload.toString(), topic));
+      .on('reconnect', () => this.logger.log(`reconnecting..`, MQTT_CLIENT))
+      .on('disconnect', () => this.logger.log(`disconnected..`, MQTT_CLIENT))
+      .on('error', (error) => this.logger.error(JSON.stringify(error, null, 4), MQTT_CLIENT))
+      .on('message', (topic: string, payload: Buffer) => {
+        this.topics.get(topic)?.forEach((handler) => handler?.(payload.toString(), topic));
       });
   }
 
@@ -86,13 +74,8 @@ class MqttClient {
    * @param payload - as in the data to be published
    * @param callback `(error) => void` is always called if provided
    */
-  public publish(
-    topic: string,
-    payload: string | Buffer | Record<any, any>,
-    callback?: mqtt.PacketCallback,
-  ) {
-    if (payload instanceof Buffer || typeof payload === "string")
-      this.client.publish(topic, payload, callback);
+  public publish(topic: string, payload: string | Buffer | Record<any, any>, callback?: mqtt.PacketCallback) {
+    if (payload instanceof Buffer || typeof payload === 'string') this.client.publish(topic, payload, callback);
     else this.client.publish(topic, JSON.stringify(payload), callback);
   }
 
@@ -108,15 +91,9 @@ class MqttClient {
       this.topic = topic;
       this.topics.set(topic, new Map());
       this.client.subscribe(topic, (error) =>
-        error
-          ? this.logger.error(error)
-          : this.logger.log(`SUBSCRIBED: ${topic}`, MQTT_CLIENT),
+        error ? this.logger.error(error) : this.logger.log(`SUBSCRIBED: ${topic}`, MQTT_CLIENT),
       );
-    } else
-      this.logger.warn(
-        `SUBSCRIPTION_SKIPPED: ${topic} - already subscribed`,
-        MQTT_CLIENT,
-      );
+    } else this.logger.warn(`SUBSCRIPTION_SKIPPED: ${topic} - already subscribed`, MQTT_CLIENT);
     return this;
   }
 
@@ -128,11 +105,7 @@ class MqttClient {
    * @param topic - as in the subscribed channel
    */
   public use(handler: Handler, descriptor?: string, topic?: string) {
-    const handlerName = descriptor?.length
-      ? descriptor
-      : handler.name.length
-        ? handler.name
-        : ANONYMOUS_HANDLER;
+    const handlerName = descriptor?.length ? descriptor : handler.name.length ? handler.name : ANONYMOUS_HANDLER;
     this.topics.get(topic ?? this.topic)?.set(handlerName, handler);
     return this;
   }
@@ -145,11 +118,7 @@ class MqttClient {
    * @param topic - as in the subscribed channel
    */
   public eject(handler?: Handler, descriptor?: string, topic?: string) {
-    const handlerName = descriptor?.length
-      ? descriptor
-      : handler.name.length
-        ? handler.name
-        : ANONYMOUS_HANDLER;
+    const handlerName = descriptor?.length ? descriptor : handler.name.length ? handler.name : ANONYMOUS_HANDLER;
     this.topics.get(topic ?? this.topic)?.delete(handlerName);
     return this;
   }

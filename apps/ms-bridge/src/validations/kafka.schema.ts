@@ -1,24 +1,17 @@
-import Joi from "joi";
+import Joi from 'joi';
 
-import { CONFIG_YML } from "@/configs/config-yml/loader";
+import { CONFIG_YML } from '@/configs/config-yml/loader';
 
 const options = CONFIG_YML?.kafkaClientConfig?.options;
 
 export const KAFKA_SCHEMA = {
-  KAFKA_CLIENT_ID: options.client.clientId
-    ? Joi.string().default(options.client.clientId)
-    : Joi.string().optional(),
+  KAFKA_CLIENT_ID: options.client.clientId ? Joi.string().default(options.client.clientId) : Joi.string().optional(),
 
   KAFKA_BROKERS: options.client.brokers
-    ? Joi.string().default(
-        options.client.brokers.reduce((acc, val) => `${acc},${val}`),
-      )
+    ? Joi.string().default(options.client.brokers.reduce((acc, val) => `${acc},${val}`))
     : Joi.required().optional(),
 
-  KAFKA_SSL:
-    options.client.ssl !== undefined
-      ? Joi.boolean().default(options.client.ssl)
-      : Joi.required().optional(),
+  KAFKA_SSL: options.client.ssl !== undefined ? Joi.boolean().default(options.client.ssl) : Joi.required().optional(),
 
   KAFKA_RETRIES: options.client.retry.retries
     ? Joi.number().default(options.client.retry.retries)

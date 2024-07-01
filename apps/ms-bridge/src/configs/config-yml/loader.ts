@@ -1,9 +1,9 @@
-import { readFileSync } from "fs";
-import { load } from "js-yaml";
-import { join } from "path";
+import { readFileSync } from 'fs';
+import { load } from 'js-yaml';
+import { join } from 'path';
 
-import { Config } from "./config.model";
+import { Config } from './config.model';
 
-const file = readFileSync(join(__dirname, "config.yml"), "utf8");
+const file = readFileSync(join(__dirname, 'config.yml'), 'utf8');
 
-export const CONFIG_YML = load(file, { filename: "config.yml" }) as Config;
+export const CONFIG_YML = load(file, { filename: 'config.yml' }) as Config;

@@ -3,8 +3,8 @@ appConfig:
   address: 0.0.0.0
   printEnv: false
   startSwagger: false
-  nodeEnv: "local"
-  bodyLimit: "104857600"
+  nodeEnv: 'local'
+  bodyLimit: '104857600'
   crypto:
     secret: CryptoShield2024
   realm:
@@ -24,12 +24,12 @@ mongoConfig:
   pass: mongo
 
 minioConfig:
-  endPoint: "minio"
+  endPoint: 'minio'
   port: 9000
   useSSL: false
-  accessKey: "minio"
-  secretKey: "minio2024"
-  bucket: "acap"
+  accessKey: 'minio'
+  secretKey: 'minio2024'
+  bucket: 'acap'
 
 redisConfig:
   host: keydb

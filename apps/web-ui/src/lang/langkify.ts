@@ -3,23 +3,17 @@ type Langkify = {
 };
 
 function valueReducer(str: string) {
-  const whiteSpaces = str.includes(" ");
+  const whiteSpaces = str.includes(' ');
   return str
-    .split("")
+    .split('')
     .filter((char) => char.match(/[A-Z]/))
-    .reduce(
-      (acc, char) =>
-        whiteSpaces
-          ? acc
-          : acc.replaceAll(char, `.${char.toLocaleLowerCase()}`),
-      str,
-    );
+    .reduce((acc, char) => (whiteSpaces ? acc : acc.replaceAll(char, `.${char.toLocaleLowerCase()}`)), str);
 }
 
 function keyReducer(str: string) {
   const capital = str.charAt(0).match(/[A-Z]/);
   return str
-    .split("")
+    .split('')
     .filter((char) => char.match(/[A-Z]/))
     .reduce(
       (acc, char) =>
@@ -32,11 +26,8 @@ function keyReducer(str: string) {
 
 function spaceReducer(key: string) {
   return `${key.charAt(0).toLocaleLowerCase()}${key.slice(1)}`
-    .split(" ")
-    .reduce(
-      (acc, val) =>
-        `${acc}${val.charAt(0).toLocaleUpperCase()}${val.substring(1)}`,
-    );
+    .split(' ')
+    .reduce((acc, val) => `${acc}${val.charAt(0).toLocaleUpperCase()}${val.substring(1)}`);
 }
 
 function dictionaryReducer(str: string) {
@@ -53,9 +44,7 @@ function rootReducer() {
   });
 }
 
-export function langkify<T = Record<string, any>>(
-  ...args: Array<Langkify | Array<string>>
-): T {
+export function langkify<T = Record<string, any>>(...args: Array<Langkify | Array<string>>): T {
   return args.reduce(
     (acc, arg: Langkify | Array<string>) => ({
       ...acc,

@@ -3,7 +3,7 @@
   gap: 1rem;
   display: grid;
   grid-template-columns: 3fr 1fr;
-  grid-template-areas: "preview menu";
+  grid-template-areas: 'preview menu';
 
   &-menu {
     grid-area: menu;
@@ -28,14 +28,7 @@
       position: sticky;
       top: 185px;
       border: 0.2rem solid gray;
-      border-image: linear-gradient(
-          to right,
-          transparent,
-          gray,
-          gray,
-          transparent
-        )
-        1;
+      border-image: linear-gradient(to right, transparent, gray, gray, transparent) 1;
 
       &-item {
         display: inline-flex;

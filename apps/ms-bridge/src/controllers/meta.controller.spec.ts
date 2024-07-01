@@ -1,10 +1,10 @@
-import { Test } from "@nestjs/testing";
+import { Test } from '@nestjs/testing';
 
-import { MetaService } from "@/services/meta.service";
+import { MetaService } from '@/services/meta.service';
 
-import { MetaController } from "./meta.controller";
+import { MetaController } from './meta.controller';
 
-describe("MetaController", () => {
+describe('MetaController', () => {
   let controller: MetaController;
   let service: MetaService;
 
@@ -25,8 +25,8 @@ describe("MetaController", () => {
     service = moduleRef.get<MetaService>(MetaService);
   });
 
-  describe("getMeta", () => {
-    it("should call metaService.getMeta", async () => {
+  describe('getMeta', () => {
+    it('should call metaService.getMeta', async () => {
       await controller.getMeta();
       expect(service.getMeta).toHaveBeenCalledOnce();
     });
