@@ -26,7 +26,7 @@ source:
     - apps/backend/env/.env.local
     - apps/ms-bridge/env/.env
     - apps/ms-bridge/env/.env.local
-    - .env.global
+    #- .env.global
 
 compose:
   - *SERVICES
@@ -45,6 +45,10 @@ compose:
       - *USE_MINIO
       - *USE_KEYDB
 
+  - template: *KEYDB
+  - template: *MONGO
+  - template: *MINIO
+
   - template: *WEBUI
     depends_on:
       - *BACKEND
@@ -54,17 +58,12 @@ compose:
       - *KEYDB
       - *USE_BULLMQ
 
-  - template: *KEYDB
-  - template: *MONGO
-  - template: *MINIO
-
   - template: *KAFKA
     depends_on:
       - *MSBRIDGE
       - *USE_KAFKA
   - template: *KAFDROP
     depends_on:
-      - *KAFKA
       - *USE_KAFKA
 
   - template: *NGROK
@@ -72,5 +71,12 @@ compose:
       - *BACKEND
       - *USE_NGROK
     
-  - *VOLUMES
+  - template: *VOLUMES
+    depends_on:
+      - *BACKEND
+    environment:
+      - USE_MONGODB: true
+      - USE_MINIO: true
+      - USE_KEYDB: true
+      
   - *NETWORKS
