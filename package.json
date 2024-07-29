@@ -9,7 +9,7 @@
   "scripts": {
     "prepare": "husky",
     "ncu:update": "npx npm-check-updates --doctor -u",
-    "compose": "docpose -c ./.docpose.yml",
+    "compose": "docpose -c .docpose.yml",
     "changeset": "npx changeset add",
     "clean": ".python/clean.sh",
     "test": "echo 'passing with no tests in ROOT!'"
@@ -17,7 +17,7 @@
   "devDependencies": {
     "@changesets/cli": "^2.27.7",
     "dotenv-cli": "^7.4.2",
-    "husky": "^9.1.0",
+    "husky": "^9.1.4",
     "npm-check-updates": "^16.14.20"
   },
   "dependencies": {
