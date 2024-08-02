@@ -1,4 +1,4 @@
-
+chathub: &CHATHUB chat-hub.j2
 kafka: &KAFKA kafka.j2
 webui: &WEBUI webui.j2
 keydb: &KEYDB keydb.j2
@@ -11,6 +11,8 @@ backend: &BACKEND backend.j2
 service: &SERVICES services.j2
 networks: &NETWORKS networks.j2
 msbridge: &MSBRIDGE ms-bridge.j2
+
+USE_CHAT_HUB: &USE_CHAT_HUB $USE_CHAT_HUB 
 USE_NGROK: &USE_NGROK $USE_NGROK
 USE_MINIO: &USE_MINIO $USE_MINIO
 USE_KEYDB: &USE_KEYDB $USE_KEYDB
@@ -26,7 +28,7 @@ source:
     - apps/backend/env/.env.local
     - apps/ms-bridge/env/.env
     - apps/ms-bridge/env/.env.local
-    #- .env.global
+    - env/.env.local
 
 compose:
   - *SERVICES
@@ -68,8 +70,12 @@ compose:
 
   - template: *NGROK
     depends_on:
-      - *BACKEND
+      - *WEBUI
       - *USE_NGROK
+
+  - template: *CHATHUB
+    depends_on:
+      - *USE_CHAT_HUB
     
   - template: *VOLUMES
     depends_on:
@@ -77,6 +83,6 @@ compose:
     environment:
       - USE_MONGODB: true
       - USE_MINIO: true
-      - USE_KEYDB: true
+      - USE_KEYDB: true 
       
   - *NETWORKS

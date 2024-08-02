@@ -13,6 +13,8 @@ bullmq
 BULLMQ
 cacheable
 callsite
+chathub
+CHATHUB
 cobertura
 codecov
 codesnap

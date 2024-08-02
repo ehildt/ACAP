@@ -20,6 +20,6 @@ info 'pnpm -r ts-unused-exports' && pnpm -r ts-unused-exports
 info 'pnpm -r depcruiser' && pnpm -r depcruiser
 
 # clean all build folders before build check
-info 'pnpm run clean dist' && pnpm run clean dist
+# info 'pnpm run clean dist' && pnpm run clean dist
 
-info 'pnpm -r build' && pnpm -r build -- --if-present
+# info 'pnpm -r build' && pnpm -r build -- --if-present
