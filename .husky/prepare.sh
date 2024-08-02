@@ -74,3 +74,10 @@ check_lint_staged() {
         exit 1
     fi
 }
+
+create_backup_branch() {
+    current_branch=$(git symbolic-ref --short HEAD)
+    new_branch="pre-rebase_${current_branch}_$(date "+%Y%m%d-%H%M%S")"
+    git branch "$new_branch"
+    info "$(bluefy $new_branch) created"
+}

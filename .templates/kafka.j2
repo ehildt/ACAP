@@ -3,7 +3,7 @@
     container_name: kafka
     ports:
       - '9092:9092'
-      - '9093:9093'  # Adding the internal controller communication port
+      - '9093:9093'
     volumes:
       - kafka_data:/bitnami/kafka
       - ./apps/ms-bridge/log4j.properties:/bitnami/kafka/config/log4j.properties
