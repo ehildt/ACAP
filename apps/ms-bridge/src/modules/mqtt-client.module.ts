@@ -131,7 +131,7 @@ class MqttClient {
    */
   public unsubscribe(topic: string, options?: IClientSubscribeOptions) {
     this.client.unsubscribe(topic, options, () => {
-      this.topics.delete(topic) && this.logger.log(`${topic} unsubscribed`);
+      if (this.topics.delete(topic)) this.logger.log(`${topic} unsubscribed`);
     });
     return this;
   }
