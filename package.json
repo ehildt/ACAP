@@ -18,8 +18,5 @@
     "dotenv-cli": "^7.4.2",
     "husky": "^9.1.4",
     "npm-check-updates": "^17.0.0"
-  },
-  "dependencies": {
-    "docpose": "^1.0.12"
   }
 }
