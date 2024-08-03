@@ -1,7 +1,7 @@
 {
   "name": "@acap/chat-hub",
   "description": "A chat-hub microservice",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "license": "MIT",
   "author": {
     "email": "eugen.hildt@litlbyte.com",
