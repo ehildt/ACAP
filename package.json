@@ -8,7 +8,7 @@
   },
   "scripts": {
     "prepare": "husky",
-    "ncu:update": "npx npm-check-updates --doctor -u --format group --format group",
+    "ncu:update": "npx npm-check-updates --interactive --format group --format group",
     "docpose": "docpose -c .docpose.yml",
     "changeset": "npx changeset add",
     "test": "echo 'passing with no tests in ROOT!'"
@@ -17,6 +17,6 @@
     "@changesets/cli": "^2.27.7",
     "dotenv-cli": "^7.4.2",
     "husky": "^9.1.4",
-    "npm-check-updates": "^17.0.0"
+    "npm-check-updates": "^17.0.1"
   }
 }

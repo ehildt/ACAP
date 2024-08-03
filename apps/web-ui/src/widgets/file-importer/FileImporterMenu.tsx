@@ -130,7 +130,7 @@ export function FileImporterMenu(props: FileImporterMenuProps) {
                 .then(() => setIsModalOpen(false));
             } else {
               const form = new FormData();
-              fileSlice.selectedFile && form.append('file', fileSlice.selectedFile);
+              if (fileSlice.selectedFile) form.append('file', fileSlice.selectedFile);
               console.log({ forceBlob });
               uPost(['http://localhost:3001/api/v1/objects', { body: form }])
                 .catch(console.error)
