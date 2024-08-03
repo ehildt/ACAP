@@ -18,7 +18,7 @@ importers:
         specifier: ^9.1.4
         version: 9.1.4
       npm-check-updates:
-        specifier: ^17.0.0
+        specifier: ^17.0.1
         version: 17.0.1
 
   apps/backend:
@@ -175,10 +175,10 @@ importers:
         specifier: ^16.0.0
         version: 16.0.0
       lint-staged:
-        specifier: ^15.2.7
+        specifier: ^15.2.8
         version: 15.2.8
       npm-check-updates:
-        specifier: ^17.0.0
+        specifier: ^17.0.1
         version: 17.0.1
       source-map-support:
         specifier: ^0.5.21
@@ -676,7 +676,7 @@ importers:
         specifier: latest
         version: 2.0.5(vitest@2.0.5)
       autoprefixer:
-        specifier: ^10.4.19
+        specifier: ^10.4.20
         version: 10.4.20(postcss@8.4.40)
       css-reset-and-normalize:
         specifier: ^2.3.6
@@ -724,10 +724,10 @@ importers:
         specifier: latest
         version: 24.1.1(canvas@2.11.2)
       lint-staged:
-        specifier: ^15.2.7
+        specifier: ^15.2.8
         version: 15.2.8
       npm-check-updates:
-        specifier: ^17.0.0
+        specifier: ^17.0.1
         version: 17.0.1
       postcss:
         specifier: ^8.4.40
