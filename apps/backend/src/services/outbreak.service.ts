@@ -13,7 +13,7 @@ export class OutbreakService {
   async delegate(reqs: Array<BreakoutUpsertReq>, args: AppBrokers) {
     reqs.forEach(({ realm, contents }) => {
       contents.forEach(({ value }) => {
-        args.useBullMQ && this.bullmq?.add(realm, value).catch((error) => error);
+        if (args.useBullMQ) this.bullmq?.add(realm, value).catch((error) => error);
       });
     });
   }
