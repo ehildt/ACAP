@@ -1,5 +1,12 @@
 # @acap/ms-bridge
 
+## 2.1.2
+
+### Patch Changes
+
+- d3b2087: fixed linting
+- d785cde: prepared playground to be merged into dev
+
 ## 2.1.0
 
 ### Minor Changes
