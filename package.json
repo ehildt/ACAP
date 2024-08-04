@@ -9,7 +9,8 @@
   "scripts": {
     "prepare": "husky",
     "ncu:update": "npx npm-check-updates --interactive --format group --format group",
-    "docpose": "docpose -c .docpose.yml",
+    "docpose:acap": "docpose -c .docpose.acap.yml",
+    "docpose:chathub": "docpose -c .docpose.chathub.yml",
     "changeset": "npx changeset add",
     "test": "echo 'passing with no tests in ROOT!'"
   },

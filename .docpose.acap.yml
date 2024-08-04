@@ -1,4 +1,3 @@
-chathub: &CHATHUB chat-hub.j2
 kafka: &KAFKA kafka.j2
 webui: &WEBUI webui.j2
 keydb: &KEYDB keydb.j2
@@ -10,7 +9,7 @@ kafdrop: &KAFDROP kafdrop.j2
 backend: &BACKEND backend.j2
 service: &SERVICES services.j2
 networks: &NETWORKS networks.j2
-msbridge: &MSBRIDGE ms-bridge.j2
+msbridge: &MSBRIDGE msbridge.j2
 
 USE_CHAT_HUB: &USE_CHAT_HUB $USE_CHAT_HUB 
 USE_NGROK: &USE_NGROK $USE_NGROK
@@ -21,8 +20,8 @@ USE_BULLMQ: &USE_BULLMQ $USE_BULLMQ
 USE_KAFKA: &USE_KAFKA $USE_KAFKA
 
 source:
-  template_dir: .templates
-  outputs: compose.yml
+  template_dir: .templates/acap
+  outputs: compose.acap.yml
   env_files:
     - apps/backend/env/.env
     - apps/backend/env/.env.local
@@ -72,10 +71,6 @@ compose:
     depends_on:
       - *WEBUI
       - *USE_NGROK
-
-  - template: *CHATHUB
-    depends_on:
-      - *USE_CHAT_HUB
     
   - template: *VOLUMES
     depends_on:

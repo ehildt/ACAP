@@ -1,0 +1,27 @@
+keydb: &KEYDB keydb.j2
+volumes: &VOLUMES volumes.j2
+chathub: &CHATHUB chathub.j2
+service: &SERVICES services.j2
+networks: &NETWORKS networks.j2
+
+source:
+  template_dir: .templates/chathub
+  outputs: compose.chathub.yml
+  env_files:
+    - apps/chathub/env/.env
+    - apps/chathub/env/.env.local
+    - env/.env
+    - env/.env.local
+
+compose:
+  - template: *SERVICES
+
+  - template: *CHATHUB
+    depends_on:
+      - *KEYDB
+      - $TEST_ME
+
+  - template: *KEYDB
+  - template: *VOLUMES
+  - template: *NETWORKS
+
