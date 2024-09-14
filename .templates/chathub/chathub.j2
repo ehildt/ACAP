@@ -11,9 +11,11 @@
     env_file:
       - ./apps/chat-hub/env/.env
     environment:
-      - NODE_ENV=production
-      - PRINT_ENV=false
+      - NODE_ENV=local
+      - PRINT_ENV=true
+      - START_SWAGGER=true
     ports:
       - 3003:3003
     networks:
       - chathub-network
+    restart: on-failure

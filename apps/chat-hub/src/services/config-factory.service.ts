@@ -1,8 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { Transport } from '@nestjs/microservices';
+import { RedisOptions } from 'ioredis';
 
-import { App, RedisPubSubConfig } from '@/configs/config-yml/config.model';
+import { App } from '@/configs/config-yml/config.model';
+import { CHAT_BRCS } from '@/constants/app.constants';
 
 @Injectable()
 export class ConfigFactoryService {
@@ -24,14 +25,15 @@ export class ConfigFactoryService {
     const host = this.configService.get<string>('RedisPubSub.HOST');
     const password = this.configService.get<string>('RedisPubSub.PASS');
     const username = this.configService.get<string>('RedisPubSub.USER');
-    return Object.freeze<RedisPubSubConfig>({
-      transport: Transport.REDIS,
-      options: {
-        port,
-        host,
-        password,
-        username,
-      },
+    return Object.freeze<RedisOptions>({
+      port,
+      host,
+      password,
+      username,
+      keepAlive: 3000,
+      offlineQueue: true,
+      autoResubscribe: true,
+      connectionName: CHAT_BRCS,
     });
   }
 }

@@ -19,7 +19,6 @@ compose:
   - template: *CHATHUB
     depends_on:
       - *KEYDB
-      - $TEST_ME
 
   - template: *KEYDB
   - template: *VOLUMES

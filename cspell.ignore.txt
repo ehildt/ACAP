@@ -108,6 +108,7 @@ usernamehw
 vite
 vitest
 webm
+websockets
 webui
 WEBUI
 wireframe

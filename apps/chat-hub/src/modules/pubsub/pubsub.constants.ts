@@ -1,0 +1,33 @@
+export const PUBSUB_OPTIONS = 'PUBSUB_OPTIONS';
+export const PUBSUB_CLIENT = 'PUBSUB_CLIENT';
+export const PUBSUB_WARN = 'PUBSUB_WARN';
+
+export type FLAG =
+  | 'UNRELATED'
+  | 'INAPPROPRIATE'
+  | 'UNCONFIRMED'
+  | 'HARASSMENT'
+  | 'SEXUAL'
+  | 'RELIGIOUS'
+  | 'HARMFUL'
+  | 'SPAM'
+  | 'OFFENSIVE'
+  | 'VIOLENCE'
+  | 'MISINFORMATION'
+  | 'HATE_SPEECH'
+  | 'PRIVACY_VIOLATION'
+  | 'COPYRIGHT_VIOLATION'
+  | 'FRAUD'
+  | 'SCAM'
+  | 'BULLYING'
+  | 'SELF_HARM'
+  | 'TERRORISM'
+  | 'DISCRIMINATION'
+  | 'IMPERSONATION'
+  | 'PROPAGANDA'
+  | 'WOKE'
+  | 'POLLICAL'
+  | 'BOT'
+  | 'HOAX'
+  | 'AI'
+  | 'PHISHING';

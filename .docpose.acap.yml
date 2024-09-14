@@ -11,13 +11,13 @@ service: &SERVICES services.j2
 networks: &NETWORKS networks.j2
 msbridge: &MSBRIDGE msbridge.j2
 
-USE_CHAT_HUB: &USE_CHAT_HUB $USE_CHAT_HUB 
 USE_NGROK: &USE_NGROK $USE_NGROK
 USE_MINIO: &USE_MINIO $USE_MINIO
 USE_KEYDB: &USE_KEYDB $USE_KEYDB
 USE_MONGODB: &USE_MONGODB $USE_MONGODB
 USE_BULLMQ: &USE_BULLMQ $USE_BULLMQ
 USE_KAFKA: &USE_KAFKA $USE_KAFKA
+USE_KAFDROP: &USE_KAFDROP $USE_KAFDROP
 
 source:
   template_dir: .templates/acap
@@ -65,7 +65,7 @@ compose:
       - *USE_KAFKA
   - template: *KAFDROP
     depends_on:
-      - *USE_KAFKA
+      - *USE_KAFDROP
 
   - template: *NGROK
     depends_on:

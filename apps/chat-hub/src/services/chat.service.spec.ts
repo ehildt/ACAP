@@ -42,12 +42,12 @@ describe('ChatService', () => {
     it('should distribute messages to realms using enabled messaging options', async () => {
       const reqs: ChatUpsertReq[] = [
         {
-          realm: 'realm1',
-          messages: [{ value: 'value1' }],
+          topic: 'realm1',
+          message: 'value1',
         },
         {
-          realm: 'realm2',
-          messages: [{ value: 'value2' }],
+          topic: 'realm2',
+          messages: 'value2',
         },
       ];
 

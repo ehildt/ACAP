@@ -11,13 +11,15 @@
     "ncu:update": "npx npm-check-updates --interactive --format group --format group",
     "docpose:acap": "docpose -c .docpose.acap.yml",
     "docpose:chathub": "docpose -c .docpose.chathub.yml",
+    "compose:chathub": "docker compose -f compose.chathub.yml", 
+    "compose:acap": "docker compose -f compose.acap.yml",
     "changeset": "npx changeset add",
     "test": "echo 'passing with no tests in ROOT!'"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.7",
     "dotenv-cli": "^7.4.2",
-    "husky": "^9.1.4",
-    "npm-check-updates": "^17.0.1"
+    "husky": "^9.1.5",
+    "npm-check-updates": "^17.1.0"
   }
 }

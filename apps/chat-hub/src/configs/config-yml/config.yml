@@ -7,7 +7,6 @@ appConfig:
   bodyLimit: 104857600
 
 redisPubSubConfig:
-  options:
     port: 6379
     host: keydb
     password: redis
