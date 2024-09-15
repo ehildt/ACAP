@@ -94,6 +94,7 @@ rimraf
 Securityscorecard
 Servicestack
 sibiraj
+simping
 snapcode
 sonarjs
 spdx

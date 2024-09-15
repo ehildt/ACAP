@@ -1,5 +1,4 @@
 import { ConfigService } from '@nestjs/config';
-import { Transport } from '@nestjs/microservices';
 import { Test, TestingModule } from '@nestjs/testing';
 
 import { ConfigFactoryService } from './config-factory.service';
@@ -53,13 +52,14 @@ describe('ConfigFactoryService', () => {
       });
 
       expect(service.redisPubSub).toEqual({
-        transport: Transport.REDIS,
-        options: {
-          port: 6379,
-          host: 'localhost',
-          password: 'redispassword',
-          username: 'redisuser',
-        },
+        autoResubscribe: true,
+        connectionName: 'CHAT_BRCS',
+        host: 'localhost',
+        keepAlive: 3000,
+        offlineQueue: true,
+        password: 'redispassword',
+        port: 6379,
+        username: 'redisuser',
       });
     });
   });
