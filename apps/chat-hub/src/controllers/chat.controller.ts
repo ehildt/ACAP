@@ -11,9 +11,9 @@ import { ChatService } from '@/services/chat.service';
 export class ChatHubController {
   constructor(private readonly chatService: ChatService) {}
 
-  @Post('publishes')
+  @Post()
   @OpenApi_Chat()
   async publish(@ChatUpsertBody() reqs: Array<ChatUpsertReq>) {
-    return await this.chatService.publish(reqs);
+    await this.chatService.publish(reqs);
   }
 }

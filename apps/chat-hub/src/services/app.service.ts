@@ -4,7 +4,8 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { readFileSync } from 'fs';
 import { join } from 'path';
 
-import { API_DOCS, API_DOCS_JSON } from '../constants/app.constants';
+import { API_DOCS, API_DOCS_JSON } from '@/constants/app.constants';
+
 import { ConfigFactoryService } from './config-factory.service';
 
 const packageJson = JSON.parse(readFileSync(join(__dirname, '../../package.json'), 'utf8'));
@@ -56,13 +57,9 @@ export class AppService {
 
   logOnServerStart() {
     if (this.configFactory.app.printEnv) {
-      this.logger.log(
-        {
-          ...this.configFactory.app,
-          redisPubSub: this.configFactory.redisPubSub,
-        },
-        'ACAP_CONFIGURATION',
-      );
+      this.logger.log(this.configFactory.app, 'BaseConfig');
+      this.logger.log(this.configFactory.redisPubSub, 'PubSubConfig');
+      this.logger.log(this.configFactory.bullMQ, 'BullMQ');
     }
 
     const swaggerPath = `http://localhost:${this.configFactory.app.port}`;

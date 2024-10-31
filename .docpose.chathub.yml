@@ -1,15 +1,19 @@
 keydb: &KEYDB keydb.j2
+mongo: &MONGO mongo.j2
 volumes: &VOLUMES volumes.j2
 chathub: &CHATHUB chathub.j2
 service: &SERVICES services.j2
 networks: &NETWORKS networks.j2
+chat-hub-archive: &CHAT_HUB_ARCHIVE chat-hub-archive.j2
 
 source:
   template_dir: .templates/chathub
   outputs: compose.chathub.yml
   env_files:
-    - apps/chathub/env/.env
-    - apps/chathub/env/.env.local
+    - apps/chat-hub/env/.env
+    - apps/chat-hub/env/.env.local
+    - apps/chat-hub-archive/env/.env
+    - apps/chat-hub-archive/env/.env.local
     - env/.env
     - env/.env.local
 
@@ -20,7 +24,13 @@ compose:
     depends_on:
       - *KEYDB
 
+  - template: *CHAT_HUB_ARCHIVE
+    depends_on:
+      - *KEYDB
+      - *MONGO
+      - *CHATHUB
+
+  - template: *MONGO
   - template: *KEYDB
   - template: *VOLUMES
   - template: *NETWORKS
-

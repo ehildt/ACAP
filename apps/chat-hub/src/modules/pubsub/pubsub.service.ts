@@ -1,7 +1,7 @@
 import { ConsoleLogger, Inject, Injectable, OnModuleDestroy, OnModuleInit } from '@nestjs/common';
 import { Redis } from 'ioredis';
 
-import { PUBSUB_CLIENT, PUBSUB_WARN } from './pubsub.constants';
+import { PUBSUB_CLIENT } from './pubsub.constants';
 
 @Injectable()
 export class PubSupService implements OnModuleInit, OnModuleDestroy {
@@ -14,7 +14,7 @@ export class PubSupService implements OnModuleInit, OnModuleDestroy {
 
   async onModuleInit() {
     this.client.on('connect', () => {
-      this.logger.log('Connected..', PUBSUB_CLIENT);
+      this.logger.log('Connected..', this.constructor.name);
     });
   }
 
@@ -24,19 +24,19 @@ export class PubSupService implements OnModuleInit, OnModuleDestroy {
         Array.from(this.subscribers).map(async ([channel, subscriber]) => {
           await subscriber.unsubscribe();
           await subscriber.quit();
-          this.logger.log(`Connection closed for channel ${channel}`, PUBSUB_CLIENT);
+          this.logger.log(`Connection closed for channel ${channel}`, this.constructor.name);
         }),
       );
       await this.client.quit();
-      this.logger.log(`Connection closed`, PUBSUB_CLIENT);
+      this.logger.log(`Connection closed`, this.constructor.name);
     } catch (error) {
-      this.logger.error(error, 'PUBSUB_ERROR');
+      this.logger.error(error, this.constructor.name);
       throw error;
     }
   }
 
   async publish(channel: string | Buffer, message: string | Buffer) {
-    return await this.client.publish(channel, message);
+    await this.client.publish(channel, message);
   }
 
   async subscribe(channel: string) {
@@ -44,14 +44,14 @@ export class PubSupService implements OnModuleInit, OnModuleDestroy {
       const subscriber = this.client.duplicate();
       await subscriber.subscribe(channel);
       this.subscribers.set(channel, subscriber);
-      this.logger.log(`Subscriber "${channel}" added`, PUBSUB_CLIENT);
+      this.logger.log(`Subscriber "${channel}" added`, this.constructor.name);
       return subscriber;
-    } else this.logger.warn(`Subscriber "${channel}" already exists; SKIPPED`, PUBSUB_WARN);
+    } else this.logger.warn(`Subscriber "${channel}" already exists; SKIPPED`, this.constructor.name);
   }
 
   async getSubscriber(channel: string) {
     const subscriber = this.subscribers.get(channel);
     if (subscriber) return subscriber;
-    else this.logger.warn(`Nothing to unsubscribe from channel "${channel}"; SKIPPED`, PUBSUB_WARN);
+    else this.logger.warn(`Nothing to unsubscribe from channel "${channel}"; SKIPPED`, this.constructor.name);
   }
 }

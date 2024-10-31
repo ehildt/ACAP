@@ -2,8 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { RedisOptions } from 'ioredis';
 
-import { App } from '@/configs/config-yml/config.model';
-import { CHAT_BRCS } from '@/constants/app.constants';
+import { App, BullMQConfig } from '@/configs/config-yml/config.model';
 
 @Injectable()
 export class ConfigFactoryService {
@@ -17,6 +16,7 @@ export class ConfigFactoryService {
       printEnv: this.configService.get<boolean>('App.PRINT_ENV'),
       nodeEnv: this.configService.get<string>('App.NODE_ENV'),
       bodyLimit: this.configService.get<number>('App.BODY_LIMIT'),
+      brcsChannel: this.configService.get<string>('App.BRCS_CHANNEL'),
     });
   }
 
@@ -25,15 +25,31 @@ export class ConfigFactoryService {
     const host = this.configService.get<string>('RedisPubSub.HOST');
     const password = this.configService.get<string>('RedisPubSub.PASS');
     const username = this.configService.get<string>('RedisPubSub.USER');
+    const connectionName = this.configService.get<string>('RedisPubSub.CONNECTION_NAME');
     return Object.freeze<RedisOptions>({
       port,
       host,
       password,
       username,
+      connectionName,
       keepAlive: 3000,
       offlineQueue: true,
       autoResubscribe: true,
-      connectionName: CHAT_BRCS,
+    });
+  }
+
+  get bullMQ() {
+    const port = this.configService.get<number>('BullMQ.PORT');
+    const host = this.configService.get<string>('BullMQ.HOST');
+    const password = this.configService.get<string>('BullMQ.PASS');
+    const username = this.configService.get<string>('BullMQ.USER');
+    return Object.freeze<BullMQConfig>({
+      connection: {
+        port,
+        host,
+        password,
+        username,
+      },
     });
   }
 }

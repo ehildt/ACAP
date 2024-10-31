@@ -17,6 +17,10 @@
       "path": "apps/chat-hub"
     },
     {
+      "name": "chat-hub-archive",
+      "path": "apps/chat-hub-archive"
+    },
+    {
       "name": "web-ui",
       "path": "apps/web-ui"
     }
@@ -30,6 +34,8 @@
       "**/dist": true,
       "**/.vscode": false
     },
+    "editor.formatOnSaveMode": "modificationsIfAvailable",
+    "editor.formatOnSave": true,
   },
   "extensions": {
     "recommendations": [

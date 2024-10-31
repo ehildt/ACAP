@@ -1,41 +1,11 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
-import { IsObject, IsOptional, IsString, ValidateNested } from 'class-validator';
+import { IsBoolean, IsObject, IsOptional, IsString, MaxLength, ValidateNested } from 'class-validator';
 
 import { AttachmentReq } from './attachment-req.dto';
-
-class Topic {
-  @IsString()
-  @ApiProperty({
-    example: 'Cookies',
-    description: 'The topic name',
-  })
-  name: string;
-
-  @IsString()
-  @ApiProperty({
-    example: 'topt4f3x0000s4ip1v7f95hz9x00teic',
-    description: 'The unique topic cuid',
-  })
-  id: string;
-}
-
-class Thread {
-  @IsString()
-  @ApiProperty({
-    example: 'Strawberry Flavor',
-    description: 'The thread name',
-  })
-  name: string;
-
-  @IsString()
-  @ApiProperty({
-    example: 'thrt4f3x0000s4ip1v7f95hz9x00tead',
-    description:
-      'The unique identifier of the thread. A thread allows for ongoing discussion related to the original message.',
-  })
-  id: string;
-}
+import { Participant } from './participant.dto';
+import { Thread } from './thread.dto';
+import { Topic } from './topic.dto';
 
 export class ChatUpsertReq {
   @IsString()
@@ -43,8 +13,23 @@ export class ChatUpsertReq {
   publisherId: string;
 
   @IsString()
-  @ApiProperty({ example: 'some very meaningful text' })
+  @MaxLength(1000)
+  @ApiProperty({
+    example: 'something meaningful, deep or just insane',
+    description: 'The actual message',
+    maxLength: 1000,
+  })
   message: string;
+
+  @IsOptional()
+  @IsBoolean()
+  @ApiProperty({
+    example: false,
+    description: 'Weather the message should be persisted',
+    default: false,
+    required: false,
+  })
+  persist?: boolean;
 
   @IsOptional()
   @IsString()
@@ -96,11 +81,12 @@ export class ChatUpsertReq {
   @IsOptional()
   @ApiProperty({
     required: false,
-    example: ['cuid_one', 'cuid_two'],
-    description: 'A list of cuids which are to be notified. If the cuid replies, it will auto-subscribe to the thread',
+    isArray: true,
+    type: Participant,
   })
-  @IsString({ each: true })
-  refParticipants?: Array<string>;
+  @Type(() => Participant)
+  @ValidateNested({ each: true })
+  refParticipants?: Array<Participant>;
 
   @IsOptional()
   @ValidateNested({ each: true })

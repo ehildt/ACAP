@@ -1,6 +1,8 @@
-import { Injectable, OnModuleInit } from '@nestjs/common';
+import { InjectQueue } from '@nestjs/bullmq';
+import { ConsoleLogger, Injectable, OnModuleInit, Optional } from '@nestjs/common';
+import { Queue } from 'bullmq';
 
-import { CHAT_BRCS } from '@/constants/app.constants';
+import { BULLMQ_PERSISTANCE_QUEUE } from '@/constants/app.constants';
 import { ChatUpsertReq } from '@/dtos/chat-upsert.dto.req';
 import { PubSupService } from '@/modules/pubsub/pubsub.service';
 import { ChatHubGateway } from '@/modules/web-socket/chat-hub.gateway';
@@ -13,21 +15,27 @@ export class ChatService implements OnModuleInit {
     private readonly factory: ConfigFactoryService,
     private readonly pubsub: PubSupService,
     private readonly socket: ChatHubGateway,
+    private readonly logger: ConsoleLogger,
+    @Optional() @InjectQueue(BULLMQ_PERSISTANCE_QUEUE) private readonly bullmq: Queue,
   ) {}
 
   async onModuleInit() {
-    (await this.pubsub.subscribe(CHAT_BRCS)).on('message', (channel, message) => {
-      console.log('delegate to web-sockets', { channel, message: JSON.parse(message) });
-      const suc = this.socket.emit(CHAT_BRCS, JSON.parse(message));
-      console.log('was send?: ', suc);
+    (await this.pubsub.subscribe(this.factory.app.brcsChannel)).on('message', (_, message) => {
+      this.socket.emit(this.factory.app.brcsChannel, JSON.parse(message));
     });
   }
 
   async publish(reqs: Array<ChatUpsertReq>) {
     try {
-      await Promise.all(reqs.map(async (item) => await this.pubsub.publish(CHAT_BRCS, JSON.stringify(item))));
+      await Promise.allSettled(
+        // ! do we want to encrypt the message?
+        reqs.map(async (item) => {
+          await this.pubsub.publish(this.factory.app.brcsChannel, Buffer.from(JSON.stringify(item)));
+          if (item.persist) await this.bullmq?.add(this.factory.app.brcsChannel, item);
+        }),
+      );
     } catch (error) {
-      console.error(error);
+      this.logger.error(error, this.constructor.name);
       throw error;
     }
   }

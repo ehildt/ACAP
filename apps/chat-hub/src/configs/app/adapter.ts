@@ -1,5 +1,3 @@
-import { createId } from '@paralleldrive/cuid2';
-
 export class AppAdapter {
   get PORT(): number {
     return parseInt(process.env.PORT, 10);
@@ -13,6 +11,10 @@ export class AppAdapter {
     return process.env.START_SWAGGER == 'true';
   }
 
+  get BRCS_CHANNEL(): string {
+    return process.env.BRCS_CHANNEL;
+  }
+
   get PRINT_ENV(): boolean {
     return process.env.PRINT_ENV == 'true';
   }
@@ -21,51 +23,11 @@ export class AppAdapter {
     return process.env.NODE_ENV;
   }
 
-  get USE_REDIS_PUBSUB(): boolean {
-    return process.env.USE_REDIS_PUBSUB === 'true';
-  }
-
-  get USE_BULLMQ(): boolean {
-    return process.env.USE_BULLMQ === 'true';
-  }
-
-  get USE_MQTT(): boolean {
-    return process.env.USE_MQTT === 'true';
-  }
-
-  get USE_KAFKA(): boolean {
-    return process.env.USE_KAFKA === 'true';
-  }
-
-  get USE_RABBITMQ(): boolean {
-    return process.env.USE_RABBITMQ === 'true';
-  }
-
-  get NAMESPACE_POSTFIX(): string {
-    return process.env.REALM_NAMESPACE_POSTFIX ?? createId();
-  }
-
   get TTL(): number {
     return parseInt(process.env.REALM_TTL ?? '360', 10);
   }
 
   get BODY_LIMIT(): number {
     return parseInt(process.env.BODY_LIMIT ?? '16777216', 10);
-  }
-
-  get RESOLVE_ENV(): boolean {
-    return process.env.REALM_RESOLVE_ENV === 'true';
-  }
-
-  get GZIP_THRESHOLD(): number {
-    return parseInt(process.env.REALM_GZIP_THRESHOLD ?? '20', 10);
-  }
-
-  get SYMMETRIC_KEY(): string {
-    return process.env.SYMMETRIC_KEY;
-  }
-
-  get SYMMETRIC_ALGORITHM(): string {
-    return process.env.SYMMETRIC_ALGORITHM;
   }
 }

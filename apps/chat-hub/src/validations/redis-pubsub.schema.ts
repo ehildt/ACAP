@@ -18,4 +18,8 @@ export const REDIS_PUBSUB_SCHEMA = {
   REDIS_PUBSUB_PORT: CONFIG_YML?.redisPubSubConfig?.port
     ? Joi.number().default(CONFIG_YML.redisPubSubConfig.port)
     : Joi.number().optional(),
+
+  REDIS_CONNECTION_NAME: CONFIG_YML?.redisPubSubConfig?.connectionName
+    ? Joi.string().default(CONFIG_YML.redisPubSubConfig.connectionName)
+    : Joi.string().optional(),
 };

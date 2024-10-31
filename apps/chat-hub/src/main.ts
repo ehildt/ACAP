@@ -18,10 +18,10 @@ void (async () => {
 
   adapter.enableCors({
     origin: '*',
-    /*  methods: 'GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE',
+    methods: 'GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE',
     preflightContinue: false,
     optionsSuccessStatus: 204,
-    credentials: true, */
+    credentials: true,
   });
 
   const app = await NestFactory.create<NestFastifyApplication>(AppModule, adapter, { logger: LOG_LEVEL });

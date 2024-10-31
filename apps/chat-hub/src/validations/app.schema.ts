@@ -26,4 +26,8 @@ export const APP_SCHEMA = {
   BODY_LIMIT: CONFIG_YML?.appConfig.bodyLimit
     ? Joi.number().default(CONFIG_YML.appConfig.bodyLimit)
     : Joi.number().required(),
+
+  BRCS_CHANNEL: CONFIG_YML?.appConfig?.brcsChannel
+    ? Joi.string().default(CONFIG_YML.appConfig.brcsChannel)
+    : Joi.string().required(),
 };

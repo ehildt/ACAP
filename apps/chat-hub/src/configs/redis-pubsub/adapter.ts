@@ -14,4 +14,8 @@ export class RedisPubSubAdapter {
   get USER(): string {
     return process.env.REDIS_PUBSUB_USER;
   }
+
+  get CONNECTION_NAME(): string {
+    return process.env.REDIS_CONNECTION_NAME;
+  }
 }

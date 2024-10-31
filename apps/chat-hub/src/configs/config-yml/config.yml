@@ -5,9 +5,18 @@ appConfig:
   startSwagger: false
   nodeEnv: local
   bodyLimit: 104857600
+  brcsChannel: 'CHAT_BRCS'
+
+bullMQConfig:
+  connection:
+    port: 6379
+    host: keydb
+    password: redis
+    username: default
 
 redisPubSubConfig:
     port: 6379
     host: keydb
     password: redis
     username: default
+    connectionName: CHATHUB

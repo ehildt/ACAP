@@ -21,7 +21,7 @@ export class PubSubModule {
       module: PubSubModule,
       imports: options.imports ?? [],
       global: options.isGlobal,
-      exports: [PubSupService, PUBSUB_CLIENT],
+      exports: [PubSupService],
       providers: [
         ConsoleLogger,
         PubSupService,
@@ -29,9 +29,7 @@ export class PubSubModule {
         {
           provide: PUBSUB_CLIENT,
           inject: options.inject ?? [],
-          useFactory: ({ redisPubSub }: ConfigFactoryService) => {
-            return new Redis(redisPubSub);
-          },
+          useFactory: ({ redisPubSub }: ConfigFactoryService) => new Redis(redisPubSub),
         },
       ],
     };

@@ -23,19 +23,19 @@ export class RealmRepository {
   ) {}
 
   async findAll() {
-    return await this.contentModel.find().sort({ realm: 'asc', updatedAt: 'asc' }).lean();
+    return this.contentModel.find().sort({ realm: 'asc', updatedAt: 'asc' }).lean();
   }
 
   async countContents() {
-    return await this.contentModel.estimatedDocumentCount({ lean: true });
+    return this.contentModel.estimatedDocumentCount({ lean: true });
   }
 
   async countRealms() {
-    return await this.realmModel.estimatedDocumentCount({ lean: true });
+    return this.realmModel.estimatedDocumentCount({ lean: true });
   }
 
   async getMetaRealmsBySchemas(realms: Array<string>, propertiesToSelect: Array<string>) {
-    return await this.contentModel
+    return this.contentModel
       .find()
       .where({ realm: { $in: realms } })
       .select(propertiesToSelect)
@@ -48,7 +48,7 @@ export class RealmRepository {
     const selectProperties = verbose ? propertiesToSelect.concat(['value']) : propertiesToSelect;
 
     if (search) {
-      return await this.contentModel
+      return this.contentModel
         .find(null, null, { limit: take, skip })
         .where({
           $or: [
@@ -66,7 +66,7 @@ export class RealmRepository {
       await this.realmModel.find(null, null, { limit: take, skip }).sort({ updatedAt: 'descending' }).lean()
     ).map(({ realm }) => realm);
 
-    return await this.contentModel
+    return this.contentModel
       .where({ realm: { $in: realms } })
       .select(selectProperties)
       .sort({ updatedAt: 'descending' })
@@ -74,21 +74,21 @@ export class RealmRepository {
   }
 
   async where(filter: FilterQuery<RealmReq>) {
-    return await this.contentModel.where(filter).lean();
+    return this.contentModel.where(filter);
   }
 
   async upsertMany(reqs: RealmsUpsertReq[]) {
     const realms = prepareBulkWriteRealms(reqs.map(({ realm }) => realm));
     await this.realmModel.bulkWrite(realms);
     const preparedUpserts = reqs.map((req) => prepareBulkWriteContents(req.contents, req.realm)).flat();
-    return await this.contentModel.bulkWrite(preparedUpserts);
+    return this.contentModel.bulkWrite(preparedUpserts);
   }
 
   async upsert(realm: string, req: ContentUpsertReq[]) {
     const realms = prepareBulkWriteRealms([realm]);
     await this.realmModel.bulkWrite(realms);
     const rowsToUpsert = prepareBulkWriteContents(req, realm);
-    return await this.contentModel.bulkWrite(rowsToUpsert);
+    return this.contentModel.bulkWrite(rowsToUpsert);
   }
 
   async delete(realm: string, req?: string[]) {
