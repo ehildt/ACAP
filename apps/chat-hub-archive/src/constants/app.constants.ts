@@ -1,0 +1,11 @@
+export const API_DOCS = 'api-docs';
+export const API_DOCS_JSON = 'api-docs-json';
+export const BULLMQ_PERSISTANCE_QUEUE = 'BULLMQ_PERSISTANCE_QUEUE';
+
+export const MESSAGES_COLLECTION = 'MESSAGES';
+export const TOPICS_COLLECTION = 'TOPICS';
+export const THREADS_COLLECTION = 'THREADS';
+export const PARTICIPANTS_COLLECTION = 'PARTICIPANTS';
+export const ATTACHMENTS_COLLECTION = 'ATTACHMENTS';
+export const FLAGS_COLLECTION = 'FLAGS';
+export const EMOJIS_COLLECTION = 'EMOJIS';

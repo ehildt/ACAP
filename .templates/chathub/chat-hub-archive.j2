@@ -1,0 +1,22 @@
+  ch-archive:
+    container_name: ch-archive
+    build:
+      context: ./apps/chat-hub-archive
+      target: local
+    volumes:
+      - ./apps/chat-hub-archive:/app
+      - ./node_modules:/node_modules  
+    depends_on:
+      - keydb
+      - mongo
+    env_file:
+      - ./apps/chat-hub-archive/env/.env
+    environment:
+      - NODE_ENV=local
+      - PRINT_ENV=true
+      - START_SWAGGER=true
+    ports:
+      - 3004:3004
+    networks:
+      - chathub-network
+    restart: on-failure

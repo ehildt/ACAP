@@ -1,0 +1,22 @@
+appConfig:
+  port: 3004
+  address: 0.0.0.0
+  printEnv: false
+  startSwagger: false
+  nodeEnv: local
+  bodyLimit: 104857600
+
+bullMQConfig:
+  connection:
+    port: 6379
+    host: keydb
+    password: redis
+    username: default
+
+mongoConfig:
+  uri: mongodb://mongo:27017
+  ssl: false
+  tlsAllowInvalidCertificates: false
+  dbName: CHATHUB_ARCHIVE
+  user: mongo
+  pass: mongo
